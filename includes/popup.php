@@ -119,7 +119,7 @@
         <span class="agreement-text">
           Нажимая на&nbsp;кнопку «Отправить заявку», Вы&nbsp;соглашаетесь с
         </span>
-        <a class="agreement-link" href="/policy/agreement">
+        <a class="agreement-link" href="/pages/policy/agreement">
           Политикой обработки персональных данных
         </a>
       </div>
@@ -169,7 +169,7 @@
         <span class="agreement-text">
           Нажимая на&nbsp;кнопку «Отправить заявку», Вы&nbsp;соглашаетесь с
         </span>
-        <a class="agreement-link" href="/policy/agreement">
+        <a class="agreement-link" href="/pages/policy/agreement">
           Политикой обработки персональных данных
         </a>
       </div>

@@ -14,7 +14,7 @@
           ООО «ГТК» 2024
         </p>
 
-        <a href="./policy.html" class="footer__policy" target="_blank">
+        <a href="/pages/policy/" class="footer__policy" target="_blank">
           Политика конфиденциальности
         </a>
       </div>

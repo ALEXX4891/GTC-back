@@ -2202,7 +2202,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           <span class="consultations__agreement-text agreement-text">
             Нажимая на кнопку «Отправить заявку», Вы соглашаетесь с
           </span>
-          <a class="consultations__agreement-link agreement-link" href="/policy/agreement">
+          <a class="consultations__agreement-link agreement-link" href="/pages/policy/agreement">
             Политикой обработки персональных данных
           </a>
         </div>
