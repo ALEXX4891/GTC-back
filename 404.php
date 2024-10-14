@@ -25,7 +25,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           Страница не найдена
         </h1>
 
-        <a class="not-found__link" href="index.html">
+        <a class="not-found__link" href="/">
           Вернуться на главную
         </a>
       </div>

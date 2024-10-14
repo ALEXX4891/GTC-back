@@ -5,7 +5,7 @@
       <div class="footer__logo-block">
 
         <div class="footer__logo logo">
-          <a href="index.html" class="logo__link">
+          <a href="/" class="logo__link">
             <img class="logo__main" width="116" height="43" src="/assets/img/logo_w.svg" alt="Логотип Сибирь">
           </a>
         </div>
@@ -23,42 +23,42 @@
         <nav class="nav footer__nav">
           <ul class="nav__list">
             <li class="nav__item">
-              <a href="index.html#about" class="nav__link">
+              <a href="/#about" class="nav__link">
                 <p class="nav__text">
                   О компании
                 </p>
               </a>
             </li>
             <li class="nav__item">
-              <a href="index.html#offers" class="nav__link">
+              <a href="/#offers" class="nav__link">
                 <p class="nav__text">
                   Предложения
                 </p>
               </a>
             </li>
             <li class="nav__item">
-              <a href="index.html#types" class="nav__link">
+              <a href="/#types" class="nav__link">
                 <p class="nav__text">
                   Виды ТЗП
                 </p>
               </a>
             </li>
             <li class="nav__item">
-              <a href="index.html#results" class="nav__link">
+              <a href="/#results" class="nav__link">
                 <p class="nav__text">
                   Кейсы
                 </p>
               </a>
             </li>
             <li class="nav__item">
-              <a href="novosti.html" class="nav__link">
+              <a href="/pages/novosti" class="nav__link">
                 <p class="nav__text">
                   Новости
                 </p>
               </a>
             </li>
             <li class="nav__item">
-              <a href="index.html#contacts" class="nav__link">
+              <a href="/#contacts" class="nav__link">
                 <p class="nav__text">
                   Контакты
                 </p>

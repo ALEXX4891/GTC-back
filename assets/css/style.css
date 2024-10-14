@@ -757,6 +757,57 @@ a {
   padding: 5px 16px;
 }
 
+.container_info {
+  padding-top: 100px;
+}
+
+.container_info .personal_title {
+  font-size: 60px;
+  line-height: 150%;
+  margin-bottom: 30px;
+}
+
+.container_info .policy__heading {
+  font-size: 80px;
+  line-height: 110%;
+  margin-bottom: 30px;
+}
+
+.container_info .policy__text,
+.container_info .personal_info {
+  font-size: 26px;
+  line-height: 150%;
+  margin-bottom: 25px;
+}
+
+.container_info .politics_info_subtitle {
+  font-size: 40px;
+  line-height: 150%;
+  margin-bottom: 25px;
+}
+
+.container_info .personal_info-a {
+  font-size: 26px;
+  line-height: 150%;
+  margin-bottom: 25px;
+}
+
+.container_info .policy__title {
+  font-size: 60px;
+  line-height: 150%;
+  margin-bottom: 30px;
+}
+
+.container_info .policy__subtitle {
+  margin-bottom: 25px;
+  line-height: 150%;
+  font-size: 40px;
+}
+
+.container_info .policy__item {
+  margin-bottom: 10px;
+}
+
 .lock {
   overflow: hidden;
 }
@@ -3884,6 +3935,40 @@ a {
 }
 
 @media (max-width: 1920px) {
+  .container_info .personal_title {
+    font-size: 3.1vw;
+  }
+
+  .container_info .policy__heading {
+    font-size: 4.2vw;
+  }
+
+  .container_info .policy__text,
+  .container_info .personal_info {
+    font-size: 2vw;
+  }
+
+  .container_info .politics_info_subtitle {
+    font-size: 3vw;
+  }
+
+  .container_info .personal_info-a {
+    font-size: 2vw;
+  }
+
+  .container_info .policy__title {
+    font-size: 3.1vw;
+  }
+
+  .container_info .policy__subtitle {
+    font-size: 2vw;
+  }
+
+  .container_info .policy__item {
+    font-size: 1.8vw;
+    line-height: 130%;
+  }
+
   .glavnaya .consultations .consultations__img {
     left: 59.5%;
     width: 38.5vw;
@@ -4813,6 +4898,39 @@ a {
   .cookie .cookie__text {
     font-size: 14px;
     line-height: 19.07px;
+  }
+
+  .container_info .personal_title {
+    font-size: 8vw;
+  }
+
+  .container_info .policy__heading {
+    font-size: 10vw;
+  }
+
+  .container_info .policy__text,
+  .container_info .personal_info {
+    font-size: 5vw;
+  }
+
+  .container_info .politics_info_subtitle {
+    font-size: 6vw;
+  }
+
+  .container_info .personal_info-a {
+    font-size: 5vw;
+  }
+
+  .container_info .policy__title {
+    font-size: 8vw;
+  }
+
+  .container_info .policy__subtitle {
+    font-size: 5vw;
+  }
+
+  .container_info .policy__item {
+    font-size: 4vw;
   }
 
   .off-card {
