@@ -2,80 +2,93 @@
 $title = 'Новости';
 $description = '';
 $keywords = '';
-include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
+$page = 'news-page';
+include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
+include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 ?>
 
-<body class="news-page">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMZW3TMH" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-  <?
-  include $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
-  ?>
-
-  <main class="main news-page__main">
+<main class="main">
     <section class="section news-page__section">
       <div class="container news-page__container">
-        <h1 class="news-page__title title title_25">
-          Новости Сибири
-        </h1>
-        <div class="news-page__btn-wrapper">
-          <a class="news-page__btn news-page__btn_green" href="/pages/novosti/">
+        <div class="top-block">
+          <h1 class="top-block__title section-title" style="text-wrap: nowrap;">
             Новости
-          </a>
-          <a class="news-page__btn news-page__btn_white" href="/pages/akcii/">
-            Акции
-          </a>
+          </h1>
+          <p class="top-block__number">
+          </p>
         </div>
-        <ul class="news-page__cards-list">
 
-          <?
-          // $result = mysqli_query($db, "SELECT * FROM apartments WHERE id = " . $_GET['id']);
-          $result = mysqli_query($db, "SELECT * FROM news WHERE status = 1 ORDER BY DATE DESC");
+        <ul class="news-page__list">
+          <li class="news-page__item">
+            <div class="news-page__item-img">
+              <picture>
+                <source srcset="/assets/img/news-img-1.webp" type="image/webp"><img src="/assets/img/news-img-1.jpg"
+                  alt="">
+              </picture>
+            </div>
+            <div class="news-page__item-text-wrapper">
+              <h2 class="news-page__item-title">
+                Система контроля и учёта топлива – экономия в режиме реального времени
+              </h2>
+              <p class="news-page__item-text">
+                Оборудование контроля топлива «СКАУТ» позволяет собирать и анализировать данные в реальном времени и
+                формировать нужные руководителю предприятия отчеты
+              </p>
+              <a class="news-page__item-btn btn btn_trans-orange" href="novosti-item.html">
+                Подробнее
+              </a>
+            </div>
 
-          $row = mysqli_fetch_array($result);
+          </li>
 
-          // if ($row == '') {
-          //   echo 'Ничего не нашлось';
-          // }
+          <li class="news-page__item">
+            <div class="news-page__item-img">
+              <picture>
+                <source srcset="/assets/img/news-img-2.webp" type="image/webp"><img src="/assets/img/news-img-2.jpg"
+                  alt="">
+              </picture>
+            </div>
+            <div class="news-page__item-text-wrapper">
+              <h2 class="news-page__item-title">
+                Система мониторинга расхода топлива «СКАУТ» – вопросы и ответы
+              </h2>
+              <p class="news-page__item-text">
+                Профессиональное оборудование для контроля топлива от компании «СКАУТ
+              </p>
+              <a class="news-page__item-btn btn btn_trans-orange" href="novosti-item.html">
+                Подробнее
+              </a>
+            </div>
 
-          // echo '<pre>';
-          // print_r($row);
-          // echo '</pre>';
+          </li>
 
-          // Сосновый | ГП 8 | 1 / 2 этаж
+          <li class="news-page__item">
+            <div class="news-page__item-img">
+              <picture>
+                <source srcset="/assets/img/news-img-2.webp" type="image/webp"><img src="/assets/img/news-img-2.jpg"
+                  alt="">
+              </picture>
+            </div>
+            <div class="news-page__item-text-wrapper">
+              <h2 class="news-page__item-title">
+                Система мониторинга расхода топлива «СКАУТ» – вопросы и ответы
+              </h2>
+              <p class="news-page__item-text">
+                Профессиональное оборудование для контроля топлива от компании «СКАУТ
+              </p>
+              <a class="news-page__item-btn btn btn_trans-orange" href="novosti-item.html">
+                Подробнее
+              </a>
+            </div>
 
-          if (mysqli_num_rows($result) > 0) {
-            do {
-              echo '
-                <li class="news-page__cards-item">
-                <div class="news-page__card-img-wrapper">
-                  <img src="/assets/img/' . $row['photo'] . '" alt="' . $row['title'] . '">
-                </div>
-                <p class="news-page__card-date">
-                ' . date("d.m.Y", strtotime($row['date'])) . '
-                </p>
-                <a class="news-page__card-link" href="/pages/novosti-item/?id=' . $row['id'] . '">
-                  <h2 class="news-page__card-title">
-                  ' . $row['title'] . '
-                  </h2>
-                </a>
-              </li>
-                ';
-            } while ($row = mysqli_fetch_array($result));
-          }
-          ?>
+          </li>
+
         </ul>
-      </div>
+
     </section>
-  </main>
 
-  <?
-  include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/footer.php';
-  ?>
+</main>
 
-</body>
-
-</html>
+<?
+include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/footer.php';
+?>

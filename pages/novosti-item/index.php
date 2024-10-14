@@ -1,247 +1,144 @@
 <?
-$title = 'Новости';
+$title = 'Новость';
 $description = '';
 $keywords = '';
-include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
+$page = 'news-item';
+include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
+include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 ?>
 
-<body class="news-page-item">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMZW3TMH" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+<main class="main">
+  <section class="section news-item_section">
+    <div class="container news-item__container">
+      <a class="news-item__link-back" href="/novosti.html">
+        <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_261_2440)">
+            <path d="M8.64265 2.4545L2.35693 8.99996L8.64265 15.5454" stroke="#FAB502" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <defs>
+            <clipPath id="clip0_261_2440">
+              <rect width="18" height="11" fill="white" transform="matrix(0 -1 1 0 0 18)" />
+            </clipPath>
+          </defs>
+        </svg>
+        Назад к новостям
+      </a>
 
-  <?
-  include $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
-  ?>
-
-  <main class="main news-page-item__main">
-    <section class="section news-page-item__news-content news-content">
-
-      <?php
-      $result = mysqli_query($db, "SELECT * FROM news WHERE id = " . $_GET['id']);
-      $row = mysqli_fetch_array($result);
-      // echo '<pre>';
-      // print_r($row);
-      // echo '</pre>';
-      ?>
-      <div class="container news-content__container">
-        <a class="news-content__btn news-content__btn_white" href="/pages/novosti/">
-          <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8.25 13.5L1.25 7.5L8.25 1.5" stroke="#646464" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-          <p class="news-content__btn-text">
-            Все новости
-          </p>
-        </a>
-
-        <h1 class="news-content__title title title_40">
-          <?= $row['title'] ?>
+      <div class="news-item__content">
+        <h1 class="news-item__title">
+          Система контроля и учёта топлива – экономия в режиме реального времени
         </h1>
-
-        <p class="news-content__date">
-          <?= date("d", strtotime($row['date'])) . ' '
-            . monthRus(date("m", strtotime($row['date'])), 'rod', 2) . ' '
-            . date("Y", strtotime($row['date'])) ?>
+        <p class="news-item__desc">
+          Оборудование контроля топлива «СКАУТ» позволяет собирать и анализировать данные в реальном времени и
+          формировать нужные руководителю предприятия отчеты
         </p>
 
-        <div class="news-content__img-wrapper">
-          <img src="/assets/img/<?= $row['photo'] ?>" alt="Проект">
+        <div class="swiper-block">
+          <div class="news-item__slider swiper news_swiper">
+
+            <ul class="news-item__slider-list swiper-wrapper">
+              <li class="news-item__slider-item swiper-slide">
+                <picture>
+                  <source srcset="/assets/img/news-slide-1.webp" type="image/webp"><img
+                    src="/assets/img/news-slide-1.jpg" alt="">
+                </picture>
+              </li>
+              <li class="news-item__slider-item swiper-slide">
+                <picture>
+                  <source srcset="/assets/img/news-slide-2.webp" type="image/webp"><img
+                    src="/assets/img/news-slide-2.jpg" alt="">
+                </picture>
+              </li>
+              <li class="news-item__slider-item swiper-slide">
+                <picture>
+                  <source srcset="/assets/img/news-slide-3.webp" type="image/webp"><img
+                    src="/assets/img/news-slide-3.jpg" alt="">
+                </picture>
+              </li>
+              <li class="news-item__slider-item swiper-slide">
+                <picture>
+                  <source srcset="/assets/img/news-slide-4.webp" type="image/webp"><img
+                    src="/assets/img/news-slide-4.jpg" alt="">
+                </picture>
+              </li>
+              <li class="news-item__slider-item swiper-slide">
+                <picture>
+                  <source srcset="/assets/img/news-slide-5.webp" type="image/webp"><img
+                    src="/assets/img/news-slide-5.jpg" alt="">
+                </picture>
+              </li>
+            </ul>
+          </div>
+
+          <div class="swiper-pagination swiper-pagination-news"></div>
+          <div class="swiper-button swiper-button-next swiper-button-next_res-card__news"></div>
+          <div class="swiper-button swiper-button-prev swiper-button-prev_res-card__news"></div>
         </div>
 
-        <p class="news-content__text">
-          <?= $row['description'] ?>          
+        <p class="news-item__text">
+          <b>Автоматический сбор и анализ</b><br><br>
+          Как стационарные топливозаправочные пункты, поставляемые «ГТК Групп», так и автоматизированные мобильные
+          заправочные станции и автотопливозаправщики, оснащённые системой мониторинга топлива, могут в режиме
+          реального
+          времени передавать информацию на компьютер руководителя. Данные видеомониторинга закачиваются в облачное
+          хранилище и могут там находиться столько, сколько понадобится. То же самое касается установленных
+          на подвижном
+          составе систем мониторинга «СКАУТ» с датчиками уровня и расхода топлива.<br><br>
+          Все эти данные собираются в единый массив, из которого можно сформировать практически любой отчёт: за любой
+          период времени по предприятию в целом, по отдельному подразделению, по каждой единице техники, по каждому
+          водителю или оператору. Причём система мониторинга работает самостоятельно, в фоновом режиме, автоматически
+          анализируя каждое событие и, в случае необходимости, тут же отправляя уведомление и фактический материал
+          ответственному менеджеру. Данные выводятся в виде простой и понятной инфографики, которая позволяет
+          мгновенно
+          оценить состояние дел. И иногда нечистый на руку водитель, вернувшись из рейса, с удивлением обнаруживает,
+          что по нему уже принято кадровое решение.<br><br>
+
+          <b>Можно ли этому верить?</b><br><br>
+          Проблема подобных систем мониторинга в их относительно невысокой точности. Из-за этого руководители
+          не вполне
+          доверяют данным, собранным с их помощью. Система мониторинга «СКАУТ» использует специальные алгоритмы,
+          которые
+          на основе анализа всего массива информации формируют реальную картину, корректируя, при необходимости,
+          не совсем точные первичные данные, поступающие с датчиков. В результате руководство компании всегда имеет
+          достоверную информацию, которой полностью доверяет просто потому, что это подтверждено практическим
+          опытом.<br><br>
+          На основе данных, полученных с помощью системы учёта, можно устанавливать нормы расхода топлива для любой
+          техники. Причём на совершенно законных основаниях, поскольку датчики компании «СКАУТ | Разработчик системы»
+          внесены в госреестр средств измерений. Экономия иной раз превосходит даже самые смелые ожидания. По словам
+          Андрея Чистоколова, после установки оборудования и внедрения системы сквозного учёта топлива в одном
+          из хозяйств агропромышленного комплекса выяснилось, что ранее установленные на предприятии нормы расхода
+          топлива для импортных тракторов были втрое выше реальных.<br><br>
+
+          <b>Сколько можно сэкономить?</b><br><br>
+          Много. По статистике компаний «СКАУТ | Разработчик системы» и «ГТК Групп», только внедрение автоматизации
+          выдачи горючего и систем мониторинга парка техники позволяет снизить расходы на топливо минимум на 25–30%,
+          а внедрение системы сквозного контроля даёт дополнительно ещё 10–12% экономии. Таким образом, снизить
+          затраты
+          на топливо на треть вполне реально. А бонусом будут преимущества, которые дают отсутствие оператора
+          и переход
+          от бумажного учёта ГСМ к электронному.<br><br>
+          После успешного пилотного проекта на пять единиц техники предприятия в марте-апреле 2016 года системой
+          мониторинга топлива «СКАУТ» был оснащён весть парк техники. Почти 200 единиц. Всего за девять месяцев
+          2016-го
+          экономия составила порядка 120 000 литров только дизельного топлива и около 45 000 бензина. Инвестиции
+          в СМТ «СКАУТ» вернулись менее чем за пять месяцев. В настоящее время наш инструмент контроля движения
+          ГСМ позволяет выявлять различные махинации (слив, недолив, аферы с «обраткой», паразитный капиллярный расход
+          и другие вариации), а желающие «проверить» возможности системы вынуждены возвращать незаконно присвоенные
+          литры назад в бак.<br><br>
+          С «ГТК Групп» мы работаем уже давно. И не только по направлению систем мониторинга:
+          они для нас модернизировали стационарную внутрихозяйственную АЗС, обслужили резервуарный парк и заменили
+          трубопровод, а также поставили и запустили четыре топливозаправочных пункта с возможностью заправки техники
+          без оператора. В планах с их помощью автоматизировать наши автотопливозаправщики и реализовать полную
+          интеграцию с программой учёта 1С, в том числе, формирование электронных путевых листов.<br>
+
+
         </p>
-
-
-        <div class="news-content__gallery">
-          <ul class="news-content__gallery-list">
-            <? for ($i = 1; $i <= 10; $i++) {
-              if ($row['image-' . $i] != '') {
-                echo '
-                <li class="news-content__gallery-item" data-fancybox="1" href="/assets/img/' . $row['image-' . $i] . '">
-                <img src="/assets/img/' . $row['image-' . $i] . '" alt="">
-                </li>
-                ';
-              }              
-            } 
-            ?>
-          </ul>
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
+</main>
 
-    <section class="section news-page-item__news-slider news-slider">
-      <div class="container news-slider__container-top">
-        <h2 class="news-slider__title title title_40">
-          Другие новости
-        </h2>
-        <div class="container news-slider__container-bot news-slider_swiper">
-          <ul class="news-slider__cards-list swiper-wrapper">
-            <?
-            // $result = mysqli_query($db, "SELECT * FROM apartments WHERE id = " . $_GET['id']);
-            $result = mysqli_query($db, "SELECT * FROM news WHERE status = 1 AND id != " . $row['id'] . " ORDER BY DATE DESC LIMIT 8");
-
-            $row = mysqli_fetch_array($result);
-
-            // if ($row == '') {
-            //   echo 'Ничего не нашлось';
-            // }
-
-            // echo '<pre>';
-            // print_r($row);
-            // echo '</pre>';
-
-            // Сосновый | ГП 8 | 1 / 2 этаж
-
-            if (mysqli_num_rows($result) > 0) {
-              do {
-                echo '
-                <li class="news-slider__cards-item swiper-slide">
-                <div class="news-slider__card-img-wrapper">
-                <img src="/assets/img/' . $row['photo'] . '" alt="' . $row['title'] . '">
-                </div>
-                <p class="news-slider__card-date">
-                ' . date("d", strtotime($row['date'])) . ' '
-                  . monthRus(date("m", strtotime($row['date'])), 'rod', 2) . ' '
-                  . date("Y", strtotime($row['date'])) . '
-                </p>
-                <a class="news-slider__card-link" href="/pages/novosti-item/?id=' . $row['id'] . '">
-                <h2 class="news-slider__card-title">
-                ' . $row['title'] . '
-                </h2>
-                </a>
-                </li>
-                ';
-              } while ($row = mysqli_fetch_array($result));
-            }
-            ?>
-          </ul>
-        </div>
-
-        <div class="swiper-navigation">
-          <div class="swiper-button swiper-button-prev">
-            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g opacity="0.8">
-                <rect x="-0.5" y="0.5" width="54" height="54" rx="27" transform="matrix(-1 0 0 1 54.25 0.5)"
-                  stroke="#CBCBCB" />
-                <path d="M32.25 20.5L23.25 28L32.25 35.5" stroke="#CBCBCB" stroke-width="2" stroke-linejoin="round" />
-              </g>
-            </svg>
-          </div>
-          <div class="swiper-button swiper-button-next">
-            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g opacity="0.8">
-                <rect x="-0.5" y="0.5" width="54" height="54" rx="27" transform="matrix(-1 0 0 1 54.25 0.5)"
-                  stroke="#CBCBCB" />
-                <path d="M23.25 20.5L32.25 28L23.25 35.5" stroke="#CBCBCB" stroke-width="2" stroke-linejoin="round" />
-              </g>
-            </svg>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <?
-  include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/footer.php';
-  ?>
-
-  <script>
-    const title = document.querySelector('.news-content__title');
-    let transTitle = transliterate(title.textContent);
-    // title.textContent = transTitle;
-
-    // history.pushState(null, null, transTitle); //заменяет url в браузере
-
-    function transliterate(word) {
-      var answer = "",
-        a = {};
-      a["А"] = "A";
-      a["Б"] = "B";
-      a["В"] = "V";
-      a["Г"] = "G";
-      a["Д"] = "D";
-      a["Е"] = "E";
-      a["Ё"] = "E";
-      a["Ж"] = "ZH";
-      a["З"] = "Z";
-      a["И"] = "I";
-      a["Й"] = "Y";
-      a["К"] = "K";
-      a["Л"] = "L";
-      a["М"] = "M";
-      a["Н"] = "N";
-      a["О"] = "O";
-      a["П"] = "P";
-      a["Р"] = "R";
-      a["С"] = "S";
-      a["Т"] = "T";
-      a["У"] = "U";
-      a["Ф"] = "F";
-      a["Х"] = "KH";
-      a["Ц"] = "TS";
-      a["Ч"] = "CH";
-      a["Ш"] = "SH";
-      a["Щ"] = "SHCH";
-      a["Ъ"] = "";
-      a["Ы"] = "Y";
-      a["Ь"] = "";
-      a["Э"] = "E";
-      a["Ю"] = "YU";
-      a["Я"] = "YA";
-      a["а"] = "a";
-      a["б"] = "b";
-      a["в"] = "v";
-      a["г"] = "g";
-      a["д"] = "d";
-      a["е"] = "e";
-      a["ё"] = "e";
-      a["ж"] = "zh";
-      a["з"] = "z";
-      a["и"] = "i";
-      a["й"] = "y";
-      a["к"] = "k";
-      a["л"] = "l";
-      a["м"] = "m";
-      a["н"] = "n";
-      a["о"] = "o";
-      a["п"] = "p";
-      a["р"] = "r";
-      a["с"] = "s";
-      a["т"] = "t";
-      a["у"] = "u";
-      a["ф"] = "f";
-      a["х"] = "kh";
-      a["ц"] = "ts";
-      a["ч"] = "ch";
-      a["ш"] = "sh";
-      a["щ"] = "shch";
-      a["ъ"] = "";
-      a["ы"] = "y";
-      a["ь"] = "";
-      a["э"] = "e";
-      a["ю"] = "yu";
-      a["я"] = "ya";
-
-
-      for (i in word) {
-        if (word.hasOwnProperty(i)) {
-          if (a[word[i]] === undefined) {
-            answer += word[i];
-            console.log(word[i]);
-          } else {
-            answer += a[word[i]];
-            console.log(a[word[i]]);
-          }
-        }
-      }
-      return answer;
-    }
-  </script>
-
-</body>
-
-</html>
+<?
+include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/footer.php';
+?>
