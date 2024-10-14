@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /404.php
+Disallow: /backend/
+Disallow: /control/
+
+//Host: https://siberia-dev.ru/
+//Sitemap: https://siberia-dev.ru/sitemap.xml
