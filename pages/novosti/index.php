@@ -1,141 +1,115 @@
 <?
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
+ini_set('html_errors', true);
+ini_set('log_errors', false);
+ini_set('error_prepend_string', '<pre style="white-space:pre-wrap">');
+ini_set('error_append_string', '</pre>');
+error_reporting(E_ALL);
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 $title = 'Новости';
 $description = '';
 $keywords = '';
 $page = 'news-page';
 include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
 include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
-$result = mysqli_query($db, "SELECT * FROM news WHERE status = 1 ORDER BY DATE DESC");
-$row = mysqli_fetch_array($result);
+// $result = mysqli_query($db, "SELECT * FROM news WHERE status = 1 ORDER");
+// $row = mysqli_fetch_array($result);
 ?>
 
 <main class="main">
-    <section class="section news-page__section">
-      <div class="container news-page__container">
-        <div class="top-block">
-          <h1 class="top-block__title section-title" style="text-wrap: nowrap;">
-            Новости
-          </h1>
-          <p class="top-block__number">
-          </p>
-        </div>
+  <section class="section news-page__section">
+    <div class="container news-page__container">
+      <div class="top-block">
+        <h1 class="top-block__title section-title" style="text-wrap: nowrap;">
+          Новости
+        </h1>
+        <p class="top-block__number">
+        </p>
+      </div>
 
-        <ul class="news-page__list">
-          <li class="news-page__item">
-            <div class="news-page__item-img">
-              <picture>
-                <source srcset="/assets/img/news-img-1.webp" type="image/webp"><img src="/assets/img/news-img-1.jpg"
-                  alt="">
-              </picture>
-            </div>
-            <div class="news-page__item-text-wrapper">
-              <h2 class="news-page__item-title">
-                Система контроля и учёта топлива – экономия в режиме реального времени
-              </h2>
-              <p class="news-page__item-text">
-                Оборудование контроля топлива «СКАУТ» позволяет собирать и анализировать данные в реальном времени и
-                формировать нужные руководителю предприятия отчеты
-              </p>
-              <a class="news-page__item-btn btn btn_trans-orange" href="novosti-item.html">
-                Подробнее
-              </a>
-            </div>
+      <ul class="news-page__list">
+        <?
+        // $result = mysqli_query($db, "SELECT * FROM apartments WHERE id = " . $_GET['id']);
+        $result = mysqli_query($db, "SELECT * FROM news WHERE status = 1");
 
-          </li>
+        $row = mysqli_fetch_array($result);
 
-          <li class="news-page__item">
-            <div class="news-page__item-img">
-              <picture>
-                <source srcset="/assets/img/news-img-2.webp" type="image/webp"><img src="/assets/img/news-img-2.jpg"
-                  alt="">
-              </picture>
-            </div>
-            <div class="news-page__item-text-wrapper">
-              <h2 class="news-page__item-title">
-                Система мониторинга расхода топлива «СКАУТ» – вопросы и ответы
-              </h2>
-              <p class="news-page__item-text">
-                Профессиональное оборудование для контроля топлива от компании «СКАУТ
-              </p>
-              <a class="news-page__item-btn btn btn_trans-orange" href="novosti-item.html">
-                Подробнее
-              </a>
-            </div>
+        // if ($row == '') {
+        //   echo 'Ничего не нашлось';
+        // }
 
-          </li>
+        // echo '<pre>';
+        // print_r($row);
+        // echo '</pre>';
 
-          <li class="news-page__item">
-            <div class="news-page__item-img">
-              <picture>
-                <source srcset="/assets/img/news-img-2.webp" type="image/webp"><img src="/assets/img/news-img-2.jpg"
-                  alt="">
-              </picture>
-            </div>
-            <div class="news-page__item-text-wrapper">
-              <h2 class="news-page__item-title">
-                Система мониторинга расхода топлива «СКАУТ» – вопросы и ответы
-              </h2>
-              <p class="news-page__item-text">
-                Профессиональное оборудование для контроля топлива от компании «СКАУТ
-              </p>
-              <a class="news-page__item-btn btn btn_trans-orange" href="novosti-item.html">
-                Подробнее
-              </a>
-            </div>
+        // Сосновый | ГП 8 | 1 / 2 этаж
 
-          </li>
+        if (mysqli_num_rows($result) > 0) {
+          do {
+            // var_dump($row['images']);
+            // var_dump(json_decode($row['images']));
+            // $json = '[{"alt":"картинка","path":"news-slide-0-1.jpg"},{"alt":"картинка","path":"news-slide-0-2.jpg"},{"alt":"картинка","path":"news-slide-0-3.jpg"},{"alt":"картинка","path":"news-slide-0-4.jpg"},{"alt":"картинка","path":"news-slide-0-5.jpg"}]';
+            // $json = '["alt":"картинка","path":"news-slide-0-1.jpg"},{"alt":"картинка","path":"news-slide-0-2.jpg"},{"alt":"картинка","path":"news-slide-0-3.jpg"},{"alt":"картинка","path":"news-slide-0-4.jpg"},{"alt":"картинка","path":"news-slide-0-5.jpg"}]';
 
-          <?
-          // $result = mysqli_query($db, "SELECT * FROM apartments WHERE id = " . $_GET['id']);
-          $result = mysqli_query($db, "SELECT * FROM news WHERE status = 1 ORDER BY DATE DESC");
 
-          $row = mysqli_fetch_array($result);
+            // $img = json_decode($row['images'])[0];
+            // $img = json_decode($json)[0];
 
-          // if ($row == '') {
-          //   echo 'Ничего не нашлось';
-          // }
+            $arr = [
+              '0' => [
+                'alt' => 'картинка',
+                'path' => 'news-slide-0-1.jpg'
+              ],
+              '1' => [
+                'alt' => 'картинка',
+                'path' => 'news-slide-0-2.jpg'
+              ],
+              '2' => [
+                'alt' => 'картинка',
+                'path' => 'news-slide-0-3.jpg'
+              ],
+              '3' => [
+                'alt' => 'картинка',
+                'path' => 'news-slide-0-4.jpg'
+              ],
+              '4' => [
+                'alt' => 'картинка',
+                'path' => 'news-slide-0-5.jpg'
+              ]
+            ];
 
-          // echo '<pre>';
-          // print_r($row);
-          // echo '</pre>';
-
-          // Сосновый | ГП 8 | 1 / 2 этаж
-
-          if (mysqli_num_rows($result) > 0) {
-            do {
-              echo '
-                <li class="news-page__cards-item">
-                <div class="news-page__card-img-wrapper">
-                  <img src="/assets/img/' . $row['photo'] . '" alt="' . $row['title'] . '">
-                </div>
-                <p class="news-page__card-date">
-                ' . date("d.m.Y", strtotime($row['date'])) . '
-                </p>
-                <a class="news-page__card-link" href="/pages/novosti-item/?id=' . $row['id'] . '">
-                  <h2 class="news-page__card-title">
-                  ' . $row['title'] . '
-                  </h2>
-                </a>
-              </li>
+            var_dump($arr);
+            // $json = json_encode($arr, JSON_UNESCAPED_UNICODE)[0];
+            // var_dump($json);
 
 
 
-              <li class="news-page__item">
-              <div class="news-page__item-img">
-                <picture>
-                  <source srcset="/assets/img/news-img-1.webp" type="image/webp"><img src="/assets/img/news-img-1.jpg"
-                    alt="">
-                </picture>
+
+
+
+            // var_dump($img);
+            // $alt = json_decode($row['images'])[0]['alt'];
+            // var_dump($alt);
+
+            // "[{"alt":"картинка","path":"news-slide-0-1.jpg"},{"alt":"картинка","path":"news-slide-0-2.jpg"},{"alt":"картинка","path":"news-slide-0-3.jpg"},{"alt":"картинка","path":"news-slide-0-4.jpg"},{"alt":"картинка","path":"news-slide-0-5.jpg"}]"
+            // "[{alt = 'картинка', path = 'news-slide-0-1.jpg'}, {alt = 'картинка', path = 'news-slide-0-2.jpg'}, {alt = 'картинка', path = 'news-slide-0-3.jpg'}, {alt = 'картинка', path = 'news-slide-0-4.jpg'}, {alt = 'картинка', path = 'news-slide-0-5.jpg'}, ]"
+            // echo 123;
+            echo "
+              <li class='news-page__item'>
+              <div class='news-page__item-img'>
+                  <img src='/assets/img/{$img}'
+                    alt='{$alt}'>
               </div>
-              <div class="news-page__item-text-wrapper">
-                <h2 class="news-page__item-title">
-                  Система контроля и учёта топлива – экономия в режиме реального времени
+              <div class='news-page__item-text-wrapper'>
+                <h2 class='news-page__item-title'>
+                  {$row['title']}
                 </h2>
-                <p class="news-page__item-text">
-                  Оборудование контроля топлива «СКАУТ» позволяет собирать и анализировать данные в реальном времени и
-                  формировать нужные руководителю предприятия отчеты
+                <p class='news-page__item-text'>
+                  {$row['description']}
                 </p>
-                <a class="news-page__item-btn btn btn_trans-orange" href="novosti-item.html">
+                <a class='news-page__item-btn btn btn_trans-orange' href='/pages/novosti-item/index.php?id={$row['id']}'>
                   Подробнее
                 </a>
               </div>
@@ -143,14 +117,14 @@ $row = mysqli_fetch_array($result);
             </li>
 
 
-                ';
-            } while ($row = mysqli_fetch_array($result));
-          }
-          ?>
+                ";
+          } while ($row = mysqli_fetch_array($result));
+        }
+        ?>
 
-        </ul>
+      </ul>
 
-    </section>
+  </section>
 
 </main>
 

@@ -10,7 +10,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 <main class="main">
   <section class="section news-item_section">
     <div class="container news-item__container">
-      <a class="news-item__link-back" href="/novosti.html">
+      <a class="news-item__link-back" href="/pages/novosti">
         <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#clip0_261_2440)">
             <path d="M8.64265 2.4545L2.35693 8.99996L8.64265 15.5454" stroke="#FAB502" stroke-width="1.5"
