@@ -88,7 +88,7 @@
 
 <div class="popup popup-consult" id="popup-consult">
   <div class="popup__body">
-    <div class="popup__content">
+    <div class="popup__content form-wrap">
       <h2 class="popup__title">
         Консультация специалиста
       </h2>
@@ -100,11 +100,12 @@
 
       <form class="popup__form form">
         <fieldset class="form__wrap">
+          <input type="hidden" name="type" value="Консультация">
           <input class="form__input form__input_name _req input" type="text" name="name" placeholder="Имя*">
           <input class="form__input form__input_phone _req input" type="tel" name="phone" placeholder="Телефон*">
           <input class="form__input form__input_organization _req input" type="text" name="organization"
             placeholder="Название организации">
-          <input class="form__input form__input_email input" type="email" name="email" placeholder="Почта">
+          <input class="form__input form__input_email _email input" type="email" name="email" placeholder="Почта">
           <textarea class="form__input form__input_textarea input input_textarea" name="text"
             placeholder="Комментарий"></textarea>
         </fieldset>
@@ -139,7 +140,7 @@
 
 <div class="popup popup-offer_call" id="popup-offer_call">
   <div class="popup__body">
-    <div class="popup__content">
+    <div class="popup__content form-wrap">
       <h2 class="popup__title">
         Оформление заказа
       </h2>
@@ -150,11 +151,12 @@
 
       <form class="popup__form form">
         <fieldset class="form__wrap">
+          <input type="hidden" name="type" value="Заказ">
           <input class="form__input form__input_name _req input" type="text" name="name" placeholder="Имя*">
           <input class="form__input form__input_phone _req input" type="tel" name="phone" placeholder="Телефон*">
           <input class="form__input form__input_organization _req input" type="text" name="organization"
             placeholder="Название организации">
-          <input class="form__input form__input_email input" type="email" name="email" placeholder="Почта">
+          <input class="form__input form__input_email _email input" type="email" name="email" placeholder="Почта">
           <textarea class="form__input form__input_textarea input input_textarea" name="text"
             placeholder="Комментарий"></textarea>
         </fieldset>

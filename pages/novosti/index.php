@@ -65,7 +65,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 <p class='news-page__item-text'>
                   {$row['description']}
                 </p>
-                <a class='news-page__item-btn btn btn_trans-orange' href='/pages/novosti-item/index.php?id={$row['id']}'>
+                <a class='news-page__item-btn btn btn_trans-orange' href='/pages/novosti-item/?id={$row['id']}'>
                   Подробнее
                 </a>
               </div>

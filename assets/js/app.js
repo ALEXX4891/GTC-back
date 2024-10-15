@@ -54,10 +54,9 @@ if (socialBtn) {
 }
 // ---------------------------------- start отправка и валидация формы ----------------------------------
 
-const formAll = document.querySelectorAll(".os-form");
+const formAll = document.querySelectorAll(".form");
 
 if (formAll) {
-  console.log("formAll", formAll);
   formAll.forEach((form) => {
     form.addEventListener("submit", sendForm);
 
@@ -67,12 +66,10 @@ if (formAll) {
       let errore = formvalidation(form);
 
       if (errore === 0) {
-        form.classList.add("_sending");
         let formData = new FormData(form);
-        const dataRequest = form.closest(".popup").getAttribute("data-request");
-        if (dataRequest) {
-          formData.append("dataRequest", dataRequest);
-        }
+
+        const wrapper = form.closest('.form-wrap')
+        wrapper.classList.add("_sending");
 
         let response = await fetch("/backend/post-mail.php", {
           method: "POST",
@@ -84,17 +81,11 @@ if (formAll) {
         }
 
         if (response.ok) {
-          // let result = await response.json();
           form.reset();
-          if (formData.get("id") == 3) {
-            popupOpen(document.getElementById("popup-success-subscribe"));
-          } else {
-            popupOpen(document.getElementById("success"));
-          }
-          form.classList.remove("_sending");
+          popupOpen(document.getElementById("popup-success"));
+          wrapper.classList.remove("_sending");
         } else {
-          // popupOpen(document.getElementById("error"));
-          form.classList.remove("_sending");
+          wrapper.classList.remove("_sending");
         }
       } else {
         alert("Заполните обязательные поля");

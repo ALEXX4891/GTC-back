@@ -2168,7 +2168,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
     </div>
   </section>
 
-  <section class="section section_consultations consultations">
+  <section class="section section_consultations consultations form-wrap">
     <div class="consultations__img">
       <picture>
         <source srcset="/assets/img/consult.webp" type="image/webp"><img src="/assets/img/consult.png" alt="">
@@ -2191,7 +2191,8 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           Укажите номер телефона, мы свяжемся с Вами и подберём подходящее решение
         </p>
 
-        <form class="consultations__form" action="#">
+        <form class="consultations__form form" action="#">
+          <input type="hidden" name="type" value="Консультация">
           <input class="consultations__input phone input" type="tel" name="phone" placeholder="8(999) 999 99 99">
 
           <button class="consultations__btn btn btn_gray" type="submit">
