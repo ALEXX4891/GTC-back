@@ -48,54 +48,10 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
         if (mysqli_num_rows($result) > 0) {
           do {
-            // var_dump($row['images']);
-            // var_dump(json_decode($row['images']));
-            // $json = '[{"alt":"картинка","path":"news-slide-0-1.jpg"},{"alt":"картинка","path":"news-slide-0-2.jpg"},{"alt":"картинка","path":"news-slide-0-3.jpg"},{"alt":"картинка","path":"news-slide-0-4.jpg"},{"alt":"картинка","path":"news-slide-0-5.jpg"}]';
-            // $json = '["alt":"картинка","path":"news-slide-0-1.jpg"},{"alt":"картинка","path":"news-slide-0-2.jpg"},{"alt":"картинка","path":"news-slide-0-3.jpg"},{"alt":"картинка","path":"news-slide-0-4.jpg"},{"alt":"картинка","path":"news-slide-0-5.jpg"}]';
-
-
-            // $img = json_decode($row['images'])[0];
-            // $img = json_decode($json)[0];
-
-            $arr = [
-              '0' => [
-                'alt' => 'картинка',
-                'path' => 'news-slide-0-1.jpg'
-              ],
-              '1' => [
-                'alt' => 'картинка',
-                'path' => 'news-slide-0-2.jpg'
-              ],
-              '2' => [
-                'alt' => 'картинка',
-                'path' => 'news-slide-0-3.jpg'
-              ],
-              '3' => [
-                'alt' => 'картинка',
-                'path' => 'news-slide-0-4.jpg'
-              ],
-              '4' => [
-                'alt' => 'картинка',
-                'path' => 'news-slide-0-5.jpg'
-              ]
-            ];
-
-            var_dump($arr);
-            // $json = json_encode($arr, JSON_UNESCAPED_UNICODE)[0];
-            // var_dump($json);
-
-
-
-
-
-
-            // var_dump($img);
-            // $alt = json_decode($row['images'])[0]['alt'];
-            // var_dump($alt);
-
-            // "[{"alt":"картинка","path":"news-slide-0-1.jpg"},{"alt":"картинка","path":"news-slide-0-2.jpg"},{"alt":"картинка","path":"news-slide-0-3.jpg"},{"alt":"картинка","path":"news-slide-0-4.jpg"},{"alt":"картинка","path":"news-slide-0-5.jpg"}]"
-            // "[{alt = 'картинка', path = 'news-slide-0-1.jpg'}, {alt = 'картинка', path = 'news-slide-0-2.jpg'}, {alt = 'картинка', path = 'news-slide-0-3.jpg'}, {alt = 'картинка', path = 'news-slide-0-4.jpg'}, {alt = 'картинка', path = 'news-slide-0-5.jpg'}, ]"
-            // echo 123;
+            $images = json_decode($row['images'], true)[0];
+            $img = $images['path'];
+            $alt = $images['alt'];
+            
             echo "
               <li class='news-page__item'>
               <div class='news-page__item-img'>
