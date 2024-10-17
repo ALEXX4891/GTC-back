@@ -68,7 +68,7 @@ if (formAll) {
       if (errore === 0) {
         let formData = new FormData(form);
 
-        const wrapper = form.closest('.form-wrap')
+        const wrapper = form.closest(".form-wrap");
         wrapper.classList.add("_sending");
 
         let response = await fetch("/backend/post-mail.php", {
@@ -521,15 +521,13 @@ if (popupLinks.length > 0) {
     popupLink.addEventListener("click", function (e) {
       const popupName = popupLink.getAttribute("data-popup");
 
-
-      
       // функционал возврата на предыдущее окно:
       const curentPopup = document.getElementById(popupName); //получаем id попап-окна
       const dataStep = popupLink.getAttribute("data-step");
       if (dataStep) {
-        const backBtn = curentPopup.querySelector('.calc-cansel-btn-no');
+        const backBtn = curentPopup.querySelector(".calc-cansel-btn-no");
         if (backBtn) {
-          const link = `popup-calc_${dataStep}`
+          const link = `popup-calc_${dataStep}`;
           backBtn.setAttribute("data-popup", link);
         }
       }
@@ -626,13 +624,12 @@ document.addEventListener("keydown", function (e) {
 });
 
 // сброс параметров калькулятора:
-const canselCalcBtn = document.querySelector('.calc-cansel-btn-yes')
+const canselCalcBtn = document.querySelector(".calc-cansel-btn-yes");
 if (canselCalcBtn) {
   canselCalcBtn.addEventListener("click", function (e) {
     window.history.pushState({}, document.title, window.location.pathname);
     urlParams = new URLSearchParams(window.location.search);
   });
-
 }
 
 // -------------------------------------------- end popup: ---------------------------------------------
@@ -850,7 +847,6 @@ if (map) {
 
 // -------------------------------------- start Url Query --------------------------
 
-
 function getParam(param) {
   return new URLSearchParams(window.location.search).get(param);
 }
@@ -863,17 +859,24 @@ function parseUrlQuery() {
   const filterArr = [];
   urlParams.forEach((value, key) => {
     filterArr.push({ name: key, value: value });
-  });  
-  // console.log(filterArr);  
+  });
+  // console.log(filterArr);
   return filterArr;
 }
 
 function setUrlQueryParam(param, value) {
-  console.log("*************** Старт функции setUrlQuery ***************");
+  console.log("*************** Старт функции setUrlQueryParam ***************");
   urlParams.set(param, value);
   // showActiveItem(input);
   window.history.pushState({}, "", "?" + urlParams.toString());
   // apartRender(allApartsInfo);
+  pastImageName();
+}
+
+function delUrlQueryParam(param) {
+  console.log("*************** Старт функции delUrlQueryParam ***************");
+  urlParams.delete(param)
+  window.history.pushState({}, "", "?" + urlParams.toString());
   pastImageName();
 }
 
@@ -907,39 +910,35 @@ function getImageName() {
   //   }
   // ]
 
-  let name = '';
+  let name = "";
 
   const queryParams = parseUrlQuery();
 
   console.log(queryParams);
-  if (queryParams.filter((item) => item.name == 'type').length) {
-    const typeParam = queryParams.filter((item) => item.name == 'type');
+  if (queryParams.filter((item) => item.name == "type").length) {
+    const typeParam = queryParams.filter((item) => item.name == "type");
     console.log(typeParam);
-    const type = typeParam[0]['value'];
+    const type = typeParam[0]["value"];
 
     name = `/assets/img/renders/${type}_S.png`;
   }
 
-
-  if (queryParams.filter((item) => item.name == 'volume').length) {
-    const type = queryParams.filter((item) => item.name == 'type')[0]['value'];
-    let volume = queryParams.filter((item) => item.name == 'volume')[0]['value'];
+  if (queryParams.filter((item) => item.name == "volume").length) {
+    const type = queryParams.filter((item) => item.name == "type")[0]["value"];
+    let volume = queryParams.filter((item) => item.name == "volume")[0]["value"];
     if (volume < 25) {
-      volume = 'S';
+      volume = "S";
     } else if (volume < 45) {
-      volume = 'M';
+      volume = "M";
     } else {
-      if (type == 'cont') {
-        volume = 'M';
+      if (type == "cont") {
+        volume = "M";
       } else {
-        volume = 'L';
+        volume = "L";
       }
     }
     name = `/assets/img/renders/${type}_${volume}.png`;
   }
-
-
-
 
   // name = `/assets/img/renders/${type}_${volume}.png`;
   console.log(name);
@@ -950,27 +949,23 @@ function getImageName() {
 function pastImageName() {
   console.log("*************** Старт функции pastImageName ***************");
   const imageName = getImageName();
-  const images = document.querySelectorAll('.popup__type-img')
+  const images = document.querySelectorAll(".popup__type-img");
   images.forEach((item) => {
-    item.querySelector('img').src = imageName;
-  })
+    item.querySelector("img").src = imageName;
+  });
 }
 
-
-
 // дата атрибуты кнопок формы:
-// data-calc-btn 
-// data-name="usage" 
+// data-calc-btn
+// data-name="usage"
 // data-value="Personal"
-
-
 
 // -------------------------------------- end Url Query -----------------------------
 // -------------------------------------- start Калькулятор --------------------------
 const btnTemp = document.querySelectorAll(".popup__btn_temp");
 if (btnTemp.length) {
-  const popup = btnTemp[0].closest('.popup');
-  const nextBtn = popup.querySelector('.popup__next-btn');
+  const popup = btnTemp[0].closest(".popup");
+  const nextBtn = popup.querySelector(".popup__next-btn");
 
   btnTemp.forEach((btn) => {
     btn.addEventListener("click", function () {
@@ -979,85 +974,87 @@ if (btnTemp.length) {
       });
 
       btn.classList.add("popup__btn_temp_active");
-      nextBtn.classList.remove('btn_disabled');
+      nextBtn.classList.remove("btn_disabled");
     });
   });
 }
 
 const btnType = document.querySelectorAll(".popup__type-item");
 if (btnType.length) {
-
-  const popup = btnType[0].closest('.popup');
-  const nextBtn = popup.querySelector('.popup__next-btn');
+  const popup = btnType[0].closest(".popup");
+  const nextBtn = popup.querySelector(".popup__next-btn");
 
   btnType.forEach((btn) => {
-
     btn.addEventListener("click", function () {
       btnType.forEach((item) => {
         item.classList.remove("popup__type-item_active");
       });
 
       btn.classList.add("popup__type-item_active");
-      nextBtn.classList.remove('btn_disabled');      
+      nextBtn.classList.remove("btn_disabled");
     });
   });
 }
 
-
-
+//выбор параметров и запись / удаление их в строке поиска.
 const calcBtns = document.querySelectorAll("[data-calc-btn]");
 if (calcBtns.length) {
   calcBtns.forEach((btn) => {
-    // const popup = btn.closest('.popup')    
     btn.addEventListener("click", function () {
       const name = btn.dataset.name;
       const value = btn.dataset.value;
-      setUrlQueryParam(name, value);
+
+      if ((btn.type == "checkbox")) {
+        if (btn.checked) {
+          setUrlQueryParam(name, value);
+        } else {
+          delUrlQueryParam(name);
+        }
+      } else  {
+        setUrlQueryParam(name, value);
+      }
     });
   });
 }
 
-const volume = document.getElementById('volume');
-if (volume) {  
-  
-  volume.addEventListener('input', function () {
-    const name = 'volume';
+const volume = document.getElementById("volume");
+if (volume) {
+  volume.addEventListener("input", function () {
+    const name = "volume";
     const value = volume.value;
-    const rangeNumbers = document.querySelectorAll('.popup__range-number')
+    const rangeNumbers = document.querySelectorAll(".popup__range-number");
 
     if (rangeNumbers.length) {
       rangeNumbers.forEach((item) => {
-        item.classList.remove('popup__range-number_active');
-      })
+        item.classList.remove("popup__range-number_active");
+      });
 
       rangeNumbers.forEach((item) => {
         if (item.innerHTML.trim() == value) {
-          item.classList.add('popup__range-number_active');
+          item.classList.add("popup__range-number_active");
         }
-      })  
+      });
     }
 
     setUrlQueryParam(name, value);
-  })
+  });
 }
 
 const checkbox = document.querySelectorAll(".checkbox");
 if (checkbox.length) {
   checkbox.forEach((item) => {
     item.addEventListener("click", function (e) {
-      
-      if(item.classList.contains('checkbox_disabled')) {
+      if (item.classList.contains("checkbox_disabled")) {
         e.preventDefault();
-        const popup = item.closest('.popup');
-        const desc = popup.querySelector('.popup__recommended-desc');
-        desc.classList.add('popup__recommended-desc_active');  
-        setTimeout(function() {
-          desc.classList.remove('popup__recommended-desc_active');
+        const popup = item.closest(".popup");
+        const desc = popup.querySelector(".popup__recommended-desc");
+        desc.classList.add("popup__recommended-desc_active");
+        setTimeout(function () {
+          desc.classList.remove("popup__recommended-desc_active");
         }, 1000);
       }
-
     });
-  })  
+  });
 }
 
 // -------------------------------------- end Калькулятор -----------------------------
@@ -1101,9 +1098,7 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
         maxVal = minRange;
       }
 
-      rangeSlider.style.right = `${
-        100 - ((maxVal - minRange) * 100) / (maxRange - minRange)
-      }%`;
+      rangeSlider.style.right = `${100 - ((maxVal - minRange) * 100) / (maxRange - minRange)}%`;
 
       // const name = 'volume';
       // const value = parseInt(rangeInputMax.value);
@@ -1114,20 +1109,22 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
 
 // -------------------------------------------- end range-slider: ---------------------------------------------
 
-const insulationBtn = document.querySelector('.insulation');
-const heaterBtn = document.querySelector('.heater');
+const insulationBtn = document.querySelector(".insulation");
+const heaterBtn = document.querySelector(".heater");
 if (insulationBtn && heaterBtn) {
   console.log(insulationBtn);
   console.log(heaterBtn);
 
   insulationBtn.addEventListener("click", function (e) {
-    console.log(insulationBtn.querySelector('input').checked);
+    console.log(insulationBtn.querySelector("input").checked);
 
-    if (insulationBtn.querySelector('input').checked) {
-      heaterBtn.classList.remove('checkbox_disabled');
-    }  else {
-      heaterBtn.classList.add('checkbox_disabled');
+    if (insulationBtn.querySelector("input").checked) {
+      heaterBtn.classList.remove("checkbox_disabled");
+    } else {
+      heaterBtn.classList.add("checkbox_disabled");
+      heaterBtn.querySelector("input").checked = false;
+      const name = heaterBtn.querySelector("input").dataset.name;
+      delUrlQueryParam(name);
     }
-    
-  })
+  });
 }
