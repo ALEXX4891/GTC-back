@@ -1001,6 +1001,8 @@ function getImageName() {
       trk = trkParam[0]["value"];
   
       name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+
+      // TODO добавить выбор сторон при выборе 2-х ТРК.
     }
 
     // скоростная выдача
