@@ -262,16 +262,16 @@
       </h2>
 
       <div class="popup__btn-wrap">
-        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_two">
+        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_two" data-calc-btn data-name="usage" data-value="Personal">
           Для заправки собственной техники
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_two">
+        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_two" data-calc-btn data-name="usage" data-value="sale">
           Для торговли
         </button>
       </div>
 
-      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel">
+      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel" data-step="one">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.0002 10L30.0001 29.9999" stroke="#222222" stroke-width="1.73911" stroke-linecap="round"
             stroke-linejoin="round" />
@@ -303,7 +303,7 @@
         </h2>
 
         <div class="popup__btn-wrap_temp">
-          <button class="btn btn_trans-gray popup__btn popup__btn_temp" data-name="temperature" data-value="-40">
+          <button class="btn btn_trans-gray popup__btn popup__btn_temp" data-calc-btn data-name="temperature" data-value="-40">
             -40
             <div class="popup__icon-wrap">
               <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -321,7 +321,7 @@
             </div>
           </button>
 
-          <button class="btn btn_trans-gray popup__btn popup__btn_temp" data-name="temperature" data-value="-50">
+          <button class="btn btn_trans-gray popup__btn popup__btn_temp" data-calc-btn data-name="temperature" data-value="-50">
             -50
             <div class="popup__icon-wrap">
               <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -351,7 +351,7 @@
             </div>
           </button>
 
-          <button class="btn btn_trans-gray popup__btn popup__btn_temp" data-name="temperature" data-value="-60">
+          <button class="btn btn_trans-gray popup__btn popup__btn_temp" data-calc-btn data-name="temperature" data-value="-60">
             -60
             <div class="popup__icon-wrap">
               <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -398,22 +398,21 @@
           <h5 class="popup__recommended-title">
             Рекомендуем добавить:
           </h5>
-          <div class="popup__checkbox-wrap">
 
-            <label class="checkbox">
-              <input class="checkbox__input" type="checkbox" name="check">
+          <div class="popup__checkbox-wrap">
+            <label class="checkbox insulation">
+              <input class="checkbox__input" type="checkbox" name="check" data-calc-btn data-name="insulation" data-value="1">
               <span class="checkbox__mark"></span>
               <span class="checkbox__title">Утеплитель</span>
             </label>
 
             <label class="checkbox heater checkbox_disabled">
-              <input class="checkbox__input" type="checkbox" name="check">
+              <input class="checkbox__input" type="checkbox" name="check" data-calc-btn data-name="heater" data-value="1">
               <span class="checkbox__mark"></span>
               <span class="checkbox__title">Подогрев</span>
             </label>
-
-
           </div>
+
           <p class="popup__recommended-desc heater-desc">
             Параметр «Подогрев» доступен вместе с «Утеплителем»
           </p>
@@ -426,12 +425,12 @@
           Назад
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_three">
+        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn btn_disabled" data-popup="popup-calc_three">
           Далее
         </button>
       </div>
 
-      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel">
+      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel" data-step="two">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.0002 10L30.0001 29.9999" stroke="#222222" stroke-width="1.73911" stroke-linecap="round"
             stroke-linejoin="round" />
@@ -463,47 +462,41 @@
           Тип исполнения АЗС
         </h2>
 
-        <ul class="popup__type-list">
-          <li class="popup__type-item popup__type-item_active">
+        <div class="popup__type-list">
+          <button class="popup__type-item" data-calc-btn data-name="type" data-value="open">
             <div class="popup__card-img">
               <picture>
                 <source srcset="/assets/img/popup-card-type-1.webp" type="image/webp"><img src="/assets/img/popup-card-type-1.png" alt="">
               </picture>
             </div>
-
-
             <h3 class="popup__card-title">
               Открытый технический отсек
             </h3>
-          </li>
+          </button>
 
-          <li class="popup__type-item">
+          <button class="popup__type-item" data-calc-btn data-name="type" data-value="close">
             <div class="popup__card-img">
               <picture>
                 <source srcset="/assets/img/popup-card-type-2.webp" type="image/webp"><img src="/assets/img/popup-card-type-2.png" alt="">
               </picture>
             </div>
-
-
             <h3 class="popup__card-title">
               Закрытый технический отсек
             </h3>
-          </li>
+          </button>
 
-          <li class="popup__type-item">
+          <button class="popup__type-item" data-calc-btn data-name="type" data-value="cont">
             <div class="popup__card-img">
               <picture>
                 <source srcset="/assets/img/popup-card-type-3.webp" type="image/webp"><img src="/assets/img/popup-card-type-3.png" alt="">
               </picture>
             </div>
-
-
             <h3 class="popup__card-title">
               АЗС<br> в контейнере
             </h3>
-          </li>
+          </button>
 
-        </ul>
+        </div>
 
       </div>
 
@@ -513,12 +506,12 @@
           Назад
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_four">
+        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn btn_disabled" data-popup="popup-calc_four">
           Далее
         </button>
       </div>
 
-      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel">
+      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel" data-step="three">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.0002 10L30.0001 29.9999" stroke="#222222" stroke-width="1.73911" stroke-linecap="round"
             stroke-linejoin="round" />
@@ -548,9 +541,7 @@
       <div class="popup__content-wrap popup__content-wrap_type">
 
         <div class="popup__type-img">
-          <picture>
-            <source srcset="/assets/img/popup-type-img.webp" type="image/webp"><img src="/assets/img/popup-type-img.png" alt="">
-          </picture>
+          <img src="/assets/img/popup-type-img.png" alt="">
         </div>
 
         <h2 class="popup__title popup__title_calc">
@@ -559,7 +550,7 @@
 
         <div class="popup__range-slider">
           <ul class="popup__range-list">
-            <li class="popup__range-number">
+            <li class="popup__range-number popup__range-number_active">
               5
             </li>
             <li class="popup__range-number">
@@ -607,7 +598,7 @@
           </div>
 
           <div class="range-inputs-wrap">
-            <input class="popup__range max-range" type="range" min="5" max="60" value="5" step="5">
+            <input class="popup__range max-range" type="range" min="5" max="60" value="5" step="5" id="volume">
             <!-- <input class="min-range" type="range"> -->
             <!-- <input class="max-range" type="range"> -->
           </div>
@@ -621,12 +612,12 @@
           Назад
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_five">
+        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn" data-popup="popup-calc_five">
           Далее
         </button>
       </div>
 
-      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel">
+      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel" data-step="four">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.0002 10L30.0001 29.9999" stroke="#222222" stroke-width="1.73911" stroke-linecap="round"
             stroke-linejoin="round" />
@@ -654,10 +645,8 @@
 
       <div class="popup__content-wrap popup__content-wrap_type">
 
-        <div class="popup__type-img">
-          <picture>
-            <source srcset="/assets/img/popup-type-img.webp" type="image/webp"><img src="/assets/img/popup-type-img.png" alt="">
-          </picture>
+      <div class="popup__type-img">
+          <img src="/assets/img/popup-type-img.png" alt="">
         </div>
 
         <h2 class="popup__title popup__title_calc">
@@ -728,7 +717,7 @@
             </li>
 
             <li class="popup__radio-item">
-              <label class="radio">
+              <label class="radio radio_disabled">
                 <input class="radio__input" type="radio" name="check1">
                 <span class="radio__mark"></span>
                 <span class="radio__title">3 секции</span>
@@ -736,7 +725,7 @@
             </li>
 
             <li class="popup__radio-item">
-              <label class="radio">
+              <label class="radio radio_disabled">
                 <input class="radio__input" type="radio" name="check1">
                 <span class="radio__mark"></span>
                 <span class="radio__title">4 секции</span>
@@ -758,12 +747,12 @@
           Назад
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_six">
+        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn" data-popup="popup-calc_six">
           Далее
         </button>
       </div>
 
-      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel">
+      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel" data-step="five">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.0002 10L30.0001 29.9999" stroke="#222222" stroke-width="1.73911" stroke-linecap="round"
             stroke-linejoin="round" />
@@ -791,10 +780,8 @@
 
       <div class="popup__content-wrap popup__content-wrap_type">
 
-        <div class="popup__type-img">
-          <picture>
-            <source srcset="/assets/img/popup-type-img.webp" type="image/webp"><img src="/assets/img/popup-type-img.png" alt="">
-          </picture>
+      <div class="popup__type-img">
+          <img src="/assets/img/popup-type-img.png" alt="">
         </div>
 
         <h2 class="popup__title popup__title_calc">
@@ -876,12 +863,12 @@
           Назад
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_seven">
+        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn" data-popup="popup-calc_seven">
           Далее
         </button>
       </div>
 
-      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel">
+      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel" data-step="six">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.0002 10L30.0001 29.9999" stroke="#222222" stroke-width="1.73911" stroke-linecap="round"
             stroke-linejoin="round" />
@@ -909,10 +896,8 @@
 
       <div class="popup__content-wrap popup__content-wrap_type">
 
-        <div class="popup__type-img">
-          <picture>
-            <source srcset="/assets/img/popup-type-img.webp" type="image/webp"><img src="/assets/img/popup-type-img.png" alt="">
-          </picture>
+      <div class="popup__type-img">
+          <img src="/assets/img/popup-type-img.png" alt="">
         </div>
 
         <h2 class="popup__title popup__title_calc">
@@ -959,7 +944,7 @@
         </button>
       </div>
 
-      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel">
+      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel" data-step="seven">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.0002 10L30.0001 29.9999" stroke="#222222" stroke-width="1.73911" stroke-linecap="round"
             stroke-linejoin="round" />
@@ -1124,7 +1109,7 @@
         </button>
       </div>
 
-      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel">
+      <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel" data-step="eight">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.0002 10L30.0001 29.9999" stroke="#222222" stroke-width="1.73911" stroke-linecap="round"
             stroke-linejoin="round" />

@@ -1,4 +1,4 @@
-// let urlParams = new URLSearchParams(window.location.search);
+let urlParams = new URLSearchParams(window.location.search);
 
 // ---------------------------------- start menu ----------------------------------
 
@@ -493,7 +493,7 @@ new Swiper(".news_swiper", {
 // вывод всех попап в список:
 const popupArr = document.querySelectorAll(".popup");
 if (popupArr.length > 0) {
-  console.log("тест");
+  // console.log("тест");
   popupArr.forEach((popup) => {
     const li = document.createElement("li");
     li.classList.add("popup__item");
@@ -519,16 +519,21 @@ if (popupLinks.length > 0) {
   for (let index = 0; index < popupLinks.length; index++) {
     const popupLink = popupLinks[index];
     popupLink.addEventListener("click", function (e) {
-      console.log("тест");
       const popupName = popupLink.getAttribute("data-popup");
-      console.log(popupName);
-      const curentPopup = document.getElementById(popupName); //получаем id попап-окна
 
-      const dataRequest = popupLink.getAttribute("data-request");
-      if (dataRequest) {
-        console.log(curentPopup);
-        curentPopup.setAttribute("data-request", dataRequest);
+
+      
+      // функционал возврата на предыдущее окно:
+      const curentPopup = document.getElementById(popupName); //получаем id попап-окна
+      const dataStep = popupLink.getAttribute("data-step");
+      if (dataStep) {
+        const backBtn = curentPopup.querySelector('.calc-cansel-btn-no');
+        if (backBtn) {
+          const link = `popup-calc_${dataStep}`
+          backBtn.setAttribute("data-popup", link);
+        }
       }
+
       popupOpen(curentPopup);
       e.preventDefault();
     });
@@ -559,7 +564,7 @@ function popupOpen(curentPopup) {
     // console.log(curentPopup);
     curentPopup.classList.add("open");
     curentPopup.addEventListener("click", function (e) {
-      console.log("тест");
+      // console.log("тест");
       if (!e.target.closest(".popup__content")) {
         // если клик был по области вокруг попапа то ничего не делаем
         popupClose(e.target.closest(".popup"));
@@ -619,6 +624,17 @@ document.addEventListener("keydown", function (e) {
     popupClose(popupActive);
   }
 });
+
+// сброс параметров калькулятора:
+const canselCalcBtn = document.querySelector('.calc-cansel-btn-yes')
+if (canselCalcBtn) {
+  canselCalcBtn.addEventListener("click", function (e) {
+    window.history.pushState({}, document.title, window.location.pathname);
+    urlParams = new URLSearchParams(window.location.search);
+  });
+
+}
+
 // -------------------------------------------- end popup: ---------------------------------------------
 //#endregion
 
@@ -737,42 +753,19 @@ if (map) {
     // Импорт модулей для элементов управления на карте
     const { YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker } = ymaps3;
 
-    // // Импорт модулей для элементов управления на карте
-    // const { YMapZoomControl, YMapGeolocationControl } = await ymaps3.import("@yandex/ymaps3-controls@0.0.1");
-
-    // const {YMapDefaultMarker} = await ymaps3.import('@yandex/ymaps3-markers@0.0.1');
-    // // кластеризация маркеров
-    // const {YMapClusterer, clusterByGrid} = await ymaps3.import('@yandex/ymaps3-clusterer@0.0.1');
-    // const clusterer = new YMapClusterer({
-    //   method: clusterByGrid({gridSize: 128}),
-    //   features: map._points,
-    //   функция которая вернет YMapMarker для маркера,
-    //   функция которая вернет YMapMarker для кластера
-    // });
-    // // https://yandex.ru/dev/maps/jsapi/doc/3.0/ref/packages/clusterer/index.html
-
     // Координаты центра карты
 
     // Иницилиазируем карту
     // Создание объекта карты
     if (document.getElementById("map")) {
-      // const CENTER_COORDINATES = [65.79187000766548, 56.97004647141038];
-      // координаты метки на карте
-      // const MARKER_COORDINATES = [65.80127919688765, 56.971359032603615];
-
-      // Объект с параметрами центра и зумом карты
-      // const LOCATION = { center: CENTER_COORDINATES, zoom: 14.7 };
-      // console.log("тест");
       const map = new YMap(
         // Передаём ссылку на HTMLElement контейнера
-        // document.querySelector(".map-yandex"),
         document.getElementById("map"),
         // Передаём параметры инициализации карты
         {
           location: {
             // Координаты центра карты
             center: [30.333316, 59.846034],
-            // center: [59.846034, 30.333316],
 
             // Уровень масштабирования
             zoom: 12.5,
@@ -802,8 +795,6 @@ if (map) {
       // *******************************************************************
       // Добавляем коллекцию маркеров
       const markersArr = [
-        // { coordinates: [59.849966, 30.302950], title: "Детский сад", dataId: 1, img: "/assets/img/pin1.svg" },
-        // { coordinates: [30.302950, 59.849966], title: "Офис", dataId: 1, img: "/assets/img/pin1.svg" },
         { coordinates: [30.30295, 59.849966], title: "Setl center", dataId: 1, img: "/assets/img/pin.svg" },
       ];
 
@@ -850,328 +841,31 @@ if (map) {
         );
         return marker;
       }
-
-      // // создаем маркер для ЖК
-      // const markerElement = document.createElement("img");
-      // markerElement.className = "marker";
-      // markerElement.src = "/assets/img/pin.svg";
-      // markerElement.title = "ЖК Сосновый";
-
-      // // Контейнер для элементов маркера
-      // const imgContainer = document.createElement("div");
-      // imgContainer.className = "marker-wrap";
-
-      // imgContainer.append(markerElement);
-
-      // // Добавление маркера на карту
-      // const marker = new YMapMarker(
-      //   {
-      //     coordinates: [65.80127919688765, 56.971359032603615],
-      //     // draggable: true,
-      //     mapFollowsOnDrag: true,
-      //   },
-      //   imgContainer
-      // );
-      // map.addChild(marker);
     }
   }
-}
-
-const filter = document.querySelectorAll(".map__mark-item_point");
-if (filter.length) {
-  filter.forEach((item) => {
-    item.addEventListener("click", function () {
-      console.log("тест");
-      item.classList.toggle("map__mark-item_active");
-      checkAll();
-    });
-  });
-}
-
-const resetBtns = document.querySelector(".reset-btn");
-if (resetBtns) {
-  resetBtns.addEventListener("click", function () {
-    console.log("тест");
-    filter.forEach((item) => {
-      item.classList.remove("map__mark-item_active");
-      checkAll();
-    });
-  });
-}
-
-const allBtn = document.querySelector(".map__mark-item-all");
-if (allBtn) {
-  allBtn.addEventListener("click", function () {
-    console.log("тест");
-    if (allBtn.classList.contains("map__mark-item_active")) {
-      allBtn.classList.remove("map__mark-item_active");
-      filter.forEach((item) => {
-        item.classList.remove("map__mark-item_active");
-      });
-    } else {
-      filter.forEach((item) => {
-        item.classList.add("map__mark-item_active");
-      });
-      allBtn.classList.add("map__mark-item_active");
-    }
-    checkAll();
-  });
-}
-
-function checkAll() {
-  console.log("тест");
-  let activeItems = document.querySelectorAll(".map__mark-item_point.map__mark-item_active");
-  // const menuItems = document.querySelectorAll(".map__mark-item_point");
-  const markers = document.querySelectorAll(".marker-wrap");
-  console.log(markers);
-  console.log(activeItems.length);
-  console.log(filter.length);
-
-  // menuItems.forEach((item) => {
-  //   if (item.classList.contains("map__mark-item_active")) {
-  //     const id = item.getAttribute("data-id");
-  //   } else {
-  //     item.style.display = "none";
-  //   }
-  // });
-
-  // if (markers.length) {
-  //   markers.forEach((item) => {
-  //     console.log(item);
-  //     if (item.getAttribute("data-id")) {
-  //       item.style.display = "none";
-  //     } else {
-  //       item.style.display = "block";
-  //     }
-  //   });
-  // }
-
-  if (activeItems.length) {
-    const activIdArr = [];
-
-    activeItems.forEach((item) => {
-      const id = item.getAttribute("data-id");
-      activIdArr.push(id);
-    });
-
-    markers.forEach((marker) => {
-      if (activIdArr.includes(marker.getAttribute("data-id"))) {
-        marker.style.display = "block";
-      } else {
-        marker.style.display = "none";
-      }
-
-      if (!marker.getAttribute("data-id")) {
-        marker.style.display = "block";
-      }
-    });
-  } else {
-    markers.forEach((marker) => {
-      marker.style.display = "none";
-      if (!marker.getAttribute("data-id")) {
-        marker.style.display = "block";
-      }
-    });
-  }
-
-  if (activeItems.length === filter.length) {
-    allBtn.classList.add("map__mark-item_active");
-    // markers.forEach((marker) => {
-    //   marker.style.display = "block";
-    // })
-  } else {
-    allBtn.classList.remove("map__mark-item_active");
-    // markers.forEach((marker) => {
-    //   marker.style.display = "block";
-    // })
-  }
-}
-
-const markListBtnOpen = document.querySelector(".map__menu-btn-filters");
-const markListBtnClose = document.querySelector(".map__menu-btn-apply");
-
-if (markListBtnOpen) {
-  markListBtnOpen.addEventListener("click", function () {
-    const markList = document.querySelector(".map__mark-list-wrap");
-    console.log("тест");
-    markList.classList.add("map__mark-list-wrap_active");
-  });
-
-  markListBtnClose.addEventListener("click", function () {
-    const markList = document.querySelector(".map__mark-list-wrap");
-    console.log("тест");
-    markList.classList.remove("map__mark-list-wrap_active");
-  });
 }
 
 // -------------------------------------------- end Карта ---------------------------------------------
 //#endregion
 
-const promoPopup = document.querySelector("#promo");
-if (promoPopup) {
-  const btns = document.querySelectorAll(".promo-link");
-  btns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      renderPromo(btn);
-    });
-  });
-
-  function renderPromo(btn) {
-    const id = btn.getAttribute("data-id");
-    const promoArr = document.querySelectorAll(".popup__promo");
-    console.log(id);
-    console.log(promoArr);
-
-    promoArr.forEach((promo) => {
-      if (promo.getAttribute("data-id") != id) {
-        promo.style.display = "none";
-      } else {
-        promo.style.display = "block";
-      }
-    });
-  }
-}
-// --------------------------------------------- end render promo -----------------------------
-
 // -------------------------------------- start Url Query --------------------------
+
+
 function getParam(param) {
   return new URLSearchParams(window.location.search).get(param);
 }
 
-function parseUrlQuery() {
-  // console.log("*************** Старт функции parseUrlQuery ***************");
-  let urlParams = new URLSearchParams(window.location.search);
+// /?rooms=2
+// parseUrlQuery();
 
-  // const urlParams = new URLSearchParams(window.location.search);
+function parseUrlQuery() {
+  console.log("*************** Старт функции parseUrlQuery ***************");
   const filterArr = [];
-  const res = [];
   urlParams.forEach((value, key) => {
     filterArr.push({ name: key, value: value });
-  });
-  // console.log("filterArr", filterArr);
-
-  //   [
-  //     {
-  //         "name": "project",
-  //         "value": "Все"
-  //     },
-  //     {
-  //         "name": "house",
-  //         "value": "2"
-  //     },
-  //     {
-  //         "name": "section",
-  //         "value": "2"
-  //     },
-  //     {
-  //         "name": "rooms",
-  //         "value": "2"
-  //     },
-  //     {
-  //         "name": "date",
-  //         "value": "IV квартал 2025"
-  //     },
-  //     {
-  //         "name": "floor",
-  //         "value": "2-4"
-  //     },
-  //     {
-  //         "name": "cost",
-  //         "value": "2330000-6260000"
-  //     },
-  //     {
-  //         "name": "square",
-  //         "value": "61-81"
-  //     }
-  // ]
-
-  if (filterArr.find((item) => item.name === "project")) {
-    const projectFilter = filterArr.find((item) => item.name === "project").value;
-    res.push({
-      name: "Проект",
-      value: projectFilter,
-    });
-  }
-
-  if (filterArr.find((item) => item.name === "rooms")) {
-    const roomsFilter = filterArr.find((item) => item.name === "rooms").value;
-    res.push({
-      name: "Комнат",
-      value: roomsFilter.split(",").map(Number),
-    });
-  }
-
-  if (filterArr.find((item) => item.name === "square")) {
-    const squareFilter = filterArr.find((item) => item.name === "square").value;
-    res.push({
-      name: "Площадь, м2",
-      value: {
-        from: squareFilter.split("-")[0],
-        to: squareFilter.split("-")[1],
-      },
-    });
-  }
-
-  if (filterArr.find((item) => item.name === "cost")) {
-    const costFilter = filterArr.find((item) => item.name === "cost").value;
-    res.push({
-      name: "Стоимость, ₽",
-      value: {
-        from: costFilter.split("-")[0],
-        to: costFilter.split("-")[1],
-      },
-    });
-  }
-
-  if (filterArr.find((item) => item.name === "house")) {
-    const houseFilter = filterArr.find((item) => item.name === "house").value;
-    res.push({
-      name: "Дом",
-      value: houseFilter,
-    });
-  }
-
-  if (filterArr.find((item) => item.name === "section")) {
-    const sectionFilter = filterArr.find((item) => item.name === "section").value;
-    res.push({
-      name: "Секция",
-      value: sectionFilter,
-    });
-  }
-
-  if (filterArr.find((item) => item.name === "date")) {
-    const dateFilter = filterArr.find((item) => item.name === "date").value;
-    res.push({
-      name: "Срок сдачи",
-      value: dateFilter,
-    });
-  }
-
-  if (filterArr.find((item) => item.name === "floor")) {
-    const floorFilter = filterArr.find((item) => item.name === "floor").value;
-    res.push({
-      name: "Этаж",
-      value: {
-        from: floorFilter.split("-")[0],
-        to: floorFilter.split("-")[1],
-      },
-    });
-  }
-
-  if (filterArr.find((item) => item.name.includes("option"))) {
-    const btnsFilter = [];
-    filterArr.forEach((item) => {
-      if (item.name.includes("option")) {
-        btnsFilter.push(item.name);
-      }
-    });
-    res.push({
-      name: "btns",
-      value: btnsFilter,
-    });
-  }
-
-  return res;
+  });  
+  // console.log(filterArr);  
+  return filterArr;
 }
 
 function setUrlQueryParam(param, value) {
@@ -1180,12 +874,104 @@ function setUrlQueryParam(param, value) {
   // showActiveItem(input);
   window.history.pushState({}, "", "?" + urlParams.toString());
   // apartRender(allApartsInfo);
+  pastImageName();
 }
+
+// function setParamsFromGet {
+
+// }
+
+//функция формирования имени изображения
+function getImageName() {
+  console.log("*************** Старт функции getImageName ***************");
+  // [
+  //   {
+  //     "name": "usage",
+  //     "value": "sale"
+  //   },
+  //   {
+  //     "name": "temperature",
+  //     "value": "-50"
+  //   },
+  //   {
+  //     "name": "insulation",
+  //     "value": "1"
+  //   },
+  //   {
+  //     "name": "type",
+  //     "value": "close"
+  //   },
+  //   {
+  //     "name": "volume",
+  //     "value": "15"
+  //   }
+  // ]
+
+  let name = '';
+
+  const queryParams = parseUrlQuery();
+
+  console.log(queryParams);
+  if (queryParams.filter((item) => item.name == 'type').length) {
+    const typeParam = queryParams.filter((item) => item.name == 'type');
+    console.log(typeParam);
+    const type = typeParam[0]['value'];
+
+    name = `/assets/img/renders/${type}_S.png`;
+  }
+
+
+  if (queryParams.filter((item) => item.name == 'volume').length) {
+    const type = queryParams.filter((item) => item.name == 'type')[0]['value'];
+    let volume = queryParams.filter((item) => item.name == 'volume')[0]['value'];
+    if (volume < 25) {
+      volume = 'S';
+    } else if (volume < 45) {
+      volume = 'M';
+    } else {
+      if (type == 'cont') {
+        volume = 'M';
+      } else {
+        volume = 'L';
+      }
+    }
+    name = `/assets/img/renders/${type}_${volume}.png`;
+  }
+
+
+
+
+  // name = `/assets/img/renders/${type}_${volume}.png`;
+  console.log(name);
+  return name;
+}
+
+//функция подстановки имени изображения
+function pastImageName() {
+  console.log("*************** Старт функции pastImageName ***************");
+  const imageName = getImageName();
+  const images = document.querySelectorAll('.popup__type-img')
+  images.forEach((item) => {
+    item.querySelector('img').src = imageName;
+  })
+}
+
+
+
+// дата атрибуты кнопок формы:
+// data-calc-btn 
+// data-name="usage" 
+// data-value="Personal"
+
+
 
 // -------------------------------------- end Url Query -----------------------------
 // -------------------------------------- start Калькулятор --------------------------
 const btnTemp = document.querySelectorAll(".popup__btn_temp");
 if (btnTemp.length) {
+  const popup = btnTemp[0].closest('.popup');
+  const nextBtn = popup.querySelector('.popup__next-btn');
+
   btnTemp.forEach((btn) => {
     btn.addEventListener("click", function () {
       btnTemp.forEach((item) => {
@@ -1193,27 +979,85 @@ if (btnTemp.length) {
       });
 
       btn.classList.add("popup__btn_temp_active");
-
-      const name = btn.dataset.name;
-      const value = btn.dataset.value;
-      console.log(name, " = ", value);
-      // setUrlQueryParam(name, value);
+      nextBtn.classList.remove('btn_disabled');
     });
   });
 }
 
-const heater = document.querySelector(".heater");
-if (heater) {
-  heater.addEventListener("click", function (e) {
-    e.preventDefault();
-    const heaterDesc = document.querySelector(".heater-desc");
-    if (heater.classList.contains("checkbox_disabled")) {
-      heaterDesc.classList.add("popup__recommended-desc_active");
-    } else {
-      heaterDesc.classList.remove("popup__recommended-desc_active");
-    }
-    // heater.classList.toggle("heater_active");
+const btnType = document.querySelectorAll(".popup__type-item");
+if (btnType.length) {
+
+  const popup = btnType[0].closest('.popup');
+  const nextBtn = popup.querySelector('.popup__next-btn');
+
+  btnType.forEach((btn) => {
+
+    btn.addEventListener("click", function () {
+      btnType.forEach((item) => {
+        item.classList.remove("popup__type-item_active");
+      });
+
+      btn.classList.add("popup__type-item_active");
+      nextBtn.classList.remove('btn_disabled');      
+    });
   });
+}
+
+
+
+const calcBtns = document.querySelectorAll("[data-calc-btn]");
+if (calcBtns.length) {
+  calcBtns.forEach((btn) => {
+    // const popup = btn.closest('.popup')    
+    btn.addEventListener("click", function () {
+      const name = btn.dataset.name;
+      const value = btn.dataset.value;
+      setUrlQueryParam(name, value);
+    });
+  });
+}
+
+const volume = document.getElementById('volume');
+if (volume) {  
+  
+  volume.addEventListener('input', function () {
+    const name = 'volume';
+    const value = volume.value;
+    const rangeNumbers = document.querySelectorAll('.popup__range-number')
+
+    if (rangeNumbers.length) {
+      rangeNumbers.forEach((item) => {
+        item.classList.remove('popup__range-number_active');
+      })
+
+      rangeNumbers.forEach((item) => {
+        if (item.innerHTML.trim() == value) {
+          item.classList.add('popup__range-number_active');
+        }
+      })  
+    }
+
+    setUrlQueryParam(name, value);
+  })
+}
+
+const checkbox = document.querySelectorAll(".checkbox");
+if (checkbox.length) {
+  checkbox.forEach((item) => {
+    item.addEventListener("click", function (e) {
+      
+      if(item.classList.contains('checkbox_disabled')) {
+        e.preventDefault();
+        const popup = item.closest('.popup');
+        const desc = popup.querySelector('.popup__recommended-desc');
+        desc.classList.add('popup__recommended-desc_active');  
+        setTimeout(function() {
+          desc.classList.remove('popup__recommended-desc_active');
+        }, 1000);
+      }
+
+    });
+  })  
 }
 
 // -------------------------------------- end Калькулятор -----------------------------
@@ -1227,16 +1071,8 @@ if (slider) {
 
 function rangeSliderInit(slider, gap, minRange, maxRange) {
   const rangeSlider = slider.querySelector(".range-slider");
-  // текстовые инпуты:
-  // const priceInputs = slider.querySelectorAll(
-  //   ".choice__slider-select .select__input"
-  // );
-  // const textInputMin = slider.querySelector(".select__input_from");
-  // const textInputMax = slider.querySelector(".select__input_to");
-  // console.log(priceInputs);
   // рендж инпуты:
   const rangeInputs = slider.querySelectorAll(".range-inputs-wrap input");
-  // const rangeInputMin = slider.querySelector(".min-range");
   const rangeInputMax = slider.querySelector(".max-range");
 
   // основные параметры:
@@ -1244,99 +1080,16 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
   minRange = minRange;
   maxRange = maxRange;
 
-  // присваиваем значения инпутам:
-  // textInputMin.min = minRange;
-  // textInputMax.min = minRange;
-  // rangeInputMin.min = minRange;
   rangeInputMax.min = minRange;
-
-  // textInputMin.max = maxRange;
-  // textInputMax.max = maxRange;
-  // rangeInputMin.max = maxRange;
   rangeInputMax.max = maxRange;
-
-  // textInputMin.step = gap;
-  // textInputMax.step = gap;
-  // rangeInputMin.step = gap;
   rangeInputMax.step = gap;
-
-  // value должно стоять соследним!!!
-  // textInputMin.value = minRange;
-  // textInputMax.value = maxRange;
-  // rangeInputMin.value = minRange;
   rangeInputMax.value = minRange;
-
-  // // обработка событий текстовых инпутов:
-  // priceInputs.forEach((input) => {
-  //   input.addEventListener("input", (e) => {
-  //     //получаем значения из текстовых инпутов:
-  //     let minVal = parseInt(textInputMin.value) ? parseInt(textInputMin.value) : minRange;
-  //     let maxVal = parseInt(textInputMax.value);
-  //     let diff = maxVal - minVal;
-
-  //     // ограничиваем значение min инпута:
-  //     // if (minVal < minRange) {
-  //     //   // textInputMin.value = minRange;
-  //     //   minVal = minRange;
-  //     // }
-
-  //     // ограничиваем значение max инпута:
-  //     if (maxVal > maxRange) {
-  //       // textInputMax.value = maxRange;
-  //       maxVal = maxRange;
-  //     }
-
-  //     // ограничиваем максимальное значение min инпута:
-  //     // if (e.target === textInputMin) {
-  //     //   if (minVal > maxVal - gap) {
-  //     //     // textInputMin.value = maxVal - gap;
-  //     //     minVal = maxVal - gap;
-  //     //   }
-  //     // }
-
-  //     // ограничиваем минимальное значение max инпута:
-  //     // if (e.target === textInputMax) {
-  //     //   if (maxVal < minVal + gap) {
-  //     //     // textInputMax.value = minVal + gap;
-  //     //     maxVal = minVal + gap;
-  //     //   }
-  //     // }
-
-  //     // вычисляем положение рендж инпутов:
-  //     if (diff >= gap) {
-  //       rangeInputMax.value = maxVal;
-  //       // rangeInputMin.value = minVal;
-  //       rangeSlider.style.right = `${
-  //         100 - ((maxVal - minRange) * 100) / (maxRange - minRange)
-  //       }%`;
-  //       // rangeSlider.style.left = `${
-  //       //   ((minVal - minRange) * 100) / (maxRange - minRange)
-  //       // }%`;
-  //     }
-  //   });
-  // });
 
   rangeInputs.forEach((input) => {
     input.addEventListener("input", (e) => {
-      console.log("-----------------****---------------");
-      console.log("gap", gap);
-      console.log("minRange", minRange);
-      console.log("maxRange", maxRange);
-      console.log("value", input.value);
       //получаем значения из текстовых инпутов:
       let minVal = minRange;
       let maxVal = parseInt(rangeInputMax.value);
-      let diff = maxVal - minVal;
-      console.log("minVal", minVal);
-      console.log("maxVal", maxVal);
-      console.log("diff", diff);
-
-      // ограничиваем значение min инпута:
-      // if (minVal < minRange) {
-      //   // rangeInputMin.value = minRange;
-      //   minVal = minRange;
-      // }
-
       // ограничиваем значение max инпута:
       if (maxVal >= maxRange) {
         rangeInputMax.value = maxRange;
@@ -1348,37 +1101,33 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
         maxVal = minRange;
       }
 
-      // ограничиваем максимальное значение min инпута:
-      // if (e.target === rangeInputMin) {
-      //   if (minVal > maxVal - gap) {
-      //     // rangeInputMin.value = maxVal - gap;
-      //     minVal = maxVal - gap;
-      //   }
-      // }
-
-      // // ограничиваем минимальное значение max инпута:
-      // if (e.target === rangeInputMax) {
-      //   if (maxVal < minVal + gap) {
-      //     rangeInputMax.value = minVal + gap;
-      //     maxVal = minVal + gap;
-      //   }
-      // }
-
-      // вычисляем положение рендж инпутов:
-      // if (diff >= gap) {
-
-      // textInputMin.value = minVal;
-      // textInputMax.value = maxVal;
       rangeSlider.style.right = `${
         100 - ((maxVal - minRange) * 100) / (maxRange - minRange)
-        // ((minVal - minRange) * 100) / (maxRange - minRange)
       }%`;
-      // rangeSlider.style.left = `${
-      //   ((minVal - minRange) * 100) / (maxRange - minRange)
-      // }%`;
-      // }
+
+      // const name = 'volume';
+      // const value = parseInt(rangeInputMax.value);
+      // setUrlQueryParam(name, value);
     });
   });
 }
 
 // -------------------------------------------- end range-slider: ---------------------------------------------
+
+const insulationBtn = document.querySelector('.insulation');
+const heaterBtn = document.querySelector('.heater');
+if (insulationBtn && heaterBtn) {
+  console.log(insulationBtn);
+  console.log(heaterBtn);
+
+  insulationBtn.addEventListener("click", function (e) {
+    console.log(insulationBtn.querySelector('input').checked);
+
+    if (insulationBtn.querySelector('input').checked) {
+      heaterBtn.classList.remove('checkbox_disabled');
+    }  else {
+      heaterBtn.classList.add('checkbox_disabled');
+    }
+    
+  })
+}
