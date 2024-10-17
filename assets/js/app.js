@@ -1,4 +1,6 @@
 let urlParams = new URLSearchParams(window.location.search);
+window.history.pushState({}, document.title, window.location.pathname);
+urlParams = new URLSearchParams(window.location.search);
 
 // ---------------------------------- start menu ----------------------------------
 
@@ -629,6 +631,7 @@ if (canselCalcBtn) {
   canselCalcBtn.addEventListener("click", function (e) {
     window.history.pushState({}, document.title, window.location.pathname);
     urlParams = new URLSearchParams(window.location.search);
+    location.reload();
   });
 }
 
@@ -890,26 +893,53 @@ function getImageName() {
   // [
   //   {
   //     "name": "usage",
-  //     "value": "sale"
+  //     "value": "Personal"
   //   },
   //   {
   //     "name": "temperature",
-  //     "value": "-50"
+  //     "value": "-60"
   //   },
   //   {
   //     "name": "insulation",
   //     "value": "1"
   //   },
   //   {
+  //     "name": "heater",
+  //     "value": "1"
+  //   },
+  //   {
   //     "name": "type",
-  //     "value": "close"
+  //     "value": "cont"
   //   },
   //   {
   //     "name": "volume",
-  //     "value": "15"
+  //     "value": "60"
+  //   },
+  //   {
+  //     "name": "petrol-95",
+  //     "value": "1"
+  //   },
+  //   {
+  //     "name": "petrol-92",
+  //     "value": "1"
+  //   },
+  //   {
+  //     "name": "sections",
+  //     "value": "2"
+  //   },
+  //   {
+  //     "name": "trk",
+  //     "value": "4"
+  //   },
+  //   {
+  //     "name": "side",
+  //     "value": "2"
+  //   },
+  //   {
+  //     "name": "fast",
+  //     "value": "2"
   //   }
   // ]
-
   let name = "";
 
   const queryParams = parseUrlQuery();
@@ -1127,4 +1157,21 @@ if (insulationBtn && heaterBtn) {
       delUrlQueryParam(name);
     }
   });
+}
+
+
+const volumeStepBtn = document.querySelector(".popup__next-btn_volume");
+if (volumeStepBtn) {
+  volumeStepBtn.addEventListener('click', function() {
+    const volume = '';
+    urlParams.forEach((value, key) => {
+      if (key == 'volume') {
+        volume = value;
+      } 
+    });
+
+    if (!volume) {
+      setUrlQueryParam('volume', '5')
+    }
+  })
 }

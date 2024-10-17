@@ -506,7 +506,7 @@
           Назад
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn btn_disabled" data-popup="popup-calc_four">
+        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn popup__next-btn_volume btn_disabled" data-popup="popup-calc_four">
           Далее
         </button>
       </div>
@@ -661,7 +661,7 @@
           <ul class="popup__checkbox-list">
             <li class="popup__checkbox-item">
               <label class="checkbox">
-                <input class="checkbox__input" type="checkbox" name="check">
+                <input class="checkbox__input" type="checkbox" name="check" data-calc-btn data-name="diesel" data-value="1">
                 <span class="checkbox__mark"></span>
                 <span class="checkbox__title">ДТ</span>
               </label>
@@ -669,7 +669,7 @@
 
             <li class="popup__checkbox-item">
               <label class="checkbox">
-                <input class="checkbox__input" type="checkbox" name="check">
+                <input class="checkbox__input" type="checkbox" name="check" data-calc-btn data-name="petrol-92" data-value="1">
                 <span class="checkbox__mark"></span>
                 <span class="checkbox__title">АИ-92</span>
               </label>
@@ -677,7 +677,7 @@
 
             <li class="popup__checkbox-item">
               <label class="checkbox">
-                <input class="checkbox__input" type="checkbox" name="check">
+                <input class="checkbox__input" type="checkbox" name="check" data-calc-btn data-name="petrol-95" data-value="1">
                 <span class="checkbox__mark"></span>
                 <span class="checkbox__title">АИ-95</span>
               </label>
@@ -685,7 +685,7 @@
 
             <li class="popup__checkbox-item">
               <label class="checkbox">
-                <input class="checkbox__input" type="checkbox" name="check">
+                <input class="checkbox__input" type="checkbox" name="check" data-calc-btn data-name="other" data-value="1">
                 <span class="checkbox__mark"></span>
                 <span class="checkbox__title">Другое</span>
               </label>
@@ -702,7 +702,7 @@
 
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="sections" data-value="1">
                 <span class="radio__mark"></span>
                 <span class="radio__title">1 секция</span>
               </label>
@@ -710,7 +710,7 @@
 
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="sections" data-value="2">
                 <span class="radio__mark"></span>
                 <span class="radio__title">2 секции</span>
               </label>
@@ -718,7 +718,7 @@
 
             <li class="popup__radio-item">
               <label class="radio radio_disabled">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="sections" data-value="3">
                 <span class="radio__mark"></span>
                 <span class="radio__title">3 секции</span>
               </label>
@@ -726,7 +726,7 @@
 
             <li class="popup__radio-item">
               <label class="radio radio_disabled">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="sections" data-value="4">
                 <span class="radio__mark"></span>
                 <span class="radio__title">4 секции</span>
               </label>
@@ -797,7 +797,7 @@
 
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="trk" data-value="1">
                 <span class="radio__mark"></span>
                 <span class="radio__title">1</span>
               </label>
@@ -805,7 +805,7 @@
 
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="trk" data-value="2">
                 <span class="radio__mark"></span>
                 <span class="radio__title">2</span>
               </label>
@@ -813,7 +813,7 @@
 
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="trk" data-value="3">
                 <span class="radio__mark"></span>
                 <span class="radio__title">3</span>
               </label>
@@ -821,7 +821,7 @@
 
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="trk" data-value="4">
                 <span class="radio__mark"></span>
                 <span class="radio__title">4</span>
               </label>
@@ -840,7 +840,7 @@
 
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="side" data-value="1">
                 <span class="radio__mark"></span>
                 <span class="radio__title">с 1 стороны</span>
               </label>
@@ -848,7 +848,7 @@
 
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="side" data-value="2">
                 <span class="radio__mark"></span>
                 <span class="radio__title">с 2 сторон</span>
               </label>
@@ -908,7 +908,7 @@
           <ul class="popup__radio-list">
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="fast" data-value="0">
                 <span class="radio__mark"></span>
                 <span class="radio__title">Не требуется</span>
               </label>
@@ -916,7 +916,7 @@
 
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="fast" data-value="1">
                 <span class="radio__mark"></span>
                 <span class="radio__title">Скорость не менее 250 л/мин</span>
               </label>
@@ -924,7 +924,7 @@
 
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="check1">
+                <input class="radio__input" type="radio" name="check1" data-calc-btn data-name="fast" data-value="2">
                 <span class="radio__mark"></span>
                 <span class="radio__title">Скорость не менее 350 л/мин</span>
               </label>
