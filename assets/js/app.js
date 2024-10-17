@@ -944,21 +944,37 @@ function getImageName() {
 
   const queryParams = parseUrlQuery();
 
+  let type = '';
+  let volume = '';
+  // let fuel = '';
+  let sections = '';
+  let trk = '';
+  let side = '';
+  let fast = '';
+
+
+
+
+
+
+
+
   console.log(queryParams);
+  // тип
   if (queryParams.filter((item) => item.name == "type").length) {
     const typeParam = queryParams.filter((item) => item.name == "type");
-    console.log(typeParam);
-    const type = typeParam[0]["value"];
+    type = typeParam[0]["value"];
 
     name = `/assets/img/renders/${type}_S.png`;
   }
 
+  // объем
   if (queryParams.filter((item) => item.name == "volume").length) {
     const type = queryParams.filter((item) => item.name == "type")[0]["value"];
-    let volume = queryParams.filter((item) => item.name == "volume")[0]["value"];
-    if (volume < 25) {
+    let volumePar = queryParams.filter((item) => item.name == "volume")[0]["value"];
+    if (volumePar < 25) {
       volume = "S";
-    } else if (volume < 45) {
+    } else if (volumePar < 45) {
       volume = "M";
     } else {
       if (type == "cont") {
@@ -966,9 +982,41 @@ function getImageName() {
       } else {
         volume = "L";
       }
+      // TODO переписать, ограничить контейнер до 45 м3?
     }
     name = `/assets/img/renders/${type}_${volume}.png`;
   }
+
+    // секции
+    if (queryParams.filter((item) => item.name == "sections").length) {
+      const sectionsParam = queryParams.filter((item) => item.name == "sections");
+      sections = sectionsParam[0]["value"];
+  
+      name = `/assets/img/renders/${type}_${volume}_${sections}r.png`;
+    }
+
+    // трк
+    if (queryParams.filter((item) => item.name == "trk").length) {
+      const trkParam = queryParams.filter((item) => item.name == "trk");
+      trk = trkParam[0]["value"];
+  
+      name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+    }
+
+    // скоростная выдача
+    if (queryParams.filter((item) => item.name == "fast").length) {
+      const fastParam = queryParams.filter((item) => item.name == "fast");
+      if (fastParam[0]["value"] > 0) {
+        fast = '+';
+        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
+      } else {
+        fast = '';
+        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+
+      }
+  
+    }
+
 
   // name = `/assets/img/renders/${type}_${volume}.png`;
   console.log(name);
