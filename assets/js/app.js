@@ -1153,41 +1153,6 @@ if (calcBtns.length) {
   });
 }
 
-const volume = document.getElementById("volume");
-if (volume) {
-  volume.addEventListener("input", function () {
-    const name = "volume";
-    let value = volume.value;
-    const type = checkType();
-    const rangeNumbers = document.querySelectorAll(".popup__range-number");
-
-    if (type == "cont" && value >= 40) {    
-      value = 40;
-      // setUrlQueryParam(name, value);
-      // TODO добавить установку параметров рэндж слайдера
-    } else {
-      value = volume.value;
-      // setUrlQueryParam(name, value);
-    }
-
-
-
-    if (rangeNumbers.length) {
-      rangeNumbers.forEach((item) => {
-        item.classList.remove("popup__range-number_active");
-      });
-
-      rangeNumbers.forEach((item) => {
-        if (item.innerHTML.trim() == value) {
-          item.classList.add("popup__range-number_active");
-        }
-      });
-    }
-
-    setUrlQueryParam(name, value);
-  });
-}
-
 const checkbox = document.querySelectorAll(".checkbox");
 if (checkbox.length) {
   checkbox.forEach((item) => {
@@ -1234,17 +1199,25 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
   rangeInputs.forEach((input) => {
     input.addEventListener("input", (e) => {
       const type = checkType();
+      const sections = checkSections();
       //получаем значения из текстовых инпутов:
       let minVal = minRange;
-      let maxVal = parseInt(rangeInputMax.value);
+      let maxVal = parseInt(input.value);
+      let value = parseInt(input.value);
       // ограничиваем значение max инпута:
       // console.log('type', type);
-      if (type == "cont") {
+      if (type == "cont" && value >= 40) {
         
-        if (parseInt(rangeInputMax.value) >= 40) {
-          rangeInputMax.value = 40;
+        // if (parseInt(rangeInputMax.value) >= 40) {
+          input.value = 40;
+          value = 40;
           maxVal = 40;
-        }
+        // }
+      } if (sections == "4" && value <= 25) {
+        input.value = 25;
+        value = 25;
+        maxVal = 25;
+      
       } else {
         if (maxVal >= maxRange) {
           rangeInputMax.value = maxRange;
@@ -1252,9 +1225,9 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
         }
       }
       
-      console.log('parseInt(rangeInputMax.value)', parseInt(rangeInputMax.value));
+      console.log('parseInt(input.value)', value);
       if (maxVal <= minVal) {
-        rangeInputMax.value = minRange;
+        value = minRange;
         maxVal = minRange;
       }
 
@@ -1263,6 +1236,35 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
       // const name = 'volume';
       // const value = parseInt(rangeInputMax.value);
       // setUrlQueryParam(name, value);
+
+      // const name = "volume";
+      // let value = volume.value;
+      const rangeNumbers = document.querySelectorAll(".popup__range-number");
+  
+      // if (type == "cont" && value >= 40) {    
+        // value = 40;
+        // setUrlQueryParam(name, value);
+        // TODO добавить установку параметров рэндж слайдера
+      // } else {
+        // value = volume.value;
+        // setUrlQueryParam(name, value);
+      // }
+  
+  
+  
+      if (rangeNumbers.length) {
+        rangeNumbers.forEach((item) => {
+          item.classList.remove("popup__range-number_active");
+        });
+  
+        rangeNumbers.forEach((item) => {
+          if (item.innerHTML.trim() == value) {
+            item.classList.add("popup__range-number_active");
+          }
+        });
+      }
+  
+      setUrlQueryParam("volume", value);
     });
   });
 }
