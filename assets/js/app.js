@@ -998,22 +998,36 @@ function getImageName() {
     // трк
     if (queryParams.filter((item) => item.name == "trk").length) {
       const trkParam = queryParams.filter((item) => item.name == "trk");
-      trk = trkParam[0]["value"];
-  
+      trk = trkParam[0]["value"];  
       name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
 
-      // TODO добавить выбор сторон при выборе 2-х ТРК.
+      const sideParam = queryParams.filter((item) => item.name == "side");
+      if (sideParam.length) {
+        side = sideParam[0]["value"];
+        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
+      }
     }
 
     // скоростная выдача
     if (queryParams.filter((item) => item.name == "fast").length) {
       const fastParam = queryParams.filter((item) => item.name == "fast");
+      const sideParam = queryParams.filter((item) => item.name == "side");
+
       if (fastParam[0]["value"] > 0) {
         fast = '+';
-        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
+        // name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
+        if (sideParam.length) {
+          name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k_${fast}.png`;
+        } else {
+          name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
+        }
       } else {
         fast = '';
-        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+        if (sideParam.length) {
+          name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
+        } else {
+          name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+        }
 
       }
   
@@ -1189,6 +1203,7 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
 
 // -------------------------------------------- end range-slider: ---------------------------------------------
 
+// разблокировка подогоревателя при выборе утеплителя:
 const insulationBtn = document.querySelector(".insulation");
 const heaterBtn = document.querySelector(".heater");
 if (insulationBtn && heaterBtn) {
@@ -1209,7 +1224,7 @@ if (insulationBtn && heaterBtn) {
   });
 }
 
-
+// утановка минимального объема при переходе на этам выбора объема:
 const volumeStepBtn = document.querySelector(".popup__next-btn_volume");
 if (volumeStepBtn) {
   volumeStepBtn.addEventListener('click', function() {
@@ -1223,5 +1238,96 @@ if (volumeStepBtn) {
     if (!volume) {
       setUrlQueryParam('volume', '5')
     }
+
+    if 
   })
+}
+
+// утановка минимального количества секции при переходе на этап выбора секций:
+const sectionStepBtn = document.querySelector(".popup__next-btn_sections");
+if (sectionStepBtn) {
+  sectionStepBtn.addEventListener('click', function() {
+    const sections = '';
+    urlParams.forEach((value, key) => {
+      if (key == 'sections') {
+        sections = value;
+      } 
+    });
+
+    if (!sections) {
+      setUrlQueryParam('sections', '1')
+    }
+  })
+}
+
+// утановка минимального количества ТРК и стороны при переходе на этап выбора ТРК:
+const trkStepBtn = document.querySelector(".popup__next-btn_trk");
+if (trkStepBtn) {
+  trkStepBtn.addEventListener('click', function() {
+    const trk = '';
+    const side = '';
+    urlParams.forEach((value, key) => {
+      if (key == 'trk') {
+        trk = value;
+      } 
+      // if (key == 'side') {
+      //   side = value;
+      // }
+    });
+    if (!trk) {
+      setUrlQueryParam('trk', '1')
+    }
+    // if (!side) {
+    //   setUrlQueryParam('side', '1')
+    // }
+  })
+}
+
+// const twoTrkBtn = document.querySelector("[data-calc-btn][data-name='trk'][data-value='2']");
+// if (twoTrkBtn) {
+//   twoTrkBtn.addEventListener('click', function() {
+  //     const side = '';
+  //     urlParams.forEach((value, key) => {
+//       if (key == 'side') {
+//         side = value;
+//       }
+//     });
+//     if (!side) {
+  //       setUrlQueryParam('side', '1')
+  //       oneSideBtn.closest('.radio').classList.remove("radio_disabled");
+//       twoSideBtn.closest('.radio').classList.remove("radio_disabled");
+//       oneSideBtn.checked = true;
+//     }
+
+// TODO отключить закрытие модалок калькулятора при нажатии на  область вне модалки
+
+const trkBtns = document.querySelectorAll("[data-calc-btn][data-name='trk']");
+if (trkBtns.length) {
+    const oneSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='1']");
+    const twoSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='2']");
+    trkBtns.forEach((item) => {
+      item.addEventListener('click', function() {
+        if (item.dataset.value != 2) {
+          oneSideBtn.closest('.radio').classList.add("radio_disabled");
+          twoSideBtn.closest('.radio').classList.add("radio_disabled");
+          oneSideBtn.checked = false;
+          twoSideBtn.checked = false;
+          delUrlQueryParam('side');
+        } else {
+          oneSideBtn.closest('.radio').classList.remove("radio_disabled");
+          twoSideBtn.closest('.radio').classList.remove("radio_disabled");
+          oneSideBtn.checked = true;  
+          setUrlQueryParam('side', '1')        
+        }
+      })   
+      // if (item.dataset.value == 2) {
+      //   item.closest('.radio').classList.remove("radio_disabled");
+      // } else {
+      //   item.closest('.radio').classList.add("radio_disabled");
+      // }
+      // item.checked = false;
+      // delUrlQueryParam('side');
+    })
+
+//   })
 }
