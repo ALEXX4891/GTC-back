@@ -878,7 +878,7 @@ function setUrlQueryParam(param, value) {
 
 function delUrlQueryParam(param) {
   console.log("*************** Старт функции delUrlQueryParam ***************");
-  urlParams.delete(param)
+  urlParams.delete(param);
   window.history.pushState({}, "", "?" + urlParams.toString());
   pastImageName();
 }
@@ -944,20 +944,13 @@ function getImageName() {
 
   const queryParams = parseUrlQuery();
 
-  let type = '';
-  let volume = '';
+  let type = "";
+  let volume = "";
   // let fuel = '';
-  let sections = '';
-  let trk = '';
-  let side = '';
-  let fast = '';
-
-
-
-
-
-
-
+  let sections = "";
+  let trk = "";
+  let side = "";
+  let fast = "";
 
   console.log(queryParams);
   // тип
@@ -987,52 +980,49 @@ function getImageName() {
     name = `/assets/img/renders/${type}_${volume}.png`;
   }
 
-    // секции
-    if (queryParams.filter((item) => item.name == "sections").length) {
-      const sectionsParam = queryParams.filter((item) => item.name == "sections");
-      sections = sectionsParam[0]["value"];
-  
-      name = `/assets/img/renders/${type}_${volume}_${sections}r.png`;
+  // секции
+  if (queryParams.filter((item) => item.name == "sections").length) {
+    const sectionsParam = queryParams.filter((item) => item.name == "sections");
+    sections = sectionsParam[0]["value"];
+
+    name = `/assets/img/renders/${type}_${volume}_${sections}r.png`;
+  }
+
+  // трк
+  if (queryParams.filter((item) => item.name == "trk").length) {
+    const trkParam = queryParams.filter((item) => item.name == "trk");
+    trk = trkParam[0]["value"];
+    name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+
+    const sideParam = queryParams.filter((item) => item.name == "side");
+    if (sideParam.length) {
+      side = sideParam[0]["value"];
+      name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
     }
+  }
 
-    // трк
-    if (queryParams.filter((item) => item.name == "trk").length) {
-      const trkParam = queryParams.filter((item) => item.name == "trk");
-      trk = trkParam[0]["value"];  
-      name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+  // скоростная выдача
+  if (queryParams.filter((item) => item.name == "fast").length) {
+    const fastParam = queryParams.filter((item) => item.name == "fast");
+    const sideParam = queryParams.filter((item) => item.name == "side");
 
-      const sideParam = queryParams.filter((item) => item.name == "side");
+    if (fastParam[0]["value"] > 0) {
+      fast = "+";
+      // name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
       if (sideParam.length) {
-        side = sideParam[0]["value"];
-        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
-      }
-    }
-
-    // скоростная выдача
-    if (queryParams.filter((item) => item.name == "fast").length) {
-      const fastParam = queryParams.filter((item) => item.name == "fast");
-      const sideParam = queryParams.filter((item) => item.name == "side");
-
-      if (fastParam[0]["value"] > 0) {
-        fast = '+';
-        // name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
-        if (sideParam.length) {
-          name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k_${fast}.png`;
-        } else {
-          name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
-        }
+        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k_${fast}.png`;
       } else {
-        fast = '';
-        if (sideParam.length) {
-          name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
-        } else {
-          name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
-        }
-
+        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
       }
-  
+    } else {
+      fast = "";
+      if (sideParam.length) {
+        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
+      } else {
+        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+      }
     }
-
+  }
 
   // name = `/assets/img/renders/${type}_${volume}.png`;
   console.log(name);
@@ -1073,10 +1063,17 @@ if (btnTemp.length) {
   });
 }
 
+// обработка событий для кнопок выбора типа:
 const btnType = document.querySelectorAll(".popup__type-item");
 if (btnType.length) {
   const popup = btnType[0].closest(".popup");
   const nextBtn = popup.querySelector(".popup__next-btn");
+
+  const type = checkType;
+
+  const slider = document.querySelector(".popup__range-slider");
+  const numberListUl = document.querySelector(".popup__range-list");
+  const numberList = numberListUl.querySelectorAll(".popup__range-number");
 
   btnType.forEach((btn) => {
     btn.addEventListener("click", function () {
@@ -1086,6 +1083,51 @@ if (btnType.length) {
 
       btn.classList.add("popup__type-item_active");
       nextBtn.classList.remove("btn_disabled");
+
+      // TODO написать функцию сброса параметров
+      if (btn.dataset.value == "cont") {
+
+        numberList.forEach((item) => {
+          if (item.innerHTML.trim() > 40) {
+            // item.style.display = "none";
+          } else {
+            // item.style.display = "list-item";
+          }
+        });
+
+        // rangeSliderInit(slider, 5, 5, 40);
+
+        // // удаляем параметры, которые не нужны для контейнера
+        // delUrlQueryParam("sections");
+        // delUrlQueryParam("trk");
+        // delUrlQueryParam("side");
+        // delUrlQueryParam("fast");
+        // delUrlQueryParam("volume");
+        // // перезаписываем параметры
+        // setUrlQueryParam("type", btn.dataset.value);
+        // setUrlQueryParam("volume", "60");
+        // // подставляем новое изображение
+        // pastImageName();
+        // // перезаписываем параметры
+        // setUrlQueryParam("type", btn.dataset.value);
+        // setUrlQueryParam("volume", "60");
+        // // подставляем новое изображение
+        // pastImageName();
+        // // перезаписываем параметры
+        // setUrlQueryParam("type", btn.dataset.value);
+        // setUrlQueryParam("volume", "60");
+        // // подставляем новое изображение
+        // pastImageName();
+        // // перезаписываем параметры
+        // setUrlQueryParam("type", btn.dataset.value);
+      } else {
+        numberList.forEach((item) => {
+          // item.style.display = "list-item";
+        });
+        // rangeSliderInit(slider, 5, 5, 60);
+
+
+      }
     });
   });
 }
@@ -1098,13 +1140,13 @@ if (calcBtns.length) {
       const name = btn.dataset.name;
       const value = btn.dataset.value;
 
-      if ((btn.type == "checkbox")) {
+      if (btn.type == "checkbox") {
         if (btn.checked) {
           setUrlQueryParam(name, value);
         } else {
           delUrlQueryParam(name);
         }
-      } else  {
+      } else {
         setUrlQueryParam(name, value);
       }
     });
@@ -1115,8 +1157,20 @@ const volume = document.getElementById("volume");
 if (volume) {
   volume.addEventListener("input", function () {
     const name = "volume";
-    const value = volume.value;
+    let value = volume.value;
+    const type = checkType();
     const rangeNumbers = document.querySelectorAll(".popup__range-number");
+
+    if (type == "cont" && value >= 40) {    
+      value = 40;
+      // setUrlQueryParam(name, value);
+      // TODO добавить установку параметров рэндж слайдера
+    } else {
+      value = volume.value;
+      // setUrlQueryParam(name, value);
+    }
+
+
 
     if (rangeNumbers.length) {
       rangeNumbers.forEach((item) => {
@@ -1162,31 +1216,43 @@ if (slider) {
 
 function rangeSliderInit(slider, gap, minRange, maxRange) {
   const rangeSlider = slider.querySelector(".range-slider");
+
   // рендж инпуты:
   const rangeInputs = slider.querySelectorAll(".range-inputs-wrap input");
   const rangeInputMax = slider.querySelector(".max-range");
 
   // основные параметры:
-  gap = gap;
-  minRange = minRange;
-  maxRange = maxRange;
-
+  // const gap = gap;
+  // const minRange = minRange;
+  // const maxRange = maxRange;
+  
   rangeInputMax.min = minRange;
   rangeInputMax.max = maxRange;
   rangeInputMax.step = gap;
   rangeInputMax.value = minRange;
-
+  
   rangeInputs.forEach((input) => {
     input.addEventListener("input", (e) => {
+      const type = checkType();
       //получаем значения из текстовых инпутов:
       let minVal = minRange;
       let maxVal = parseInt(rangeInputMax.value);
       // ограничиваем значение max инпута:
-      if (maxVal >= maxRange) {
-        rangeInputMax.value = maxRange;
-        maxVal = maxRange;
+      // console.log('type', type);
+      if (type == "cont") {
+        
+        if (parseInt(rangeInputMax.value) >= 40) {
+          rangeInputMax.value = 40;
+          maxVal = 40;
+        }
+      } else {
+        if (maxVal >= maxRange) {
+          rangeInputMax.value = maxRange;
+          maxVal = maxRange;
+        }
       }
-
+      
+      console.log('parseInt(rangeInputMax.value)', parseInt(rangeInputMax.value));
       if (maxVal <= minVal) {
         rangeInputMax.value = minRange;
         maxVal = minRange;
@@ -1200,6 +1266,8 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
     });
   });
 }
+
+// TODO написать функцию установки параметров слайдера и других параметров
 
 // -------------------------------------------- end range-slider: ---------------------------------------------
 
@@ -1227,74 +1295,263 @@ if (insulationBtn && heaterBtn) {
 // утановка минимального объема при переходе на этам выбора объема:
 const volumeStepBtn = document.querySelector(".popup__next-btn_volume");
 if (volumeStepBtn) {
-  volumeStepBtn.addEventListener('click', function() {
-    const volume = '';
-    urlParams.forEach((value, key) => {
-      if (key == 'volume') {
-        volume = value;
-      } 
-    });
+  volumeStepBtn.addEventListener("click", function () {
+    // const volume = checkVolume();
+    // const type = checkType();
 
-    if (!volume) {
-      setUrlQueryParam('volume', '5')
+    // urlParams.forEach((value, key) => {
+    //   if (key == "volume") {
+    //     volume = value;
+    //   }
+
+    //   if (key == "type") {
+    //     type = value;
+    //   }
+    // });
+
+    // numberList.forEach((item) => {
+    //   if (item.innerHTML.trim() > 40) {
+    //     item.style.display = "none";
+    //   } else {
+    //     item.style.display = "list-item";
+    //   }
+    // });
+
+    // rangeSliderInit(slider, 5, 5, 40);
+    // setUrlQueryParam("volume", "5");
+    // }
+    // } else {
+    //   console.log("22222222222222222");
+
+    //   numberList.forEach((item) => {
+    //     item.style.display = "list-item";
+    //   });
+
+    //   rangeSliderInit(slider, 5, 5, 60);
+    //   setUrlQueryParam("volume", "5");
+
+    // if (!volume && type == "cont") {
+    //   numberList.forEach((item) => {
+    //     if (item.innerHTML.trim() > 40) {
+    //       item.style.display = "none";
+    //     } else {
+    //       item.style.display = "list-item";
+    //     }
+    //   });
+
+    // rangeSliderInit(slider, 5, 5, 40);
+    // setUrlQueryParam("volume", "5");
+    // }
+  });
+}
+
+function checkUsage() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let usage = "";
+  urlParams.forEach((value, key) => {
+    if (key == "usage") {
+      usage = value;
     }
+  });
+  return usage;
+}
 
-    if 
-  })
+function checkTemperature() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let temperature = "";
+  urlParams.forEach((value, key) => {
+    if (key == "temperature") {
+      temperature = value;
+    }
+  });
+  return temperature;
+}
+
+function checkInsulation() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let insulation = "";
+  urlParams.forEach((value, key) => {
+    if (key == "insulation") {
+      insulation = value;
+    }
+  });
+  return insulation;
+}
+
+function checkHeater() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let heater = "";
+  urlParams.forEach((value, key) => {
+    if (key == "heater") {
+      heater = value;
+    }
+  });
+  return heater;
+}
+
+function checkType() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let type = "";
+  urlParams.forEach((value, key) => {
+    if (key == "type") {
+      console.log(value, key);
+      type = value;
+    }
+  });
+  return type;
+}
+
+function checkVolume() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let volume = "";
+  urlParams.forEach((value, key) => {
+    if (key == "volume") {
+      volume = value;
+    }
+  });
+  return volume;
+}
+
+function checkDiesel() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let diesel = "";
+  urlParams.forEach((value, key) => {
+    if (key == "diesel") {
+      diesel = value;
+    }
+  });
+  return diesel;
+}
+
+function checkPetrol92() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let petrol92 = "";
+  urlParams.forEach((value, key) => {
+    if (key == "petrol-92") {
+      petrol92 = value;
+    }
+  });
+  return petrol92;
+}
+
+function checkPetrol95() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let petrol95 = "";
+  urlParams.forEach((value, key) => {
+    if (key == "petrol-95") {
+      petrol95 = value;
+    }
+  });
+  return petrol95;
+}
+
+function checkOther() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let other = "";
+  urlParams.forEach((value, key) => {
+    if (key == "other") {
+      other = value;
+    }
+  });
+  return other;
+}
+
+function checkSections() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let sections = "";
+  urlParams.forEach((value, key) => {
+    if (key == "sections") {
+      sections = value;
+    }
+  });
+  return sections;
+}
+
+function checkTrk() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let trk = "";
+  urlParams.forEach((value, key) => {
+    if (key == "trk") {
+      trk = value;
+    }
+  });
+  return trk;
+}
+
+function checkSide() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let side = "";
+  urlParams.forEach((value, key) => {
+    if (key == "side") {
+      side = value;
+    }
+  });
+  return side;
+}
+
+function checkFast() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let fast = "";
+  urlParams.forEach((value, key) => {
+    if (key == "fast") {
+      fast = value;
+    }
+  });
+  return fast;
 }
 
 // утановка минимального количества секции при переходе на этап выбора секций:
 const sectionStepBtn = document.querySelector(".popup__next-btn_sections");
 if (sectionStepBtn) {
-  sectionStepBtn.addEventListener('click', function() {
-    const sections = '';
+  sectionStepBtn.addEventListener("click", function () {
+    const sections = "";
     urlParams.forEach((value, key) => {
-      if (key == 'sections') {
+      if (key == "sections") {
         sections = value;
-      } 
+      }
     });
 
     if (!sections) {
-      setUrlQueryParam('sections', '1')
+      setUrlQueryParam("sections", "1");
     }
-  })
+  });
 }
 
 // утановка минимального количества ТРК и стороны при переходе на этап выбора ТРК:
 const trkStepBtn = document.querySelector(".popup__next-btn_trk");
 if (trkStepBtn) {
-  trkStepBtn.addEventListener('click', function() {
-    const trk = '';
-    const side = '';
+  trkStepBtn.addEventListener("click", function () {
+    const trk = "";
+    // const side = '';
     urlParams.forEach((value, key) => {
-      if (key == 'trk') {
+      if (key == "trk") {
         trk = value;
-      } 
+      }
       // if (key == 'side') {
       //   side = value;
       // }
     });
     if (!trk) {
-      setUrlQueryParam('trk', '1')
+      setUrlQueryParam("trk", "1");
     }
     // if (!side) {
     //   setUrlQueryParam('side', '1')
     // }
-  })
+  });
 }
 
 // const twoTrkBtn = document.querySelector("[data-calc-btn][data-name='trk'][data-value='2']");
 // if (twoTrkBtn) {
 //   twoTrkBtn.addEventListener('click', function() {
-  //     const side = '';
-  //     urlParams.forEach((value, key) => {
+//     const side = '';
+//     urlParams.forEach((value, key) => {
 //       if (key == 'side') {
 //         side = value;
 //       }
 //     });
 //     if (!side) {
-  //       setUrlQueryParam('side', '1')
-  //       oneSideBtn.closest('.radio').classList.remove("radio_disabled");
+//       setUrlQueryParam('side', '1')
+//       oneSideBtn.closest('.radio').classList.remove("radio_disabled");
 //       twoSideBtn.closest('.radio').classList.remove("radio_disabled");
 //       oneSideBtn.checked = true;
 //     }
@@ -1303,31 +1560,31 @@ if (trkStepBtn) {
 
 const trkBtns = document.querySelectorAll("[data-calc-btn][data-name='trk']");
 if (trkBtns.length) {
-    const oneSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='1']");
-    const twoSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='2']");
-    trkBtns.forEach((item) => {
-      item.addEventListener('click', function() {
-        if (item.dataset.value != 2) {
-          oneSideBtn.closest('.radio').classList.add("radio_disabled");
-          twoSideBtn.closest('.radio').classList.add("radio_disabled");
-          oneSideBtn.checked = false;
-          twoSideBtn.checked = false;
-          delUrlQueryParam('side');
-        } else {
-          oneSideBtn.closest('.radio').classList.remove("radio_disabled");
-          twoSideBtn.closest('.radio').classList.remove("radio_disabled");
-          oneSideBtn.checked = true;  
-          setUrlQueryParam('side', '1')        
-        }
-      })   
-      // if (item.dataset.value == 2) {
-      //   item.closest('.radio').classList.remove("radio_disabled");
-      // } else {
-      //   item.closest('.radio').classList.add("radio_disabled");
-      // }
-      // item.checked = false;
-      // delUrlQueryParam('side');
-    })
+  const oneSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='1']");
+  const twoSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='2']");
+  trkBtns.forEach((item) => {
+    item.addEventListener("click", function () {
+      if (item.dataset.value != 2) {
+        oneSideBtn.closest(".radio").classList.add("radio_disabled");
+        twoSideBtn.closest(".radio").classList.add("radio_disabled");
+        oneSideBtn.checked = false;
+        twoSideBtn.checked = false;
+        delUrlQueryParam("side");
+      } else {
+        oneSideBtn.closest(".radio").classList.remove("radio_disabled");
+        twoSideBtn.closest(".radio").classList.remove("radio_disabled");
+        oneSideBtn.checked = true;
+        setUrlQueryParam("side", "1");
+      }
+    });
+    // if (item.dataset.value == 2) {
+    //   item.closest('.radio').classList.remove("radio_disabled");
+    // } else {
+    //   item.closest('.radio').classList.add("radio_disabled");
+    // }
+    // item.checked = false;
+    // delUrlQueryParam('side');
+  });
 
-//   })
+  //   })
 }
