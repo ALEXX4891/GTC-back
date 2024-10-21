@@ -487,11 +487,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 <p class="off-card__subtitle">
                   Для автоматизации выдачи и учёта
                 </p>
-
-                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
-                  Узнать больше
-                </button>
-
+                
                 <p class="off-card__text text">
                   Функции:<br>
                   • Выдача топлива по электронным картам, ПИН-кодам<br>
@@ -511,12 +507,13 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   • Контроль количества топлива в ёмкостях<br>
                   • Удалённое управление системой через интернет<br>
                 </p>
-
+                
+                
                 <div class="off-card__btn-wrap">
                   <button class="off-card__btn off-card__btn_show">
                     Подробнее
                   </button>
-
+                  
                   <button class="off-card__btn off-card__btn_hide">
                     Скрыть
                   </button>
@@ -529,7 +526,10 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 <button class="btn btn_trans-orange btn_calc popup-link" data-popup="popup-calc_one">
                   Рассчитать стоимость
                 </button>
-
+                
+                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
+                  Узнать больше
+                </button>
 
               </div>
             </li>
@@ -551,10 +551,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 </p>
 
                 <!-- перенесес выше на этап верстки -->
-                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
-                  Узнать больше
-                </button>
-
+                
                 <p class="off-card__text text">
                   Функции:<br>
                   • Отгрузка топлива<br>
@@ -567,12 +564,13 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   • Сокращение времени заправки техники<br>
                   • Простота обслуживания<br>
                 </p>
-
+                
+                
                 <div class="off-card__btn-wrap">
                   <button class="off-card__btn off-card__btn_show">
                     Подробнее
                   </button>
-
+                  
                   <button class="off-card__btn off-card__btn_hide">
                     Скрыть
                   </button>
@@ -585,7 +583,10 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 <button class="btn btn_trans-orange btn_calc popup-link" data-popup="popup-calc_one">
                   Рассчитать стоимость
                 </button>
-
+                
+                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
+                  Узнать больше
+                </button>
               </div>
             </li>
 
@@ -629,9 +630,9 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   <button class="off-card__btn off-card__btn_show">
                     Подробнее
                   </button>
-
-                  <button class="off-card__btn off-card__btn_hide">
-                    Скрыть
+                
+                <button class="off-card__btn off-card__btn_hide">
+                  Скрыть
                   </button>
                 </div>
 
@@ -649,7 +650,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               </div>
             </li>
 
-            <li class="offers__slider-item swiper-slide off-card off-card_cons">
+            <li class="offers__slider-item swiper-slide off-card off-card_calc">
               <div class="off-card__img">
                 <picture>
                   <source srcset="/assets/img/offer4.webp" type="image/webp"><img src="/assets/img/offer4.jpg" alt="">

@@ -819,11 +819,45 @@ a {
 }
 
 .off-card {
-  height: 607px;
+  min-height: 607px;
+  /* TODO вернуть высоту */
+
   -webkit-box-shadow: 3px 4px 8px rgba(137, 150, 150, 0.06), 0px 0px 3px rgba(35, 92, 92, 0.07);
           box-shadow: 3px 4px 8px rgba(137, 150, 150, 0.06), 0px 0px 3px rgba(35, 92, 92, 0.07);
   border-radius: 10px;
   overflow: hidden;
+}
+
+.offers .swiper-wrapper {
+  align-items: stretch;
+}
+
+.offers .swiper-slide {
+  height: auto;
+}
+
+.off-card.off-card_cons .btn_calc {
+  display: none;
+}
+
+.off-card.off-card_calc .btn_cons {
+  display: none;
+}
+
+.off-card .btn_calc {
+  display: none;
+}
+
+.off-card .btn_cons {
+  display: none;
+}
+
+.off-card .off-card__btn_show {
+  display: none;
+}
+
+.off-card .off-card__btn_hide {
+  display: none;
 }
 
 .off-card .off-card__img {
@@ -841,6 +875,10 @@ a {
   background: #ffffff;
 }
 
+.off-card .off-card__subtitle {
+  min-height: 44px;
+}
+
 .off-card .off-card__title {
   font-family: Gilroy;
   font-size: 28px;
@@ -848,10 +886,12 @@ a {
   line-height: 34.3px;
   text-align: left;
   color: #052b2e;
+  min-height: 69px;
 }
 
 .off-card .off-card__text {
   padding-top: 10px;
+  min-height: 54px;
 }
 
 .popup {

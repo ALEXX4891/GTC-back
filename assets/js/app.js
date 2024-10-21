@@ -1590,3 +1590,91 @@ if (trkBtns.length) {
 
   //   })
 }
+
+// -------------------------------------------- start Карточки предложений: ---------------------------------------------
+
+const offerCards = document.querySelectorAll(".offers__slider-item");
+if (offerCards.length) {
+  offerCards.forEach((item) => {
+
+    // const cardTitle = item.querySelector(".offers__slider-item_title");
+    // const cardSubtitle = item.querySelector(".offers__slider-item_subtitle");
+    // const cardDesc = item.querySelector(".offers__slider-item_desc");
+    // const cardImg = item.querySelector(".offers__slider-item_img");
+    const cardText = item.querySelector(".off-card__text");
+    const cardMoreBtn = item.querySelector(".btn_modal");
+    const cardConsultBtn = item.querySelector(".btn_cons");
+    const cardCalcBtn = item.querySelector(".btn_calc");
+
+    // const card = item.closest(".card_about");
+    // const truthCardTextBlock = card.querySelector(".card__desc_hide");
+    // const truthCardText = cardText.innerHTML;
+    // const cardTextBlockForShow = card.querySelector(".card__desc_show");
+    // card.classList.remove("card_about_open");
+    // const cardTextTrim = truthCardText.slice(0, 140) + "...";
+    // cardText.innerHTML = cardTextTrim;
+
+    $clamp(cardText, {clamp: 2});
+})
+// document.addEventListener("click", function (e) {
+//   // закрытие отзывов при клике на другой елемент:
+//   if (!e.target.closest(".card_about_open")) {
+//     const cardsFeedback = document.querySelectorAll(".card_about");
+
+//     cardsFeedback.forEach((item) => {
+//       item.classList.remove("card_about_open");
+//     });
+//   }
+
+//   // открытие отзывов:
+//   const openBtns = document.querySelectorAll(".feedback-btn_open");
+//   if (openBtns) {
+//     openBtns.forEach((item) => {
+//       if (e.target.closest(".feedback-btn_open") == item) {
+//         const card = item.closest(".card_about");
+//         const truthCardTextBlock = card.querySelector(".card__desc_hide");
+//         const truthCardText = truthCardTextBlock.textContent;
+//         const cardTextBlockForShow = card.querySelector(".card__desc_show");
+//         card.classList.add("card_about_open");
+//         cardTextBlockForShow.textContent = truthCardText;
+//       }
+//     });
+//   }
+
+//   // закрытие отзывов:
+//   const closeBtns = document.querySelectorAll(".feedback-btn_close");
+//   if (closeBtns) {
+//     closeBtns.forEach((item) => {
+//       if (e.target.closest(".feedback-btn_close") == item) {
+//         const card = item.closest(".card_about");
+//         const truthCardTextBlock = card.querySelector(".card__desc_hide");
+//         const truthCardText = truthCardTextBlock.textContent;
+//         const cardTextBlockForShow = card.querySelector(".card__desc_show");
+//         card.classList.remove("card_about_open");
+//         const cardTextTrim = truthCardText.slice(0, 140) + "...";
+//         cardTextBlockForShow.textContent = cardTextTrim;
+//       }
+//     });
+//   }
+// });
+
+// // форматирование отзывов при загрузке страницы:
+// const cardsFeedback = document.querySelectorAll(".card_about");
+// if (cardsFeedback.length) {
+//   cardsFeedback.forEach((item) => {
+//     const truthCardTextBlock = item.querySelector(".card__desc_hide");
+//     const truthCardText = truthCardTextBlock.textContent;
+//     // console.log(truthCardText);
+//     const cardTextBlockForShow = item.querySelector(".card__desc_show");
+
+//     if (truthCardText.length > 160) {
+//       item.classList.add("card_about_overflow");
+//       const cardTextTrim = truthCardText.slice(0, 140) + "...";
+//       cardTextBlockForShow.textContent = cardTextTrim;
+//     } else {
+//       cardTextBlockForShow.textContent = truthCardText;
+//     }
+//   });
+}
+
+// -------------------------------------------- end Карточки предложений ---------------------------------------------
