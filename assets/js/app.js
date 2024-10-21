@@ -1597,24 +1597,77 @@ const offerCards = document.querySelectorAll(".offers__slider-item");
 if (offerCards.length) {
   offerCards.forEach((item) => {
 
-    // const cardTitle = item.querySelector(".offers__slider-item_title");
-    // const cardSubtitle = item.querySelector(".offers__slider-item_subtitle");
-    // const cardDesc = item.querySelector(".offers__slider-item_desc");
-    // const cardImg = item.querySelector(".offers__slider-item_img");
+    const id = item.dataset.id;
+    const cardTitle = item.querySelector(".off-card__title");
+    const cardSubtitle = item.querySelector(".off-card__subtitle");
+    const cardImg = item.querySelector(".off-card__img img");
+    
     const cardText = item.querySelector(".off-card__text");
     const cardMoreBtn = item.querySelector(".btn_modal");
     const cardConsultBtn = item.querySelector(".btn_cons");
     const cardCalcBtn = item.querySelector(".btn_calc");
-
+    
     // const card = item.closest(".card_about");
     // const truthCardTextBlock = card.querySelector(".card__desc_hide");
-    // const truthCardText = cardText.innerHTML;
+    const truthCardText = cardText.innerHTML;
     // const cardTextBlockForShow = card.querySelector(".card__desc_show");
     // card.classList.remove("card_about_open");
     // const cardTextTrim = truthCardText.slice(0, 140) + "...";
     // cardText.innerHTML = cardTextTrim;
-
+    
     $clamp(cardText, {clamp: 2});
+    
+    cardMoreBtn.addEventListener("click", function () {
+      const popup = document.querySelector(".popup-offer_more");
+      const popupTitle = popup.querySelector(".off-card__title");
+      const popupSubtitle = popup.querySelector(".off-card__subtitle");
+      const popupImg = popup.querySelector(".off-card__img img");
+      const popupText = popup.querySelector(".off-card__text");
+      const popupConsultBtn = popup.querySelector(".btn_cons");
+      const popupCalcBtn = popup.querySelector(".btn_calc");
+      const showBtn = popup.querySelector(".off-card__btn_show");
+      const hideBtn = popup.querySelector(".off-card__btn_hide");
+      
+      popupTitle.textContent = cardTitle.textContent;
+      popupSubtitle.textContent = cardSubtitle.textContent;
+      popupImg.src = cardImg.src;
+      popupText.innerHTML = cardText.innerHTML;
+
+      const itemClasses = item.classList;
+      if (itemClasses.contains("off-card_cons")) {
+        popupConsultBtn.style.display = "block";
+        popupCalcBtn.style.display = "none";
+        showBtn.style.display = "block";
+        hideBtn.style.display = "none";
+      } else {
+        popupConsultBtn.style.display = "none";
+        popupCalcBtn.style.display = "block";
+        showBtn.style.display = "none";
+        hideBtn.style.display = "block";
+      }
+
+      if (popupText.innerHTML.length > 500) {
+        popupText.innerHTML = truthCardText.slice(0, 470) + "...";
+        showBtn.style.display = "block";
+        hideBtn.style.display = "none";
+      } else {
+        popupText.innerHTML = truthCardText;
+        showBtn.style.display = "none";
+        hideBtn.style.display = "none";
+      }
+
+      showBtn.addEventListener("click", function () {
+        popupText.innerHTML = truthCardText;
+        showBtn.style.display = "none";
+        hideBtn.style.display = "block";
+      })
+
+      hideBtn.addEventListener("click", function () {
+        popupText.innerHTML = truthCardText.slice(0, 470) + "...";
+        showBtn.style.display = "block";
+        hideBtn.style.display = "none";
+      })
+    })
 })
 // document.addEventListener("click", function (e) {
 //   // закрытие отзывов при клике на другой елемент:

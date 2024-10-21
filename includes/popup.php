@@ -193,9 +193,7 @@
   <div class="popup__body">
     <div class="popup__content off-card">
       <div class="off-card__img">
-        <picture>
-          <source srcset="/assets/img/offer1.webp" type="image/webp"><img src="/assets/img/offer1.jpg" alt="">
-        </picture>
+        <img src="/assets/img/offer1.jpg" alt="">
       </div>
 
       <div class="off-card__text-wrap">
@@ -220,13 +218,22 @@
         </p>
 
         <div class="off-card__btn-wrap">
+
           <button class="off-card__btn off-card__btn_show">
             Подробнее
+          </button>
+
+          <button class="off-card__btn off-card__btn_hide">
+            Скрыть
           </button>
         </div>
 
         <button class="btn btn_trans-orange btn_cons popup-link" data-popup="popup-consult">
           Получить консультацию
+        </button>
+
+        <button class="btn btn_gray btn_calc popup-link" data-popup="popup-calc_one">
+          Рассчитать стоимость
         </button>
 
       </div>
@@ -645,7 +652,7 @@
 
       <div class="popup__content-wrap popup__content-wrap_type">
 
-      <div class="popup__type-img">
+        <div class="popup__type-img">
           <img src="/assets/img/popup-type-img.png" alt="">
         </div>
 
@@ -780,7 +787,7 @@
 
       <div class="popup__content-wrap popup__content-wrap_type">
 
-      <div class="popup__type-img">
+        <div class="popup__type-img">
           <img src="/assets/img/popup-type-img.png" alt="">
         </div>
 
@@ -896,7 +903,7 @@
 
       <div class="popup__content-wrap popup__content-wrap_type">
 
-      <div class="popup__type-img">
+        <div class="popup__type-img">
           <img src="/assets/img/popup-type-img.png" alt="">
         </div>
 

@@ -473,7 +473,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
         <div class="offers__slider-wrap swiper offers_swiper">
           <ul class="offers__slider swiper-wrapper">
 
-            <li class="offers__slider-item swiper-slide off-card off-card_cons">
+            <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="1">
               <div class="off-card__img">
                 <picture>
                   <source srcset="/assets/img/offer1.webp" type="image/webp"><img src="/assets/img/offer1.jpg" alt="">
@@ -534,7 +534,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               </div>
             </li>
 
-            <li class="offers__slider-item swiper-slide off-card off-card_cons">
+            <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="2">
               <div class="off-card__img">
                 <picture>
                   <source srcset="/assets/img/offer2.webp" type="image/webp"><img src="/assets/img/offer2.jpg" alt="">
@@ -590,7 +590,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               </div>
             </li>
 
-            <li class="offers__slider-item swiper-slide off-card off-card_cons">
+            <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="3">
               <div class="off-card__img">
                 <picture>
                   <source srcset="/assets/img/offer3.webp" type="image/webp"><img src="/assets/img/offer3.jpg" alt="">
@@ -650,7 +650,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               </div>
             </li>
 
-            <li class="offers__slider-item swiper-slide off-card off-card_calc">
+            <li class="offers__slider-item swiper-slide off-card off-card_calc" data-id="4">
               <div class="off-card__img">
                 <picture>
                   <source srcset="/assets/img/offer4.webp" type="image/webp"><img src="/assets/img/offer4.jpg" alt="">
@@ -707,7 +707,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               </div>
             </li>
 
-            <li class="offers__slider-item swiper-slide off-card off-card_cons">
+            <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="5">
               <div class="off-card__img">
                 <picture>
                   <source srcset="/assets/img/offer5.webp" type="image/webp"><img src="/assets/img/offer5.jpg" alt="">
@@ -750,7 +750,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               </div>
             </li>
 
-            <li class="offers__slider-item swiper-slide off-card off-card_cons">
+            <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="6">
               <div class="off-card__img">
                 <picture>
                   <source srcset="/assets/img/offer6.webp" type="image/webp"><img src="/assets/img/offer6.jpg" alt="">
@@ -807,7 +807,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               </div>
             </li>
 
-            <li class="offers__slider-item swiper-slide off-card off-card_cons">
+            <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="7">
               <div class="off-card__img">
                 <picture>
                   <source srcset="/assets/img/offer7.webp" type="image/webp"><img src="/assets/img/offer7.jpg" alt="">
@@ -849,7 +849,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               </div>
             </li>
 
-            <li class="offers__slider-item swiper-slide off-card off-card_cons">
+            <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="8">
               <div class="off-card__img">
                 <picture>
                   <source srcset="/assets/img/offer8.webp" type="image/webp"><img src="/assets/img/offer8.jpg" alt="">

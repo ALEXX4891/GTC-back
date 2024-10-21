@@ -854,11 +854,32 @@ a {
 
 .off-card .off-card__btn_show {
   display: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  -webkit-transition: text-decoration-color 0.3s ease-in-out;
+  transition: text-decoration-color 0.3s ease-in-out;
+}
+
+.off-card .off-card__btn_show:hover {
+  text-decoration-color: #222;
 }
 
 .off-card .off-card__btn_hide {
   display: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  -webkit-transition: text-decoration-color 0.3s ease-in-out;
+  transition: text-decoration-color 0.3s ease-in-out;
 }
+
+.off-card .off-card__btn_hide:hover {
+  text-decoration-color: #222;
+}
+
 
 .off-card .off-card__img {
   height: 332px;
