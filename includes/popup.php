@@ -428,11 +428,11 @@
 
 
       <div class="popup__btn-wrap">
-        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_one">
+        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_one" data-step='2'>
           Назад
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn btn_disabled" data-popup="popup-calc_three">
+        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn btn_disabled" data-popup="popup-calc_three" data-step='2'>
           Далее
         </button>
       </div>
@@ -509,11 +509,11 @@
 
 
       <div class="popup__btn-wrap">
-        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_two">
+        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_two" data-step='3'>
           Назад
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn popup__next-btn_volume btn_disabled" data-popup="popup-calc_four">
+        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn popup__next-btn_volume btn_disabled" data-popup="popup-calc_four" data-step='3'>
           Далее
         </button>
       </div>
@@ -606,8 +606,6 @@
 
           <div class="range-inputs-wrap">
             <input class="popup__range max-range" type="range" min="5" max="60" value="5" step="5" id="volume">
-            <!-- <input class="min-range" type="range"> -->
-            <!-- <input class="max-range" type="range"> -->
           </div>
 
         </div>
@@ -615,11 +613,11 @@
 
 
       <div class="popup__btn-wrap">
-        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_three">
+        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_three" data-step='4'>
           Назад
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn popup__next-btn_sections" data-popup="popup-calc_five">
+        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn popup__next-btn_sections" data-popup="popup-calc_five" data-step='4'>
           Далее
         </button>
       </div>
@@ -708,7 +706,7 @@
           <ul class="popup__radio-list">
 
             <li class="popup__radio-item">
-              <label class="radio">
+              <label class="radio radio_disabled">
                 <input class="radio__input" type="radio" name="sections" data-calc-btn data-name="sections" data-value="1" checked>
                 <span class="radio__mark"></span>
                 <span class="radio__title">1 секция</span>
@@ -716,7 +714,7 @@
             </li>
 
             <li class="popup__radio-item">
-              <label class="radio">
+              <label class="radio radio_disabled">
                 <input class="radio__input" type="radio" name="sections" data-calc-btn data-name="sections" data-value="2">
                 <span class="radio__mark"></span>
                 <span class="radio__title">2 секции</span>
@@ -724,7 +722,7 @@
             </li>
 
             <li class="popup__radio-item">
-              <label class="radio">
+              <label class="radio radio_disabled">
                 <input class="radio__input" type="radio" name="sections" data-calc-btn data-name="sections" data-value="3">
                 <span class="radio__mark"></span>
                 <span class="radio__title">3 секции</span>
@@ -732,7 +730,7 @@
             </li>
 
             <li class="popup__radio-item">
-              <label class="radio">
+              <label class="radio radio_disabled">
                 <input class="radio__input" type="radio" name="sections" data-calc-btn data-name="sections" data-value="4">
                 <span class="radio__mark"></span>
                 <span class="radio__title">4 секции</span>
@@ -750,11 +748,11 @@
 
 
       <div class="popup__btn-wrap">
-        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_four">
+        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_four" data-step='5'>
           Назад
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn popup__next-btn_trk" data-popup="popup-calc_six">
+        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn popup__next-btn_trk btn_disabled" data-popup="popup-calc_six" data-step='5'>
           Далее
         </button>
       </div>
@@ -866,11 +864,11 @@
 
 
       <div class="popup__btn-wrap">
-        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_five">
+        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_five" data-step='6'>
           Назад
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn" data-popup="popup-calc_seven">
+        <button class="btn btn_gray popup__step-btn popup-link popup__next-btn" data-popup="popup-calc_seven" data-step='6'>
           Далее
         </button>
       </div>

@@ -889,6 +889,152 @@ function delUrlQueryParam(param) {
 
 // }
 
+// console.log(getUsage());
+// console.log(getType());
+// console.log(getTemperature());
+// console.log(getInsulation());
+// console.log(getVolume());
+// console.log(getFuels());
+// console.log(getSections());
+// console.log(getTrk());
+// console.log(getSide());
+// console.log(getFast());
+
+function getUsage() {
+  const queryParams = parseUrlQuery();
+  let usage = "";
+  if (queryParams.filter((item) => item.name == "usage").length) {
+    const usageParam = queryParams.filter((item) => item.name == "usage");
+    usage = usageParam[0]["value"];
+    // name = `/assets/img/renders/${usage}_S.png`;
+  } 
+  return usage;
+}
+
+function getType() {
+  const queryParams = parseUrlQuery();
+  let type = "";
+  if (queryParams.filter((item) => item.name == "type").length) {
+    const typeParam = queryParams.filter((item) => item.name == "type");
+    type = typeParam[0]["value"];
+  }   
+  return type;
+}
+
+function getTemperature() {
+  const queryParams = parseUrlQuery();
+  let temp = "";
+  if (queryParams.filter((item) => item.name == "temperature").length) {
+    const tempParam = queryParams.filter((item) => item.name == "temperature");
+    temp = tempParam[0]["value"];
+  }   
+  return temp;
+}
+
+function getInsulation() {
+  const queryParams = parseUrlQuery();
+  let ins = "";
+  if (queryParams.filter((item) => item.name == "insulation").length) {
+    const insParam = queryParams.filter((item) => item.name == "insulation");
+    ins = insParam[0]["value"];
+  }   
+  return ins;
+}
+
+function getHeater() {
+  const queryParams = parseUrlQuery();
+  let heater = "";
+  if (queryParams.filter((item) => item.name == "heater").length) {
+    const heaterParam = queryParams.filter((item) => item.name == "heater");
+    heater = heaterParam[0]["value"];
+  }   
+  return heater;
+}
+
+function getVolume() {
+  const queryParams = parseUrlQuery();
+  let volume = "";
+  if (queryParams.filter((item) => item.name == "volume").length) {
+    const type = queryParams.filter((item) => item.name == "type")[0]["value"];
+    let volumePar = queryParams.filter((item) => item.name == "volume")[0]["value"];
+    if (volumePar < 25) {
+      volume = "S";
+    } else if (volumePar < 45) {
+      volume = "M";
+    } else {
+      if (type == "cont") {
+        volume = "M";
+      } else {
+        volume = "L";
+      }
+    }
+  }   
+  return volume;
+}
+
+function getFuels () {
+  const queryParams = parseUrlQuery();
+  const fuels = [];
+
+  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  const allFuels = [];
+  fuelBtns.forEach((item) => {
+    allFuels.push(item.dataset.name);
+  });
+
+
+  allFuels.forEach((el) => {
+    if (queryParams.filter((item) => item.name == el).length) {
+      let fuelPar = queryParams.filter((item) => item.name == el)[0]["name"];
+      fuels.push(fuelPar);
+    }
+  });
+  return fuels;
+}
+
+function getSections() {
+  const queryParams = parseUrlQuery();
+  let sections = "";
+  if (queryParams.filter((item) => item.name == "sections").length) {
+    const sectionsParam = queryParams.filter((item) => item.name == "sections");
+    sections = sectionsParam[0]["value"];
+  }   
+  return sections;
+}
+
+function getTrk() {
+  const queryParams = parseUrlQuery();
+  let trk = "";
+  if (queryParams.filter((item) => item.name == "trk").length) {
+    const trkParam = queryParams.filter((item) => item.name == "trk");
+    trk = trkParam[0]["value"];
+  }   
+  return trk;
+}
+
+function getSide() {
+  const queryParams = parseUrlQuery();
+  let side = "";
+  if (queryParams.filter((item) => item.name == "side").length) {
+    const sideParam = queryParams.filter((item) => item.name == "side");
+    side = sideParam[0]["value"];
+  }   
+  return side;
+}
+
+function getFast() {
+  const queryParams = parseUrlQuery();
+  let fast = "";
+  if (queryParams.filter((item) => item.name == "fast").length) {
+    const fastParam = queryParams.filter((item) => item.name == "fast");
+    fast = fastParam[0]["value"];
+  }   
+  return fast;
+}
+
+
+
+
 //функция формирования имени изображения
 function getImageName() {
   console.log("*************** Старт функции getImageName ***************");
@@ -906,7 +1052,7 @@ function getImageName() {
   //     "value": "1"
   //   },
   //   {
-  //     "name": "heater",
+  //     "name": "sections",
   //     "value": "1"
   //   },
   //   {
@@ -956,74 +1102,96 @@ function getImageName() {
 
   console.log(queryParams);
   // тип
-  if (queryParams.filter((item) => item.name == "type").length) {
-    const typeParam = queryParams.filter((item) => item.name == "type");
-    type = typeParam[0]["value"];
-
+  if (getType()) {
+    type = getType();
     name = `/assets/img/renders/${type}_S.png`;
   }
 
   // объем
-  if (queryParams.filter((item) => item.name == "volume").length) {
-    const type = queryParams.filter((item) => item.name == "type")[0]["value"];
-    let volumePar = queryParams.filter((item) => item.name == "volume")[0]["value"];
-    if (volumePar < 25) {
-      volume = "S";
-    } else if (volumePar < 45) {
-      volume = "M";
-    } else {
-      if (type == "cont") {
-        volume = "M";
-      } else {
-        volume = "L";
-      }
-    }
+  if (getVolume()) {
+    volume  = getVolume();
     name = `/assets/img/renders/${type}_${volume}.png`;
   }
 
   // секции
-  if (queryParams.filter((item) => item.name == "sections").length) {
-    const sectionsParam = queryParams.filter((item) => item.name == "sections");
-    sections = sectionsParam[0]["value"];
-
+  if (getSections()) {
+    sections = getSections();
     name = `/assets/img/renders/${type}_${volume}_${sections}r.png`;
   }
 
   // трк
-  if (queryParams.filter((item) => item.name == "trk").length) {
-    const trkParam = queryParams.filter((item) => item.name == "trk");
-    trk = trkParam[0]["value"];
+  if (getTrk()) {
+    trk = getTrk();
     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+  }
 
-    const sideParam = queryParams.filter((item) => item.name == "side");
-    if (sideParam.length) {
-      side = sideParam[0]["value"];
-      name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
-    }
+  if (getTrk() == 2) {
+    side = getSide();
+    name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
   }
 
   // скоростная выдача
-  if (queryParams.filter((item) => item.name == "fast").length) {
-    const fastParam = queryParams.filter((item) => item.name == "fast");
-    const sideParam = queryParams.filter((item) => item.name == "side");
+  if (getFast()) {
+    fast = getFast() ? '+' : '';
 
-    if (fastParam[0]["value"] > 0) {
-      fast = "+";
-      // name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
-      if (sideParam.length) {
-        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k_${fast}.png`;
-      } else {
-        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
-      }
-    } else {
-      fast = "";
-      if (sideParam.length) {
-        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
-      } else {
-        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
-      }
+    if (fast) {
+      console.log(fast);
+    name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
     }
   }
+
+    // if (fastParam[0]["value"] > 0) {
+    //   fast = "+";
+    //   // name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
+    //   if (sideParam.length) {
+    //     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k_${fast}.png`;
+    //   } else {
+    //     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
+    //   }
+    // } else {
+    //   fast = "";
+    //   if (sideParam.length) {
+    //     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
+    //   } else {
+    //     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+      // }
+  // }
+
+    // // трк
+    // if (queryParams.filter((item) => item.name == "trk").length) {
+    //   const trkParam = queryParams.filter((item) => item.name == "trk");
+    //   trk = trkParam[0]["value"];
+    //   name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+  
+    //   const sideParam = queryParams.filter((item) => item.name == "side");
+    //   if (sideParam.length) {
+    //     side = sideParam[0]["value"];
+    //     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
+    //   }
+    // }
+  
+    // // скоростная выдача
+    // if (queryParams.filter((item) => item.name == "fast").length) {
+    //   const fastParam = queryParams.filter((item) => item.name == "fast");
+    //   const sideParam = queryParams.filter((item) => item.name == "side");
+  
+    //   if (fastParam[0]["value"] > 0) {
+    //     fast = "+";
+    //     // name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
+    //     if (sideParam.length) {
+    //       name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k_${fast}.png`;
+    //     } else {
+    //       name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
+    //     }
+    //   } else {
+    //     fast = "";
+    //     if (sideParam.length) {
+    //       name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
+    //     } else {
+    //       name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+    //     }
+    //   }
+    // }
 
   // name = `/assets/img/renders/${type}_${volume}.png`;
   console.log(name);
@@ -1087,7 +1255,6 @@ if (btnType.length) {
 
       // TODO написать функцию сброса параметров
       if (btn.dataset.value == "cont") {
-
         numberList.forEach((item) => {
           if (item.innerHTML.trim() > 40) {
             // item.style.display = "none";
@@ -1126,8 +1293,6 @@ if (btnType.length) {
           // item.style.display = "list-item";
         });
         // rangeSliderInit(slider, 5, 5, 60);
-
-
       }
     });
   });
@@ -1191,12 +1356,12 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
   // const gap = gap;
   // const minRange = minRange;
   // const maxRange = maxRange;
-  
+
   rangeInputMax.min = minRange;
   rangeInputMax.max = maxRange;
   rangeInputMax.step = gap;
   rangeInputMax.value = minRange;
-  
+
   rangeInputs.forEach((input) => {
     input.addEventListener("input", (e) => {
       const type = checkType();
@@ -1208,25 +1373,24 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
       // ограничиваем значение max инпута:
       // console.log('type', type);
       if (type == "cont" && value >= 40) {
-        
         // if (parseInt(rangeInputMax.value) >= 40) {
-          input.value = 40;
-          value = 40;
-          maxVal = 40;
+        input.value = 40;
+        value = 40;
+        maxVal = 40;
         // }
-      } if (sections == "4" && value <= 25) {
+      }
+      if (sections == "4" && value <= 25) {
         input.value = 25;
         value = 25;
         maxVal = 25;
-      
       } else {
         if (maxVal >= maxRange) {
           rangeInputMax.value = maxRange;
           maxVal = maxRange;
         }
       }
-      
-      console.log('parseInt(input.value)', value);
+
+      console.log("parseInt(input.value)", value);
       if (maxVal <= minVal) {
         value = minRange;
         maxVal = minRange;
@@ -1241,29 +1405,27 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
       // const name = "volume";
       // let value = volume.value;
       const rangeNumbers = document.querySelectorAll(".popup__range-number");
-  
-      // if (type == "cont" && value >= 40) {    
-        // value = 40;
-        // setUrlQueryParam(name, value);
+
+      // if (type == "cont" && value >= 40) {
+      // value = 40;
+      // setUrlQueryParam(name, value);
       // } else {
-        // value = volume.value;
-        // setUrlQueryParam(name, value);
+      // value = volume.value;
+      // setUrlQueryParam(name, value);
       // }
-  
-  
-  
+
       if (rangeNumbers.length) {
         rangeNumbers.forEach((item) => {
           item.classList.remove("popup__range-number_active");
         });
-  
+
         rangeNumbers.forEach((item) => {
           if (item.innerHTML.trim() == value) {
             item.classList.add("popup__range-number_active");
           }
         });
       }
-  
+
       setUrlQueryParam("volume", value);
     });
   });
@@ -1300,17 +1462,14 @@ if (volumeStepBtn) {
   volumeStepBtn.addEventListener("click", function () {
     // const volume = checkVolume();
     // const type = checkType();
-
     // urlParams.forEach((value, key) => {
     //   if (key == "volume") {
     //     volume = value;
     //   }
-
     //   if (key == "type") {
     //     type = value;
     //   }
     // });
-
     // numberList.forEach((item) => {
     //   if (item.innerHTML.trim() > 40) {
     //     item.style.display = "none";
@@ -1318,20 +1477,16 @@ if (volumeStepBtn) {
     //     item.style.display = "list-item";
     //   }
     // });
-
     // rangeSliderInit(slider, 5, 5, 40);
     // setUrlQueryParam("volume", "5");
     // }
     // } else {
     //   console.log("22222222222222222");
-
     //   numberList.forEach((item) => {
     //     item.style.display = "list-item";
     //   });
-
     //   rangeSliderInit(slider, 5, 5, 60);
     //   setUrlQueryParam("volume", "5");
-
     // if (!volume && type == "cont") {
     //   numberList.forEach((item) => {
     //     if (item.innerHTML.trim() > 40) {
@@ -1340,7 +1495,6 @@ if (volumeStepBtn) {
     //       item.style.display = "list-item";
     //     }
     //   });
-
     // rangeSliderInit(slider, 5, 5, 40);
     // setUrlQueryParam("volume", "5");
     // }
@@ -1506,7 +1660,7 @@ function checkFast() {
 const sectionStepBtn = document.querySelector(".popup__next-btn_sections");
 if (sectionStepBtn) {
   sectionStepBtn.addEventListener("click", function () {
-    const sections = "";
+    let sections = "";
     urlParams.forEach((value, key) => {
       if (key == "sections") {
         sections = value;
@@ -1558,7 +1712,6 @@ if (trkStepBtn) {
 //       oneSideBtn.checked = true;
 //     }
 
-
 const trkBtns = document.querySelectorAll("[data-calc-btn][data-name='trk']");
 if (trkBtns.length) {
   const oneSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='1']");
@@ -1595,17 +1748,16 @@ if (trkBtns.length) {
 const offerCards = document.querySelectorAll(".offers__slider-item");
 if (offerCards.length) {
   offerCards.forEach((item) => {
-
     const id = item.dataset.id;
     const cardTitle = item.querySelector(".off-card__title");
     const cardSubtitle = item.querySelector(".off-card__subtitle");
     const cardImg = item.querySelector(".off-card__img img");
-    
+
     const cardText = item.querySelector(".off-card__text");
     const cardMoreBtn = item.querySelector(".btn_modal");
     const cardConsultBtn = item.querySelector(".btn_cons");
     const cardCalcBtn = item.querySelector(".btn_calc");
-    
+
     // const card = item.closest(".card_about");
     // const truthCardTextBlock = card.querySelector(".card__desc_hide");
     const truthCardText = cardText.innerHTML;
@@ -1613,9 +1765,9 @@ if (offerCards.length) {
     // card.classList.remove("card_about_open");
     // const cardTextTrim = truthCardText.slice(0, 140) + "...";
     // cardText.innerHTML = cardTextTrim;
-    
-    $clamp(cardText, {clamp: 2});
-    
+
+    $clamp(cardText, { clamp: 2 });
+
     cardMoreBtn.addEventListener("click", function () {
       const popup = document.querySelector(".popup-offer_more");
       const popupTitle = popup.querySelector(".off-card__title");
@@ -1626,7 +1778,7 @@ if (offerCards.length) {
       const popupCalcBtn = popup.querySelector(".btn_calc");
       const showBtn = popup.querySelector(".off-card__btn_show");
       const hideBtn = popup.querySelector(".off-card__btn_hide");
-      
+
       popupTitle.textContent = cardTitle.textContent;
       popupSubtitle.textContent = cardSubtitle.textContent;
       popupImg.src = cardImg.src;
@@ -1659,74 +1811,74 @@ if (offerCards.length) {
         popupText.innerHTML = truthCardText;
         showBtn.style.display = "none";
         hideBtn.style.display = "block";
-      })
+      });
 
       hideBtn.addEventListener("click", function () {
         popupText.innerHTML = truthCardText.slice(0, 470) + "...";
         showBtn.style.display = "block";
         hideBtn.style.display = "none";
-      })
-    })
-})
-// document.addEventListener("click", function (e) {
-//   // закрытие отзывов при клике на другой елемент:
-//   if (!e.target.closest(".card_about_open")) {
-//     const cardsFeedback = document.querySelectorAll(".card_about");
+      });
+    });
+  });
+  // document.addEventListener("click", function (e) {
+  //   // закрытие отзывов при клике на другой елемент:
+  //   if (!e.target.closest(".card_about_open")) {
+  //     const cardsFeedback = document.querySelectorAll(".card_about");
 
-//     cardsFeedback.forEach((item) => {
-//       item.classList.remove("card_about_open");
-//     });
-//   }
+  //     cardsFeedback.forEach((item) => {
+  //       item.classList.remove("card_about_open");
+  //     });
+  //   }
 
-//   // открытие отзывов:
-//   const openBtns = document.querySelectorAll(".feedback-btn_open");
-//   if (openBtns) {
-//     openBtns.forEach((item) => {
-//       if (e.target.closest(".feedback-btn_open") == item) {
-//         const card = item.closest(".card_about");
-//         const truthCardTextBlock = card.querySelector(".card__desc_hide");
-//         const truthCardText = truthCardTextBlock.textContent;
-//         const cardTextBlockForShow = card.querySelector(".card__desc_show");
-//         card.classList.add("card_about_open");
-//         cardTextBlockForShow.textContent = truthCardText;
-//       }
-//     });
-//   }
+  //   // открытие отзывов:
+  //   const openBtns = document.querySelectorAll(".feedback-btn_open");
+  //   if (openBtns) {
+  //     openBtns.forEach((item) => {
+  //       if (e.target.closest(".feedback-btn_open") == item) {
+  //         const card = item.closest(".card_about");
+  //         const truthCardTextBlock = card.querySelector(".card__desc_hide");
+  //         const truthCardText = truthCardTextBlock.textContent;
+  //         const cardTextBlockForShow = card.querySelector(".card__desc_show");
+  //         card.classList.add("card_about_open");
+  //         cardTextBlockForShow.textContent = truthCardText;
+  //       }
+  //     });
+  //   }
 
-//   // закрытие отзывов:
-//   const closeBtns = document.querySelectorAll(".feedback-btn_close");
-//   if (closeBtns) {
-//     closeBtns.forEach((item) => {
-//       if (e.target.closest(".feedback-btn_close") == item) {
-//         const card = item.closest(".card_about");
-//         const truthCardTextBlock = card.querySelector(".card__desc_hide");
-//         const truthCardText = truthCardTextBlock.textContent;
-//         const cardTextBlockForShow = card.querySelector(".card__desc_show");
-//         card.classList.remove("card_about_open");
-//         const cardTextTrim = truthCardText.slice(0, 140) + "...";
-//         cardTextBlockForShow.textContent = cardTextTrim;
-//       }
-//     });
-//   }
-// });
+  //   // закрытие отзывов:
+  //   const closeBtns = document.querySelectorAll(".feedback-btn_close");
+  //   if (closeBtns) {
+  //     closeBtns.forEach((item) => {
+  //       if (e.target.closest(".feedback-btn_close") == item) {
+  //         const card = item.closest(".card_about");
+  //         const truthCardTextBlock = card.querySelector(".card__desc_hide");
+  //         const truthCardText = truthCardTextBlock.textContent;
+  //         const cardTextBlockForShow = card.querySelector(".card__desc_show");
+  //         card.classList.remove("card_about_open");
+  //         const cardTextTrim = truthCardText.slice(0, 140) + "...";
+  //         cardTextBlockForShow.textContent = cardTextTrim;
+  //       }
+  //     });
+  //   }
+  // });
 
-// // форматирование отзывов при загрузке страницы:
-// const cardsFeedback = document.querySelectorAll(".card_about");
-// if (cardsFeedback.length) {
-//   cardsFeedback.forEach((item) => {
-//     const truthCardTextBlock = item.querySelector(".card__desc_hide");
-//     const truthCardText = truthCardTextBlock.textContent;
-//     // console.log(truthCardText);
-//     const cardTextBlockForShow = item.querySelector(".card__desc_show");
+  // // форматирование отзывов при загрузке страницы:
+  // const cardsFeedback = document.querySelectorAll(".card_about");
+  // if (cardsFeedback.length) {
+  //   cardsFeedback.forEach((item) => {
+  //     const truthCardTextBlock = item.querySelector(".card__desc_hide");
+  //     const truthCardText = truthCardTextBlock.textContent;
+  //     // console.log(truthCardText);
+  //     const cardTextBlockForShow = item.querySelector(".card__desc_show");
 
-//     if (truthCardText.length > 160) {
-//       item.classList.add("card_about_overflow");
-//       const cardTextTrim = truthCardText.slice(0, 140) + "...";
-//       cardTextBlockForShow.textContent = cardTextTrim;
-//     } else {
-//       cardTextBlockForShow.textContent = truthCardText;
-//     }
-//   });
+  //     if (truthCardText.length > 160) {
+  //       item.classList.add("card_about_overflow");
+  //       const cardTextTrim = truthCardText.slice(0, 140) + "...";
+  //       cardTextBlockForShow.textContent = cardTextTrim;
+  //     } else {
+  //       cardTextBlockForShow.textContent = truthCardText;
+  //     }
+  //   });
 }
 
 // -------------------------------------------- end Карточки предложений ---------------------------------------------
@@ -1734,35 +1886,21 @@ if (offerCards.length) {
 // -------------------------------------- start функция установки и сброса значений фильтров ----------------
 // setNowFilters();
 
+const nextStepBtnTwo = document.querySelector(".popup__next-btn[data-step='2']");
+const nextStepBtnThree = document.querySelector(".popup__next-btn[data-step='3']");
+// const nextStepBtnFour = document.querySelector(".popup__next-btn[data-step='4']");
+const nextStepBtnFive = document.querySelector(".popup__next-btn[data-step='5']");
+const nextStepBtnSix = document.querySelector(".popup__next-btn[data-step='6']");
+
 const queryParams = parseUrlQuery();
-setCurrentParams(queryParams)
+setCurrentParams(queryParams);
+
+// setCurrentParams();
 
 function setCurrentParams(arr) {
   console.log("*************** Старт функции setNowFilters ***************"); // имя функции
   console.log(arr);
-  // let urlParams = new URLSearchParams(window.location.search);
-  // arr = [
-  //   // { name: "Проект", value: "Сосновый" },
-  //   // { name: "Проект", value: "" },
-  //   // { name: "Комнат", value: [1, 2] },
-  //   { name: "Комнат", value: '' },
-  //   // { name: "Площадь, м2", value: { from: 36, to: 60 } },
-  //   { name: "Площадь, м2", value: "" },
-  //   // { name: "Стоимость, ₽", value: { from: 1860000, to: 6250000 } },
-  //   // { name: "Дом", value: 1 },
-  //   { name: "Дом", value: '' },
-
-  //   { name: "Секция", value: 1 },
-  //   // { name: "Срок сдачи", value: "IV квартал 2025" },
-  //   { name: "Этаж", value: { from: 2, to: 3 } },
-  //   { name: "btns", value: [] },
-  // ];
-  // console.log(arr);
-
-  // if (!choiceFilterForm) {
-  //   // console.log("choiceFilterForm not found");
-  //   return;
-  // }
+  let urlParams = new URLSearchParams(window.location.search);
 
   if (!arr) {
     window.history.pushState({}, document.title, window.location.pathname);
@@ -1770,136 +1908,187 @@ function setCurrentParams(arr) {
     // console.log("сброс фильтров");
   }
 
+
+  // шаг 1
+  const usageBtns = document.querySelectorAll(".popup__step-btn[data-name='usage']");
+  console.log(usageBtns);
+  if (usageBtns && arr.filter((item) => item.name === "usage").length) {
+    usageBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "usage")[0].value === item.dataset.value) {
+        // item.classList.add("popup__btn_usage_active");
+      } else {
+        item.classList.add("btn_disabled");
+        item.style.pointerEvents = "all";
+      }
+    });
+  } 
+
+
+  // шаг 2
   const tempBtns = document.querySelectorAll(".popup__btn_temp");
-  if (arr.filter((item) => item.name === "temperature").length) {
+  if (tempBtns && arr.filter((item) => item.name === "temperature").length) {
     tempBtns.forEach((item) => {
       if (arr.filter((el) => el.name === "temperature")[0].value === item.dataset.value) {
-
         item.classList.add("popup__btn_temp_active");
+        nextStepBtnTwo.classList.remove("btn_disabled");
       }
     });
   }
 
-  if (arr.filter((item) => item.name === "insulation").length) {
-    console.log("insulation");
-    tempBtns.forEach((item) => {
-      if (arr.filter((el) => el.name === "insulation")[0].value === item.dataset.value) {
+  const insulationBtn = document.querySelector(".checkbox__input[data-name='insulation']");
+  console.log(insulationBtn);
 
-        item.classList.add("popup__btn_temp_active");
-      }
-    });
+  if (insulationBtn && arr.filter((item) => item.name === "insulation").length) {
+    insulationBtn.checked = true;
   }
+
+  const heaterBtn = document.querySelector(".checkbox__input[data-name='heater']");
+
   if (arr.filter((item) => item.name === "heater").length) {
-    console.log("heater");
-    tempBtns.forEach((item) => {
-      if (arr.filter((el) => el.name === "heater")[0].value === item.dataset.value) {
+    heaterBtn.checked = true;
+    heaterBtn.closest(".checkbox").classList.remove("checkbox_disabled");
+  }
 
-        item.classList.add("popup__btn_temp_active");
+  // шаг 3
+  const typeBtns = document.querySelectorAll(".popup__type-item");
+  if (typeBtns && arr.filter((item) => item.name === "type").length) {
+    typeBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "type")[0].value === item.dataset.value) {
+        item.classList.add("popup__type-item_active");
+        nextStepBtnThree.classList.remove("btn_disabled");
       }
     });
   }
 
-  // const projectFilter = choiceFilterForm.querySelector(".choice__input-block_select_project .select__text");
-  // let roomsFilter = choiceFilterForm.querySelector(".choice__input-block_buttons_rooms .choice__buttons-select");
+  // шаг 4
+  const volumeBtn = document.querySelectorAll(".popup__range");
+  if (volumeBtn && arr.filter((item) => item.name === "volume").length) {
+    const slider = document.querySelector(".popup__range-slider");
+    volumeBtn.value = arr.filter((el) => el.name === "volume")[0].value;
+    rangeSliderUpdate(slider, volumeBtn.value);
+    // nextStepBtnFour.classList.remove("btn_disabled");
+  }
 
-  // if (roomsFilter) {
-  //   roomsFilter = [
-  //     ...choiceFilterForm.querySelector(".choice__input-block_buttons_rooms .choice__buttons-select").children,
-  //   ];
-  // }
+  // шаг 5
+  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  const fuels = [];
+  fuelBtns.forEach((item) => {
+    fuels.push(item.dataset.name);
+  });
 
-  // const squareInputFrom = choiceFilterForm.querySelector(".choice__input-block_slider_square .select__input_from");
-  // const squareInputTo = choiceFilterForm.querySelector(".choice__input-block_slider_square .select__input_to");
+  console.log(fuels);
 
-  // const costInputFrom = choiceFilterForm.querySelector(".choice__input-block_slider_cost .select__input_from");
-  // const costInputTo = choiceFilterForm.querySelector(".choice__input-block_slider_cost .select__input_to");
+  if (fuelBtns.length) {
+    fuelBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === item.dataset.name).length) {
+        console.log(item.dataset.name);
+        console.log(arr.filter((el) => el.name === item.dataset.name));
+        item.checked = true;
+        // nextStepBtnFive.classList.remove("btn_disabled");
+      }
+    });
+  }
 
-  // const houseFilter = choiceFilterForm.querySelector(".choice__input-block_select_house .select__text");
-  // const sectionFilter = choiceFilterForm.querySelector(".choice__input-block_select_section .select__text");
-  // const deadlineFilter = choiceFilterForm.querySelector(".choice__input-block_select_date .select__text");
+  const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
+  if (sectionsBtns && arr.filter((item) => item.name === "sections").length) {
+    sectionsBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "sections")[0].value === item.dataset.value) {
+        item.checked = true;
+        nextStepBtnFive.classList.remove("btn_disabled");
+      }
+    });
+  }
 
-  // const floorInputFrom = choiceFilterForm.querySelector(".choice__input-block_slider_floor .select__input_from");
-  // const floorInputTo = choiceFilterForm.querySelector(".choice__input-block_slider_floor .select__input_to");
+  // шаг 6
+  const trkBtns = document.querySelectorAll(".radio__input[name='trk']");
 
-  // let btnsFilter = choiceFilterForm.querySelector(".choice__btns-wrap");
+  if (trkBtns && arr.filter((item) => item.name === "trk").length) {
+    trkBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "trk")[0].value === item.dataset.value) {
+        item.checked = true;
+        nextStepBtnSix.classList.remove("btn_disabled");
+      }
+    });
+  }
 
-  // if (btnsFilter) {
-  //   btnsFilter = btnsFilter.querySelectorAll(".choice__btn-filter");
-  // }
+  const sideBtns = document.querySelectorAll(".radio__input[name='side']");
 
-  // TODO можно написать цикл, который будет проверть все фильтры и добавлять или удалять классы.
+  if (sideBtns && arr.filter((item) => item.name === "side").length) {
+    sideBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "side")[0].value === item.dataset.value) {
+        item.checked = true;
+        sideBtns.forEach((el) => {
+          el.closest(".radio").classList.remove("radio_disabled");
+        });
+        nextStepBtnSix.classList.remove("btn_disabled");
+      }
+    });
+  }
 
-  // if (projectFilter) {
-  //   if (arr) {
-  //     if (arr.find((item) => item.name === "Проект") && arr.find((item) => item.name === "Проект").value !== "") {
-  //       projectFilter.innerHTML = arr.find((item) => item.name === "Проект").value;
-  //     }
-  //   } else {
-  //     projectFilter.innerHTML = "";
-  //   }
+  // шаг 7
+  const fastBtns = document.querySelectorAll(".radio__input[name='fast']");
 
-  //   if (projectFilter.innerHTML !== "") {
-  //     projectFilter.classList.add("select__text_active");
-  //     projectFilter.closest(".choice__select").classList.add("select_active");
-  //   } else {
-  //     projectFilter.classList.remove("select__text_active");
-  //     projectFilter.closest(".choice__select").classList.remove("select_active");
-  //   }
-  // }
-
-  // if (squareInputFrom) {
-  //   if (arr) {
-  //     if (
-  //       arr.find((item) => item.name === "Площадь, м2") &&
-  //       arr.find((item) => item.name === "Площадь, м2").value !== ""
-  //     ) {
-  //       squareInputFrom.value = arr.find((item) => item.name === "Площадь, м2").value.from;
-  //       squareInputTo.value = arr.find((item) => item.name === "Площадь, м2").value.to;
-  //       const squareFilter = choiceFilterForm.querySelector(".choice__input-block_slider_square");
-  //       rangeSliderUpdate(squareFilter);
-  //     }
-  //   } else {
-  //     squareInputFrom.value = squareInputFrom.getAttribute("min");
-  //     squareInputTo.value = squareInputTo.getAttribute("max");
-  //     const squareFilter = choiceFilterForm.querySelector(".choice__input-block_slider_square");
-  //     rangeSliderUpdate(squareFilter);
-  //   }
-  // }
-
-  // if (costInputFrom) {
-  //   if (arr) {
-  //     if (
-  //       arr.find((item) => item.name === "Стоимость, ₽") &&
-  //       arr.find((item) => item.name === "Стоимость, ₽").value !== ""
-  //     ) {
-  //       costInputFrom.value = arr.find((item) => item.name === "Стоимость, ₽").value.from;
-  //       costInputTo.value = arr.find((item) => item.name === "Стоимость, ₽").value.to;
-  //       const costFilter = choiceFilterForm.querySelector(".choice__input-block_slider_cost");
-  //       rangeSliderUpdate(costFilter);
-  //     }
-  //   } else {
-  //     costInputFrom.value = costInputFrom.getAttribute("min");
-  //     costInputTo.value = costInputTo.getAttribute("max");
-  //     const costFilter = choiceFilterForm.querySelector(".choice__input-block_slider_cost");
-  //     rangeSliderUpdate(costFilter);
-  //   }
-  // }
-
-  // if (floorInputFrom) {
-  //   if (arr) {
-  //     if (arr.find((item) => item.name === "Этаж") && arr.find((item) => item.name === "Этаж").value !== "") {
-  //       floorInputFrom.value = arr.find((item) => item.name === "Этаж").value.from;
-  //       floorInputTo.value = arr.find((item) => item.name === "Этаж").value.to;
-  //       const floorFilter = choiceFilterForm.querySelector(".choice__input-block_slider_floor");
-  //       rangeSliderUpdate(floorFilter);
-  //     }
-  //   } else {
-  //     floorInputFrom.value = floorInputFrom.getAttribute("min");
-  //     floorInputTo.value = floorInputTo.getAttribute("max");
-  //     const floorFilter = choiceFilterForm.querySelector(".choice__input-block_slider_floor");
-  //     rangeSliderUpdate(floorFilter);
-  //   }
-  // }
-
+  if (fastBtns && arr.filter((item) => item.name === "fast").length) {
+    fastBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "fast")[0].value === item.dataset.value) {
+        item.checked = true;
+      }
+    });
+  }
 }
 // -------------------------------------- end функция установки и сброса значений фильтров --------------------------------------
+
+//функция установки значения рэндж слайдера:
+function rangeSliderUpdate(slider, value) {
+  // ползунок:
+  // const slider = document.querySelector(".popup__range-slider");
+  const rangeSlider = slider.querySelector(".range-slider");
+
+  // текстовые инпуты:
+  // const textInputMin = slider.querySelector(".select__input_from");
+  // const textInputMax = slider.querySelector(".select__input_to");
+
+  // рендж инпуты:
+  // const rangeInputMin = slider.querySelector(".min-range");
+  const rangeInputMax = slider.querySelector(".max-range");
+
+  // let minVal = 0;
+  let maxVal = value;
+  let minRange = rangeInputMax.min;
+  let maxRange = rangeInputMax.max;
+
+  // присваиваем значения инпутам:
+  // rangeInputMin.value = textInputMin.value;
+  rangeInputMax.value = value;
+
+  // вычисляем положение рендж инпутов:
+  rangeSlider.style.right = `${100 - ((maxVal - minRange) * 100) / (maxRange - minRange)}%`;
+  // rangeSlider.style.left = `${((minVal - minRange) * 100) / (maxRange - minRange)}%`;
+}
+
+
+const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+if (fuelBtns) {
+  const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
+
+  fuelBtns.forEach((item) => {
+    item.addEventListener("change", function () {
+      let numberOfChecked = 0;
+      fuelBtns.forEach((el) => {
+        if (el.checked) {
+          numberOfChecked++;
+        }
+      })
+      console.log(numberOfChecked);
+      if (numberOfChecked) {
+        nextStepBtnFive.classList.remove("btn_disabled");
+        sectionsBtns.forEach((el) => {
+          el.closest(".radio").classList.remove("radio_disabled");
+        });
+      } else {
+
+      }
+
+    });
+  });
+}
