@@ -449,12 +449,10 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
     </div>
   </section>
-  <!-- TODO отключить закрытие popup по клику на пустое место -->
 
   <section class="section section_offers offers">
     <div class="section__ancor" id="offers"></div>
 
-    <!-- TODO выполнить программирование блока -->
     <div class="container offers__container">
       <div class="top-block">
         <h2 class="top-block__title section-title" style="text-wrap: nowrap;">

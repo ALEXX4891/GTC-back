@@ -819,13 +819,15 @@ a {
 }
 
 .off-card {
-  min-height: 607px;
-  /* TODO вернуть высоту */
+  /* min-height: 607px; */
 
   -webkit-box-shadow: 3px 4px 8px rgba(137, 150, 150, 0.06), 0px 0px 3px rgba(35, 92, 92, 0.07);
           box-shadow: 3px 4px 8px rgba(137, 150, 150, 0.06), 0px 0px 3px rgba(35, 92, 92, 0.07);
   border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 326px auto;
 }
 
 .offers .swiper-wrapper {
@@ -839,6 +841,16 @@ a {
 .off-card.off-card_cons .btn_calc {
   display: none;
 }
+
+.off-card .off-card__btn-wrap {
+  display: none;
+
+}
+
+.off-card button {
+  align-self: end;
+}
+
 
 .off-card.off-card_calc .btn_cons {
   display: none;
@@ -894,10 +906,12 @@ a {
   padding: 30px 25px;
   gap: 15px;
   background: #ffffff;
+  grid-auto-flow: dense;
+    grid-template-rows: auto auto auto 1fr;
 }
 
 .off-card .off-card__subtitle {
-  min-height: 44px;
+  /* min-height: 44px; */
 }
 
 .off-card .off-card__title {
@@ -907,12 +921,12 @@ a {
   line-height: 34.3px;
   text-align: left;
   color: #052b2e;
-  min-height: 69px;
+  /* min-height: 69px; */
 }
 
 .off-card .off-card__text {
   padding-top: 10px;
-  min-height: 54px;
+  /* min-height: 54px; */
 }
 
 .popup {
@@ -4242,7 +4256,8 @@ a {
   }
 
   .off-card {
-    height: 573px;
+    /* min-height: 573px; */
+    grid-template-rows: 270px auto;
   }
 
   .off-card .off-card__img {
@@ -5017,7 +5032,12 @@ a {
   }
 
   .off-card {
-    height: 568px;
+    /* min-height: 568px; */
+  } 
+
+  .glavnaya .offers {
+    padding: 49px 10px 80px;
+    overflow: hidden;
   }
 
   .off-card .off-card__text-wrap {
@@ -5265,7 +5285,7 @@ a {
   }
 
   .glavnaya .offers .container .offers__slider-block .offers__slider-wrap {
-    margin: 0 25px;
+    margin: 0 15px;
   }
 
   .glavnaya .offers .container .offers__slider-block .swiper-button-prev-offer {

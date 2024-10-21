@@ -1,6 +1,6 @@
 let urlParams = new URLSearchParams(window.location.search);
-window.history.pushState({}, document.title, window.location.pathname);
-urlParams = new URLSearchParams(window.location.search);
+// window.history.pushState({}, document.title, window.location.pathname);
+// urlParams = new URLSearchParams(window.location.search);
 
 // ---------------------------------- start menu ----------------------------------
 
@@ -566,8 +566,10 @@ function popupOpen(curentPopup) {
     curentPopup.addEventListener("click", function (e) {
       // console.log("тест");
       if (!e.target.closest(".popup__content")) {
-        // если клик был по области вокруг попапа то ничего не делаем
-        popupClose(e.target.closest(".popup"));
+        // если клик был по области вокруг попапа то ничего не делаем, если это не калькулятор
+        if (!curentPopup.classList.contains("popup-calc")) {
+          popupClose(e.target.closest(".popup"));
+        }
       }
     });
   }
@@ -975,7 +977,6 @@ function getImageName() {
       } else {
         volume = "L";
       }
-      // TODO переписать, ограничить контейнер до 45 м3?
     }
     name = `/assets/img/renders/${type}_${volume}.png`;
   }
@@ -1244,7 +1245,6 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
       // if (type == "cont" && value >= 40) {    
         // value = 40;
         // setUrlQueryParam(name, value);
-        // TODO добавить установку параметров рэндж слайдера
       // } else {
         // value = volume.value;
         // setUrlQueryParam(name, value);
@@ -1558,7 +1558,6 @@ if (trkStepBtn) {
 //       oneSideBtn.checked = true;
 //     }
 
-// TODO отключить закрытие модалок калькулятора при нажатии на  область вне модалки
 
 const trkBtns = document.querySelectorAll("[data-calc-btn][data-name='trk']");
 if (trkBtns.length) {
@@ -1731,3 +1730,176 @@ if (offerCards.length) {
 }
 
 // -------------------------------------------- end Карточки предложений ---------------------------------------------
+
+// -------------------------------------- start функция установки и сброса значений фильтров ----------------
+// setNowFilters();
+
+const queryParams = parseUrlQuery();
+setCurrentParams(queryParams)
+
+function setCurrentParams(arr) {
+  console.log("*************** Старт функции setNowFilters ***************"); // имя функции
+  console.log(arr);
+  // let urlParams = new URLSearchParams(window.location.search);
+  // arr = [
+  //   // { name: "Проект", value: "Сосновый" },
+  //   // { name: "Проект", value: "" },
+  //   // { name: "Комнат", value: [1, 2] },
+  //   { name: "Комнат", value: '' },
+  //   // { name: "Площадь, м2", value: { from: 36, to: 60 } },
+  //   { name: "Площадь, м2", value: "" },
+  //   // { name: "Стоимость, ₽", value: { from: 1860000, to: 6250000 } },
+  //   // { name: "Дом", value: 1 },
+  //   { name: "Дом", value: '' },
+
+  //   { name: "Секция", value: 1 },
+  //   // { name: "Срок сдачи", value: "IV квартал 2025" },
+  //   { name: "Этаж", value: { from: 2, to: 3 } },
+  //   { name: "btns", value: [] },
+  // ];
+  // console.log(arr);
+
+  // if (!choiceFilterForm) {
+  //   // console.log("choiceFilterForm not found");
+  //   return;
+  // }
+
+  if (!arr) {
+    window.history.pushState({}, document.title, window.location.pathname);
+    urlParams = new URLSearchParams(window.location.search);
+    // console.log("сброс фильтров");
+  }
+
+  const tempBtns = document.querySelectorAll(".popup__btn_temp");
+  if (arr.filter((item) => item.name === "temperature").length) {
+    tempBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "temperature")[0].value === item.dataset.value) {
+
+        item.classList.add("popup__btn_temp_active");
+      }
+    });
+  }
+
+  if (arr.filter((item) => item.name === "insulation").length) {
+    console.log("insulation");
+    tempBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "insulation")[0].value === item.dataset.value) {
+
+        item.classList.add("popup__btn_temp_active");
+      }
+    });
+  }
+  if (arr.filter((item) => item.name === "heater").length) {
+    console.log("heater");
+    tempBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "heater")[0].value === item.dataset.value) {
+
+        item.classList.add("popup__btn_temp_active");
+      }
+    });
+  }
+
+  // const projectFilter = choiceFilterForm.querySelector(".choice__input-block_select_project .select__text");
+  // let roomsFilter = choiceFilterForm.querySelector(".choice__input-block_buttons_rooms .choice__buttons-select");
+
+  // if (roomsFilter) {
+  //   roomsFilter = [
+  //     ...choiceFilterForm.querySelector(".choice__input-block_buttons_rooms .choice__buttons-select").children,
+  //   ];
+  // }
+
+  // const squareInputFrom = choiceFilterForm.querySelector(".choice__input-block_slider_square .select__input_from");
+  // const squareInputTo = choiceFilterForm.querySelector(".choice__input-block_slider_square .select__input_to");
+
+  // const costInputFrom = choiceFilterForm.querySelector(".choice__input-block_slider_cost .select__input_from");
+  // const costInputTo = choiceFilterForm.querySelector(".choice__input-block_slider_cost .select__input_to");
+
+  // const houseFilter = choiceFilterForm.querySelector(".choice__input-block_select_house .select__text");
+  // const sectionFilter = choiceFilterForm.querySelector(".choice__input-block_select_section .select__text");
+  // const deadlineFilter = choiceFilterForm.querySelector(".choice__input-block_select_date .select__text");
+
+  // const floorInputFrom = choiceFilterForm.querySelector(".choice__input-block_slider_floor .select__input_from");
+  // const floorInputTo = choiceFilterForm.querySelector(".choice__input-block_slider_floor .select__input_to");
+
+  // let btnsFilter = choiceFilterForm.querySelector(".choice__btns-wrap");
+
+  // if (btnsFilter) {
+  //   btnsFilter = btnsFilter.querySelectorAll(".choice__btn-filter");
+  // }
+
+  // TODO можно написать цикл, который будет проверть все фильтры и добавлять или удалять классы.
+
+  // if (projectFilter) {
+  //   if (arr) {
+  //     if (arr.find((item) => item.name === "Проект") && arr.find((item) => item.name === "Проект").value !== "") {
+  //       projectFilter.innerHTML = arr.find((item) => item.name === "Проект").value;
+  //     }
+  //   } else {
+  //     projectFilter.innerHTML = "";
+  //   }
+
+  //   if (projectFilter.innerHTML !== "") {
+  //     projectFilter.classList.add("select__text_active");
+  //     projectFilter.closest(".choice__select").classList.add("select_active");
+  //   } else {
+  //     projectFilter.classList.remove("select__text_active");
+  //     projectFilter.closest(".choice__select").classList.remove("select_active");
+  //   }
+  // }
+
+  // if (squareInputFrom) {
+  //   if (arr) {
+  //     if (
+  //       arr.find((item) => item.name === "Площадь, м2") &&
+  //       arr.find((item) => item.name === "Площадь, м2").value !== ""
+  //     ) {
+  //       squareInputFrom.value = arr.find((item) => item.name === "Площадь, м2").value.from;
+  //       squareInputTo.value = arr.find((item) => item.name === "Площадь, м2").value.to;
+  //       const squareFilter = choiceFilterForm.querySelector(".choice__input-block_slider_square");
+  //       rangeSliderUpdate(squareFilter);
+  //     }
+  //   } else {
+  //     squareInputFrom.value = squareInputFrom.getAttribute("min");
+  //     squareInputTo.value = squareInputTo.getAttribute("max");
+  //     const squareFilter = choiceFilterForm.querySelector(".choice__input-block_slider_square");
+  //     rangeSliderUpdate(squareFilter);
+  //   }
+  // }
+
+  // if (costInputFrom) {
+  //   if (arr) {
+  //     if (
+  //       arr.find((item) => item.name === "Стоимость, ₽") &&
+  //       arr.find((item) => item.name === "Стоимость, ₽").value !== ""
+  //     ) {
+  //       costInputFrom.value = arr.find((item) => item.name === "Стоимость, ₽").value.from;
+  //       costInputTo.value = arr.find((item) => item.name === "Стоимость, ₽").value.to;
+  //       const costFilter = choiceFilterForm.querySelector(".choice__input-block_slider_cost");
+  //       rangeSliderUpdate(costFilter);
+  //     }
+  //   } else {
+  //     costInputFrom.value = costInputFrom.getAttribute("min");
+  //     costInputTo.value = costInputTo.getAttribute("max");
+  //     const costFilter = choiceFilterForm.querySelector(".choice__input-block_slider_cost");
+  //     rangeSliderUpdate(costFilter);
+  //   }
+  // }
+
+  // if (floorInputFrom) {
+  //   if (arr) {
+  //     if (arr.find((item) => item.name === "Этаж") && arr.find((item) => item.name === "Этаж").value !== "") {
+  //       floorInputFrom.value = arr.find((item) => item.name === "Этаж").value.from;
+  //       floorInputTo.value = arr.find((item) => item.name === "Этаж").value.to;
+  //       const floorFilter = choiceFilterForm.querySelector(".choice__input-block_slider_floor");
+  //       rangeSliderUpdate(floorFilter);
+  //     }
+  //   } else {
+  //     floorInputFrom.value = floorInputFrom.getAttribute("min");
+  //     floorInputTo.value = floorInputTo.getAttribute("max");
+  //     const floorFilter = choiceFilterForm.querySelector(".choice__input-block_slider_floor");
+  //     rangeSliderUpdate(floorFilter);
+  //   }
+  // }
+
+}
+// -------------------------------------- end функция установки и сброса значений фильтров --------------------------------------
