@@ -420,7 +420,7 @@
             </label>
           </div>
 
-          <p class="popup__recommended-desc heater-desc">
+          <p class="popup__recommended-desc popup__info-text heater-desc">
             Параметр «Подогрев» доступен вместе с «Утеплителем»
           </p>
         </div>
@@ -706,7 +706,7 @@
           <ul class="popup__radio-list">
 
             <li class="popup__radio-item">
-              <label class="radio radio_disabled">
+              <label class="radio">
                 <input class="radio__input" type="radio" name="sections" data-calc-btn data-name="sections" data-value="1" checked>
                 <span class="radio__mark"></span>
                 <span class="radio__title">1 секция</span>
@@ -714,7 +714,7 @@
             </li>
 
             <li class="popup__radio-item">
-              <label class="radio radio_disabled">
+              <label class="radio">
                 <input class="radio__input" type="radio" name="sections" data-calc-btn data-name="sections" data-value="2">
                 <span class="radio__mark"></span>
                 <span class="radio__title">2 секции</span>
@@ -722,7 +722,7 @@
             </li>
 
             <li class="popup__radio-item">
-              <label class="radio radio_disabled">
+              <label class="radio">
                 <input class="radio__input" type="radio" name="sections" data-calc-btn data-name="sections" data-value="3">
                 <span class="radio__mark"></span>
                 <span class="radio__title">3 секции</span>
@@ -730,7 +730,7 @@
             </li>
 
             <li class="popup__radio-item">
-              <label class="radio radio_disabled">
+              <label class="radio">
                 <input class="radio__input" type="radio" name="sections" data-calc-btn data-name="sections" data-value="4">
                 <span class="radio__mark"></span>
                 <span class="radio__title">4 секции</span>
