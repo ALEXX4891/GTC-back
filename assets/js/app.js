@@ -1619,6 +1619,8 @@ if (offerCards.length) {
       const popupCalcBtn = popup.querySelector(".btn_calc");
       const showBtn = popup.querySelector(".off-card__btn_show");
       const hideBtn = popup.querySelector(".off-card__btn_hide");
+      const btnWrapper = popup.querySelector(".off-card__btn-wrap");
+      btnWrapper.style.display = "block";
 
       popupTitle.textContent = cardTitle.textContent;
       popupSubtitle.textContent = cardSubtitle.textContent;
