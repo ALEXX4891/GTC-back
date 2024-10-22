@@ -432,7 +432,7 @@ a {
 }
 
 .radio.radio_disabled {
-  pointer-events: none;
+  /* pointer-events: none; */
   opacity: 0.4;
 }
 
@@ -1659,6 +1659,30 @@ a {
   max-width: 420px;
   -ms-grid-column-align: center;
       justify-self: center;
+}
+
+.popup.popup-calc_five .popup__body .popup__content .popup__content-wrap .popup__info-text.popup__info-text_active {
+  color: #FAB502;
+}
+
+.popup__info-wrap {
+  display: grid;
+  gap: 25px;
+  justify-items: center;  
+}
+
+.popup__error-text {
+  font-family: OpenSans;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16.34px;
+  text-align: center;
+  color: #FAB502;
+  display: none;
+}
+
+.popup__error-text_active {
+  display: block;
 }
 
 .popup.popup-calc_five .popup__body .popup__content .popup__btn-wrap {

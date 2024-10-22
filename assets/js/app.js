@@ -856,9 +856,6 @@ function getParam(param) {
   return new URLSearchParams(window.location.search).get(param);
 }
 
-// /?rooms=2
-// parseUrlQuery();
-
 function parseUrlQuery() {
   console.log("*************** Старт функции parseUrlQuery ***************");
   const filterArr = [];
@@ -885,21 +882,8 @@ function delUrlQueryParam(param) {
   pastImageName();
 }
 
-// function setParamsFromGet {
 
-// }
-
-// console.log(getUsage());
-// console.log(getType());
-// console.log(getTemperature());
-// console.log(getInsulation());
-// console.log(getVolume());
-// console.log(getFuels());
-// console.log(getSections());
-// console.log(getTrk());
-// console.log(getSide());
-// console.log(getFast());
-
+// функции достают пармаетры из URL:
 function getUsage() {
   const queryParams = parseUrlQuery();
   let usage = "";
@@ -907,7 +891,7 @@ function getUsage() {
     const usageParam = queryParams.filter((item) => item.name == "usage");
     usage = usageParam[0]["value"];
     // name = `/assets/img/renders/${usage}_S.png`;
-  } 
+  }
   return usage;
 }
 
@@ -917,7 +901,7 @@ function getType() {
   if (queryParams.filter((item) => item.name == "type").length) {
     const typeParam = queryParams.filter((item) => item.name == "type");
     type = typeParam[0]["value"];
-  }   
+  }
   return type;
 }
 
@@ -927,7 +911,7 @@ function getTemperature() {
   if (queryParams.filter((item) => item.name == "temperature").length) {
     const tempParam = queryParams.filter((item) => item.name == "temperature");
     temp = tempParam[0]["value"];
-  }   
+  }
   return temp;
 }
 
@@ -937,7 +921,7 @@ function getInsulation() {
   if (queryParams.filter((item) => item.name == "insulation").length) {
     const insParam = queryParams.filter((item) => item.name == "insulation");
     ins = insParam[0]["value"];
-  }   
+  }
   return ins;
 }
 
@@ -947,7 +931,7 @@ function getHeater() {
   if (queryParams.filter((item) => item.name == "heater").length) {
     const heaterParam = queryParams.filter((item) => item.name == "heater");
     heater = heaterParam[0]["value"];
-  }   
+  }
   return heater;
 }
 
@@ -962,17 +946,17 @@ function getVolume() {
     } else if (volumePar < 45) {
       volume = "M";
     } else {
-      if (type == "cont") {
+      if (type == "Cont") {
         volume = "M";
       } else {
         volume = "L";
       }
     }
-  }   
+  }
   return volume;
 }
 
-function getFuels () {
+function getFuels() {
   const queryParams = parseUrlQuery();
   const fuels = [];
 
@@ -981,7 +965,6 @@ function getFuels () {
   fuelBtns.forEach((item) => {
     allFuels.push(item.dataset.name);
   });
-
 
   allFuels.forEach((el) => {
     if (queryParams.filter((item) => item.name == el).length) {
@@ -998,7 +981,7 @@ function getSections() {
   if (queryParams.filter((item) => item.name == "sections").length) {
     const sectionsParam = queryParams.filter((item) => item.name == "sections");
     sections = sectionsParam[0]["value"];
-  }   
+  }
   return sections;
 }
 
@@ -1008,7 +991,7 @@ function getTrk() {
   if (queryParams.filter((item) => item.name == "trk").length) {
     const trkParam = queryParams.filter((item) => item.name == "trk");
     trk = trkParam[0]["value"];
-  }   
+  }
   return trk;
 }
 
@@ -1018,7 +1001,7 @@ function getSide() {
   if (queryParams.filter((item) => item.name == "side").length) {
     const sideParam = queryParams.filter((item) => item.name == "side");
     side = sideParam[0]["value"];
-  }   
+  }
   return side;
 }
 
@@ -1028,66 +1011,14 @@ function getFast() {
   if (queryParams.filter((item) => item.name == "fast").length) {
     const fastParam = queryParams.filter((item) => item.name == "fast");
     fast = fastParam[0]["value"];
-  }   
+  }
   return fast;
 }
-
-
-
 
 //функция формирования имени изображения
 function getImageName() {
   console.log("*************** Старт функции getImageName ***************");
-  // [
-  //   {
-  //     "name": "usage",
-  //     "value": "Personal"
-  //   },
-  //   {
-  //     "name": "temperature",
-  //     "value": "-60"
-  //   },
-  //   {
-  //     "name": "insulation",
-  //     "value": "1"
-  //   },
-  //   {
-  //     "name": "sections",
-  //     "value": "1"
-  //   },
-  //   {
-  //     "name": "type",
-  //     "value": "cont"
-  //   },
-  //   {
-  //     "name": "volume",
-  //     "value": "60"
-  //   },
-  //   {
-  //     "name": "petrol-95",
-  //     "value": "1"
-  //   },
-  //   {
-  //     "name": "petrol-92",
-  //     "value": "1"
-  //   },
-  //   {
-  //     "name": "sections",
-  //     "value": "2"
-  //   },
-  //   {
-  //     "name": "trk",
-  //     "value": "4"
-  //   },
-  //   {
-  //     "name": "side",
-  //     "value": "2"
-  //   },
-  //   {
-  //     "name": "fast",
-  //     "value": "2"
-  //   }
-  // ]
+
   let name = "";
 
   const queryParams = parseUrlQuery();
@@ -1109,7 +1040,7 @@ function getImageName() {
 
   // объем
   if (getVolume()) {
-    volume  = getVolume();
+    volume = getVolume();
     name = `/assets/img/renders/${type}_${volume}.png`;
   }
 
@@ -1125,75 +1056,26 @@ function getImageName() {
     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
   }
 
-  if (getTrk() == 2) {
+  if (getTrk() == 2 && getSide()) {
     side = getSide();
     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
   }
 
   // скоростная выдача
   if (getFast()) {
-    fast = getFast() ? '+' : '';
+    fast = getFast() > 0 ? "+" : "";
 
     if (fast) {
       console.log(fast);
-    name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
+      name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
+
+      if (getTrk() == 2) {
+        side = getSide();
+        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k_${fast}.png`;
+      }
     }
   }
 
-    // if (fastParam[0]["value"] > 0) {
-    //   fast = "+";
-    //   // name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
-    //   if (sideParam.length) {
-    //     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k_${fast}.png`;
-    //   } else {
-    //     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
-    //   }
-    // } else {
-    //   fast = "";
-    //   if (sideParam.length) {
-    //     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
-    //   } else {
-    //     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
-      // }
-  // }
-
-    // // трк
-    // if (queryParams.filter((item) => item.name == "trk").length) {
-    //   const trkParam = queryParams.filter((item) => item.name == "trk");
-    //   trk = trkParam[0]["value"];
-    //   name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
-  
-    //   const sideParam = queryParams.filter((item) => item.name == "side");
-    //   if (sideParam.length) {
-    //     side = sideParam[0]["value"];
-    //     name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
-    //   }
-    // }
-  
-    // // скоростная выдача
-    // if (queryParams.filter((item) => item.name == "fast").length) {
-    //   const fastParam = queryParams.filter((item) => item.name == "fast");
-    //   const sideParam = queryParams.filter((item) => item.name == "side");
-  
-    //   if (fastParam[0]["value"] > 0) {
-    //     fast = "+";
-    //     // name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
-    //     if (sideParam.length) {
-    //       name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k_${fast}.png`;
-    //     } else {
-    //       name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
-    //     }
-    //   } else {
-    //     fast = "";
-    //     if (sideParam.length) {
-    //       name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
-    //     } else {
-    //       name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
-    //     }
-    //   }
-    // }
-
-  // name = `/assets/img/renders/${type}_${volume}.png`;
   console.log(name);
   return name;
 }
@@ -1207,12 +1089,6 @@ function pastImageName() {
     item.querySelector("img").src = imageName;
   });
 }
-
-// дата атрибуты кнопок формы:
-// data-calc-btn
-// data-name="usage"
-// data-value="Personal"
-
 // -------------------------------------- end Url Query -----------------------------
 // -------------------------------------- start Калькулятор --------------------------
 const btnTemp = document.querySelectorAll(".popup__btn_temp");
@@ -1238,7 +1114,7 @@ if (btnType.length) {
   const popup = btnType[0].closest(".popup");
   const nextBtn = popup.querySelector(".popup__next-btn");
 
-  const type = checkType;
+  const type = checkType();
 
   const slider = document.querySelector(".popup__range-slider");
   const numberListUl = document.querySelector(".popup__range-list");
@@ -1253,46 +1129,12 @@ if (btnType.length) {
       btn.classList.add("popup__type-item_active");
       nextBtn.classList.remove("btn_disabled");
 
-      // TODO написать функцию сброса параметров
-      if (btn.dataset.value == "cont") {
+      if (btn.dataset.value == "Cont") {
         numberList.forEach((item) => {
           if (item.innerHTML.trim() > 40) {
-            // item.style.display = "none";
-          } else {
-            // item.style.display = "list-item";
+            rangeSliderUpdate(slider, 40);
           }
         });
-
-        // rangeSliderInit(slider, 5, 5, 40);
-
-        // // удаляем параметры, которые не нужны для контейнера
-        // delUrlQueryParam("sections");
-        // delUrlQueryParam("trk");
-        // delUrlQueryParam("side");
-        // delUrlQueryParam("fast");
-        // delUrlQueryParam("volume");
-        // // перезаписываем параметры
-        // setUrlQueryParam("type", btn.dataset.value);
-        // setUrlQueryParam("volume", "60");
-        // // подставляем новое изображение
-        // pastImageName();
-        // // перезаписываем параметры
-        // setUrlQueryParam("type", btn.dataset.value);
-        // setUrlQueryParam("volume", "60");
-        // // подставляем новое изображение
-        // pastImageName();
-        // // перезаписываем параметры
-        // setUrlQueryParam("type", btn.dataset.value);
-        // setUrlQueryParam("volume", "60");
-        // // подставляем новое изображение
-        // pastImageName();
-        // // перезаписываем параметры
-        // setUrlQueryParam("type", btn.dataset.value);
-      } else {
-        numberList.forEach((item) => {
-          // item.style.display = "list-item";
-        });
-        // rangeSliderInit(slider, 5, 5, 60);
       }
     });
   });
@@ -1319,6 +1161,7 @@ if (calcBtns.length) {
   });
 }
 
+// подсветка подсказки при клике на не активные кнопки:
 const checkbox = document.querySelectorAll(".checkbox");
 if (checkbox.length) {
   checkbox.forEach((item) => {
@@ -1330,7 +1173,39 @@ if (checkbox.length) {
         desc.classList.add("popup__recommended-desc_active");
         setTimeout(function () {
           desc.classList.remove("popup__recommended-desc_active");
-        }, 1000);
+        }, 2000);
+      }
+    });
+  });
+}
+
+const radio = document.querySelectorAll(".radio");
+if (radio.length) {
+  radio.forEach((item) => {
+    item.addEventListener("click", function (e) {
+      if (item.classList.contains("radio_disabled")) {
+        e.preventDefault();
+        const popup = item.closest(".popup");
+        const desc = popup.querySelector(".popup__info-text");
+        const error = popup.querySelector(".popup__error-text");
+
+        // усли топлив уже выбрано:
+        if (popup.querySelectorAll(".checkbox__input:checked").length) {
+          desc.classList.add("popup__info-text_active");
+          setTimeout(function () {
+            desc.classList.remove("popup__info-text_active");
+          }, 2000);
+        } else {
+          if (error) {
+            error.classList.add("popup__error-text_active");
+            setTimeout(function () {
+              error.classList.remove("popup__error-text_active");
+            }, 2000);
+          }
+          // console.log(popup.querySelectorAll(".checkbox__input:checked").length);
+
+          // выберите вид топлива
+        }
       }
     });
   });
@@ -1353,9 +1228,6 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
   const rangeInputMax = slider.querySelector(".max-range");
 
   // основные параметры:
-  // const gap = gap;
-  // const minRange = minRange;
-  // const maxRange = maxRange;
 
   rangeInputMax.min = minRange;
   rangeInputMax.max = maxRange;
@@ -1371,13 +1243,10 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
       let maxVal = parseInt(input.value);
       let value = parseInt(input.value);
       // ограничиваем значение max инпута:
-      // console.log('type', type);
-      if (type == "cont" && value >= 40) {
-        // if (parseInt(rangeInputMax.value) >= 40) {
+      if (type == "Cont" && value >= 40) {
         input.value = 40;
         value = 40;
         maxVal = 40;
-        // }
       }
       if (sections == "4" && value <= 25) {
         input.value = 25;
@@ -1398,21 +1267,7 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
 
       rangeSlider.style.right = `${100 - ((maxVal - minRange) * 100) / (maxRange - minRange)}%`;
 
-      // const name = 'volume';
-      // const value = parseInt(rangeInputMax.value);
-      // setUrlQueryParam(name, value);
-
-      // const name = "volume";
-      // let value = volume.value;
       const rangeNumbers = document.querySelectorAll(".popup__range-number");
-
-      // if (type == "cont" && value >= 40) {
-      // value = 40;
-      // setUrlQueryParam(name, value);
-      // } else {
-      // value = volume.value;
-      // setUrlQueryParam(name, value);
-      // }
 
       if (rangeNumbers.length) {
         rangeNumbers.forEach((item) => {
@@ -1460,47 +1315,17 @@ if (insulationBtn && heaterBtn) {
 const volumeStepBtn = document.querySelector(".popup__next-btn_volume");
 if (volumeStepBtn) {
   volumeStepBtn.addEventListener("click", function () {
-    // const volume = checkVolume();
-    // const type = checkType();
-    // urlParams.forEach((value, key) => {
-    //   if (key == "volume") {
-    //     volume = value;
-    //   }
-    //   if (key == "type") {
-    //     type = value;
-    //   }
-    // });
-    // numberList.forEach((item) => {
-    //   if (item.innerHTML.trim() > 40) {
-    //     item.style.display = "none";
-    //   } else {
-    //     item.style.display = "list-item";
-    //   }
-    // });
-    // rangeSliderInit(slider, 5, 5, 40);
-    // setUrlQueryParam("volume", "5");
-    // }
-    // } else {
-    //   console.log("22222222222222222");
-    //   numberList.forEach((item) => {
-    //     item.style.display = "list-item";
-    //   });
-    //   rangeSliderInit(slider, 5, 5, 60);
-    //   setUrlQueryParam("volume", "5");
-    // if (!volume && type == "cont") {
-    //   numberList.forEach((item) => {
-    //     if (item.innerHTML.trim() > 40) {
-    //       item.style.display = "none";
-    //     } else {
-    //       item.style.display = "list-item";
-    //     }
-    //   });
-    // rangeSliderInit(slider, 5, 5, 40);
-    // setUrlQueryParam("volume", "5");
-    // }
+    const volume = checkVolume();
+    if (volume) {
+      return;
+    } else {
+      setUrlQueryParam("volume", "5");
+    }
   });
 }
 
+// функции для работы с URL-параметрами, проеверяют есть ли такие параметры в URL:
+// TODO переписать их в стиле getType()
 function checkUsage() {
   const urlParams = new URLSearchParams(window.location.search);
   let usage = "";
@@ -1677,71 +1502,52 @@ if (sectionStepBtn) {
 const trkStepBtn = document.querySelector(".popup__next-btn_trk");
 if (trkStepBtn) {
   trkStepBtn.addEventListener("click", function () {
-    const trk = "";
-    // const side = '';
+    let trk = "";
     urlParams.forEach((value, key) => {
       if (key == "trk") {
         trk = value;
       }
-      // if (key == 'side') {
-      //   side = value;
-      // }
     });
     if (!trk) {
       setUrlQueryParam("trk", "1");
     }
-    // if (!side) {
-    //   setUrlQueryParam('side', '1')
-    // }
   });
 }
 
-// const twoTrkBtn = document.querySelector("[data-calc-btn][data-name='trk'][data-value='2']");
-// if (twoTrkBtn) {
-//   twoTrkBtn.addEventListener('click', function() {
-//     const side = '';
-//     urlParams.forEach((value, key) => {
-//       if (key == 'side') {
-//         side = value;
-//       }
-//     });
-//     if (!side) {
-//       setUrlQueryParam('side', '1')
-//       oneSideBtn.closest('.radio').classList.remove("radio_disabled");
-//       twoSideBtn.closest('.radio').classList.remove("radio_disabled");
-//       oneSideBtn.checked = true;
-//     }
 
 const trkBtns = document.querySelectorAll("[data-calc-btn][data-name='trk']");
 if (trkBtns.length) {
-  const oneSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='1']");
-  const twoSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='2']");
+  // const oneSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='1']");
+  // const twoSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='2']");
   trkBtns.forEach((item) => {
     item.addEventListener("click", function () {
-      if (item.dataset.value != 2) {
-        oneSideBtn.closest(".radio").classList.add("radio_disabled");
-        twoSideBtn.closest(".radio").classList.add("radio_disabled");
-        oneSideBtn.checked = false;
-        twoSideBtn.checked = false;
-        delUrlQueryParam("side");
-      } else {
-        oneSideBtn.closest(".radio").classList.remove("radio_disabled");
-        twoSideBtn.closest(".radio").classList.remove("radio_disabled");
-        oneSideBtn.checked = true;
-        setUrlQueryParam("side", "1");
-      }
+      setSide();
     });
-    // if (item.dataset.value == 2) {
-    //   item.closest('.radio').classList.remove("radio_disabled");
-    // } else {
-    //   item.closest('.radio').classList.add("radio_disabled");
-    // }
-    // item.checked = false;
-    // delUrlQueryParam('side');
   });
-
-  //   })
 }
+
+
+// функция работы с радиокнопками для сторон:
+function setSide() {
+  const queryParams = parseUrlQuery();
+  const trk = getTrk();
+  const oneSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='1']");
+  const twoSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='2']");
+  if (trk == 2) {
+    oneSideBtn.closest(".radio").classList.remove("radio_disabled");
+    twoSideBtn.closest(".radio").classList.remove("radio_disabled");
+    oneSideBtn.checked = true;
+    setUrlQueryParam("side", "1");  
+  } else {
+    oneSideBtn.closest(".radio").classList.add("radio_disabled");
+    twoSideBtn.closest(".radio").classList.add("radio_disabled");
+    oneSideBtn.checked = false;
+    twoSideBtn.checked = false;
+    delUrlQueryParam("side");
+  }
+}
+
+// setSide();
 
 // -------------------------------------------- start Карточки предложений: ---------------------------------------------
 
@@ -1820,71 +1626,11 @@ if (offerCards.length) {
       });
     });
   });
-  // document.addEventListener("click", function (e) {
-  //   // закрытие отзывов при клике на другой елемент:
-  //   if (!e.target.closest(".card_about_open")) {
-  //     const cardsFeedback = document.querySelectorAll(".card_about");
-
-  //     cardsFeedback.forEach((item) => {
-  //       item.classList.remove("card_about_open");
-  //     });
-  //   }
-
-  //   // открытие отзывов:
-  //   const openBtns = document.querySelectorAll(".feedback-btn_open");
-  //   if (openBtns) {
-  //     openBtns.forEach((item) => {
-  //       if (e.target.closest(".feedback-btn_open") == item) {
-  //         const card = item.closest(".card_about");
-  //         const truthCardTextBlock = card.querySelector(".card__desc_hide");
-  //         const truthCardText = truthCardTextBlock.textContent;
-  //         const cardTextBlockForShow = card.querySelector(".card__desc_show");
-  //         card.classList.add("card_about_open");
-  //         cardTextBlockForShow.textContent = truthCardText;
-  //       }
-  //     });
-  //   }
-
-  //   // закрытие отзывов:
-  //   const closeBtns = document.querySelectorAll(".feedback-btn_close");
-  //   if (closeBtns) {
-  //     closeBtns.forEach((item) => {
-  //       if (e.target.closest(".feedback-btn_close") == item) {
-  //         const card = item.closest(".card_about");
-  //         const truthCardTextBlock = card.querySelector(".card__desc_hide");
-  //         const truthCardText = truthCardTextBlock.textContent;
-  //         const cardTextBlockForShow = card.querySelector(".card__desc_show");
-  //         card.classList.remove("card_about_open");
-  //         const cardTextTrim = truthCardText.slice(0, 140) + "...";
-  //         cardTextBlockForShow.textContent = cardTextTrim;
-  //       }
-  //     });
-  //   }
-  // });
-
-  // // форматирование отзывов при загрузке страницы:
-  // const cardsFeedback = document.querySelectorAll(".card_about");
-  // if (cardsFeedback.length) {
-  //   cardsFeedback.forEach((item) => {
-  //     const truthCardTextBlock = item.querySelector(".card__desc_hide");
-  //     const truthCardText = truthCardTextBlock.textContent;
-  //     // console.log(truthCardText);
-  //     const cardTextBlockForShow = item.querySelector(".card__desc_show");
-
-  //     if (truthCardText.length > 160) {
-  //       item.classList.add("card_about_overflow");
-  //       const cardTextTrim = truthCardText.slice(0, 140) + "...";
-  //       cardTextBlockForShow.textContent = cardTextTrim;
-  //     } else {
-  //       cardTextBlockForShow.textContent = truthCardText;
-  //     }
-  //   });
 }
 
 // -------------------------------------------- end Карточки предложений ---------------------------------------------
 
 // -------------------------------------- start функция установки и сброса значений фильтров ----------------
-// setNowFilters();
 
 const nextStepBtnTwo = document.querySelector(".popup__next-btn[data-step='2']");
 const nextStepBtnThree = document.querySelector(".popup__next-btn[data-step='3']");
@@ -1895,8 +1641,7 @@ const nextStepBtnSix = document.querySelector(".popup__next-btn[data-step='6']")
 const queryParams = parseUrlQuery();
 setCurrentParams(queryParams);
 
-// setCurrentParams();
-
+// функция установки текущих значений фильтров из urlParams:
 function setCurrentParams(arr) {
   console.log("*************** Старт функции setNowFilters ***************"); // имя функции
   console.log(arr);
@@ -1907,7 +1652,6 @@ function setCurrentParams(arr) {
     urlParams = new URLSearchParams(window.location.search);
     // console.log("сброс фильтров");
   }
-
 
   // шаг 1
   const usageBtns = document.querySelectorAll(".popup__step-btn[data-name='usage']");
@@ -1921,8 +1665,7 @@ function setCurrentParams(arr) {
         item.style.pointerEvents = "all";
       }
     });
-  } 
-
+  }
 
   // шаг 2
   const tempBtns = document.querySelectorAll(".popup__btn_temp");
@@ -2025,6 +1768,8 @@ function setCurrentParams(arr) {
     });
   }
 
+
+
   // шаг 7
   const fastBtns = document.querySelectorAll(".radio__input[name='fast']");
 
@@ -2040,16 +1785,7 @@ function setCurrentParams(arr) {
 
 //функция установки значения рэндж слайдера:
 function rangeSliderUpdate(slider, value) {
-  // ползунок:
-  // const slider = document.querySelector(".popup__range-slider");
   const rangeSlider = slider.querySelector(".range-slider");
-
-  // текстовые инпуты:
-  // const textInputMin = slider.querySelector(".select__input_from");
-  // const textInputMax = slider.querySelector(".select__input_to");
-
-  // рендж инпуты:
-  // const rangeInputMin = slider.querySelector(".min-range");
   const rangeInputMax = slider.querySelector(".max-range");
 
   // let minVal = 0;
@@ -2058,37 +1794,133 @@ function rangeSliderUpdate(slider, value) {
   let maxRange = rangeInputMax.max;
 
   // присваиваем значения инпутам:
-  // rangeInputMin.value = textInputMin.value;
   rangeInputMax.value = value;
 
   // вычисляем положение рендж инпутов:
   rangeSlider.style.right = `${100 - ((maxVal - minRange) * 100) / (maxRange - minRange)}%`;
-  // rangeSlider.style.left = `${((minVal - minRange) * 100) / (maxRange - minRange)}%`;
+
+  const rangeNumbers = document.querySelectorAll(".popup__range-number");
+
+  if (rangeNumbers.length) {
+    rangeNumbers.forEach((item) => {
+      item.classList.remove("popup__range-number_active");
+    });
+
+    rangeNumbers.forEach((item) => {
+      if (item.innerHTML.trim() == value) {
+        item.classList.add("popup__range-number_active");
+      }
+    });
+  }
 }
 
-
 const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
-if (fuelBtns) {
+if (fuelBtns.length) {
   const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
-
+  const trkBtns = document.querySelectorAll(".radio__input[name='trk']");
+  
+  // подсчет количества выбранных видов топлива:
+  
   fuelBtns.forEach((item) => {
     item.addEventListener("change", function () {
+      const volume = getVolume();
+      const fuels = getFuels();
+      const sections = getSections();
+      
+      
       let numberOfChecked = 0;
       fuelBtns.forEach((el) => {
         if (el.checked) {
           numberOfChecked++;
         }
-      })
+      });
+      
       console.log(numberOfChecked);
-      if (numberOfChecked) {
-        nextStepBtnFive.classList.remove("btn_disabled");
+
+      if (numberOfChecked && volume == "S") {
+        // nextStepBtnFive.classList.remove("btn_disabled");
+        sectionsBtns.forEach((el) => {
+          if (el.dataset.value < 3) {
+            el.closest(".radio").classList.remove("radio_disabled");
+          }
+        });
+      } else if (numberOfChecked && (volume == "M" || volume == "L")) {
         sectionsBtns.forEach((el) => {
           el.closest(".radio").classList.remove("radio_disabled");
         });
       } else {
-
+        // nextStepBtnFive.classList.add("btn_disabled");
+        sectionsBtns.forEach((el) => {
+          el.closest(".radio").classList.add("radio_disabled");
+        });
       }
 
+      if (numberOfChecked) {
+        nextStepBtnFive.classList.remove("btn_disabled");
+      } else {
+        nextStepBtnFive.classList.add("btn_disabled");
+      }
+
+      if (trkBtns.length) {
+
+        trkBtns.forEach((el) => {
+          el.closest(".radio").classList.remove("radio_disabled");          
+        });
+
+        const radioInputOne = trkBtns.entries().find((el) => el[1].dataset.value == "1");
+        const radioInputTwo = trkBtns.entries().find((el) => el[1].dataset.value == "2");
+        const radioInputThree = trkBtns.entries().find((el) => el[1].dataset.value == "3");
+        const radioInputFour = trkBtns.entries().find((el) => el[1].dataset.value == "4");
+        const radioItemOne = radioInputOne[1].closest(".radio");
+        const radioItemTwo = radioInputTwo[1].closest(".radio");
+        const radioItemThree = radioInputThree[1].closest(".radio");
+        const radioItemFour = radioInputFour[1].closest(".radio");
+
+
+        if (numberOfChecked == 1) {
+          setUrlQueryParam('trk', 1);
+          // pastImageName();
+          delUrlQueryParam('side');
+          const queryParams = parseUrlQuery();
+          setCurrentParams(queryParams);
+          setSide();
+        }
+        if (numberOfChecked == 2) {
+          radioItemOne.classList.add("radio_disabled");
+          radioInputOne[1].checked = false;  
+          radioInputTwo[1].checked = true;
+          setUrlQueryParam('trk', 2);
+          setUrlQueryParam('side', 1);
+          const queryParams = parseUrlQuery();
+          setCurrentParams(queryParams);
+          setSide();
+        }
+
+        if (numberOfChecked == 3) {
+          radioItemOne.classList.add("radio_disabled");
+          radioItemTwo.classList.add("radio_disabled");
+          radioInputTwo[1].checked = false;  
+          radioInputThree[1].checked = true;
+          setUrlQueryParam('trk', 3);
+          delUrlQueryParam('side');
+          const queryParams = parseUrlQuery();
+          setCurrentParams(queryParams);
+          setSide();
+        }
+
+        if (numberOfChecked == 4) {
+          radioItemOne.classList.add("radio_disabled");
+          radioItemTwo.classList.add("radio_disabled");
+          radioItemThree.classList.add("radio_disabled");
+          radioInputThree[1].checked = false;  
+          radioInputFour[1].checked = true;
+          setUrlQueryParam('trk', 4);
+          delUrlQueryParam('side');
+          const queryParams = parseUrlQuery();
+          setCurrentParams(queryParams);
+          setSide();
+        }
+      }
     });
   });
 }

@@ -470,7 +470,7 @@
         </h2>
 
         <div class="popup__type-list">
-          <button class="popup__type-item" data-calc-btn data-name="type" data-value="open">
+          <button class="popup__type-item" data-calc-btn data-name="type" data-value="Open">
             <div class="popup__card-img">
               <picture>
                 <source srcset="/assets/img/popup-card-type-1.webp" type="image/webp"><img src="/assets/img/popup-card-type-1.png" alt="">
@@ -481,7 +481,7 @@
             </h3>
           </button>
 
-          <button class="popup__type-item" data-calc-btn data-name="type" data-value="close">
+          <button class="popup__type-item" data-calc-btn data-name="type" data-value="Close">
             <div class="popup__card-img">
               <picture>
                 <source srcset="/assets/img/popup-card-type-2.webp" type="image/webp"><img src="/assets/img/popup-card-type-2.png" alt="">
@@ -492,7 +492,7 @@
             </h3>
           </button>
 
-          <button class="popup__type-item" data-calc-btn data-name="type" data-value="cont">
+          <button class="popup__type-item" data-calc-btn data-name="type" data-value="Cont">
             <div class="popup__card-img">
               <picture>
                 <source srcset="/assets/img/popup-card-type-3.webp" type="image/webp"><img src="/assets/img/popup-card-type-3.png" alt="">
@@ -740,9 +740,14 @@
           </ul>
 
         </div>
-        <p class="popup__info-text">
-          Для получения большего количества отсеков вернитесь на предыдущий шаг и увеличьте объём резервуара
-        </p>
+        <div class="popup__info-wrap">
+          <p class="popup__error-text">
+            Сначала выберите виды топлива
+          </p>          
+          <p class="popup__info-text">
+            Для получения большего количества отсеков вернитесь на предыдущий шаг и увеличьте объём резервуара
+          </p>
+        </div>
 
       </div>
 
@@ -802,7 +807,7 @@
 
             <li class="popup__radio-item">
               <label class="radio">
-                <input class="radio__input" type="radio" name="trk" data-calc-btn data-name="trk" data-value="1" checked>
+                <input class="radio__input" type="radio" name="trk" data-calc-btn data-name="trk" data-value="1">
                 <span class="radio__mark"></span>
                 <span class="radio__title">1</span>
               </label>
