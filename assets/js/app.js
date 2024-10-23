@@ -852,13 +852,14 @@ if (map) {
 
 // -------------------------------------- start Url Query --------------------------
 
-function getParam(param) {
-  console.log('*************** Старт функции getParam ***************");');
-  return new URLSearchParams(window.location.search).get(param);
-}
+// function getParam(param) {
+//   console.log('*************** Старт функции getParam ***************");');
+//   return new URLSearchParams(window.location.search).get(param);
+// }
 
 function parseUrlQuery() {
   // console.log("*************** Старт функции parseUrlQuery ***************");
+  const urlParams = new URLSearchParams(window.location.search);
   const filterArr = [];
   urlParams.forEach((value, key) => {
     filterArr.push({ name: key, value: value });
@@ -1095,6 +1096,7 @@ const btnTemp = document.querySelectorAll(".popup__btn_temp");
 if (btnTemp.length) {
   const popup = btnTemp[0].closest(".popup");
   const nextBtn = popup.querySelector(".popup__next-btn");
+  const recommendation = popup.querySelector(".popup__recommended-wrap");
 
   btnTemp.forEach((btn) => {
     btn.addEventListener("click", function () {
@@ -1105,6 +1107,12 @@ if (btnTemp.length) {
 
       btn.classList.add("popup__btn_temp_active");
       nextBtn.classList.remove("btn_disabled");
+
+      if (btn.dataset.value < -40) {
+        recommendation.style.display = "grid";
+      } else {
+        recommendation.style.display = "none";
+      }
     });
   });
 }
@@ -1117,23 +1125,45 @@ if (btnType.length) {
   const slider = document.querySelector(".popup__range-slider");
   const numberListUl = document.querySelector(".popup__range-list");
   const numberList = numberListUl.querySelectorAll(".popup__range-number");
+  // const desc = document.querySelector(".popup__info-wrap_section");
+
 
   btnType.forEach((btn) => {
     btn.addEventListener("click", function () {
       console.log("click");
+      const volume = getVolume();
+
       btnType.forEach((item) => {
         item.classList.remove("popup__type-item_active");
       });
-
+      
       btn.classList.add("popup__type-item_active");
       nextBtn.classList.remove("btn_disabled");
 
-      if (btn.dataset.value == "Cont") {
+      // if (volume == 'S') {
+      //   desc.style.display = "grid";
+      // } else {
+      //   desc.style.display = "none";
+      // }
+      
+      if (btn.dataset.value == "Cont" && volume == 'L') {     
+
+        rangeSliderUpdate(slider, 40);
+
         numberList.forEach((item) => {
           if (item.innerHTML.trim() > 40) {
-            rangeSliderUpdate(slider, 40);
+            item.style.opacity = "0.1";
           }
         });
+
+      } else {
+
+        numberList.forEach((item) => {
+          if (item.innerHTML.trim() > 40) {
+            item.style.opacity = "0.6";
+          }
+        });
+
       }
     });
   });
@@ -1463,7 +1493,11 @@ const sectionStepBtn = document.querySelector(".popup__next-btn_sections");
 if (sectionStepBtn) {
   sectionStepBtn.addEventListener("click", function () {
     console.log("click");
+    const volume = getVolume();
+    const desc = document.querySelector(".popup__info-wrap_section");
+
     let sections = "";
+
     urlParams.forEach((value, key) => {
       if (key == "sections") {
         sections = value;
@@ -1472,6 +1506,12 @@ if (sectionStepBtn) {
 
     if (!sections) {
       setUrlQueryParam("sections", "1");
+    }
+
+    if (volume == 'S') {
+      desc.style.display = "grid";
+    } else {
+      desc.style.display = "none";
     }
   });
 }
@@ -1550,25 +1590,29 @@ function setSectionsFromVolume() {
   }
 }
 
-function setSectionsFromFuels() {
-  const sections = getSections();
-  const volume = getVolume();
-  const fuels = getFuels();
+// function setSectionsFromFuels() {
+//   const sections = getSections();
+//   const volume = getVolume();
+//   const fuels = getFuels();
 
-  const oneSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='1']");
-  const twoSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='2']");
-  const threeSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='3']");
-  const fourSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='4']");
+//   const oneSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='1']");
+//   const twoSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='2']");
+//   const threeSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='3']");
+//   const fourSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='4']");
+//   const popup = oneSectionBtn.closest(".popup");
+//   const desc = popup.querySelector(".popup__info-wrap");
 
-  if (volume == "S") {
-    threeSectionBtn.closest(".radio").classList.add("radio_disabled");
-    fourSectionBtn.closest(".radio").classList.add("radio_disabled");
-    if (!sections) {
-      oneSectionBtn.checked = true;
-      setUrlQueryParam("sections", "1");
-    }
-  }
-}
+//   if (volume == "S") {
+//     threeSectionBtn.closest(".radio").classList.add("radio_disabled");
+//     fourSectionBtn.closest(".radio").classList.add("radio_disabled");
+//     if (!sections) {
+//       oneSectionBtn.checked = true;
+//       setUrlQueryParam("sections", "1");
+//     }
+//   } else {
+//     desc.style.display = "none";
+//   }
+// }
 
 // функция показа ошибки:
 function showError(popup) {
@@ -1986,7 +2030,6 @@ if (fuelBtns.length) {
           if (numberOfChecked == 4) {
             trkInputFour[1].checked = true;
             setUrlQueryParam("trk", 4);
-
           }
         }
       
@@ -2014,3 +2057,64 @@ if (fuelBtns.length) {
     });
   });
 }
+
+
+// ---------------------- start Формирование последнего шага -----------------
+const resBtn = document.querySelector("button[data-popup='popup-calc_result']");
+if (resBtn) {
+  resBtn.addEventListener("click", function (e) {
+    console.log('click');
+    const finalImg = document.querySelector(".popup__result-img").querySelector("img");
+    console.log(finalImg);
+    finalImg.src = getImageName();
+
+    // e.preventDefault();
+    const params = parseUrlQuery();
+    console.log(params);
+
+    // TODO посчитать стоимость и записать в переменную:
+    const finalPrice = document.querySelector(".popup__result-price");
+    finalPrice.innerHTML = "3 500 000";
+
+    //TODO добавить опитсание:
+    const finalDesc = document.querySelector(".popup__result-desc");
+    finalDesc.innerHTML = "Машина в хорошем состоянии, с пробегом 1000 км. Покраска и монтаж проводились в 2021 году.";
+
+    //TODO добавить характеристики:
+    const finalParams = document.querySelector(".popup__result-params");
+    finalParams.innerHTML = `
+    Резервуар: двустенный двухсекционный резервуар объёмом 10 (5+5) м.куб. (сталь Ст3 4/4мм, система контроля <br>
+    межстенного пространства с сиреной, азот); <br>
+    Люк-лаз: 700мм с крышкой 800мм - 2шт. <br>
+    Перегородка: двустенная перегородка (Сталь Ст3 4/4мм) - 1шт. <br>
+    Строповочные рымы: есть <br>
+    Ложементы (опоры): есть <br>
+    Лестница с площадкой обслуживания: есть <br>
+    Технологический отсек: Закрытый, с поддоном сбора проливов <br>
+    ТРК: однорукавная «GP» с однострочным отсчётным устройством, 50л/мин (возможна установка других на
+    50-80л/мин) -
+    2 шт. <br>
+    Насос: КМ 80-65-140Е (380В, 3кВт) <br>
+    Узел наполнения: УН-80 со сливной муфтой <br>
+    Датчик уровня: ПМП-185 с сиреной ВС-5 (возможна замена на уровнемер ПМП-201) - 2 комплекта <br>
+    Сигнализатор: ВС-К-500, дисплейный <br>
+    Сирена: ВС-5 <br>
+    Технологические линии: (наполнения, выдачи, деаэрации, замера и обесшламливания) - 2 комплекта <br>
+    Освещение и щит силовой в исполнении Ех: есть <br>
+    Система автоматического пожаротушения: Буран 2,5 <br>
+    Наружное покрытие: грунт=эмаль ЭКОМАСТ <br>
+    Молниеотвод: есть <br>
+    Надвись “Огнеопасно”: 2 шт. <br>
+    Метрошок: МШС 3,5 (в приклад) <br>
+    Габариты, мм: 5000х2200х2650 <br>
+    Масса, кг: 3700
+    `;    
+
+  });
+}
+
+
+
+
+
+// ---------------------- end Формирование последнего шага -----------------

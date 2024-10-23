@@ -269,11 +269,11 @@
       </h2>
 
       <div class="popup__btn-wrap">
-        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_two" data-calc-btn data-name="usage" data-value="Personal">
+        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_two">
           Для заправки собственной техники
         </button>
 
-        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_two" data-calc-btn data-name="usage" data-value="sale">
+        <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-consult">
           Для торговли
         </button>
       </div>
@@ -401,7 +401,7 @@
           </button>
         </div>
 
-        <div class="popup__recommended-wrap">
+        <div class="popup__recommended-wrap" style="display: none;">
           <h5 class="popup__recommended-title">
             Рекомендуем добавить:
           </h5>
@@ -740,10 +740,10 @@
           </ul>
 
         </div>
-        <div class="popup__info-wrap">
+        <div class="popup__info-wrap popup__info-wrap_section">
           <p class="popup__error-text">
             Сначала выберите виды топлива
-          </p>          
+          </p>
           <p class="popup__info-text">
             Для получения большего количества отсеков вернитесь на предыдущий шаг и увеличьте объём резервуара
           </p>
@@ -972,9 +972,7 @@
     <div class="popup__content popup__content_calc">
       <div class="popup__content-top">
         <div class="popup__result-img">
-          <picture>
-            <source srcset="/assets/img/popup-result-img.webp" type="image/webp"><img src="/assets/img/popup-result-img.png" alt="">
-          </picture>
+          <img src="" alt="">
         </div>
         <div class="popup__result-text-block">
           <h2 class="popup__title popup__title_calc">
@@ -982,7 +980,6 @@
           </h2>
 
           <p class="popup__result-price">
-            3 228 000.00 руб.
           </p>
 
           <div class="popup__btn-wrap popup__btn-wrap_top">
@@ -1002,8 +999,7 @@
           <h5 class="popup__text-title">
             Описание
           </h5>
-          <p class="popup__text-desc">
-            Внутриведомственная двухсекционная АЗС в контейнерном исполнении общим объёмом 5м3
+          <p class="popup__text-desc popup__result-desc">
           </p>
         </div>
 
@@ -1013,98 +1009,8 @@
             Характеристики
           </h5>
 
-          <ul class="popup__spec-list">
-            <li class="popup__spec-item">
-              Резервуар: двустенный двухсекционный резервуар объёмом 10 (5+5) м.куб. (сталь Ст3 4/4мм, система контроля
-              межстенного пространства с сиреной, азот);
-            </li>
-
-            <li class="popup__spec-item">
-              Люк-лаз: 700мм с крышкой 800мм - 2шт.
-            </li>
-
-            <li class="popup__spec-item">
-              Перегородка: двустенная перегородка (Сталь Ст3 4/4мм) - 1шт.
-            </li>
-
-            <li class="popup__spec-item">
-              Строповочные рымы: есть
-            </li>
-
-            <li class="popup__spec-item">
-              Ложементы (опоры): есть
-            </li>
-
-            <li class="popup__spec-item">
-              Лестница с площадкой обслуживания: есть
-            </li>
-
-            <li class="popup__spec-item">
-              Технологический отсек: Закрытый, с поддоном сбора проливов
-            </li>
-
-            <li class="popup__spec-item">
-              ТРК: однорукавная «GP» с однострочным отсчётным устройством, 50л/мин (возможна установка других на
-              50-80л/мин) -
-              2 шт.
-            </li>
-
-            <li class="popup__spec-item">
-              Насос: КМ 80-65-140Е (380В, 3кВт)
-            </li>
-
-            <li class="popup__spec-item">
-              Узел наполнения: УН-80 со сливной муфтой
-            </li>
-
-            <li class="popup__spec-item">
-              Датчик уровня: ПМП-185 с сиреной ВС-5 (возможна замена на уровнемер ПМП-201) - 2 комплекта
-            </li>
-
-            <li class="popup__spec-item">
-              Сигнализатор: ВС-К-500, дисплейный
-            </li>
-
-            <li class="popup__spec-item">
-              Сирена: ВС-5
-            </li>
-
-            <li class="popup__spec-item">
-              Технологические линии: (наполнения, выдачи, деаэрации, замера и обесшламливания) - 2 комплекта
-            </li>
-
-            <li class="popup__spec-item">
-              Освещение и щит силовой в исполнении Ех: есть
-            </li>
-
-            <li class="popup__spec-item">
-              Система автоматического пожаротушения: Буран 2,5
-            </li>
-
-            <li class="popup__spec-item">
-              Наружное покрытие: грунт=эмаль ЭКОМАСТ
-            </li>
-
-            <li class="popup__spec-item">
-              Молниеотвод: есть
-            </li>
-
-            <li class="popup__spec-item">
-              Надвись “Огнеопасно”: 2 шт.
-            </li>
-
-            <li class="popup__spec-item">
-              Метрошок: МШС 3,5 (в приклад)
-            </li>
-
-            <li class="popup__spec-item">
-              Габариты, мм: 5000х2200х2650
-            </li>
-
-            <li class="popup__spec-item">
-              Масса, кг: 3700
-            </li>
-          </ul>
+          <p class="popup__spec-list popup__result-params">
+          </p>
         </div>
       </div>
 
