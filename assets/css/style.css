@@ -1511,6 +1511,11 @@ a {
   text-align: center;
   color: #222222;
   opacity: 0.6;
+  width: 18.3px;
+}
+
+.popup.popup-calc_four .popup__body .popup__content .popup__content-wrap .popup__range-list .popup__range-number.popup__range-number_hidden {
+  opacity: 0.2;
 }
 
 .popup.popup-calc_four .popup__body .popup__content .popup__content-wrap .popup__range-list .popup__range-number.popup__range-number_active {
@@ -2536,7 +2541,7 @@ a {
   place-items: center;
   -webkit-transition: background-color 0.3s ease-in-out;
   transition: background-color 0.3s ease-in-out;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .btn-go-up svg path {
@@ -2565,7 +2570,7 @@ a {
   height: 58px;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .social-btn-block .social-btn__wrap {

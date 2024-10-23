@@ -555,6 +555,10 @@
           Объём резервуара, м3
         </h2>
 
+        <p class="popup__info-text popup__info-text_volume">
+          Максимальный объем АЗС в контейнере = 40м<sup>3</sup>
+        </p>
+
         <div class="popup__range-slider">
           <ul class="popup__range-list">
             <li class="popup__range-number popup__range-number_active">

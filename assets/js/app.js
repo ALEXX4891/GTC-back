@@ -1125,13 +1125,16 @@ if (btnType.length) {
   const slider = document.querySelector(".popup__range-slider");
   const numberListUl = document.querySelector(".popup__range-list");
   const numberList = numberListUl.querySelectorAll(".popup__range-number");
-  // const desc = document.querySelector(".popup__info-wrap_section");
+  const descVol = document.querySelector(".popup__info-text_volume");
 
 
   btnType.forEach((btn) => {
     btn.addEventListener("click", function () {
       console.log("click");
       const volume = getVolume();
+      const trk = getTrk();
+      const sections = getSections();
+      const side = getSide();
 
       btnType.forEach((item) => {
         item.classList.remove("popup__type-item_active");
@@ -1146,25 +1149,70 @@ if (btnType.length) {
       //   desc.style.display = "none";
       // }
       
-      if (btn.dataset.value == "Cont" && volume == 'L') {     
-
-        rangeSliderUpdate(slider, 40);
-
+      if (btn.dataset.value == "Cont") {    
+        descVol.style.display = "block";
         numberList.forEach((item) => {
           if (item.innerHTML.trim() > 40) {
-            item.style.opacity = "0.1";
+            item.classList.add("popup__range-number_hidden");
           }
         });
-
       } else {
-
+        descVol.style.display = "none";
         numberList.forEach((item) => {
           if (item.innerHTML.trim() > 40) {
-            item.style.opacity = "0.6";
+            item.classList.remove("popup__range-number_hidden");
           }
         });
 
       }
+
+      if (btn.dataset.value == "Cont" && volume == 'L') {     
+        rangeSliderUpdate(slider, 40);
+        setUrlQueryParam("volume", "40")
+      }   
+
+      if (btn.dataset.value == "Cont" && trk > '2') { 
+        setUrlQueryParam("trk", "2")
+      }   
+      if (btn.dataset.value == "Cont" && sections > '2') { 
+        setUrlQueryParam("sections", "2")
+        setUrlQueryParam("side", "1")
+        const btnSection = document.querySelector(".radio__input[data-name='sections'][data-value='1']");
+        btnSection.checked = true;
+        const btnSide = document.querySelector(".radio__input[data-name='side'][data-value='1']");
+        btnSide.checked = true;
+        pastImageName();
+      }
+
+      let activeFuelsQuontity = 0;
+      const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+
+      fuelBtns.forEach((item) => {
+        if (item.checked) {
+          activeFuelsQuontity++;
+        }
+      });
+
+      if (btn.dataset.value == "Cont" && activeFuelsQuontity > 2) {
+        fuelBtns.forEach((item) => {
+          item.checked = false;
+          item.closest(".checkbox").classList.remove("checkbox_disabled");
+          delUrlQueryParam(item.dataset.name);
+        });
+      }
+
+
+      if (btn.dataset.value == "Cont" && sections > '2') { 
+        setUrlQueryParam("sections", "2")
+        setUrlQueryParam("side", "1")
+        const btnSection = document.querySelector(".radio__input[data-name='sections'][data-value='2']");
+        btnSection.checked = true;
+        const btnSide = document.querySelector(".radio__input[data-name='side'][data-value='1']");
+        btnSide.checked = true;
+        pastImageName();
+
+        // TODO продолжать здесь
+      } 
     });
   });
 }
@@ -1724,6 +1772,139 @@ const nextStepBtnSix = document.querySelector(".popup__next-btn[data-step='6']")
 nextStepBtnFour.addEventListener("click", function () {
   console.log("click");
   setSectionsFromVolume();
+
+  const volume = getVolume();
+  const type = getType();
+  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  if (volume != "S") {
+    fuelBtns.forEach((item) => {
+      item.closest(".checkbox").classList.remove("checkbox_disabled");
+    });
+  }
+  
+  let activeFuelsQuontity = 0;
+  fuelBtns.forEach((item) => {
+    if (item.checked) {
+      activeFuelsQuontity++;
+    }
+  });
+
+  const sectionsBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='sections']"));
+
+  if (activeFuelsQuontity == 2) {
+    sectionsBtns.forEach((item) => {
+      if (item.dataset.value == "1") {
+        item.closest(".radio").classList.add("radio_disabled");
+      }
+    });
+  } else if (activeFuelsQuontity == 3) {
+    sectionsBtns.forEach((item) => {
+      if (item.dataset.value == "1" || item.dataset.value == "2") {
+        item.closest(".radio").classList.add("radio_disabled");
+      }
+    });
+  } else if (activeFuelsQuontity == 4) {
+    sectionsBtns.forEach((item) => {
+      if (item.dataset.value == "1" || item.dataset.value == "2" || item.dataset.value == "3") {
+        item.closest(".radio").classList.add("radio_disabled");
+      }
+    });
+  } else {
+    sectionsBtns.forEach((item) => {
+      item.closest(".radio").classList.remove("radio_disabled");
+    });
+  }
+
+  // if (type == "Cont") {
+  //   sectionsBtns.forEach((item) => {
+  //     if (item.dataset.value == "3" || item.dataset.value == "4") {
+  //       item.closest(".radio").classList.add("radio_disabled");
+  //       item.checked = false;
+  //     }
+  //   });
+
+  //   if (activeFuelsQuontity > 2) {
+  //     fuelBtns.forEach((item) => {
+  //       item.checked = false;
+  //       item.closest(".checkbox").classList.remove("checkbox_disabled");
+  //       delUrlQueryParam(item.dataset.name);
+  //     });
+
+  //     sectionsBtns.forEach((item) => {
+  //       if (item.dataset.value == "3" || item.dataset.value == "4") {
+  //         item.closest(".radio").classList.add("radio_disabled");
+  //         item.checked = false;
+  //         delUrlQueryParam(item.dataset.name);
+  //       }
+
+  //       if (activeFuelsQuontity == 1) {
+  //         if (item.dataset.value == "1") {
+  //           item.closest(".radio").classList.remove("radio_disabled");
+  //           item.checked = true;
+  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
+  //         }
+  //       }
+
+  //       if (activeFuelsQuontity == 2) {
+  //         if (item.dataset.value == "2") {
+  //           item.closest(".radio").classList.remove("radio_disabled");
+  //           item.checked = true;
+  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
+});
+
+nextStepBtnFive.addEventListener("click", function () {
+  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  const type = getType();
+
+  let activeFuelsQuontity = 0;
+  fuelBtns.forEach((item) => {
+    if (item.checked) {
+      activeFuelsQuontity++;
+    }
+  });
+
+  const trkBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='trk']"));
+
+  if (activeFuelsQuontity == 2) {
+    trkBtns.forEach((item) => {
+      if (item.dataset.value == "1") {
+        item.closest(".radio").classList.add("radio_disabled");
+      }
+    });
+  } else if (activeFuelsQuontity == 3) {
+    trkBtns.forEach((item) => {
+      if (item.dataset.value == "1" || item.dataset.value == "2") {
+        item.closest(".radio").classList.add("radio_disabled");
+      }
+    });
+  } else if (activeFuelsQuontity == 4) {
+    trkBtns.forEach((item) => {
+      if (item.dataset.value == "1" || item.dataset.value == "2" || item.dataset.value == "3") {
+        item.closest(".radio").classList.add("radio_disabled");
+      }
+    });
+  } else {
+    trkBtns.forEach((item) => {
+      item.closest(".radio").classList.remove("radio_disabled");
+    });
+  }
+
+  // if (type == "Cont") {
+  //   trkBtns.forEach((item) => {
+  //     if (item.dataset.value == "3" || item.dataset.value == "4") {
+  //       item.closest(".radio").classList.add("radio_disabled");
+  //       item.checked = false;
+  //     }
+  //   });
+  // }
+
+
+
 });
 
 const queryParams = parseUrlQuery();
@@ -1922,6 +2103,7 @@ if (fuelBtns.length) {
       const fuels = getFuels();
       const sections = getSections();
       const side = getSide();
+      const type = getType();
 
       let numberOfChecked = 0;
       fuelBtns.forEach((el) => {
@@ -1943,7 +2125,7 @@ if (fuelBtns.length) {
         sectionsBtns.forEach((el) => {
           el.closest(".radio").classList.remove("radio_disabled");
         });
-      } 
+      }
 
       if (sectionsBtns.length) {
         const sectionInputOne = sectionsBtns.entries().find((el) => el[1].dataset.value == "1");
@@ -2043,6 +2225,37 @@ if (fuelBtns.length) {
       } else {
         nextStepBtnFive.classList.add("btn_disabled");
       }
+
+      // блокировка количества видов топлива в зависимости от объема:
+      let activeBtnQuontity = 0;
+      fuelBtns.forEach((item) => {
+        if (item.checked) {
+          activeBtnQuontity++;
+        }
+      });
+      console.log(activeBtnQuontity);
+      if (volume == "S" && activeBtnQuontity == 2) {
+        fuelBtns.forEach((item) => {
+          if (item.checked == false) {
+            item.closest(".checkbox").classList.add("checkbox_disabled");
+          }
+        });
+      }
+      if (type == "Cont" && activeBtnQuontity == 2) {
+        fuelBtns.forEach((item) => {
+          if (item.checked == false) {
+            item.closest(".checkbox").classList.add("checkbox_disabled");
+          }
+        });
+      }
+      if (type == "Cont") {
+        sectionsBtns.forEach((el) => {
+          if (el.dataset.value > 2) {
+            el.closest(".radio").classList.add("radio_disabled");
+          }
+        });
+      }
+
     });
   });
 
