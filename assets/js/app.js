@@ -1029,7 +1029,7 @@ function getSize() {
   const volume = getVolume();
   if (volume) {
     if (volume < 25) {
-      size = 'S';
+      size = "S";
     } else if (volume < 45) {
       size = "M";
     } else {
@@ -1210,7 +1210,7 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
       let maxVal = parseInt(input.value);
       let value = parseInt(input.value);
       // ограничиваем значение max инпута:
-      if (type == 'Cont' && value >= 40) {
+      if (type == "Cont" && value >= 40) {
         input.value = 40;
         value = 40;
         maxVal = 40;
@@ -1337,7 +1337,7 @@ function setCurrentParams(arr) {
         item.checked = true;
         nextStepBtnFive.classList.remove("btn_disabled");
 
-        if (arr.filter((el) => el.name === "volume")[0].value == 'S') {
+        if (arr.filter((el) => el.name === "volume")[0].value == "S") {
           sectionsBtns.forEach((el) => {
             if (el.dataset.value > 2) {
               el.closest(".radio").classList.remove("radio_disabled");
@@ -1392,7 +1392,7 @@ function setCurrentParams(arr) {
 //#region rangeSliderUpdate
 //функция установки значения рэндж слайдера:
 function rangeSliderUpdate(slider, value) {
-  console.log('*************** Старт функции rangeSliderUpdate ***************'); // имя функции
+  console.log("*************** Старт функции rangeSliderUpdate ***************"); // имя функции
   const rangeSlider = slider.querySelector(".range-slider");
   const rangeInputMax = slider.querySelector(".max-range");
 
@@ -1429,7 +1429,7 @@ function rangeSliderUpdate(slider, value) {
 const resBtn = document.querySelector("button[data-popup='popup-calc_result']");
 if (resBtn) {
   resBtn.addEventListener("click", function (e) {
-    console.log('click');
+    console.log("click");
     const finalImg = document.querySelector(".popup__result-img").querySelector("img");
     console.log(finalImg);
     finalImg.src = getImageName();
@@ -1474,8 +1474,7 @@ if (resBtn) {
     Метрошок: МШС 3,5 (в приклад) <br>
     Габариты, мм: 5000х2200х2650 <br>
     Масса, кг: 3700
-    `;    
-
+    `;
   });
 }
 // ---------------------- end Формирование последнего шага -----------------
@@ -1487,7 +1486,6 @@ if (resBtn) {
 const insulationBtn = document.querySelector(".insulation");
 const heaterBtn = document.querySelector(".heater");
 if (insulationBtn && heaterBtn) {
-
   insulationBtn.addEventListener("click", function (e) {
     console.log("click");
 
@@ -1496,7 +1494,7 @@ if (insulationBtn && heaterBtn) {
     } else {
       heaterBtn.classList.add("checkbox_disabled");
       heaterBtn.querySelector("input").checked = false;
-      delUrlQueryParam('heater');
+      delUrlQueryParam("heater");
     }
   });
 }
@@ -1541,11 +1539,10 @@ if (btnTemp.length) {
         recommendation.style.display = "grid";
       } else {
         recommendation.style.display = "none";
-        delUrlQueryParam('insulation');
+        delUrlQueryParam("insulation");
         insulationBtn.checked = false;
-        delUrlQueryParam('heater');
+        delUrlQueryParam("heater");
         heaterBtn.checked = false;
-        
       }
     });
   });
@@ -1557,17 +1554,17 @@ if (calcBtns.length) {
   calcBtns.forEach((btn) => {
     btn.addEventListener("click", function (e) {
       console.log("click");
-      
+
       if (btn.closest(".radio_disabled") || btn.closest(".checkbox_disabled")) {
         e.preventDefault();
         const size = getSize();
-        if ((btn.dataset.value == "4" || btn.dataset.value == "3") && size == 'S')  {
+        if ((btn.dataset.value == "4" || btn.dataset.value == "3") && size == "S") {
           showWarning(btn.closest(".popup"));
         }
       } else {
         const name = btn.dataset.name;
         const value = btn.dataset.value;
-  
+
         if (btn.type == "checkbox") {
           if (btn.checked) {
             setUrlQueryParam(name, value);
@@ -1626,70 +1623,68 @@ if (typeBtns.length) {
       const slider = document.querySelector(".popup__range-slider");
       const numberListUl = document.querySelector(".popup__range-list");
       const numberList = numberListUl.querySelectorAll(".popup__range-number");
-      
+
       let activeFuelsQuontity = 0;
       fuelBtns.forEach((item) => {
         if (item.checked) {
           activeFuelsQuontity++;
         }
       });
-      console.log('activeFuelsQuontity', activeFuelsQuontity);
+      console.log("activeFuelsQuontity", activeFuelsQuontity);
 
       typeBtns.forEach((item) => {
         item.classList.remove("popup__type-item_active");
       });
-      
+
       btn.classList.add("popup__type-item_active");
       nextBtn.classList.remove("btn_disabled");
-      
-      if (btn.dataset.value == 'Cont') {  
 
-        if (side == '2') { 
+      if (btn.dataset.value == "Cont") {
+        if (side == "2") {
           sideBtns.forEach((el) => {
             el.closest(".radio").classList.remove("radio_disabled");
-            if (el.dataset.value == '2') {
+            if (el.dataset.value == "2") {
               el.checked = false;
             }
-            if (el.dataset.value == '1') {
+            if (el.dataset.value == "1") {
               el.checked = true;
             }
           });
-          setUrlQueryParam("side", "1")
+          setUrlQueryParam("side", "1");
         }
 
-        
-          trkBtns.forEach((el) => {
-            if (el.dataset.value > 2) {
-              el.closest(".radio").classList.add("radio_disabled");
-            }
-          });
-          sideBtns.forEach((el) => {
+        trkBtns.forEach((el) => {
+          if (el.dataset.value > 2) {
             el.closest(".radio").classList.add("radio_disabled");
-          });
+          }
+        });
+        sideBtns.forEach((el) => {
+          el.closest(".radio").classList.add("radio_disabled");
+        });
 
-          descVol.style.display = "block";
-          numberList.forEach((item) => {
+        descVol.style.display = "block";
+        numberList.forEach((item) => {
           if (item.innerHTML.trim() > 40) {
             item.classList.add("popup__range-number_hidden");
           }
 
-          if (size == 'L') {     
+          if (size == "L") {
             rangeSliderUpdate(slider, 40);
-            setUrlQueryParam("volume", "40")
-          }   
-    
-          if (trk > '2') { 
-            setUrlQueryParam("trk", "2")
-          }   
+            setUrlQueryParam("volume", "40");
+          }
+
+          if (trk > "2") {
+            setUrlQueryParam("trk", "2");
+          }
           sectionsBtns.forEach((el) => {
             if (el.dataset.value > 2) {
               el.closest(".radio").classList.add("radio_disabled");
             }
           });
-    
-          if (sections > '2') { 
-            setUrlQueryParam("sections", "2")
-            setUrlQueryParam("side", "1")
+
+          if (sections > "2") {
+            setUrlQueryParam("sections", "2");
+            setUrlQueryParam("side", "1");
             // btnSectionOne.checked = true;
             // btnSideOne.checked = true;
             // pastImageName();
@@ -1727,18 +1722,17 @@ if (typeBtns.length) {
               }
             });
           }
-    
-          if (sections > '2') { 
-            setUrlQueryParam("sections", "2")
-            setUrlQueryParam("side", "1")
+
+          if (sections > "2") {
+            setUrlQueryParam("sections", "2");
+            setUrlQueryParam("side", "1");
             btnSectionTwo.checked = true;
             btnSideOne.checked = true;
             // pastImageName();
             // TODO продолжать здесь
-          } 
+          }
         });
       } else {
-
         fuelBtns.forEach((item) => {
           item.closest(".checkbox").classList.remove("checkbox_disabled");
         });
@@ -1759,7 +1753,7 @@ if (typeBtns.length) {
           }
         });
 
-        if (size == 'S') {      
+        if (size == "S") {
           sectionsBtns.forEach((el) => {
             if (el.dataset.value > 2) {
               el.closest(".radio").classList.add("radio_disabled");
@@ -1790,7 +1784,6 @@ if (typeBtns.length) {
         }
 
         // TODO добавить проверку на количество выбранного топлива?
-
       }
     });
   });
@@ -1806,33 +1799,33 @@ if (trkBtns.length) {
   });
 
   // функция работы с радиокнопками для сторон:
-function setSideFromTrk() {
-  console.log('******************** Старт функции setSideFromTrk **********************');
-  const trk = getTrk();
-  const type = getType();
-  const oneSideBtn = document.querySelector(".radio__input[data-name='side'][data-value='1']");
-  const twoSideBtn = document.querySelector(".radio__input[data-name='side'][data-value='2']");
-  if (trk == 2) {
-    oneSideBtn.closest(".radio").classList.remove("radio_disabled");
-    twoSideBtn.closest(".radio").classList.remove("radio_disabled");
-    oneSideBtn.checked = true;
-    setUrlQueryParam("side", "1");
-  } else {
-    oneSideBtn.closest(".radio").classList.add("radio_disabled");
-    twoSideBtn.closest(".radio").classList.add("radio_disabled");
-    oneSideBtn.checked = false;
-    twoSideBtn.checked = false;
-    delUrlQueryParam("side");
-  }
+  function setSideFromTrk() {
+    console.log("******************** Старт функции setSideFromTrk **********************");
+    const trk = getTrk();
+    const type = getType();
+    const oneSideBtn = document.querySelector(".radio__input[data-name='side'][data-value='1']");
+    const twoSideBtn = document.querySelector(".radio__input[data-name='side'][data-value='2']");
+    if (trk == 2) {
+      oneSideBtn.closest(".radio").classList.remove("radio_disabled");
+      twoSideBtn.closest(".radio").classList.remove("radio_disabled");
+      oneSideBtn.checked = true;
+      setUrlQueryParam("side", "1");
+    } else {
+      oneSideBtn.closest(".radio").classList.add("radio_disabled");
+      twoSideBtn.closest(".radio").classList.add("radio_disabled");
+      oneSideBtn.checked = false;
+      twoSideBtn.checked = false;
+      delUrlQueryParam("side");
+    }
 
-  if (type == 'Cont' && trk == 2) {
-    oneSideBtn.closest(".radio").classList.add("radio_disabled");
-    twoSideBtn.closest(".radio").classList.add("radio_disabled");
-    oneSideBtn.checked = true;
-    twoSideBtn.checked = false;
-    setUrlQueryParam("side", "1");
+    if (type == "Cont" && trk == 2) {
+      oneSideBtn.closest(".radio").classList.add("radio_disabled");
+      twoSideBtn.closest(".radio").classList.add("radio_disabled");
+      oneSideBtn.checked = true;
+      twoSideBtn.checked = false;
+      setUrlQueryParam("side", "1");
+    }
   }
-}
 }
 
 const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
@@ -1860,8 +1853,35 @@ if (fuelBtns.length) {
         }
       });
 
-      if (size == 'S' || type == 'Cont') {
-        // nextStepBtnFive.classList.remove("btn_disabled");
+      if (numberOfChecked) {
+        nextStepBtnFive.classList.remove("btn_disabled");
+      } else {
+        nextStepBtnFive.classList.add("btn_disabled");
+      }
+
+      const sectionInputOne = sectionsBtns.entries().find((el) => el[1].dataset.value == "1");
+      const sectionInputTwo = sectionsBtns.entries().find((el) => el[1].dataset.value == "2");
+      const sectionInputThree = sectionsBtns.entries().find((el) => el[1].dataset.value == "3");
+      const sectionInputFour = sectionsBtns.entries().find((el) => el[1].dataset.value == "4");
+      const radioSectionOne = sectionInputOne[1].closest(".radio");
+      const radioSectionTwo = sectionInputTwo[1].closest(".radio");
+      const radioSectionThree = sectionInputThree[1].closest(".radio");
+      const radioSectionFour = sectionInputFour[1].closest(".radio");
+
+      const trkInputOne = trkBtns.entries().find((el) => el[1].dataset.value == "1");
+      const trkInputTwo = trkBtns.entries().find((el) => el[1].dataset.value == "2");
+      const trkInputThree = trkBtns.entries().find((el) => el[1].dataset.value == "3");
+      const trkInputFour = trkBtns.entries().find((el) => el[1].dataset.value == "4");
+      console.log(trkInputOne);
+      console.log(trkInputTwo);
+      console.log(trkInputThree);
+      const radioTrkOne = trkInputOne[1].closest(".radio");
+      const radioTrkTwo = trkInputTwo[1].closest(".radio");
+      const radioTrkThree = trkInputThree[1].closest(".radio");
+      const radioTrkFour = trkInputFour[1].closest(".radio");
+
+      // контейнер и маленькая бочка можно разделить только на 2 секции, трк не меньше количества секций:
+      if (size == "S" || type == "Cont") {
         sectionsBtns.forEach((el) => {
           if (el.dataset.value < 3) {
             el.closest(".radio").classList.remove("radio_disabled");
@@ -1873,141 +1893,121 @@ if (fuelBtns.length) {
         });
       }
 
-      if (sectionsBtns.length) {
-        const sectionInputOne = sectionsBtns.entries().find((el) => el[1].dataset.value == "1");
-        const sectionInputTwo = sectionsBtns.entries().find((el) => el[1].dataset.value == "2");
-        const sectionInputThree = sectionsBtns.entries().find((el) => el[1].dataset.value == "3");
-        const sectionInputFour = sectionsBtns.entries().find((el) => el[1].dataset.value == "4");
-        const radioSectionOne = sectionInputOne[1].closest(".radio");
-        const radioSectionTwo = sectionInputTwo[1].closest(".radio");
-        const radioSectionThree = sectionInputThree[1].closest(".radio");
-        const radioSectionFour = sectionInputFour[1].closest(".radio");
 
-        const trkInputOne = trkBtns.entries().find((el) => el[1].dataset.value == "1");
-        const trkInputTwo = trkBtns.entries().find((el) => el[1].dataset.value == "2");
-        const trkInputThree = trkBtns.entries().find((el) => el[1].dataset.value == "3");
-        const trkInputFour = trkBtns.entries().find((el) => el[1].dataset.value == "4");
-        console.log(trkInputOne);
-        console.log(trkInputTwo);
-        console.log(trkInputThree);
-        const radioTrkOne = trkInputOne[1].closest(".radio");
-        const radioTrkTwo = trkInputTwo[1].closest(".radio");
-        const radioTrkThree = trkInputThree[1].closest(".radio");
-        const radioTrkFour = trkInputFour[1].closest(".radio");
+      if (size != "S" && type != "Cont") {
 
-        if (size != 'S' && type != 'Cont') {
-          sectionsBtns.forEach((el) => {
-            el.closest(".radio").classList.remove("radio_disabled");
-          });
+        sectionsBtns.forEach((el) => {
+          el.closest(".radio").classList.remove("radio_disabled");
+        });
 
-          trkBtns.forEach((el) => {
-            el.closest(".radio").classList.remove("radio_disabled");
-          });
+        trkBtns.forEach((el) => {
+          el.closest(".radio").classList.remove("radio_disabled");
+        });
+
+        sideBtns.forEach((el) => {
+          el.closest(".radio").classList.remove("radio_disabled");
+        });
+
+        if (numberOfChecked == 1) {
+          sectionInputOne[1].checked = true;
+          trkInputOne[1].checked = true;
+          setUrlQueryParam("sections", 1);
+          setUrlQueryParam("trk", 1);
+          delUrlQueryParam("side");
+        }
+
+        if (numberOfChecked == 2) {
+          radioSectionOne.classList.add("radio_disabled");
+          sectionInputTwo[1].checked = true;
+          trkInputTwo[1].checked = true;
+          setUrlQueryParam("sections", 2);
+          setUrlQueryParam("trk", 2);
+          setUrlQueryParam("side", 1);
 
           sideBtns.forEach((el) => {
             el.closest(".radio").classList.remove("radio_disabled");
-          });
-
-  
-          if (numberOfChecked == 1) {
-            sectionInputOne[1].checked = true;
-            trkInputOne[1].checked = true;
-            setUrlQueryParam("sections", 1);
-            setUrlQueryParam("trk", 1);
-            delUrlQueryParam("side");
-          }
-          if (numberOfChecked == 2) {
-            radioSectionOne.classList.add("radio_disabled");
-            sectionInputTwo[1].checked = true;
-            trkInputTwo[1].checked = true;
-            setUrlQueryParam("sections", 2);
-            setUrlQueryParam("trk", 2);
-            setUrlQueryParam("side", 1);
-
-            sideBtns.forEach((el) => {
-              el.closest(".radio").classList.remove("radio_disabled");
-              if (el.dataset.value == 1) {
-                el.checked = true;
-              }
-            });
-          } else {
-            sideBtns.forEach((el) => {
-              el.closest(".radio").classList.add("radio_disabled");
-              el.checked = false;
-            });
-          }
-          if (numberOfChecked == 3) {
-            radioSectionOne.classList.add("radio_disabled");
-            radioSectionTwo.classList.add("radio_disabled");
-            sectionInputThree[1].checked = true;
-            trkInputThree[1].checked = true;
-            setUrlQueryParam("sections", 3);
-            setUrlQueryParam("trk", 3);
-            delUrlQueryParam("side");
-          }  
-          if (numberOfChecked == 4) {
-            radioSectionOne.classList.add("radio_disabled");
-            radioSectionTwo.classList.add("radio_disabled");
-            radioSectionThree.classList.add("radio_disabled");
-            sectionInputFour[1].checked = true;
-            trkInputFour[1].checked = true;
-            setUrlQueryParam("sections", 4);
-            setUrlQueryParam("trk", 4);
-            delUrlQueryParam("side");
-          }
-        } else {
-          trkBtns.forEach((el) => {
-            if (el.dataset.value < 3) {
-              el.closest(".radio").classList.remove("radio_disabled");
+            if (el.dataset.value == 1) {
+              el.checked = true;
             }
           });
-          if (numberOfChecked == 1) {
-            setUrlQueryParam("sections", 1);
-            setUrlQueryParam("trk", 1);
-            delUrlQueryParam("side");
-            trkInputOne[1].checked = true;
-            sideBtns.forEach((el) => {
-              el.closest(".radio").classList.add("radio_disabled");              
-              el.checked = false;              
-            });
-          }
-          if (numberOfChecked == 2) {
-            radioSectionOne.classList.add("radio_disabled");
-            console.log(sectionInputOne[1]);
-            sectionInputTwo[1].checked = true;
-            trkInputTwo[1].checked = true;
-            radioTrkOne.classList.add("radio_disabled");
-            setUrlQueryParam("sections", 2);
-            setUrlQueryParam("trk", 2);
-            setUrlQueryParam("side", 1);
-            sideBtns.forEach((el) => {
-              el.closest(".radio").classList.add("radio_disabled");
-              if (el.dataset.value == 1) {
-                el.checked = true;
-              }
-            });
-          }
-          // if (numberOfChecked == 3) {
-          //   trkInputThree[1].checked = true;
-          //   setUrlQueryParam("trk", 3);
-
-          // }
-          // if (numberOfChecked == 4) {
-          //   trkInputFour[1].checked = true;
-          //   setUrlQueryParam("trk", 4);
-          // }
+        } else {
+          sideBtns.forEach((el) => {
+            el.closest(".radio").classList.add("radio_disabled");
+            el.checked = false;
+          });
         }
-      
-        // queryParams = parseUrlQuery();
-        // setCurrentParams(queryParams);
-        // setSideFromTrk();
+
+        if (numberOfChecked == 3) {
+          radioSectionOne.classList.add("radio_disabled");
+          radioSectionTwo.classList.add("radio_disabled");
+          sectionInputThree[1].checked = true;
+          trkInputThree[1].checked = true;
+          setUrlQueryParam("sections", 3);
+          setUrlQueryParam("trk", 3);
+          delUrlQueryParam("side");
+        }
+
+        if (numberOfChecked == 4) {
+          radioSectionOne.classList.add("radio_disabled");
+          radioSectionTwo.classList.add("radio_disabled");
+          radioSectionThree.classList.add("radio_disabled");
+          sectionInputFour[1].checked = true;
+          trkInputFour[1].checked = true;
+          setUrlQueryParam("sections", 4);
+          setUrlQueryParam("trk", 4);
+          delUrlQueryParam("side");
+        }
+
+      } else {
+        trkBtns.forEach((el) => {
+          if (el.dataset.value < 3) {
+            el.closest(".radio").classList.remove("radio_disabled");
+          }
+        });
+
+        if (numberOfChecked == 1) {
+          setUrlQueryParam("sections", 1);
+          setUrlQueryParam("trk", 1);
+          delUrlQueryParam("side");
+          trkInputOne[1].checked = true;
+          sideBtns.forEach((el) => {
+            el.closest(".radio").classList.add("radio_disabled");
+            el.checked = false;
+          });
+        }
+
+        if (numberOfChecked == 2) {
+          radioSectionOne.classList.add("radio_disabled");
+          console.log(sectionInputOne[1]);
+          sectionInputTwo[1].checked = true;
+          trkInputTwo[1].checked = true;
+          radioTrkOne.classList.add("radio_disabled");
+          setUrlQueryParam("sections", 2);
+          setUrlQueryParam("trk", 2);
+          setUrlQueryParam("side", 1);
+          sideBtns.forEach((el) => {
+            el.closest(".radio").classList.add("radio_disabled");
+            if (el.dataset.value == 1) {
+              el.checked = true;
+            }
+          });
+        }
+        // if (numberOfChecked == 3) {
+        //   trkInputThree[1].checked = true;
+        //   setUrlQueryParam("trk", 3);
+
+        // }
+        // if (numberOfChecked == 4) {
+        //   trkInputFour[1].checked = true;
+        //   setUrlQueryParam("trk", 4);
+        // }
       }
 
-      if (numberOfChecked) {
-        nextStepBtnFive.classList.remove("btn_disabled");
-      } else {
-        nextStepBtnFive.classList.add("btn_disabled");
-      }
+      // queryParams = parseUrlQuery();
+      // setCurrentParams(queryParams);
+      // setSideFromTrk();
+
+
 
       // блокировка количества видов топлива в зависимости от объема:
       let activeBtnQuontity = 0;
@@ -2017,48 +2017,56 @@ if (fuelBtns.length) {
         }
       });
       console.log(activeBtnQuontity);
-      if (size == 'S' && activeBtnQuontity == 2) {
+      if (size == "S" && activeBtnQuontity == 2) {
         fuelBtns.forEach((item) => {
           if (item.checked == false) {
             item.closest(".checkbox").classList.add("checkbox_disabled");
           }
         });
       }
-      if (type == 'Cont' && activeBtnQuontity == 2) {
+      if (type == "Cont" && activeBtnQuontity == 2) {
         fuelBtns.forEach((item) => {
           if (item.checked == false) {
             item.closest(".checkbox").classList.add("checkbox_disabled");
           }
         });
       }
-      if (type == 'Cont') {
+      if (type == "Cont") {
         sectionsBtns.forEach((el) => {
           if (el.dataset.value > 2) {
             el.closest(".radio").classList.add("radio_disabled");
           }
         });
       }
-
     });
   });
 
-  sectionsBtns.forEach((item) => {
-    item.addEventListener("change", function (e) {
-      console.log("change");
-      if (item.closest(".radio").classList.contains("radio_disabled")) {
-        e.preventDefault();
-        console.log('sfsdfsdfsdfsdfsd');
+  // sectionsBtns.forEach((item) => {
+  //   item.addEventListener("change", function (e) {
+  //     console.log("change");
+  //     if (item.closest(".radio").classList.contains("radio_disabled")) {
+  //       e.preventDefault();
+  //     }
+  //   });
+  // });
+}
 
-      }
-    });
-  });
+const volumeInput = document.querySelector(".popup__range");
+if (volumeInput) {
+  // volumeInput.addEventListener("input", function () {
+  //   console.log("input");
+  //   const size = getSize();
+  //   if (size == 'S') {
+  //     const volume = volumeInput.value;
+  //   }
+  // });
 }
 // -------------------------------------- end обработка событий кнопок калькулятора ----------------
 //#endregion
 
 // -------------------------------------- start обработка событий кнопок перехода на следующий шаг ----------------
 //#region calc steps
-// утановка минимального объема при переходе на этам выбора объема:
+// переход на шаг 4 - выбора объема:
 nextStepBtnThree.addEventListener("click", function () {
   console.log("click");
   const size = getSize();
@@ -2084,24 +2092,24 @@ nextStepBtnFour.addEventListener("click", function () {
     setUrlQueryParam("sections", "1");
   }
 
-  if (size == 'S') {
+  if (size == "S") {
     desc.style.display = "grid";
   } else {
     desc.style.display = "none";
   }
-  
+
   // const sectionsBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='sections']"));
 
-  if (size == 'S') {
+  if (size == "S") {
     sectionsBtns.forEach((item) => {
       if (item.dataset.value > 2) {
         item.closest(".radio").classList.add("radio_disabled");
       }
     });
-  // } else {
-  //   sectionsBtns.forEach((item) => {
-  //     item.closest(".radio").classList.remove("radio_disabled");
-  //   });
+    // } else {
+    //   sectionsBtns.forEach((item) => {
+    //     item.closest(".radio").classList.remove("radio_disabled");
+    //   });
   }
 
   // if (size != 'S') {
@@ -2109,8 +2117,7 @@ nextStepBtnFour.addEventListener("click", function () {
   //     item.closest(".checkbox").classList.remove("checkbox_disabled");
   //   });
   // }
-  
-  
+
   if (1 != 1) {
     let activeFuelsQuontity = 0;
     fuelBtns.forEach((item) => {
@@ -2185,6 +2192,7 @@ nextStepBtnFour.addEventListener("click", function () {
   // }
 });
 
+// переход на шаг 6 - выбор ТРК:
 nextStepBtnFive.addEventListener("click", function () {
   console.log("click");
   const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
@@ -2206,7 +2214,7 @@ nextStepBtnFive.addEventListener("click", function () {
     }
   });
 
-  if (type == 'Cont') {
+  if (type == "Cont") {
     trkBtns.forEach((item) => {
       if (item.dataset.value > 2) {
         item.closest(".radio").classList.add("radio_disabled");
@@ -2214,8 +2222,8 @@ nextStepBtnFive.addEventListener("click", function () {
       }
     });
     sideBtns.forEach((item) => {
-        item.closest(".radio").classList.add("radio_disabled");
-        item.checked = false;
+      item.closest(".radio").classList.add("radio_disabled");
+      item.checked = false;
     });
   } else {
     if (activeFuelsQuontity == 2) {
@@ -2243,8 +2251,8 @@ nextStepBtnFive.addEventListener("click", function () {
     }
   }
 
-  if (size == 'S') {
-    console.log('size == S');
+  if (size == "S") {
+    console.log("size == S");
     sideBtns.forEach((item) => {
       item.closest(".radio").classList.remove("radio_disabled");
       item.checked = false;
