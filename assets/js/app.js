@@ -1,14 +1,22 @@
 let urlParams = new URLSearchParams(window.location.search);
 // window.history.pushState({}, document.title, window.location.pathname);
 // urlParams = new URLSearchParams(window.location.search);
+$(".phone").mask("8(999) 999 99 99");
 const nextStepBtnTwo = document.querySelector(".popup__next-btn[data-step='2']");
 const nextStepBtnThree = document.querySelector(".popup__next-btn[data-step='3']");
 const nextStepBtnFour = document.querySelector(".popup__next-btn[data-step='4']");
 const nextStepBtnFive = document.querySelector(".popup__next-btn[data-step='5']");
 const nextStepBtnSix = document.querySelector(".popup__next-btn[data-step='6']");
 
-// ---------------------------------- start menu ----------------------------------
+// ------------------------- start FANCYBOX: ---------------------------
+const body = document.querySelector("body");
+Fancybox.bind("[data-fancybox]", {
+  // Your custom options
+});
+// ------------------------- end FANCYBOX: ---------------------------
 
+// ---------------------------------- start menu ----------------------------------
+//#region menu
 const header = document.querySelector(".header");
 const main = document.querySelector(".main");
 if (header) {
@@ -26,9 +34,90 @@ if (header) {
   });
 }
 // ---------------------------------- end menu ----------------------------------
+//#endregion
+
+// -------------------------------------------- start Карточки предложений: ---------------------------------------------
+//#region offer cards
+const offerCards = document.querySelectorAll(".offers__slider-item");
+if (offerCards.length) {
+  offerCards.forEach((item) => {
+    const id = item.dataset.id;
+    const cardTitle = item.querySelector(".off-card__title");
+    const cardSubtitle = item.querySelector(".off-card__subtitle");
+    const cardImg = item.querySelector(".off-card__img img");
+
+    const cardText = item.querySelector(".off-card__text");
+    const cardMoreBtn = item.querySelector(".btn_modal");
+    const cardConsultBtn = item.querySelector(".btn_cons");
+    const cardCalcBtn = item.querySelector(".btn_calc");
+    const truthCardText = cardText.innerHTML;
+
+    $clamp(cardText, { clamp: 2 });
+
+    cardMoreBtn.addEventListener("click", function () {
+      console.log("click");
+      const popup = document.querySelector(".popup-offer_more");
+      const popupTitle = popup.querySelector(".off-card__title");
+      const popupSubtitle = popup.querySelector(".off-card__subtitle");
+      const popupImg = popup.querySelector(".off-card__img img");
+      const popupText = popup.querySelector(".off-card__text");
+      const popupConsultBtn = popup.querySelector(".btn_cons");
+      const popupCalcBtn = popup.querySelector(".btn_calc");
+      const showBtn = popup.querySelector(".off-card__btn_show");
+      const hideBtn = popup.querySelector(".off-card__btn_hide");
+      const btnWrapper = popup.querySelector(".off-card__btn-wrap");
+      btnWrapper.style.display = "block";
+
+      popupTitle.textContent = cardTitle.textContent;
+      popupSubtitle.textContent = cardSubtitle.textContent;
+      popupImg.src = cardImg.src;
+      popupText.innerHTML = cardText.innerHTML;
+
+      const itemClasses = item.classList;
+      if (itemClasses.contains("off-card_cons")) {
+        popupConsultBtn.style.display = "block";
+        popupCalcBtn.style.display = "none";
+        showBtn.style.display = "block";
+        hideBtn.style.display = "none";
+      } else {
+        popupConsultBtn.style.display = "none";
+        popupCalcBtn.style.display = "block";
+        showBtn.style.display = "none";
+        hideBtn.style.display = "block";
+      }
+
+      if (popupText.innerHTML.length > 500) {
+        popupText.innerHTML = truthCardText.slice(0, 470) + "...";
+        showBtn.style.display = "block";
+        hideBtn.style.display = "none";
+      } else {
+        popupText.innerHTML = truthCardText;
+        showBtn.style.display = "none";
+        hideBtn.style.display = "none";
+      }
+
+      showBtn.addEventListener("click", function () {
+        console.log("click");
+        popupText.innerHTML = truthCardText;
+        showBtn.style.display = "none";
+        hideBtn.style.display = "block";
+      });
+
+      hideBtn.addEventListener("click", function () {
+        console.log("click");
+        popupText.innerHTML = truthCardText.slice(0, 470) + "...";
+        showBtn.style.display = "block";
+        hideBtn.style.display = "none";
+      });
+    });
+  });
+}
+
+// -------------------------------------------- end Карточки предложений ---------------------------------------------
+//#endregion
 
 // ---------------------------------- start плавающие кнопки: ----------------------------------
-
+//#region fly buttons
 // кнопка вверх:
 const btnToUp = document.querySelector(".btn-go-up");
 if (btnToUp) {
@@ -59,8 +148,11 @@ if (socialBtn) {
     socialBlock.classList.toggle("social-btn__wrap_active");
   });
 }
-// ---------------------------------- start отправка и валидация формы ----------------------------------
+// ---------------------------------- end плавающие кнопки: ----------------------------------
+//#endregion
 
+// ---------------------------------- start отправка и валидация формы ----------------------------------
+//#region send forms
 const formAll = document.querySelectorAll(".form");
 
 if (formAll) {
@@ -143,9 +235,10 @@ if (formAll) {
 }
 
 // ---------------------------------- end отправка и валидация формы ----------------------------------
+//#endregion
 
 // ------------------------- start WEBP: ---------------------------
-
+//#region webp class
 function testWebP(callback) {
   let webP = new Image();
   webP.onload = webP.onerror = function () {
@@ -160,12 +253,7 @@ testWebP(function (support) {
 });
 
 // ------------------------- end WEBP: ---------------------------
-// ------------------------- start FANCYBOX: ---------------------------
-const body = document.querySelector("body");
-Fancybox.bind("[data-fancybox]", {
-  // Your custom options
-});
-// ------------------------- end FANCYBOX: ---------------------------
+//#endregion
 
 // -------------------------------------------- start slider: ---------------------------------------------
 //#region slider
@@ -646,7 +734,7 @@ if (canselCalcBtn) {
 //#endregion
 
 // -------------------------------------------- start BURGER: ---------------------------------------------
-
+//#region burger
 const burger = document.querySelector(".burger");
 // console.log(burger);
 
@@ -679,11 +767,10 @@ if (burger) {
   });
 }
 // -------------------------------------------- end BURGER ---------------------------------------------
-
-$(".phone").mask("8(999) 999 99 99");
-// console.log(urlParams);
+//#endregion
 
 // -------------------------------------------- start Куки: ---------------------------------------------
+//#region cookie
 function setCookie(name, value, lifetimeDays = 30, path = "/") {
   var expires = "";
   if (lifetimeDays) {
@@ -742,9 +829,11 @@ if (cookieCloseBtn) {
   });
 }
 // -------------------------------------------- end Куки ---------------------------------------------
+//#endregion
 
 // -------------------------------------------- start Карта ---------------------------------------------
 //#region Карта
+
 // Функция ymaps.ready() будет вызвана, когда
 // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
 const map = document.getElementById("map");
@@ -856,12 +945,7 @@ if (map) {
 //#endregion
 
 // -------------------------------------- start Url Query --------------------------
-
-// function getParam(param) {
-//   console.log('*************** Старт функции getParam ***************");');
-//   return new URLSearchParams(window.location.search).get(param);
-// }
-
+//#region url query
 function parseUrlQuery() {
   // console.log("*************** Старт функции parseUrlQuery ***************");
   const urlParams = new URLSearchParams(window.location.search);
@@ -890,27 +974,6 @@ function delUrlQueryParam(param) {
 }
 
 // функции достают пармаетры из URL:
-function getUsage() {
-  const queryParams = parseUrlQuery();
-  let usage = "";
-  if (queryParams.filter((item) => item.name == "usage").length) {
-    const usageParam = queryParams.filter((item) => item.name == "usage");
-    usage = usageParam[0]["value"];
-    // name = `/assets/img/renders/${usage}_S.png`;
-  }
-  return usage;
-}
-
-function getType() {
-  const queryParams = parseUrlQuery();
-  let type = "";
-  if (queryParams.filter((item) => item.name == "type").length) {
-    const typeParam = queryParams.filter((item) => item.name == "type");
-    type = typeParam[0]["value"];
-  }
-  return type;
-}
-
 function getTemperature() {
   const queryParams = parseUrlQuery();
   let temp = "";
@@ -939,6 +1002,16 @@ function getHeater() {
     heater = heaterParam[0]["value"];
   }
   return heater;
+}
+
+function getType() {
+  const queryParams = parseUrlQuery();
+  let type = "";
+  if (queryParams.filter((item) => item.name == "type").length) {
+    const typeParam = queryParams.filter((item) => item.name == "type");
+    type = typeParam[0]["value"];
+  }
+  return type;
 }
 
 function getVolume() {
@@ -1024,7 +1097,10 @@ function getFast() {
   }
   return fast;
 }
+//#endregion
 
+// -------------------------------------- start image name --------------------------
+//#region image name
 //функция формирования имени изображения
 function getImageName() {
   console.log("*************** Старт функции getImageName ***************");
@@ -1099,8 +1175,353 @@ function pastImageName() {
     item.querySelector("img").src = imageName;
   });
 }
-// -------------------------------------- end Url Query -----------------------------
-// -------------------------------------- start Калькулятор --------------------------
+
+// -------------------------------------- end image name --------------------------
+//#endregion
+
+// -------------------------------------------- start range-slider: ---------------------------------------------
+//#region range-slider
+const slider = document.querySelector(".popup__range-slider");
+if (slider) {
+  rangeSliderInit(slider, 5, 5, 60);
+}
+
+function rangeSliderInit(slider, gap, minRange, maxRange) {
+  console.log('**************** Старт функции rangeSliderInit ***************");');
+  const rangeSlider = slider.querySelector(".range-slider");
+
+  // рендж инпуты:
+  const rangeInputs = slider.querySelectorAll(".range-inputs-wrap input");
+  const rangeInputMax = slider.querySelector(".max-range");
+
+  // основные параметры:
+
+  rangeInputMax.min = minRange;
+  rangeInputMax.max = maxRange;
+  rangeInputMax.step = gap;
+  rangeInputMax.value = minRange;
+
+  rangeInputs.forEach((input) => {
+    input.addEventListener("input", (e) => {
+      const type = getType();
+      const sections = getSections();
+      //получаем значения из текстовых инпутов:
+      let minVal = minRange;
+      let maxVal = parseInt(input.value);
+      let value = parseInt(input.value);
+      // ограничиваем значение max инпута:
+      if (type == 'Cont' && value >= 40) {
+        input.value = 40;
+        value = 40;
+        maxVal = 40;
+      }
+      if (sections == "4" && value <= 25) {
+        input.value = 25;
+        value = 25;
+        maxVal = 25;
+      } else {
+        if (maxVal >= maxRange) {
+          rangeInputMax.value = maxRange;
+          maxVal = maxRange;
+        }
+      }
+
+      console.log("parseInt(input.value)", value);
+      if (maxVal <= minVal) {
+        value = minRange;
+        maxVal = minRange;
+      }
+
+      rangeSlider.style.right = `${100 - ((maxVal - minRange) * 100) / (maxRange - minRange)}%`;
+
+      const rangeNumbers = document.querySelectorAll(".popup__range-number");
+
+      if (rangeNumbers.length) {
+        rangeNumbers.forEach((item) => {
+          item.classList.remove("popup__range-number_active");
+        });
+
+        rangeNumbers.forEach((item) => {
+          if (item.innerHTML.trim() == value) {
+            item.classList.add("popup__range-number_active");
+          }
+        });
+      }
+
+      setUrlQueryParam("volume", value);
+    });
+  });
+}
+// -------------------------------------------- end range-slider: ---------------------------------------------
+//#endregion
+
+// -------------------------------------------- start setCurrentParams: ---------------------------------------------
+//#region setCurrentParams
+// функция установки текущих значений фильтров из urlParams:
+function setCurrentParams(arr) {
+  console.log("*************** Старт функции setCurrentParams ***************"); // имя функции
+  console.log(arr);
+  let urlParams = new URLSearchParams(window.location.search);
+
+  if (!arr) {
+    window.history.pushState({}, document.title, window.location.pathname);
+    urlParams = new URLSearchParams(window.location.search);
+    // console.log("сброс фильтров");
+  }
+
+  // шаг 1
+
+  // шаг 2
+  const tempBtns = document.querySelectorAll(".popup__btn_temp");
+  if (tempBtns && arr.filter((item) => item.name === "temperature").length) {
+    tempBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "temperature")[0].value === item.dataset.value) {
+        item.classList.add("popup__btn_temp_active");
+        nextStepBtnTwo.classList.remove("btn_disabled");
+      }
+    });
+  }
+
+  const insulationBtn = document.querySelector(".checkbox__input[data-name='insulation']");
+  console.log(insulationBtn);
+
+  if (insulationBtn && arr.filter((item) => item.name === "insulation").length) {
+    insulationBtn.checked = true;
+  }
+
+  const heaterBtn = document.querySelector(".checkbox__input[data-name='heater']");
+
+  if (arr.filter((item) => item.name === "heater").length) {
+    heaterBtn.checked = true;
+    heaterBtn.closest(".checkbox").classList.remove("checkbox_disabled");
+  }
+
+  // шаг 3
+  const typeBtns = document.querySelectorAll(".popup__type-item");
+  if (typeBtns && arr.filter((item) => item.name === "type").length) {
+    typeBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "type")[0].value === item.dataset.value) {
+        item.classList.add("popup__type-item_active");
+        nextStepBtnThree.classList.remove("btn_disabled");
+      }
+    });
+  }
+
+  // шаг 4
+  const volumeBtn = document.querySelectorAll(".popup__range");
+  if (volumeBtn && arr.filter((item) => item.name === "volume").length) {
+    const slider = document.querySelector(".popup__range-slider");
+    volumeBtn.value = arr.filter((el) => el.name === "volume")[0].value;
+    rangeSliderUpdate(slider, volumeBtn.value);
+  }
+
+  // шаг 5
+  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  const fuels = [];
+  fuelBtns.forEach((item) => {
+    fuels.push(item.dataset.name);
+  });
+
+  if (fuelBtns.length) {
+    fuelBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === item.dataset.name).length) {
+        item.checked = true;
+      }
+    });
+  }
+
+  const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
+  if (sectionsBtns && arr.filter((item) => item.name === "sections").length) {
+    sectionsBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "sections")[0].value === item.dataset.value) {
+        item.checked = true;
+        nextStepBtnFive.classList.remove("btn_disabled");
+
+        if (arr.filter((el) => el.name === "volume")[0].value == 'S') {
+          sectionsBtns.forEach((el) => {
+            if (el.dataset.value > 2) {
+              el.closest(".radio").classList.remove("radio_disabled");
+            }
+          });
+        }
+      }
+    });
+  }
+
+  // шаг 6
+  const trkBtns = document.querySelectorAll(".radio__input[name='trk']");
+
+  if (trkBtns && arr.filter((item) => item.name === "trk").length) {
+    trkBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "trk")[0].value === item.dataset.value) {
+        item.checked = true;
+        nextStepBtnSix.classList.remove("btn_disabled");
+      }
+    });
+  }
+
+  const sideBtns = document.querySelectorAll(".radio__input[name='side']");
+
+  if (sideBtns && arr.filter((item) => item.name === "side").length) {
+    sideBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "side")[0].value === item.dataset.value) {
+        item.checked = true;
+        sideBtns.forEach((el) => {
+          el.closest(".radio").classList.remove("radio_disabled");
+        });
+        nextStepBtnSix.classList.remove("btn_disabled");
+      }
+    });
+  }
+
+  // шаг 7
+  const fastBtns = document.querySelectorAll(".radio__input[name='fast']");
+
+  if (fastBtns && arr.filter((item) => item.name === "fast").length) {
+    fastBtns.forEach((item) => {
+      if (arr.filter((el) => el.name === "fast")[0].value === item.dataset.value) {
+        item.checked = true;
+      }
+    });
+  }
+}
+// -------------------------------------------- end setCurrentParams: ---------------------------------------------
+//#endregion
+
+// -------------------------------------------- start rangeSliderUpdate: ---------------------------------------------
+//#region rangeSliderUpdate
+//функция установки значения рэндж слайдера:
+function rangeSliderUpdate(slider, value) {
+  console.log('*************** Старт функции rangeSliderUpdate ***************'); // имя функции
+  const rangeSlider = slider.querySelector(".range-slider");
+  const rangeInputMax = slider.querySelector(".max-range");
+
+  // let minVal = 0;
+  let maxVal = value;
+  let minRange = rangeInputMax.min;
+  let maxRange = rangeInputMax.max;
+
+  // присваиваем значения инпутам:
+  rangeInputMax.value = value;
+
+  // вычисляем положение рендж инпутов:
+  rangeSlider.style.right = `${100 - ((maxVal - minRange) * 100) / (maxRange - minRange)}%`;
+
+  const rangeNumbers = document.querySelectorAll(".popup__range-number");
+
+  if (rangeNumbers.length) {
+    rangeNumbers.forEach((item) => {
+      item.classList.remove("popup__range-number_active");
+    });
+
+    rangeNumbers.forEach((item) => {
+      if (item.innerHTML.trim() == value) {
+        item.classList.add("popup__range-number_active");
+      }
+    });
+  }
+}
+// -------------------------------------------- end rangeSliderUpdate: ---------------------------------------------
+//#endregion
+
+// ---------------------- start Формирование последнего шага -----------------
+//#region result
+const resBtn = document.querySelector("button[data-popup='popup-calc_result']");
+if (resBtn) {
+  resBtn.addEventListener("click", function (e) {
+    console.log('click');
+    const finalImg = document.querySelector(".popup__result-img").querySelector("img");
+    console.log(finalImg);
+    finalImg.src = getImageName();
+
+    // e.preventDefault();
+    const params = parseUrlQuery();
+    console.log(params);
+
+    // TODO посчитать стоимость и записать в переменную:
+    const finalPrice = document.querySelector(".popup__result-price");
+    finalPrice.innerHTML = "3 500 000";
+
+    //TODO добавить опитсание:
+    const finalDesc = document.querySelector(".popup__result-desc");
+    finalDesc.innerHTML = "Машина в хорошем состоянии, с пробегом 1000 км. Покраска и монтаж проводились в 2021 году.";
+
+    //TODO добавить характеристики:
+    const finalParams = document.querySelector(".popup__result-params");
+    finalParams.innerHTML = `
+    Резервуар: двустенный двухсекционный резервуар объёмом 10 (5+5) м.куб. (сталь Ст3 4/4мм, система контроля <br>
+    межстенного пространства с сиреной, азот); <br>
+    Люк-лаз: 700мм с крышкой 800мм - 2шт. <br>
+    Перегородка: двустенная перегородка (Сталь Ст3 4/4мм) - 1шт. <br>
+    Строповочные рымы: есть <br>
+    Ложементы (опоры): есть <br>
+    Лестница с площадкой обслуживания: есть <br>
+    Технологический отсек: Закрытый, с поддоном сбора проливов <br>
+    ТРК: однорукавная «GP» с однострочным отсчётным устройством, 50л/мин (возможна установка других на
+    50-80л/мин) -
+    2 шт. <br>
+    Насос: КМ 80-65-140Е (380В, 3кВт) <br>
+    Узел наполнения: УН-80 со сливной муфтой <br>
+    Датчик уровня: ПМП-185 с сиреной ВС-5 (возможна замена на уровнемер ПМП-201) - 2 комплекта <br>
+    Сигнализатор: ВС-К-500, дисплейный <br>
+    Сирена: ВС-5 <br>
+    Технологические линии: (наполнения, выдачи, деаэрации, замера и обесшламливания) - 2 комплекта <br>
+    Освещение и щит силовой в исполнении Ех: есть <br>
+    Система автоматического пожаротушения: Буран 2,5 <br>
+    Наружное покрытие: грунт=эмаль ЭКОМАСТ <br>
+    Молниеотвод: есть <br>
+    Надвись “Огнеопасно”: 2 шт. <br>
+    Метрошок: МШС 3,5 (в приклад) <br>
+    Габариты, мм: 5000х2200х2650 <br>
+    Масса, кг: 3700
+    `;    
+
+  });
+}
+// ---------------------- end Формирование последнего шага -----------------
+//#endregion
+
+// -------------------------------------------- start вспомгательные функции: ---------------------------------------------
+//#region functions
+// разблокировка подогоревателя при выборе утеплителя:
+const insulationBtn = document.querySelector(".insulation");
+const heaterBtn = document.querySelector(".heater");
+if (insulationBtn && heaterBtn) {
+
+  insulationBtn.addEventListener("click", function (e) {
+    console.log("click");
+
+    if (insulationBtn.querySelector("input").checked) {
+      heaterBtn.classList.remove("checkbox_disabled");
+    } else {
+      heaterBtn.classList.add("checkbox_disabled");
+      heaterBtn.querySelector("input").checked = false;
+      delUrlQueryParam('heater');
+    }
+  });
+}
+
+// функция показа ошибки:
+function showError(popup) {
+  const error = popup.querySelector(".popup__error-text");
+  error.classList.add("popup__error-text_active");
+  setTimeout(function () {
+    error.classList.remove("popup__error-text_active");
+  }, 2000);
+}
+
+// функция показа предупреждения:
+function showWarning(popup) {
+  const desc = popup.querySelector(".popup__info-text");
+  desc.classList.add("popup__info-text_active");
+  setTimeout(function () {
+    desc.classList.remove("popup__info-text_active");
+  }, 2000);
+}
+
+// -------------------------------------------- end вспомогательные функции: ---------------------------------------------
+//#endregion
+
 const btnTemp = document.querySelectorAll(".popup__btn_temp");
 if (btnTemp.length) {
   const popup = btnTemp[0].closest(".popup");
@@ -1157,6 +1578,14 @@ if (typeBtns.length) {
       const slider = document.querySelector(".popup__range-slider");
       const numberListUl = document.querySelector(".popup__range-list");
       const numberList = numberListUl.querySelectorAll(".popup__range-number");
+      
+      let activeFuelsQuontity = 0;
+      fuelBtns.forEach((item) => {
+        if (item.checked) {
+          activeFuelsQuontity++;
+        }
+      });
+      console.log('activeFuelsQuontity', activeFuelsQuontity);
 
       typeBtns.forEach((item) => {
         item.classList.remove("popup__type-item_active");
@@ -1236,12 +1665,6 @@ if (typeBtns.length) {
             // });
           }
 
-          let activeFuelsQuontity = 0;
-          fuelBtns.forEach((item) => {
-            if (item.checked) {
-              activeFuelsQuontity++;
-            }
-          });
           if (activeFuelsQuontity > 2) {
             fuelBtns.forEach((item) => {
               item.checked = false;
@@ -1287,6 +1710,39 @@ if (typeBtns.length) {
             item.classList.remove("popup__range-number_hidden");
           }
         });
+
+        if (size == 'S') {      
+          sectionsBtns.forEach((el) => {
+            if (el.dataset.value > 2) {
+              el.closest(".radio").classList.add("radio_disabled");
+              el.checked = false;
+            }
+          });
+        }
+
+        if (activeFuelsQuontity > 2) {
+          fuelBtns.forEach((item) => {
+            item.checked = false;
+            item.closest(".checkbox").classList.remove("checkbox_disabled");
+            delUrlQueryParam(item.dataset.name);
+            nextStepBtnFive.classList.add("btn_disabled");
+          });
+        } else if (activeFuelsQuontity == 2) {
+          fuelBtns.forEach((item) => {
+            if (!item.checked) {
+              item.closest(".checkbox").classList.add("checkbox_disabled");
+            }
+          });
+
+          sectionsBtns.forEach((el) => {
+            if (el.dataset.value == 2) {
+              el.checked = true;
+            }
+          });
+        }
+
+        // TODO добавить проверку на количество выбранного топлива?
+
       }
     });
   });
@@ -1338,332 +1794,11 @@ if (checkbox.length) {
   });
 }
 
-// -------------------------------------- end Калькулятор -----------------------------
-
-// -------------------------------------------- start range-slider: ---------------------------------------------
-
-const slider = document.querySelector(".popup__range-slider");
-if (slider) {
-  rangeSliderInit(slider, 5, 5, 60);
-}
-
-function rangeSliderInit(slider, gap, minRange, maxRange) {
-  console.log('**************** Старт функции rangeSliderInit ***************");');
-  const rangeSlider = slider.querySelector(".range-slider");
-
-  // рендж инпуты:
-  const rangeInputs = slider.querySelectorAll(".range-inputs-wrap input");
-  const rangeInputMax = slider.querySelector(".max-range");
-
-  // основные параметры:
-
-  rangeInputMax.min = minRange;
-  rangeInputMax.max = maxRange;
-  rangeInputMax.step = gap;
-  rangeInputMax.value = minRange;
-
-  rangeInputs.forEach((input) => {
-    input.addEventListener("input", (e) => {
-      const type = checkType();
-      const sections = checkSections();
-      //получаем значения из текстовых инпутов:
-      let minVal = minRange;
-      let maxVal = parseInt(input.value);
-      let value = parseInt(input.value);
-      // ограничиваем значение max инпута:
-      if (type == 'Cont' && value >= 40) {
-        input.value = 40;
-        value = 40;
-        maxVal = 40;
-      }
-      if (sections == "4" && value <= 25) {
-        input.value = 25;
-        value = 25;
-        maxVal = 25;
-      } else {
-        if (maxVal >= maxRange) {
-          rangeInputMax.value = maxRange;
-          maxVal = maxRange;
-        }
-      }
-
-      console.log("parseInt(input.value)", value);
-      if (maxVal <= minVal) {
-        value = minRange;
-        maxVal = minRange;
-      }
-
-      rangeSlider.style.right = `${100 - ((maxVal - minRange) * 100) / (maxRange - minRange)}%`;
-
-      const rangeNumbers = document.querySelectorAll(".popup__range-number");
-
-      if (rangeNumbers.length) {
-        rangeNumbers.forEach((item) => {
-          item.classList.remove("popup__range-number_active");
-        });
-
-        rangeNumbers.forEach((item) => {
-          if (item.innerHTML.trim() == value) {
-            item.classList.add("popup__range-number_active");
-          }
-        });
-      }
-
-      setUrlQueryParam("volume", value);
-    });
-  });
-}
-
-// TODO написать функцию установки параметров слайдера и других параметров
-
-// -------------------------------------------- end range-slider: ---------------------------------------------
-
-// разблокировка подогоревателя при выборе утеплителя:
-const insulationBtn = document.querySelector(".insulation");
-const heaterBtn = document.querySelector(".heater");
-if (insulationBtn && heaterBtn) {
-  console.log(insulationBtn);
-  console.log(heaterBtn);
-
-  insulationBtn.addEventListener("click", function (e) {
-    console.log("click");
-    // console.log(insulationBtn.querySelector("input").checked);
-
-    if (insulationBtn.querySelector("input").checked) {
-      heaterBtn.classList.remove("checkbox_disabled");
-    } else {
-      heaterBtn.classList.add("checkbox_disabled");
-      heaterBtn.querySelector("input").checked = false;
-      const name = heaterBtn.querySelector("input").dataset.name;
-      delUrlQueryParam(name);
-    }
-  });
-}
-
-// утановка минимального объема при переходе на этам выбора объема:
-const volumeStepBtn = document.querySelector(".popup__next-btn_volume");
-if (volumeStepBtn) {
-  volumeStepBtn.addEventListener("click", function () {
-    console.log("click");
-    const volume = checkVolume();
-    if (volume) {
-      return;
-    } else {
-      setUrlQueryParam("volume", "5");
-    }
-  });
-}
-
-// функции для работы с URL-параметрами, проеверяют есть ли такие параметры в URL:
-// TODO переписать их в стиле getType()
-function checkUsage() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let usage = "";
-  urlParams.forEach((value, key) => {
-    if (key == "usage") {
-      usage = value;
-    }
-  });
-  return usage;
-}
-
-function checkTemperature() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let temperature = "";
-  urlParams.forEach((value, key) => {
-    if (key == "temperature") {
-      temperature = value;
-    }
-  });
-  return temperature;
-}
-
-function checkInsulation() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let insulation = "";
-  urlParams.forEach((value, key) => {
-    if (key == "insulation") {
-      insulation = value;
-    }
-  });
-  return insulation;
-}
-
-function checkHeater() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let heater = "";
-  urlParams.forEach((value, key) => {
-    if (key == "heater") {
-      heater = value;
-    }
-  });
-  return heater;
-}
-
-function checkType() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let type = "";
-  urlParams.forEach((value, key) => {
-    if (key == "type") {
-      console.log(value, key);
-      type = value;
-    }
-  });
-  return type;
-}
-
-function checkVolume() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let volume = "";
-  urlParams.forEach((value, key) => {
-    if (key == "volume") {
-      volume = value;
-    }
-  });
-  return volume;
-}
-
-function checkDiesel() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let diesel = "";
-  urlParams.forEach((value, key) => {
-    if (key == "diesel") {
-      diesel = value;
-    }
-  });
-  return diesel;
-}
-
-function checkPetrol92() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let petrol92 = "";
-  urlParams.forEach((value, key) => {
-    if (key == "petrol-92") {
-      petrol92 = value;
-    }
-  });
-  return petrol92;
-}
-
-function checkPetrol95() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let petrol95 = "";
-  urlParams.forEach((value, key) => {
-    if (key == "petrol-95") {
-      petrol95 = value;
-    }
-  });
-  return petrol95;
-}
-
-function checkOther() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let other = "";
-  urlParams.forEach((value, key) => {
-    if (key == "other") {
-      other = value;
-    }
-  });
-  return other;
-}
-
-function checkSections() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let sections = "";
-  urlParams.forEach((value, key) => {
-    if (key == "sections") {
-      sections = value;
-    }
-  });
-  return sections;
-}
-
-function checkTrk() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let trk = "";
-  urlParams.forEach((value, key) => {
-    if (key == "trk") {
-      trk = value;
-    }
-  });
-  return trk;
-}
-
-function checkSide() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let side = "";
-  urlParams.forEach((value, key) => {
-    if (key == "side") {
-      side = value;
-    }
-  });
-  return side;
-}
-
-function checkFast() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let fast = "";
-  urlParams.forEach((value, key) => {
-    if (key == "fast") {
-      fast = value;
-    }
-  });
-  return fast;
-}
-
-// утановка минимального количества секции при переходе на этап выбора секций:
-const sectionStepBtn = document.querySelector(".popup__next-btn_sections");
-if (sectionStepBtn) {
-  sectionStepBtn.addEventListener("click", function () {
-    console.log("click");
-    const size = getSize();
-    const desc = document.querySelector(".popup__info-wrap_section");
-
-    let sections = "";
-
-    urlParams.forEach((value, key) => {
-      if (key == "sections") {
-        sections = value;
-      }
-    });
-
-    if (!sections) {
-      setUrlQueryParam("sections", "1");
-    }
-
-    if (size == 'S') {
-      desc.style.display = "grid";
-    } else {
-      desc.style.display = "none";
-    }
-  });
-}
-
-// утановка минимального количества ТРК и стороны при переходе на этап выбора ТРК:
-const trkStepBtn = document.querySelector(".popup__next-btn_trk");
-if (trkStepBtn) {
-  trkStepBtn.addEventListener("click", function () {
-    console.log("click");
-    let trk = "";
-    urlParams.forEach((value, key) => {
-      if (key == "trk") {
-        trk = value;
-      }
-    });
-    if (!trk) {
-      setUrlQueryParam("trk", "1");
-    }
-  });
-}
-
 const trkBtns = document.querySelectorAll("[data-calc-btn][data-name='trk']");
 if (trkBtns.length) {
-  // const oneSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='1']");
-  // const twoSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='2']");
   trkBtns.forEach((item) => {
     item.addEventListener("click", function () {
       console.log("click");
-      const type = getType();
       setSideFromTrk();
     });
   });
@@ -1698,272 +1833,148 @@ function setSideFromTrk() {
   }
 }
 
-// функция работы с радиокнопками для секций:
-// function setSectionsFromVolume() {
-//   console.log('******************** Старт функции setSectionsFromVolume **********************');
-//   const sections = getSections();
-//   const size = getSize();
-//   const type = getType();
-//   const oneSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='1']");
-//   const twoSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='2']");
-//   const threeSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='3']");
-//   const fourSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='4']");
-
-//   if (size == 'S' || type == 'Cont') {
-//     threeSectionBtn.closest(".radio").classList.add("radio_disabled");
-//     fourSectionBtn.closest(".radio").classList.add("radio_disabled");
-//     if (!sections) {
-//       oneSectionBtn.checked = true;
-//       setUrlQueryParam("sections", "1");
-//     }
-//   } else {
-//     oneSectionBtn.closest(".radio").classList.remove("radio_disabled");
-//     twoSectionBtn.closest(".radio").classList.remove("radio_disabled");
-//     threeSectionBtn.closest(".radio").classList.remove("radio_disabled");
-//     fourSectionBtn.closest(".radio").classList.remove("radio_disabled");
-//   }
-// }
-
-// function setSectionsFromFuels() {
-//   const sections = getSections();
-//   const volume = getSize();
-//   const fuels = getFuels();
-
-//   const oneSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='1']");
-//   const twoSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='2']");
-//   const threeSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='3']");
-//   const fourSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='4']");
-//   const popup = oneSectionBtn.closest(".popup");
-//   const desc = popup.querySelector(".popup__info-wrap");
-
-//   if (volume == 'S') {
-//     threeSectionBtn.closest(".radio").classList.add("radio_disabled");
-//     fourSectionBtn.closest(".radio").classList.add("radio_disabled");
-//     if (!sections) {
-//       oneSectionBtn.checked = true;
-//       setUrlQueryParam("sections", "1");
-//     }
-//   } else {
-//     desc.style.display = "none";
-//   }
-// }
-
-// функция показа ошибки:
-function showError(popup) {
-  const error = popup.querySelector(".popup__error-text");
-  error.classList.add("popup__error-text_active");
-  setTimeout(function () {
-    error.classList.remove("popup__error-text_active");
-  }, 2000);
-}
-
-// функция показа предупреждения:
-function showWarning(popup) {
-  const desc = popup.querySelector(".popup__info-text");
-  desc.classList.add("popup__info-text_active");
-  setTimeout(function () {
-    desc.classList.remove("popup__info-text_active");
-  }, 2000);
-}
-
-// setSide();
-
-// -------------------------------------------- start Карточки предложений: ---------------------------------------------
-
-const offerCards = document.querySelectorAll(".offers__slider-item");
-if (offerCards.length) {
-  offerCards.forEach((item) => {
-    const id = item.dataset.id;
-    const cardTitle = item.querySelector(".off-card__title");
-    const cardSubtitle = item.querySelector(".off-card__subtitle");
-    const cardImg = item.querySelector(".off-card__img img");
-
-    const cardText = item.querySelector(".off-card__text");
-    const cardMoreBtn = item.querySelector(".btn_modal");
-    const cardConsultBtn = item.querySelector(".btn_cons");
-    const cardCalcBtn = item.querySelector(".btn_calc");
-    const truthCardText = cardText.innerHTML;
-
-    $clamp(cardText, { clamp: 2 });
-
-    cardMoreBtn.addEventListener("click", function () {
-      console.log("click");
-      const popup = document.querySelector(".popup-offer_more");
-      const popupTitle = popup.querySelector(".off-card__title");
-      const popupSubtitle = popup.querySelector(".off-card__subtitle");
-      const popupImg = popup.querySelector(".off-card__img img");
-      const popupText = popup.querySelector(".off-card__text");
-      const popupConsultBtn = popup.querySelector(".btn_cons");
-      const popupCalcBtn = popup.querySelector(".btn_calc");
-      const showBtn = popup.querySelector(".off-card__btn_show");
-      const hideBtn = popup.querySelector(".off-card__btn_hide");
-      const btnWrapper = popup.querySelector(".off-card__btn-wrap");
-      btnWrapper.style.display = "block";
-
-      popupTitle.textContent = cardTitle.textContent;
-      popupSubtitle.textContent = cardSubtitle.textContent;
-      popupImg.src = cardImg.src;
-      popupText.innerHTML = cardText.innerHTML;
-
-      const itemClasses = item.classList;
-      if (itemClasses.contains("off-card_cons")) {
-        popupConsultBtn.style.display = "block";
-        popupCalcBtn.style.display = "none";
-        showBtn.style.display = "block";
-        hideBtn.style.display = "none";
-      } else {
-        popupConsultBtn.style.display = "none";
-        popupCalcBtn.style.display = "block";
-        showBtn.style.display = "none";
-        hideBtn.style.display = "block";
-      }
-
-      if (popupText.innerHTML.length > 500) {
-        popupText.innerHTML = truthCardText.slice(0, 470) + "...";
-        showBtn.style.display = "block";
-        hideBtn.style.display = "none";
-      } else {
-        popupText.innerHTML = truthCardText;
-        showBtn.style.display = "none";
-        hideBtn.style.display = "none";
-      }
-
-      showBtn.addEventListener("click", function () {
-        console.log("click");
-        popupText.innerHTML = truthCardText;
-        showBtn.style.display = "none";
-        hideBtn.style.display = "block";
-      });
-
-      hideBtn.addEventListener("click", function () {
-        console.log("click");
-        popupText.innerHTML = truthCardText.slice(0, 470) + "...";
-        showBtn.style.display = "block";
-        hideBtn.style.display = "none";
-      });
-    });
-  });
-}
-
-// -------------------------------------------- end Карточки предложений ---------------------------------------------
-
 // -------------------------------------- start функция установки и сброса значений фильтров ----------------
 
+// утановка минимального объема при переходе на этам выбора объема:
+nextStepBtnThree.addEventListener("click", function () {
+  console.log("click");
+  const size = getSize();
+  if (size) {
+    return;
+  } else {
+    setUrlQueryParam("volume", "5");
+  }
+});
 
+// переход на шаг 5 - выбор топлива:
+nextStepBtnFour.addEventListener("click", function () {
+  console.log("click");
+  const size = getSize();
+  const type = getType();
+  const sections = getSections();
+  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
+  const desc = document.querySelector(".popup__info-wrap_section");
 
-// nextStepBtnFour.addEventListener("click", function () {
-//   // console.log("click");
-//   // setSectionsFromVolume();
+  // утановка минимального количества секции при переходе на этап выбора секций:
+  if (!sections) {
+    setUrlQueryParam("sections", "1");
+  }
 
-//   const size = getSize();
-//   const type = getType();
-//   const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
-//   const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
-//   // const sectionsBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='sections']"));
+  if (size == 'S') {
+    desc.style.display = "grid";
+  } else {
+    desc.style.display = "none";
+  }
+  
+  // const sectionsBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='sections']"));
 
-//   // if (size == 'S' || type == 'Cont') {
-//   //   console.log('size', size);
-//   //   console.log('Type', type);
-//   //   sectionsBtns.forEach((item) => {
-//   //     if (item.dataset.value > 2) {
-//   //       console.log(item.dataset.value);
-//   //       item.closest(".radio").classList.add("radio_disabled");
-//   //     }
-//   //   });
-//   // } else {
-//   //   console.log('size', size);
-//   //   console.log('Type', type);
-//   //   sectionsBtns.forEach((item) => {
-//   //     item.closest(".radio").classList.remove("radio_disabled");
-//   //   });
-//   // }
+  if (size == 'S') {
+    sectionsBtns.forEach((item) => {
+      if (item.dataset.value > 2) {
+        item.closest(".radio").classList.add("radio_disabled");
+      }
+    });
+  // } else {
+  //   sectionsBtns.forEach((item) => {
+  //     item.closest(".radio").classList.remove("radio_disabled");
+  //   });
+  }
 
-//   // if (size != 'S') {
-//   //   fuelBtns.forEach((item) => {
-//   //     item.closest(".checkbox").classList.remove("checkbox_disabled");
-//   //   });
-//   // }
+  // if (size != 'S') {
+  //   fuelBtns.forEach((item) => {
+  //     item.closest(".checkbox").classList.remove("checkbox_disabled");
+  //   });
+  // }
   
   
-//   // if (1 != 1) {
-//   //   let activeFuelsQuontity = 0;
-//   //   fuelBtns.forEach((item) => {
-//   //     if (item.checked) {
-//   //       activeFuelsQuontity++;
-//   //     }
-//   //   });
-//   //   if (activeFuelsQuontity == 2) {
-//   //     sectionsBtns.forEach((item) => {
-//   //       if (item.dataset.value < 2) {
-//   //         item.closest(".radio").classList.add("radio_disabled");
-//   //       }
-//   //     });
-//   //   } else if (activeFuelsQuontity == 3) {
-//   //     sectionsBtns.forEach((item) => {
-//   //       if (item.dataset.value < 3) {
-//   //         item.closest(".radio").classList.add("radio_disabled");
-//   //       }
-//   //     });
-//   //   } else if (activeFuelsQuontity == 4) {
-//   //     sectionsBtns.forEach((item) => {
-//   //       if (item.dataset.value < 4) {
-//   //         item.closest(".radio").classList.add("radio_disabled");
-//   //       }
-//   //     });
-//   //   } else {
-//   //     sectionsBtns.forEach((item) => {
-//   //       // item.closest(".radio").classList.remove("radio_disabled");
-//   //     });
-//   //   }
-//   // }
+  if (1 != 1) {
+    let activeFuelsQuontity = 0;
+    fuelBtns.forEach((item) => {
+      if (item.checked) {
+        activeFuelsQuontity++;
+      }
+    });
+    if (activeFuelsQuontity == 2) {
+      sectionsBtns.forEach((item) => {
+        if (item.dataset.value < 2) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else if (activeFuelsQuontity == 3) {
+      sectionsBtns.forEach((item) => {
+        if (item.dataset.value < 3) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else if (activeFuelsQuontity == 4) {
+      sectionsBtns.forEach((item) => {
+        if (item.dataset.value < 4) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else {
+      sectionsBtns.forEach((item) => {
+        // item.closest(".radio").classList.remove("radio_disabled");
+      });
+    }
+  }
 
-//   // if (type == 'Cont') {
-//   //   sectionsBtns.forEach((item) => {
-//   //     if (item.dataset.value == "3" || item.dataset.value == "4") {
-//   //       item.closest(".radio").classList.add("radio_disabled");
-//   //       item.checked = false;
-//   //     }
-//   //   });
+  // if (type == 'Cont') {
+  //   sectionsBtns.forEach((item) => {
+  //     if (item.dataset.value == "3" || item.dataset.value == "4") {
+  //       item.closest(".radio").classList.add("radio_disabled");
+  //       item.checked = false;
+  //     }
+  //   });
 
-//   //   if (activeFuelsQuontity > 2) {
-//   //     fuelBtns.forEach((item) => {
-//   //       item.checked = false;
-//   //       item.closest(".checkbox").classList.remove("checkbox_disabled");
-//   //       delUrlQueryParam(item.dataset.name);
-//   //     });
+  //   if (activeFuelsQuontity > 2) {
+  //     fuelBtns.forEach((item) => {
+  //       item.checked = false;
+  //       item.closest(".checkbox").classList.remove("checkbox_disabled");
+  //       delUrlQueryParam(item.dataset.name);
+  //     });
 
-//   //     sectionsBtns.forEach((item) => {
-//   //       if (item.dataset.value == "3" || item.dataset.value == "4") {
-//   //         item.closest(".radio").classList.add("radio_disabled");
-//   //         item.checked = false;
-//   //         delUrlQueryParam(item.dataset.name);
-//   //       }
+  //     sectionsBtns.forEach((item) => {
+  //       if (item.dataset.value == "3" || item.dataset.value == "4") {
+  //         item.closest(".radio").classList.add("radio_disabled");
+  //         item.checked = false;
+  //         delUrlQueryParam(item.dataset.name);
+  //       }
 
-//   //       if (activeFuelsQuontity == 1) {
-//   //         if (item.dataset.value == "1") {
-//   //           item.closest(".radio").classList.remove("radio_disabled");
-//   //           item.checked = true;
-//   //           setUrlQueryParam(item.dataset.name, item.dataset.value);
-//   //         }
-//   //       }
+  //       if (activeFuelsQuontity == 1) {
+  //         if (item.dataset.value == "1") {
+  //           item.closest(".radio").classList.remove("radio_disabled");
+  //           item.checked = true;
+  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
+  //         }
+  //       }
 
-//   //       if (activeFuelsQuontity == 2) {
-//   //         if (item.dataset.value == "2") {
-//   //           item.closest(".radio").classList.remove("radio_disabled");
-//   //           item.checked = true;
-//   //           setUrlQueryParam(item.dataset.name, item.dataset.value);
-//   //         }
-//   //       }
-//   //     });
-//   //   }
-//   // }
-// });
+  //       if (activeFuelsQuontity == 2) {
+  //         if (item.dataset.value == "2") {
+  //           item.closest(".radio").classList.remove("radio_disabled");
+  //           item.checked = true;
+  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
+});
 
 nextStepBtnFive.addEventListener("click", function () {
+  console.log("click");
   const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
   const sideBtns = document.querySelectorAll(".checkbox__input[name='side']");
   const trkBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='trk']"));
   const type = getType();
+  const size = getSize();
+  const trk = getTrk();
+
+  // утановка минимального количества ТРК и стороны при переходе на этап выбора ТРК:
+  if (!trk) {
+    setUrlQueryParam("trk", "1");
+  }
 
   let activeFuelsQuontity = 0;
   fuelBtns.forEach((item) => {
@@ -2008,188 +2019,21 @@ nextStepBtnFive.addEventListener("click", function () {
       });
     }
   }
+
+  if (size == 'S') {
+    console.log('size == S');
+    sideBtns.forEach((item) => {
+      item.closest(".radio").classList.remove("radio_disabled");
+      item.checked = false;
+      if (item.dataset.value == "1") {
+        item.checked = true;
+      }
+    });
+  }
 });
 
 const queryParams = parseUrlQuery();
 setCurrentParams(queryParams);
-
-// функция установки текущих значений фильтров из urlParams:
-function setCurrentParams(arr) {
-  console.log("*************** Старт функции setCurrentParams ***************"); // имя функции
-  console.log(arr);
-  let urlParams = new URLSearchParams(window.location.search);
-
-  if (!arr) {
-    window.history.pushState({}, document.title, window.location.pathname);
-    urlParams = new URLSearchParams(window.location.search);
-    // console.log("сброс фильтров");
-  }
-
-  // шаг 1
-  const usageBtns = document.querySelectorAll(".popup__step-btn[data-name='usage']");
-  console.log(usageBtns);
-  if (usageBtns && arr.filter((item) => item.name === "usage").length) {
-    usageBtns.forEach((item) => {
-      if (arr.filter((el) => el.name === "usage")[0].value === item.dataset.value) {
-        // item.classList.add("popup__btn_usage_active");
-      } else {
-        item.classList.add("btn_disabled");
-        item.style.pointerEvents = "all";
-      }
-    });
-  }
-
-  // шаг 2
-  const tempBtns = document.querySelectorAll(".popup__btn_temp");
-  if (tempBtns && arr.filter((item) => item.name === "temperature").length) {
-    tempBtns.forEach((item) => {
-      if (arr.filter((el) => el.name === "temperature")[0].value === item.dataset.value) {
-        item.classList.add("popup__btn_temp_active");
-        nextStepBtnTwo.classList.remove("btn_disabled");
-      }
-    });
-  }
-
-  const insulationBtn = document.querySelector(".checkbox__input[data-name='insulation']");
-  console.log(insulationBtn);
-
-  if (insulationBtn && arr.filter((item) => item.name === "insulation").length) {
-    insulationBtn.checked = true;
-  }
-
-  const heaterBtn = document.querySelector(".checkbox__input[data-name='heater']");
-
-  if (arr.filter((item) => item.name === "heater").length) {
-    heaterBtn.checked = true;
-    heaterBtn.closest(".checkbox").classList.remove("checkbox_disabled");
-  }
-
-  // шаг 3
-  const typeBtns = document.querySelectorAll(".popup__type-item");
-  if (typeBtns && arr.filter((item) => item.name === "type").length) {
-    typeBtns.forEach((item) => {
-      if (arr.filter((el) => el.name === "type")[0].value === item.dataset.value) {
-        item.classList.add("popup__type-item_active");
-        nextStepBtnThree.classList.remove("btn_disabled");
-      }
-    });
-  }
-
-  // шаг 4
-  const volumeBtn = document.querySelectorAll(".popup__range");
-  if (volumeBtn && arr.filter((item) => item.name === "volume").length) {
-    const slider = document.querySelector(".popup__range-slider");
-    volumeBtn.value = arr.filter((el) => el.name === "volume")[0].value;
-    rangeSliderUpdate(slider, volumeBtn.value);
-    // nextStepBtnFour.classList.remove("btn_disabled");
-  }
-
-  // шаг 5
-  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
-  const fuels = [];
-  fuelBtns.forEach((item) => {
-    fuels.push(item.dataset.name);
-  });
-
-  if (fuelBtns.length) {
-    fuelBtns.forEach((item) => {
-      if (arr.filter((el) => el.name === item.dataset.name).length) {
-        console.log(item.dataset.name);
-        console.log(arr.filter((el) => el.name === item.dataset.name));
-        item.checked = true;
-        // nextStepBtnFive.classList.remove("btn_disabled");
-      }
-    });
-  }
-
-  const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
-  if (sectionsBtns && arr.filter((item) => item.name === "sections").length) {
-    sectionsBtns.forEach((item) => {
-      if (arr.filter((el) => el.name === "sections")[0].value === item.dataset.value) {
-        item.checked = true;
-        nextStepBtnFive.classList.remove("btn_disabled");
-
-        if (arr.filter((el) => el.name === "volume")[0].value == 'S') {
-          sectionsBtns.forEach((el) => {
-            if (el.dataset.value > 2) {
-              el.closest(".radio").classList.remove("radio_disabled");
-            }
-          });
-        }
-      }
-    });
-  }
-
-  // шаг 6
-  const trkBtns = document.querySelectorAll(".radio__input[name='trk']");
-
-  if (trkBtns && arr.filter((item) => item.name === "trk").length) {
-    trkBtns.forEach((item) => {
-      if (arr.filter((el) => el.name === "trk")[0].value === item.dataset.value) {
-        item.checked = true;
-        nextStepBtnSix.classList.remove("btn_disabled");
-      }
-    });
-  }
-
-  const sideBtns = document.querySelectorAll(".radio__input[name='side']");
-
-  if (sideBtns && arr.filter((item) => item.name === "side").length) {
-    sideBtns.forEach((item) => {
-      if (arr.filter((el) => el.name === "side")[0].value === item.dataset.value) {
-        item.checked = true;
-        sideBtns.forEach((el) => {
-          el.closest(".radio").classList.remove("radio_disabled");
-        });
-        nextStepBtnSix.classList.remove("btn_disabled");
-      }
-    });
-  }
-
-  // шаг 7
-  const fastBtns = document.querySelectorAll(".radio__input[name='fast']");
-
-  if (fastBtns && arr.filter((item) => item.name === "fast").length) {
-    fastBtns.forEach((item) => {
-      if (arr.filter((el) => el.name === "fast")[0].value === item.dataset.value) {
-        item.checked = true;
-      }
-    });
-  }
-}
-// -------------------------------------- end функция установки и сброса значений фильтров --------------------------------------
-
-//функция установки значения рэндж слайдера:
-function rangeSliderUpdate(slider, value) {
-  console.log('*************** Старт функции rangeSliderUpdate ***************'); // имя функции
-  const rangeSlider = slider.querySelector(".range-slider");
-  const rangeInputMax = slider.querySelector(".max-range");
-
-  // let minVal = 0;
-  let maxVal = value;
-  let minRange = rangeInputMax.min;
-  let maxRange = rangeInputMax.max;
-
-  // присваиваем значения инпутам:
-  rangeInputMax.value = value;
-
-  // вычисляем положение рендж инпутов:
-  rangeSlider.style.right = `${100 - ((maxVal - minRange) * 100) / (maxRange - minRange)}%`;
-
-  const rangeNumbers = document.querySelectorAll(".popup__range-number");
-
-  if (rangeNumbers.length) {
-    rangeNumbers.forEach((item) => {
-      item.classList.remove("popup__range-number_active");
-    });
-
-    rangeNumbers.forEach((item) => {
-      if (item.innerHTML.trim() == value) {
-        item.classList.add("popup__range-number_active");
-      }
-    });
-  }
-}
 
 const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
 if (fuelBtns.length) {
@@ -2409,64 +2253,3 @@ if (fuelBtns.length) {
     });
   });
 }
-
-
-// ---------------------- start Формирование последнего шага -----------------
-const resBtn = document.querySelector("button[data-popup='popup-calc_result']");
-if (resBtn) {
-  resBtn.addEventListener("click", function (e) {
-    console.log('click');
-    const finalImg = document.querySelector(".popup__result-img").querySelector("img");
-    console.log(finalImg);
-    finalImg.src = getImageName();
-
-    // e.preventDefault();
-    const params = parseUrlQuery();
-    console.log(params);
-
-    // TODO посчитать стоимость и записать в переменную:
-    const finalPrice = document.querySelector(".popup__result-price");
-    finalPrice.innerHTML = "3 500 000";
-
-    //TODO добавить опитсание:
-    const finalDesc = document.querySelector(".popup__result-desc");
-    finalDesc.innerHTML = "Машина в хорошем состоянии, с пробегом 1000 км. Покраска и монтаж проводились в 2021 году.";
-
-    //TODO добавить характеристики:
-    const finalParams = document.querySelector(".popup__result-params");
-    finalParams.innerHTML = `
-    Резервуар: двустенный двухсекционный резервуар объёмом 10 (5+5) м.куб. (сталь Ст3 4/4мм, система контроля <br>
-    межстенного пространства с сиреной, азот); <br>
-    Люк-лаз: 700мм с крышкой 800мм - 2шт. <br>
-    Перегородка: двустенная перегородка (Сталь Ст3 4/4мм) - 1шт. <br>
-    Строповочные рымы: есть <br>
-    Ложементы (опоры): есть <br>
-    Лестница с площадкой обслуживания: есть <br>
-    Технологический отсек: Закрытый, с поддоном сбора проливов <br>
-    ТРК: однорукавная «GP» с однострочным отсчётным устройством, 50л/мин (возможна установка других на
-    50-80л/мин) -
-    2 шт. <br>
-    Насос: КМ 80-65-140Е (380В, 3кВт) <br>
-    Узел наполнения: УН-80 со сливной муфтой <br>
-    Датчик уровня: ПМП-185 с сиреной ВС-5 (возможна замена на уровнемер ПМП-201) - 2 комплекта <br>
-    Сигнализатор: ВС-К-500, дисплейный <br>
-    Сирена: ВС-5 <br>
-    Технологические линии: (наполнения, выдачи, деаэрации, замера и обесшламливания) - 2 комплекта <br>
-    Освещение и щит силовой в исполнении Ех: есть <br>
-    Система автоматического пожаротушения: Буран 2,5 <br>
-    Наружное покрытие: грунт=эмаль ЭКОМАСТ <br>
-    Молниеотвод: есть <br>
-    Надвись “Огнеопасно”: 2 шт. <br>
-    Метрошок: МШС 3,5 (в приклад) <br>
-    Габариты, мм: 5000х2200х2650 <br>
-    Масса, кг: 3700
-    `;    
-
-  });
-}
-
-
-
-
-
-// ---------------------- end Формирование последнего шага -----------------
