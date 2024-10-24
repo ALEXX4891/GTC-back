@@ -1166,6 +1166,20 @@ if (typeBtns.length) {
       nextBtn.classList.remove("btn_disabled");
       
       if (btn.dataset.value == 'Cont') {  
+
+        if (side == '2') { 
+          sideBtns.forEach((el) => {
+            el.closest(".radio").classList.remove("radio_disabled");
+            if (el.dataset.value == '2') {
+              el.checked = false;
+            }
+            if (el.dataset.value == '1') {
+              el.checked = true;
+            }
+          });
+          setUrlQueryParam("side", "1")
+        }
+
         
           trkBtns.forEach((el) => {
             if (el.dataset.value > 2) {
@@ -1234,6 +1248,12 @@ if (typeBtns.length) {
               item.closest(".checkbox").classList.remove("checkbox_disabled");
               delUrlQueryParam(item.dataset.name);
               nextStepBtnFive.classList.add("btn_disabled");
+            });
+          } else if (activeFuelsQuontity == 2) {
+            fuelBtns.forEach((item) => {
+              if (!item.checked) {
+                item.closest(".checkbox").classList.remove("checkbox_disabled");
+              }
             });
           }
     
@@ -2266,11 +2286,11 @@ if (fuelBtns.length) {
                 el.checked = true;
               }
             });
-          // } else {
-            // sideBtns.forEach((el) => {
-            //   el.closest(".radio").classList.add("radio_disabled");
-            //   el.checked = false;
-            // });
+          } else {
+            sideBtns.forEach((el) => {
+              el.closest(".radio").classList.add("radio_disabled");
+              el.checked = false;
+            });
           }
           if (numberOfChecked == 3) {
             radioSectionOne.classList.add("radio_disabled");
