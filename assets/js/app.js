@@ -1,6 +1,11 @@
 let urlParams = new URLSearchParams(window.location.search);
 // window.history.pushState({}, document.title, window.location.pathname);
 // urlParams = new URLSearchParams(window.location.search);
+const nextStepBtnTwo = document.querySelector(".popup__next-btn[data-step='2']");
+const nextStepBtnThree = document.querySelector(".popup__next-btn[data-step='3']");
+const nextStepBtnFour = document.querySelector(".popup__next-btn[data-step='4']");
+const nextStepBtnFive = document.querySelector(".popup__next-btn[data-step='5']");
+const nextStepBtnSix = document.querySelector(".popup__next-btn[data-step='6']");
 
 // ---------------------------------- start menu ----------------------------------
 
@@ -940,21 +945,25 @@ function getVolume() {
   const queryParams = parseUrlQuery();
   let volume = "";
   if (queryParams.filter((item) => item.name == "volume").length) {
-    const type = queryParams.filter((item) => item.name == "type")[0]["value"];
-    let volumePar = queryParams.filter((item) => item.name == "volume")[0]["value"];
-    if (volumePar < 25) {
-      volume = "S";
-    } else if (volumePar < 45) {
-      volume = "M";
-    } else {
-      if (type == "Cont") {
-        volume = "M";
-      } else {
-        volume = "L";
-      }
-    }
+    const volumeParam = queryParams.filter((item) => item.name == "volume");
+    volume = volumeParam[0]["value"];
   }
   return volume;
+}
+
+function getSize() {
+  let size = "";
+  const volume = getVolume();
+  if (volume) {
+    if (volume < 25) {
+      size = 'S';
+    } else if (volume < 45) {
+      size = "M";
+    } else {
+      size = "L";
+    }
+  }
+  return size;
 }
 
 function getFuels() {
@@ -1025,7 +1034,7 @@ function getImageName() {
   const queryParams = parseUrlQuery();
 
   let type = "";
-  let volume = "";
+  let size = "";
   // let fuel = '';
   let sections = "";
   let trk = "";
@@ -1040,26 +1049,26 @@ function getImageName() {
   }
 
   // объем
-  if (getVolume()) {
-    volume = getVolume();
-    name = `/assets/img/renders/${type}_${volume}.png`;
+  if (getSize()) {
+    size = getSize();
+    name = `/assets/img/renders/${type}_${size}.png`;
   }
 
   // секции
   if (getSections()) {
     sections = getSections();
-    name = `/assets/img/renders/${type}_${volume}_${sections}r.png`;
+    name = `/assets/img/renders/${type}_${size}_${sections}r.png`;
   }
 
   // трк
   if (getTrk()) {
     trk = getTrk();
-    name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k.png`;
+    name = `/assets/img/renders/${type}_${size}_${sections}r_${trk}k.png`;
   }
 
   if (getTrk() == 2 && getSide()) {
     side = getSide();
-    name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k.png`;
+    name = `/assets/img/renders/${type}_${size}_${sections}r_${trk}.${side}k.png`;
   }
 
   // скоростная выдача
@@ -1068,11 +1077,11 @@ function getImageName() {
 
     if (fast) {
       console.log(fast);
-      name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}k_${fast}.png`;
+      name = `/assets/img/renders/${type}_${size}_${sections}r_${trk}k_${fast}.png`;
 
       if (getTrk() == 2) {
         side = getSide();
-        name = `/assets/img/renders/${type}_${volume}_${sections}r_${trk}.${side}k_${fast}.png`;
+        name = `/assets/img/renders/${type}_${size}_${sections}r_${trk}.${side}k_${fast}.png`;
       }
     }
   }
@@ -1097,6 +1106,8 @@ if (btnTemp.length) {
   const popup = btnTemp[0].closest(".popup");
   const nextBtn = popup.querySelector(".popup__next-btn");
   const recommendation = popup.querySelector(".popup__recommended-wrap");
+  const insulationBtn = popup.querySelector(".checkbox__input[data-name='insulation']");
+  const heaterBtn = popup.querySelector(".checkbox__input[data-name='heater']");
 
   btnTemp.forEach((btn) => {
     btn.addEventListener("click", function () {
@@ -1112,107 +1123,151 @@ if (btnTemp.length) {
         recommendation.style.display = "grid";
       } else {
         recommendation.style.display = "none";
+        delUrlQueryParam('insulation');
+        insulationBtn.checked = false;
+        delUrlQueryParam('heater');
+        heaterBtn.checked = false;
+
       }
     });
   });
 }
 
 // обработка событий для кнопок выбора типа:
-const btnType = document.querySelectorAll(".popup__type-item");
-if (btnType.length) {
-  const popup = btnType[0].closest(".popup");
-  const nextBtn = popup.querySelector(".popup__next-btn");
-  const slider = document.querySelector(".popup__range-slider");
-  const numberListUl = document.querySelector(".popup__range-list");
-  const numberList = numberListUl.querySelectorAll(".popup__range-number");
-  const descVol = document.querySelector(".popup__info-text_volume");
-
-
-  btnType.forEach((btn) => {
+const typeBtns = document.querySelectorAll(".popup__type-item");
+if (typeBtns.length) {
+  typeBtns.forEach((btn) => {
     btn.addEventListener("click", function () {
       console.log("click");
-      const volume = getVolume();
+      const size = getSize();
       const trk = getTrk();
       const sections = getSections();
       const side = getSide();
+      const type = getType();
+      const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
+      const sideBtns = document.querySelectorAll(".radio__input[data-name='side']");
+      const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+      const trkBtns = document.querySelectorAll(".radio__input[data-name='trk']");
+      const btnSectionOne = document.querySelector(".radio__input[data-name='sections'][data-value='1']");
+      const btnSectionTwo = document.querySelector(".radio__input[data-name='sections'][data-value='2']");
+      const btnSideOne = document.querySelector(".radio__input[data-name='side'][data-value='1']");
+      const descVol = document.querySelector(".popup__info-text_volume");
+      const popup = typeBtns[0].closest(".popup");
+      const nextBtn = popup.querySelector(".popup__next-btn");
+      const slider = document.querySelector(".popup__range-slider");
+      const numberListUl = document.querySelector(".popup__range-list");
+      const numberList = numberListUl.querySelectorAll(".popup__range-number");
 
-      btnType.forEach((item) => {
+      typeBtns.forEach((item) => {
         item.classList.remove("popup__type-item_active");
       });
       
       btn.classList.add("popup__type-item_active");
       nextBtn.classList.remove("btn_disabled");
-
-      // if (volume == 'S') {
-      //   desc.style.display = "grid";
-      // } else {
-      //   desc.style.display = "none";
-      // }
       
-      if (btn.dataset.value == "Cont") {    
-        descVol.style.display = "block";
-        numberList.forEach((item) => {
+      if (btn.dataset.value == 'Cont') {  
+        
+          trkBtns.forEach((el) => {
+            if (el.dataset.value > 2) {
+              el.closest(".radio").classList.add("radio_disabled");
+            }
+          });
+          sideBtns.forEach((el) => {
+            el.closest(".radio").classList.add("radio_disabled");
+          });
+
+          descVol.style.display = "block";
+          numberList.forEach((item) => {
           if (item.innerHTML.trim() > 40) {
             item.classList.add("popup__range-number_hidden");
           }
+
+          if (size == 'L') {     
+            rangeSliderUpdate(slider, 40);
+            setUrlQueryParam("volume", "40")
+          }   
+    
+          if (trk > '2') { 
+            setUrlQueryParam("trk", "2")
+          }   
+          sectionsBtns.forEach((el) => {
+            if (el.dataset.value > 2) {
+              el.closest(".radio").classList.add("radio_disabled");
+            }
+          });
+    
+          if (sections > '2') { 
+            setUrlQueryParam("sections", "2")
+            setUrlQueryParam("side", "1")
+            // btnSectionOne.checked = true;
+            // btnSideOne.checked = true;
+            // pastImageName();
+
+            sectionsBtns.forEach((el) => {
+              if (el.dataset.value == 2) {
+                el.checked = true;
+              }
+              if (el.dataset.value <= 2) {
+                el.closest(".radio").classList.remove("radio_disabled");
+              }
+            });
+
+            // sideBtns.forEach((el) => {
+            //   if (el.dataset.value == 1) {
+            //     el.checked = true;
+            //     el.closest(".radio").classList.remove("radio_disabled");
+            //   } else {
+            //     el.closest(".radio").classList.add("radio_disabled");
+            //   }
+            // });
+          }
+
+          let activeFuelsQuontity = 0;
+          fuelBtns.forEach((item) => {
+            if (item.checked) {
+              activeFuelsQuontity++;
+            }
+          });
+          if (activeFuelsQuontity > 2) {
+            fuelBtns.forEach((item) => {
+              item.checked = false;
+              item.closest(".checkbox").classList.remove("checkbox_disabled");
+              delUrlQueryParam(item.dataset.name);
+              nextStepBtnFive.classList.add("btn_disabled");
+            });
+          }
+    
+          if (sections > '2') { 
+            setUrlQueryParam("sections", "2")
+            setUrlQueryParam("side", "1")
+            btnSectionTwo.checked = true;
+            btnSideOne.checked = true;
+            // pastImageName();
+            // TODO продолжать здесь
+          } 
         });
       } else {
+
+        fuelBtns.forEach((item) => {
+          item.closest(".checkbox").classList.remove("checkbox_disabled");
+        });
+
+        // trkBtns.forEach((el) => {
+        //   if (el.dataset.value > 2) {
+        //     el.closest(".radio").classList.add("radio_disabled");
+        //   }
+        // });
+        // sideBtns.forEach((el) => {
+        //   el.closest(".radio").classList.add("radio_disabled");
+        // });
+
         descVol.style.display = "none";
         numberList.forEach((item) => {
           if (item.innerHTML.trim() > 40) {
             item.classList.remove("popup__range-number_hidden");
           }
         });
-
       }
-
-      if (btn.dataset.value == "Cont" && volume == 'L') {     
-        rangeSliderUpdate(slider, 40);
-        setUrlQueryParam("volume", "40")
-      }   
-
-      if (btn.dataset.value == "Cont" && trk > '2') { 
-        setUrlQueryParam("trk", "2")
-      }   
-      if (btn.dataset.value == "Cont" && sections > '2') { 
-        setUrlQueryParam("sections", "2")
-        setUrlQueryParam("side", "1")
-        const btnSection = document.querySelector(".radio__input[data-name='sections'][data-value='1']");
-        btnSection.checked = true;
-        const btnSide = document.querySelector(".radio__input[data-name='side'][data-value='1']");
-        btnSide.checked = true;
-        pastImageName();
-      }
-
-      let activeFuelsQuontity = 0;
-      const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
-
-      fuelBtns.forEach((item) => {
-        if (item.checked) {
-          activeFuelsQuontity++;
-        }
-      });
-
-      if (btn.dataset.value == "Cont" && activeFuelsQuontity > 2) {
-        fuelBtns.forEach((item) => {
-          item.checked = false;
-          item.closest(".checkbox").classList.remove("checkbox_disabled");
-          delUrlQueryParam(item.dataset.name);
-        });
-      }
-
-
-      if (btn.dataset.value == "Cont" && sections > '2') { 
-        setUrlQueryParam("sections", "2")
-        setUrlQueryParam("side", "1")
-        const btnSection = document.querySelector(".radio__input[data-name='sections'][data-value='2']");
-        btnSection.checked = true;
-        const btnSide = document.querySelector(".radio__input[data-name='side'][data-value='1']");
-        btnSide.checked = true;
-        pastImageName();
-
-        // TODO продолжать здесь
-      } 
     });
   });
 }
@@ -1226,8 +1281,8 @@ if (calcBtns.length) {
       
       if (btn.closest(".radio_disabled") || btn.closest(".checkbox_disabled")) {
         e.preventDefault();
-        const volume = getVolume();
-        if ((btn.dataset.value == "4" || btn.dataset.value == "3") && volume == 'S')  {
+        const size = getSize();
+        if ((btn.dataset.value == "4" || btn.dataset.value == "3") && size == 'S')  {
           showWarning(btn.closest(".popup"));
         }
       } else {
@@ -1296,7 +1351,7 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
       let maxVal = parseInt(input.value);
       let value = parseInt(input.value);
       // ограничиваем значение max инпута:
-      if (type == "Cont" && value >= 40) {
+      if (type == 'Cont' && value >= 40) {
         input.value = 40;
         value = 40;
         maxVal = 40;
@@ -1541,7 +1596,7 @@ const sectionStepBtn = document.querySelector(".popup__next-btn_sections");
 if (sectionStepBtn) {
   sectionStepBtn.addEventListener("click", function () {
     console.log("click");
-    const volume = getVolume();
+    const size = getSize();
     const desc = document.querySelector(".popup__info-wrap_section");
 
     let sections = "";
@@ -1556,7 +1611,7 @@ if (sectionStepBtn) {
       setUrlQueryParam("sections", "1");
     }
 
-    if (volume == 'S') {
+    if (size == 'S') {
       desc.style.display = "grid";
     } else {
       desc.style.display = "none";
@@ -1588,6 +1643,7 @@ if (trkBtns.length) {
   trkBtns.forEach((item) => {
     item.addEventListener("click", function () {
       console.log("click");
+      const type = getType();
       setSideFromTrk();
     });
   });
@@ -1597,8 +1653,9 @@ if (trkBtns.length) {
 function setSideFromTrk() {
   console.log('******************** Старт функции setSideFromTrk **********************');
   const trk = getTrk();
-  const oneSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='1']");
-  const twoSideBtn = document.querySelector("[data-calc-btn][data-name='side'][data-value='2']");
+  const type = getType();
+  const oneSideBtn = document.querySelector(".radio__input[data-name='side'][data-value='1']");
+  const twoSideBtn = document.querySelector(".radio__input[data-name='side'][data-value='2']");
   if (trk == 2) {
     oneSideBtn.closest(".radio").classList.remove("radio_disabled");
     twoSideBtn.closest(".radio").classList.remove("radio_disabled");
@@ -1611,36 +1668,45 @@ function setSideFromTrk() {
     twoSideBtn.checked = false;
     delUrlQueryParam("side");
   }
-}
 
-// функция работы с радиокнопками для секций:
-function setSectionsFromVolume() {
-  console.log('******************** Старт функции setSectionsFromVolume **********************');
-  const sections = getSections();
-  const volume = getVolume();
-  const oneSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='1']");
-  const twoSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='2']");
-  const threeSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='3']");
-  const fourSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='4']");
-
-  if (volume == "S") {
-    threeSectionBtn.closest(".radio").classList.add("radio_disabled");
-    fourSectionBtn.closest(".radio").classList.add("radio_disabled");
-    if (!sections) {
-      oneSectionBtn.checked = true;
-      setUrlQueryParam("sections", "1");
-    }
-  } else {
-    oneSectionBtn.closest(".radio").classList.remove("radio_disabled");
-    twoSectionBtn.closest(".radio").classList.remove("radio_disabled");
-    threeSectionBtn.closest(".radio").classList.remove("radio_disabled");
-    fourSectionBtn.closest(".radio").classList.remove("radio_disabled");
+  if (type == 'Cont' && trk == 2) {
+    oneSideBtn.closest(".radio").classList.add("radio_disabled");
+    twoSideBtn.closest(".radio").classList.add("radio_disabled");
+    oneSideBtn.checked = true;
+    twoSideBtn.checked = false;
+    setUrlQueryParam("side", "1");
   }
 }
 
+// функция работы с радиокнопками для секций:
+// function setSectionsFromVolume() {
+//   console.log('******************** Старт функции setSectionsFromVolume **********************');
+//   const sections = getSections();
+//   const size = getSize();
+//   const type = getType();
+//   const oneSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='1']");
+//   const twoSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='2']");
+//   const threeSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='3']");
+//   const fourSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='4']");
+
+//   if (size == 'S' || type == 'Cont') {
+//     threeSectionBtn.closest(".radio").classList.add("radio_disabled");
+//     fourSectionBtn.closest(".radio").classList.add("radio_disabled");
+//     if (!sections) {
+//       oneSectionBtn.checked = true;
+//       setUrlQueryParam("sections", "1");
+//     }
+//   } else {
+//     oneSectionBtn.closest(".radio").classList.remove("radio_disabled");
+//     twoSectionBtn.closest(".radio").classList.remove("radio_disabled");
+//     threeSectionBtn.closest(".radio").classList.remove("radio_disabled");
+//     fourSectionBtn.closest(".radio").classList.remove("radio_disabled");
+//   }
+// }
+
 // function setSectionsFromFuels() {
 //   const sections = getSections();
-//   const volume = getVolume();
+//   const volume = getSize();
 //   const fuels = getFuels();
 
 //   const oneSectionBtn = document.querySelector("[data-calc-btn][data-name='sections'][data-value='1']");
@@ -1650,7 +1716,7 @@ function setSectionsFromVolume() {
 //   const popup = oneSectionBtn.closest(".popup");
 //   const desc = popup.querySelector(".popup__info-wrap");
 
-//   if (volume == "S") {
+//   if (volume == 'S') {
 //     threeSectionBtn.closest(".radio").classList.add("radio_disabled");
 //     fourSectionBtn.closest(".radio").classList.add("radio_disabled");
 //     if (!sections) {
@@ -1763,102 +1829,120 @@ if (offerCards.length) {
 
 // -------------------------------------- start функция установки и сброса значений фильтров ----------------
 
-const nextStepBtnTwo = document.querySelector(".popup__next-btn[data-step='2']");
-const nextStepBtnThree = document.querySelector(".popup__next-btn[data-step='3']");
-const nextStepBtnFour = document.querySelector(".popup__next-btn[data-step='4']");
-const nextStepBtnFive = document.querySelector(".popup__next-btn[data-step='5']");
-const nextStepBtnSix = document.querySelector(".popup__next-btn[data-step='6']");
 
-nextStepBtnFour.addEventListener("click", function () {
-  console.log("click");
-  setSectionsFromVolume();
 
-  const volume = getVolume();
-  const type = getType();
-  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
-  if (volume != "S") {
-    fuelBtns.forEach((item) => {
-      item.closest(".checkbox").classList.remove("checkbox_disabled");
-    });
-  }
+// nextStepBtnFour.addEventListener("click", function () {
+//   // console.log("click");
+//   // setSectionsFromVolume();
+
+//   const size = getSize();
+//   const type = getType();
+//   const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+//   const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
+//   // const sectionsBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='sections']"));
+
+//   // if (size == 'S' || type == 'Cont') {
+//   //   console.log('size', size);
+//   //   console.log('Type', type);
+//   //   sectionsBtns.forEach((item) => {
+//   //     if (item.dataset.value > 2) {
+//   //       console.log(item.dataset.value);
+//   //       item.closest(".radio").classList.add("radio_disabled");
+//   //     }
+//   //   });
+//   // } else {
+//   //   console.log('size', size);
+//   //   console.log('Type', type);
+//   //   sectionsBtns.forEach((item) => {
+//   //     item.closest(".radio").classList.remove("radio_disabled");
+//   //   });
+//   // }
+
+//   // if (size != 'S') {
+//   //   fuelBtns.forEach((item) => {
+//   //     item.closest(".checkbox").classList.remove("checkbox_disabled");
+//   //   });
+//   // }
   
-  let activeFuelsQuontity = 0;
-  fuelBtns.forEach((item) => {
-    if (item.checked) {
-      activeFuelsQuontity++;
-    }
-  });
+  
+//   // if (1 != 1) {
+//   //   let activeFuelsQuontity = 0;
+//   //   fuelBtns.forEach((item) => {
+//   //     if (item.checked) {
+//   //       activeFuelsQuontity++;
+//   //     }
+//   //   });
+//   //   if (activeFuelsQuontity == 2) {
+//   //     sectionsBtns.forEach((item) => {
+//   //       if (item.dataset.value < 2) {
+//   //         item.closest(".radio").classList.add("radio_disabled");
+//   //       }
+//   //     });
+//   //   } else if (activeFuelsQuontity == 3) {
+//   //     sectionsBtns.forEach((item) => {
+//   //       if (item.dataset.value < 3) {
+//   //         item.closest(".radio").classList.add("radio_disabled");
+//   //       }
+//   //     });
+//   //   } else if (activeFuelsQuontity == 4) {
+//   //     sectionsBtns.forEach((item) => {
+//   //       if (item.dataset.value < 4) {
+//   //         item.closest(".radio").classList.add("radio_disabled");
+//   //       }
+//   //     });
+//   //   } else {
+//   //     sectionsBtns.forEach((item) => {
+//   //       // item.closest(".radio").classList.remove("radio_disabled");
+//   //     });
+//   //   }
+//   // }
 
-  const sectionsBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='sections']"));
+//   // if (type == 'Cont') {
+//   //   sectionsBtns.forEach((item) => {
+//   //     if (item.dataset.value == "3" || item.dataset.value == "4") {
+//   //       item.closest(".radio").classList.add("radio_disabled");
+//   //       item.checked = false;
+//   //     }
+//   //   });
 
-  if (activeFuelsQuontity == 2) {
-    sectionsBtns.forEach((item) => {
-      if (item.dataset.value == "1") {
-        item.closest(".radio").classList.add("radio_disabled");
-      }
-    });
-  } else if (activeFuelsQuontity == 3) {
-    sectionsBtns.forEach((item) => {
-      if (item.dataset.value == "1" || item.dataset.value == "2") {
-        item.closest(".radio").classList.add("radio_disabled");
-      }
-    });
-  } else if (activeFuelsQuontity == 4) {
-    sectionsBtns.forEach((item) => {
-      if (item.dataset.value == "1" || item.dataset.value == "2" || item.dataset.value == "3") {
-        item.closest(".radio").classList.add("radio_disabled");
-      }
-    });
-  } else {
-    sectionsBtns.forEach((item) => {
-      item.closest(".radio").classList.remove("radio_disabled");
-    });
-  }
+//   //   if (activeFuelsQuontity > 2) {
+//   //     fuelBtns.forEach((item) => {
+//   //       item.checked = false;
+//   //       item.closest(".checkbox").classList.remove("checkbox_disabled");
+//   //       delUrlQueryParam(item.dataset.name);
+//   //     });
 
-  // if (type == "Cont") {
-  //   sectionsBtns.forEach((item) => {
-  //     if (item.dataset.value == "3" || item.dataset.value == "4") {
-  //       item.closest(".radio").classList.add("radio_disabled");
-  //       item.checked = false;
-  //     }
-  //   });
+//   //     sectionsBtns.forEach((item) => {
+//   //       if (item.dataset.value == "3" || item.dataset.value == "4") {
+//   //         item.closest(".radio").classList.add("radio_disabled");
+//   //         item.checked = false;
+//   //         delUrlQueryParam(item.dataset.name);
+//   //       }
 
-  //   if (activeFuelsQuontity > 2) {
-  //     fuelBtns.forEach((item) => {
-  //       item.checked = false;
-  //       item.closest(".checkbox").classList.remove("checkbox_disabled");
-  //       delUrlQueryParam(item.dataset.name);
-  //     });
+//   //       if (activeFuelsQuontity == 1) {
+//   //         if (item.dataset.value == "1") {
+//   //           item.closest(".radio").classList.remove("radio_disabled");
+//   //           item.checked = true;
+//   //           setUrlQueryParam(item.dataset.name, item.dataset.value);
+//   //         }
+//   //       }
 
-  //     sectionsBtns.forEach((item) => {
-  //       if (item.dataset.value == "3" || item.dataset.value == "4") {
-  //         item.closest(".radio").classList.add("radio_disabled");
-  //         item.checked = false;
-  //         delUrlQueryParam(item.dataset.name);
-  //       }
-
-  //       if (activeFuelsQuontity == 1) {
-  //         if (item.dataset.value == "1") {
-  //           item.closest(".radio").classList.remove("radio_disabled");
-  //           item.checked = true;
-  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
-  //         }
-  //       }
-
-  //       if (activeFuelsQuontity == 2) {
-  //         if (item.dataset.value == "2") {
-  //           item.closest(".radio").classList.remove("radio_disabled");
-  //           item.checked = true;
-  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
-});
+//   //       if (activeFuelsQuontity == 2) {
+//   //         if (item.dataset.value == "2") {
+//   //           item.closest(".radio").classList.remove("radio_disabled");
+//   //           item.checked = true;
+//   //           setUrlQueryParam(item.dataset.name, item.dataset.value);
+//   //         }
+//   //       }
+//   //     });
+//   //   }
+//   // }
+// });
 
 nextStepBtnFive.addEventListener("click", function () {
   const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  const sideBtns = document.querySelectorAll(".checkbox__input[name='side']");
+  const trkBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='trk']"));
   const type = getType();
 
   let activeFuelsQuontity = 0;
@@ -1868,43 +1952,42 @@ nextStepBtnFive.addEventListener("click", function () {
     }
   });
 
-  const trkBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='trk']"));
-
-  if (activeFuelsQuontity == 2) {
+  if (type == 'Cont') {
     trkBtns.forEach((item) => {
-      if (item.dataset.value == "1") {
+      if (item.dataset.value > 2) {
         item.closest(".radio").classList.add("radio_disabled");
+        item.checked = false;
       }
     });
-  } else if (activeFuelsQuontity == 3) {
-    trkBtns.forEach((item) => {
-      if (item.dataset.value == "1" || item.dataset.value == "2") {
+    sideBtns.forEach((item) => {
         item.closest(".radio").classList.add("radio_disabled");
-      }
-    });
-  } else if (activeFuelsQuontity == 4) {
-    trkBtns.forEach((item) => {
-      if (item.dataset.value == "1" || item.dataset.value == "2" || item.dataset.value == "3") {
-        item.closest(".radio").classList.add("radio_disabled");
-      }
+        item.checked = false;
     });
   } else {
-    trkBtns.forEach((item) => {
-      item.closest(".radio").classList.remove("radio_disabled");
-    });
+    if (activeFuelsQuontity == 2) {
+      trkBtns.forEach((item) => {
+        if (item.dataset.value < 2) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else if (activeFuelsQuontity == 3) {
+      trkBtns.forEach((item) => {
+        if (item.dataset.value < 3) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else if (activeFuelsQuontity == 4) {
+      trkBtns.forEach((item) => {
+        if (item.dataset.value < 4) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else {
+      trkBtns.forEach((item) => {
+        item.closest(".radio").classList.remove("radio_disabled");
+      });
+    }
   }
-
-  // if (type == "Cont") {
-  //   trkBtns.forEach((item) => {
-  //     if (item.dataset.value == "3" || item.dataset.value == "4") {
-  //       item.closest(".radio").classList.add("radio_disabled");
-  //       item.checked = false;
-  //     }
-  //   });
-  // }
-
-
-
 });
 
 const queryParams = parseUrlQuery();
@@ -2006,7 +2089,7 @@ function setCurrentParams(arr) {
         item.checked = true;
         nextStepBtnFive.classList.remove("btn_disabled");
 
-        if (arr.filter((el) => el.name === "volume")[0].value == "S") {
+        if (arr.filter((el) => el.name === "volume")[0].value == 'S') {
           sectionsBtns.forEach((el) => {
             if (el.dataset.value > 2) {
               el.closest(".radio").classList.remove("radio_disabled");
@@ -2092,6 +2175,7 @@ const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
 if (fuelBtns.length) {
   const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
   const trkBtns = document.querySelectorAll(".radio__input[name='trk']");
+  const sideBtns = document.querySelectorAll(".radio__input[name='side']");
 
   // подсчет количества выбранных видов топлива:
 
@@ -2099,7 +2183,7 @@ if (fuelBtns.length) {
     item.addEventListener("change", function (e) {
       let queryParams = parseUrlQuery();
       console.log("change");
-      const volume = getVolume();
+      const size = getSize();
       const fuels = getFuels();
       const sections = getSections();
       const side = getSide();
@@ -2112,18 +2196,16 @@ if (fuelBtns.length) {
         }
       });
 
-      console.log(numberOfChecked);
-
-      if (numberOfChecked && volume == "S") {
+      if (size == 'S' || type == 'Cont') {
         // nextStepBtnFive.classList.remove("btn_disabled");
         sectionsBtns.forEach((el) => {
           if (el.dataset.value < 3) {
             el.closest(".radio").classList.remove("radio_disabled");
           }
         });
-      } else if (numberOfChecked && (volume == "M" || volume == "L")) {
+      } else {
         sectionsBtns.forEach((el) => {
-          el.closest(".radio").classList.remove("radio_disabled");
+          el.closest(".radio").classList.add("radio_disabled");
         });
       }
 
@@ -2149,10 +2231,19 @@ if (fuelBtns.length) {
         const radioTrkThree = trkInputThree[1].closest(".radio");
         const radioTrkFour = trkInputFour[1].closest(".radio");
 
-        if (volume != "S") {
+        if (size != 'S' && type != 'Cont') {
           sectionsBtns.forEach((el) => {
             el.closest(".radio").classList.remove("radio_disabled");
           });
+
+          trkBtns.forEach((el) => {
+            el.closest(".radio").classList.remove("radio_disabled");
+          });
+
+          sideBtns.forEach((el) => {
+            el.closest(".radio").classList.remove("radio_disabled");
+          });
+
   
           if (numberOfChecked == 1) {
             sectionInputOne[1].checked = true;
@@ -2168,7 +2259,19 @@ if (fuelBtns.length) {
             setUrlQueryParam("sections", 2);
             setUrlQueryParam("trk", 2);
             setUrlQueryParam("side", 1);
-          }  
+
+            sideBtns.forEach((el) => {
+              el.closest(".radio").classList.remove("radio_disabled");
+              if (el.dataset.value == 1) {
+                el.checked = true;
+              }
+            });
+          // } else {
+            // sideBtns.forEach((el) => {
+            //   el.closest(".radio").classList.add("radio_disabled");
+            //   el.checked = false;
+            // });
+          }
           if (numberOfChecked == 3) {
             radioSectionOne.classList.add("radio_disabled");
             radioSectionTwo.classList.add("radio_disabled");
@@ -2189,35 +2292,51 @@ if (fuelBtns.length) {
             delUrlQueryParam("side");
           }
         } else {
+          trkBtns.forEach((el) => {
+            if (el.dataset.value < 3) {
+              el.closest(".radio").classList.remove("radio_disabled");
+            }
+          });
           if (numberOfChecked == 1) {
             setUrlQueryParam("sections", 1);
             setUrlQueryParam("trk", 1);
             delUrlQueryParam("side");
             trkInputOne[1].checked = true;
+            sideBtns.forEach((el) => {
+              el.closest(".radio").classList.add("radio_disabled");              
+              el.checked = false;              
+            });
           }
           if (numberOfChecked == 2) {
             radioSectionOne.classList.add("radio_disabled");
             console.log(sectionInputOne[1]);
             sectionInputTwo[1].checked = true;
             trkInputTwo[1].checked = true;
+            radioTrkOne.classList.add("radio_disabled");
             setUrlQueryParam("sections", 2);
             setUrlQueryParam("trk", 2);
             setUrlQueryParam("side", 1);
+            sideBtns.forEach((el) => {
+              el.closest(".radio").classList.add("radio_disabled");
+              if (el.dataset.value == 1) {
+                el.checked = true;
+              }
+            });
           }
-          if (numberOfChecked == 3) {
-            trkInputThree[1].checked = true;
-            setUrlQueryParam("trk", 3);
+          // if (numberOfChecked == 3) {
+          //   trkInputThree[1].checked = true;
+          //   setUrlQueryParam("trk", 3);
 
-          }
-          if (numberOfChecked == 4) {
-            trkInputFour[1].checked = true;
-            setUrlQueryParam("trk", 4);
-          }
+          // }
+          // if (numberOfChecked == 4) {
+          //   trkInputFour[1].checked = true;
+          //   setUrlQueryParam("trk", 4);
+          // }
         }
       
-        queryParams = parseUrlQuery();
-        setCurrentParams(queryParams);
-        setSideFromTrk();
+        // queryParams = parseUrlQuery();
+        // setCurrentParams(queryParams);
+        // setSideFromTrk();
       }
 
       if (numberOfChecked) {
@@ -2234,21 +2353,21 @@ if (fuelBtns.length) {
         }
       });
       console.log(activeBtnQuontity);
-      if (volume == "S" && activeBtnQuontity == 2) {
+      if (size == 'S' && activeBtnQuontity == 2) {
         fuelBtns.forEach((item) => {
           if (item.checked == false) {
             item.closest(".checkbox").classList.add("checkbox_disabled");
           }
         });
       }
-      if (type == "Cont" && activeBtnQuontity == 2) {
+      if (type == 'Cont' && activeBtnQuontity == 2) {
         fuelBtns.forEach((item) => {
           if (item.checked == false) {
             item.closest(".checkbox").classList.add("checkbox_disabled");
           }
         });
       }
-      if (type == "Cont") {
+      if (type == 'Cont') {
         sectionsBtns.forEach((el) => {
           if (el.dataset.value > 2) {
             el.closest(".radio").classList.add("radio_disabled");
