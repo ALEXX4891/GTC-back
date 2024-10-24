@@ -1519,9 +1519,6 @@ function showWarning(popup) {
   }, 2000);
 }
 
-// -------------------------------------------- end вспомогательные функции: ---------------------------------------------
-//#endregion
-
 const btnTemp = document.querySelectorAll(".popup__btn_temp");
 if (btnTemp.length) {
   const popup = btnTemp[0].closest(".popup");
@@ -1548,11 +1545,61 @@ if (btnTemp.length) {
         insulationBtn.checked = false;
         delUrlQueryParam('heater');
         heaterBtn.checked = false;
-
+        
       }
     });
   });
 }
+
+//выбор параметров и запись / удаление их в строке поиска.
+const calcBtns = document.querySelectorAll("[data-calc-btn]");
+if (calcBtns.length) {
+  calcBtns.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      console.log("click");
+      
+      if (btn.closest(".radio_disabled") || btn.closest(".checkbox_disabled")) {
+        e.preventDefault();
+        const size = getSize();
+        if ((btn.dataset.value == "4" || btn.dataset.value == "3") && size == 'S')  {
+          showWarning(btn.closest(".popup"));
+        }
+      } else {
+        const name = btn.dataset.name;
+        const value = btn.dataset.value;
+  
+        if (btn.type == "checkbox") {
+          if (btn.checked) {
+            setUrlQueryParam(name, value);
+          } else {
+            delUrlQueryParam(name);
+          }
+        } else {
+          setUrlQueryParam(name, value);
+        }
+      }
+    });
+  });
+}
+
+// подсветка подсказки при клике на не активные кнопки:
+const checkbox = document.querySelectorAll(".checkbox");
+if (checkbox.length) {
+  checkbox.forEach((item) => {
+    item.addEventListener("click", function (e) {
+      console.log("click");
+      if (item.classList.contains("checkbox_disabled")) {
+        e.preventDefault();
+        const popup = item.closest(".popup");
+        showWarning(popup);
+      }
+    });
+  });
+}
+
+// -------------------------------------------- end вспомогательные функции: ---------------------------------------------
+//#endregion
+
 
 // обработка событий для кнопок выбора типа:
 const typeBtns = document.querySelectorAll(".popup__type-item");
@@ -1748,52 +1795,6 @@ if (typeBtns.length) {
   });
 }
 
-//выбор параметров и запись / удаление их в строке поиска.
-const calcBtns = document.querySelectorAll("[data-calc-btn]");
-if (calcBtns.length) {
-  calcBtns.forEach((btn) => {
-    btn.addEventListener("click", function (e) {
-      console.log("click");
-      
-      if (btn.closest(".radio_disabled") || btn.closest(".checkbox_disabled")) {
-        e.preventDefault();
-        const size = getSize();
-        if ((btn.dataset.value == "4" || btn.dataset.value == "3") && size == 'S')  {
-          showWarning(btn.closest(".popup"));
-        }
-      } else {
-        const name = btn.dataset.name;
-        const value = btn.dataset.value;
-  
-        if (btn.type == "checkbox") {
-          if (btn.checked) {
-            setUrlQueryParam(name, value);
-          } else {
-            delUrlQueryParam(name);
-          }
-        } else {
-          setUrlQueryParam(name, value);
-        }
-      }
-    });
-  });
-}
-
-// подсветка подсказки при клике на не активные кнопки:
-const checkbox = document.querySelectorAll(".checkbox");
-if (checkbox.length) {
-  checkbox.forEach((item) => {
-    item.addEventListener("click", function (e) {
-      console.log("click");
-      if (item.classList.contains("checkbox_disabled")) {
-        e.preventDefault();
-        const popup = item.closest(".popup");
-        showWarning(popup);
-      }
-    });
-  });
-}
-
 const trkBtns = document.querySelectorAll("[data-calc-btn][data-name='trk']");
 if (trkBtns.length) {
   trkBtns.forEach((item) => {
@@ -1802,9 +1803,8 @@ if (trkBtns.length) {
       setSideFromTrk();
     });
   });
-}
 
-// функция работы с радиокнопками для сторон:
+  // функция работы с радиокнопками для сторон:
 function setSideFromTrk() {
   console.log('******************** Старт функции setSideFromTrk **********************');
   const trk = getTrk();
@@ -1832,208 +1832,7 @@ function setSideFromTrk() {
     setUrlQueryParam("side", "1");
   }
 }
-
-// -------------------------------------- start функция установки и сброса значений фильтров ----------------
-
-// утановка минимального объема при переходе на этам выбора объема:
-nextStepBtnThree.addEventListener("click", function () {
-  console.log("click");
-  const size = getSize();
-  if (size) {
-    return;
-  } else {
-    setUrlQueryParam("volume", "5");
-  }
-});
-
-// переход на шаг 5 - выбор топлива:
-nextStepBtnFour.addEventListener("click", function () {
-  console.log("click");
-  const size = getSize();
-  const type = getType();
-  const sections = getSections();
-  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
-  const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
-  const desc = document.querySelector(".popup__info-wrap_section");
-
-  // утановка минимального количества секции при переходе на этап выбора секций:
-  if (!sections) {
-    setUrlQueryParam("sections", "1");
-  }
-
-  if (size == 'S') {
-    desc.style.display = "grid";
-  } else {
-    desc.style.display = "none";
-  }
-  
-  // const sectionsBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='sections']"));
-
-  if (size == 'S') {
-    sectionsBtns.forEach((item) => {
-      if (item.dataset.value > 2) {
-        item.closest(".radio").classList.add("radio_disabled");
-      }
-    });
-  // } else {
-  //   sectionsBtns.forEach((item) => {
-  //     item.closest(".radio").classList.remove("radio_disabled");
-  //   });
-  }
-
-  // if (size != 'S') {
-  //   fuelBtns.forEach((item) => {
-  //     item.closest(".checkbox").classList.remove("checkbox_disabled");
-  //   });
-  // }
-  
-  
-  if (1 != 1) {
-    let activeFuelsQuontity = 0;
-    fuelBtns.forEach((item) => {
-      if (item.checked) {
-        activeFuelsQuontity++;
-      }
-    });
-    if (activeFuelsQuontity == 2) {
-      sectionsBtns.forEach((item) => {
-        if (item.dataset.value < 2) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else if (activeFuelsQuontity == 3) {
-      sectionsBtns.forEach((item) => {
-        if (item.dataset.value < 3) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else if (activeFuelsQuontity == 4) {
-      sectionsBtns.forEach((item) => {
-        if (item.dataset.value < 4) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else {
-      sectionsBtns.forEach((item) => {
-        // item.closest(".radio").classList.remove("radio_disabled");
-      });
-    }
-  }
-
-  // if (type == 'Cont') {
-  //   sectionsBtns.forEach((item) => {
-  //     if (item.dataset.value == "3" || item.dataset.value == "4") {
-  //       item.closest(".radio").classList.add("radio_disabled");
-  //       item.checked = false;
-  //     }
-  //   });
-
-  //   if (activeFuelsQuontity > 2) {
-  //     fuelBtns.forEach((item) => {
-  //       item.checked = false;
-  //       item.closest(".checkbox").classList.remove("checkbox_disabled");
-  //       delUrlQueryParam(item.dataset.name);
-  //     });
-
-  //     sectionsBtns.forEach((item) => {
-  //       if (item.dataset.value == "3" || item.dataset.value == "4") {
-  //         item.closest(".radio").classList.add("radio_disabled");
-  //         item.checked = false;
-  //         delUrlQueryParam(item.dataset.name);
-  //       }
-
-  //       if (activeFuelsQuontity == 1) {
-  //         if (item.dataset.value == "1") {
-  //           item.closest(".radio").classList.remove("radio_disabled");
-  //           item.checked = true;
-  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
-  //         }
-  //       }
-
-  //       if (activeFuelsQuontity == 2) {
-  //         if (item.dataset.value == "2") {
-  //           item.closest(".radio").classList.remove("radio_disabled");
-  //           item.checked = true;
-  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
-});
-
-nextStepBtnFive.addEventListener("click", function () {
-  console.log("click");
-  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
-  const sideBtns = document.querySelectorAll(".checkbox__input[name='side']");
-  const trkBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='trk']"));
-  const type = getType();
-  const size = getSize();
-  const trk = getTrk();
-
-  // утановка минимального количества ТРК и стороны при переходе на этап выбора ТРК:
-  if (!trk) {
-    setUrlQueryParam("trk", "1");
-  }
-
-  let activeFuelsQuontity = 0;
-  fuelBtns.forEach((item) => {
-    if (item.checked) {
-      activeFuelsQuontity++;
-    }
-  });
-
-  if (type == 'Cont') {
-    trkBtns.forEach((item) => {
-      if (item.dataset.value > 2) {
-        item.closest(".radio").classList.add("radio_disabled");
-        item.checked = false;
-      }
-    });
-    sideBtns.forEach((item) => {
-        item.closest(".radio").classList.add("radio_disabled");
-        item.checked = false;
-    });
-  } else {
-    if (activeFuelsQuontity == 2) {
-      trkBtns.forEach((item) => {
-        if (item.dataset.value < 2) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else if (activeFuelsQuontity == 3) {
-      trkBtns.forEach((item) => {
-        if (item.dataset.value < 3) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else if (activeFuelsQuontity == 4) {
-      trkBtns.forEach((item) => {
-        if (item.dataset.value < 4) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else {
-      trkBtns.forEach((item) => {
-        item.closest(".radio").classList.remove("radio_disabled");
-      });
-    }
-  }
-
-  if (size == 'S') {
-    console.log('size == S');
-    sideBtns.forEach((item) => {
-      item.closest(".radio").classList.remove("radio_disabled");
-      item.checked = false;
-      if (item.dataset.value == "1") {
-        item.checked = true;
-      }
-    });
-  }
-});
-
-const queryParams = parseUrlQuery();
-setCurrentParams(queryParams);
+}
 
 const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
 if (fuelBtns.length) {
@@ -2253,3 +2052,207 @@ if (fuelBtns.length) {
     });
   });
 }
+
+// -------------------------------------- start функция установки и сброса значений фильтров ----------------
+
+// утановка минимального объема при переходе на этам выбора объема:
+nextStepBtnThree.addEventListener("click", function () {
+  console.log("click");
+  const size = getSize();
+  if (size) {
+    return;
+  } else {
+    setUrlQueryParam("volume", "5");
+  }
+});
+
+// переход на шаг 5 - выбор топлива:
+nextStepBtnFour.addEventListener("click", function () {
+  console.log("click");
+  const size = getSize();
+  const type = getType();
+  const sections = getSections();
+  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
+  const desc = document.querySelector(".popup__info-wrap_section");
+
+  // утановка минимального количества секции при переходе на этап выбора секций:
+  if (!sections) {
+    setUrlQueryParam("sections", "1");
+  }
+
+  if (size == 'S') {
+    desc.style.display = "grid";
+  } else {
+    desc.style.display = "none";
+  }
+  
+  // const sectionsBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='sections']"));
+
+  if (size == 'S') {
+    sectionsBtns.forEach((item) => {
+      if (item.dataset.value > 2) {
+        item.closest(".radio").classList.add("radio_disabled");
+      }
+    });
+  // } else {
+  //   sectionsBtns.forEach((item) => {
+  //     item.closest(".radio").classList.remove("radio_disabled");
+  //   });
+  }
+
+  // if (size != 'S') {
+  //   fuelBtns.forEach((item) => {
+  //     item.closest(".checkbox").classList.remove("checkbox_disabled");
+  //   });
+  // }
+  
+  
+  if (1 != 1) {
+    let activeFuelsQuontity = 0;
+    fuelBtns.forEach((item) => {
+      if (item.checked) {
+        activeFuelsQuontity++;
+      }
+    });
+    if (activeFuelsQuontity == 2) {
+      sectionsBtns.forEach((item) => {
+        if (item.dataset.value < 2) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else if (activeFuelsQuontity == 3) {
+      sectionsBtns.forEach((item) => {
+        if (item.dataset.value < 3) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else if (activeFuelsQuontity == 4) {
+      sectionsBtns.forEach((item) => {
+        if (item.dataset.value < 4) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else {
+      sectionsBtns.forEach((item) => {
+        // item.closest(".radio").classList.remove("radio_disabled");
+      });
+    }
+  }
+
+  // if (type == 'Cont') {
+  //   sectionsBtns.forEach((item) => {
+  //     if (item.dataset.value == "3" || item.dataset.value == "4") {
+  //       item.closest(".radio").classList.add("radio_disabled");
+  //       item.checked = false;
+  //     }
+  //   });
+
+  //   if (activeFuelsQuontity > 2) {
+  //     fuelBtns.forEach((item) => {
+  //       item.checked = false;
+  //       item.closest(".checkbox").classList.remove("checkbox_disabled");
+  //       delUrlQueryParam(item.dataset.name);
+  //     });
+
+  //     sectionsBtns.forEach((item) => {
+  //       if (item.dataset.value == "3" || item.dataset.value == "4") {
+  //         item.closest(".radio").classList.add("radio_disabled");
+  //         item.checked = false;
+  //         delUrlQueryParam(item.dataset.name);
+  //       }
+
+  //       if (activeFuelsQuontity == 1) {
+  //         if (item.dataset.value == "1") {
+  //           item.closest(".radio").classList.remove("radio_disabled");
+  //           item.checked = true;
+  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
+  //         }
+  //       }
+
+  //       if (activeFuelsQuontity == 2) {
+  //         if (item.dataset.value == "2") {
+  //           item.closest(".radio").classList.remove("radio_disabled");
+  //           item.checked = true;
+  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
+});
+
+nextStepBtnFive.addEventListener("click", function () {
+  console.log("click");
+  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  const sideBtns = document.querySelectorAll(".checkbox__input[name='side']");
+  const trkBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='trk']"));
+  const type = getType();
+  const size = getSize();
+  const trk = getTrk();
+
+  // утановка минимального количества ТРК и стороны при переходе на этап выбора ТРК:
+  if (!trk) {
+    setUrlQueryParam("trk", "1");
+  }
+
+  let activeFuelsQuontity = 0;
+  fuelBtns.forEach((item) => {
+    if (item.checked) {
+      activeFuelsQuontity++;
+    }
+  });
+
+  if (type == 'Cont') {
+    trkBtns.forEach((item) => {
+      if (item.dataset.value > 2) {
+        item.closest(".radio").classList.add("radio_disabled");
+        item.checked = false;
+      }
+    });
+    sideBtns.forEach((item) => {
+        item.closest(".radio").classList.add("radio_disabled");
+        item.checked = false;
+    });
+  } else {
+    if (activeFuelsQuontity == 2) {
+      trkBtns.forEach((item) => {
+        if (item.dataset.value < 2) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else if (activeFuelsQuontity == 3) {
+      trkBtns.forEach((item) => {
+        if (item.dataset.value < 3) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else if (activeFuelsQuontity == 4) {
+      trkBtns.forEach((item) => {
+        if (item.dataset.value < 4) {
+          item.closest(".radio").classList.add("radio_disabled");
+        }
+      });
+    } else {
+      trkBtns.forEach((item) => {
+        item.closest(".radio").classList.remove("radio_disabled");
+      });
+    }
+  }
+
+  if (size == 'S') {
+    console.log('size == S');
+    sideBtns.forEach((item) => {
+      item.closest(".radio").classList.remove("radio_disabled");
+      item.checked = false;
+      if (item.dataset.value == "1") {
+        item.checked = true;
+      }
+    });
+  }
+});
+
+
+
+const queryParams = parseUrlQuery();
+setCurrentParams(queryParams);
