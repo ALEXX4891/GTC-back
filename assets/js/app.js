@@ -1058,6 +1058,17 @@ function getFuels() {
   return fuels;
 }
 
+function getCheckedFuels() {
+  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  let numberOfChecked = 0;
+  fuelBtns.forEach((el) => {
+    if (el.checked) {
+      numberOfChecked++;
+    }
+  });
+  return numberOfChecked;
+}
+
 function getSections() {
   const queryParams = parseUrlQuery();
   let sections = "";
@@ -1215,7 +1226,7 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
         value = 40;
         maxVal = 40;
       }
-      if (sections == "4" && value <= 25) {
+      if (sections > 2 && value <= 25) {
         input.value = 25;
         value = 25;
         maxVal = 25;
@@ -1594,6 +1605,523 @@ if (checkbox.length) {
   });
 }
 
+function setSideFromTrk() {
+  console.log("******************** Старт функции setSideFromTrk **********************");
+  const trk = getTrk();
+  const type = getType();
+  const oneSideBtn = document.querySelector(".radio__input[data-name='side'][data-value='1']");
+  const twoSideBtn = document.querySelector(".radio__input[data-name='side'][data-value='2']");
+  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  const sideBtns = document.querySelectorAll(".checkbox__input[name='side']");
+  const trkBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='trk']"));
+  const size = getSize();
+  
+  if (trk == 1) {
+    oneSideBtn.closest(".radio").classList.add("radio_disabled");
+    twoSideBtn.closest(".radio").classList.add("radio_disabled");
+    oneSideBtn.checked = true;
+    delUrlQueryParam("side");
+  }
+
+  if (trk == 2) {
+    oneSideBtn.closest(".radio").classList.remove("radio_disabled");
+    twoSideBtn.closest(".radio").classList.remove("radio_disabled");
+    oneSideBtn.checked = true;
+    setUrlQueryParam("side", "1");
+  }
+
+  if (trk > 2) {
+    oneSideBtn.closest(".radio").classList.add("radio_disabled");
+    twoSideBtn.closest(".radio").classList.add("radio_disabled");
+    twoSideBtn.checked = true;
+    delUrlQueryParam("side");
+  }    
+
+  if (type == "Cont") {
+    oneSideBtn.closest(".radio").classList.add("radio_disabled");
+    twoSideBtn.closest(".radio").classList.add("radio_disabled");
+    oneSideBtn.checked = true;
+    setUrlQueryParam("side", "1");
+  }
+
+
+  // // утановка минимального количества ТРК и стороны при переходе на этап выбора ТРК:
+
+  // // if (!side) {
+  // //   setUrlQueryParam("side", "1");
+  // // }
+
+  // let activeFuelsQuontity = 0;
+  // fuelBtns.forEach((item) => {
+  //   if (item.checked) {
+  //     activeFuelsQuontity++;
+  //   }
+  // });
+
+  // если это контейнер: 
+  if (type == "Cont") {
+    trkBtns.forEach((item) => {
+      if (item.dataset.value > 2) {
+        item.closest(".radio").classList.add("radio_disabled");
+        item.checked = false;
+      }
+    });
+    sideBtns.forEach((item) => {
+      item.closest(".radio").classList.add("radio_disabled");
+      item.checked = false;
+    });
+  } 
+  
+  // // если это не контейнер: 
+  // if (type != "Cont") {
+  //   if (activeFuelsQuontity == 2) {
+  //     trkBtns.forEach((item) => {
+  //       if (item.dataset.value < 2) {
+  //         item.closest(".radio").classList.add("radio_disabled");
+  //       }
+  //     });
+  //   } else if (activeFuelsQuontity == 3) {
+  //     trkBtns.forEach((item) => {
+  //       if (item.dataset.value < 3) {
+  //         item.closest(".radio").classList.add("radio_disabled");
+  //       }
+  //     });
+  //   } else if (activeFuelsQuontity == 4) {
+  //     trkBtns.forEach((item) => {
+  //       if (item.dataset.value < 4) {
+  //         item.closest(".radio").classList.add("radio_disabled");
+  //       }
+  //     });
+  //   } else {
+  //     trkBtns.forEach((item) => {
+  //       item.closest(".radio").classList.remove("radio_disabled");
+  //     });
+  //   }
+  // }
+
+  // // если это маленький размер: 
+  // if (size == "S") {
+  //   sideBtns.forEach((item) => {
+  //     item.closest(".radio").classList.remove("radio_disabled");
+  //     item.checked = false;
+  //     if (item.dataset.value == "1") {
+  //       item.checked = true;
+  //     }
+  //   });
+  // }
+}
+
+function setSections() {
+  console.log("******************** Старт функции setSections **********************");
+  const size = getSize();
+  const type = getType();  
+  const fuels = getFuels();
+  const side = getSide();
+  const sections = getSections();
+  const trkBtns = document.querySelectorAll(".radio__input[name='trk']");
+  const sideBtns = document.querySelectorAll(".radio__input[name='side']");
+  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
+  const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
+  const desc = document.querySelector(".popup__info-wrap_section");
+  const sectionInputOne = sectionsBtns.entries().find((el) => el[1].dataset.value == "1");
+  const sectionInputTwo = sectionsBtns.entries().find((el) => el[1].dataset.value == "2");
+  const sectionInputThree = sectionsBtns.entries().find((el) => el[1].dataset.value == "3");
+  const sectionInputFour = sectionsBtns.entries().find((el) => el[1].dataset.value == "4");
+  const radioSectionOne = sectionInputOne[1].closest(".radio");
+  const radioSectionTwo = sectionInputTwo[1].closest(".radio");
+  const radioSectionThree = sectionInputThree[1].closest(".radio");
+  const radioSectionFour = sectionInputFour[1].closest(".radio");
+  const trkInputOne = trkBtns.entries().find((el) => el[1].dataset.value == "1");
+  const trkInputTwo = trkBtns.entries().find((el) => el[1].dataset.value == "2");
+  const trkInputThree = trkBtns.entries().find((el) => el[1].dataset.value == "3");
+  const trkInputFour = trkBtns.entries().find((el) => el[1].dataset.value == "4");
+  const radioTrkOne = trkInputOne[1].closest(".radio");
+  const radioTrkTwo = trkInputTwo[1].closest(".radio");
+  const radioTrkThree = trkInputThree[1].closest(".radio");
+  const radioTrkFour = trkInputFour[1].closest(".radio");
+  let numberOfChecked =  getCheckedFuels();
+
+  if (numberOfChecked) {
+    nextStepBtnFive.classList.remove("btn_disabled");
+  } else {
+    nextStepBtnFive.classList.add("btn_disabled");
+  }
+
+  sectionsBtns.forEach((item) => {
+    item.closest(".radio").classList.remove("radio_disabled");
+  });
+
+  fuelBtns.forEach((item) => {
+    item.closest(".checkbox").classList.remove("checkbox_disabled");
+  });
+
+  trkBtns.forEach((el) => {
+    el.closest(".radio").classList.remove("radio_disabled");
+  });
+  desc.style.display = "none";
+
+  sideBtns.forEach((el) => {
+    el.closest(".radio").classList.remove("radio_disabled");
+  });    
+
+  // если это маленькая бочка то можно разделить только на 2 секции, трк до 4-х:
+  if (size == "S") {
+    console.log(`size == "S"`);
+    desc.style.display = "grid";
+    sectionsBtns.forEach((item) => {
+      if (item.dataset.value > 2) {
+        item.closest(".radio").classList.add("radio_disabled");
+      }
+    });
+
+    if (numberOfChecked == 1) {
+      if (!sections) {
+        sectionInputOne[1].checked = true;
+        setUrlQueryParam("sections", 1);
+      }
+      setUrlQueryParam("trk", 1);
+      delUrlQueryParam("side");
+      trkInputOne[1].checked = true;
+      sideBtns.forEach((el) => {
+        el.closest(".radio").classList.add("radio_disabled");
+        el.checked = false;
+      });
+    }
+
+    if (numberOfChecked == 2) {
+      if (!sections || sections < 2) {
+        sectionInputTwo[1].checked = true;
+        setUrlQueryParam("sections", 2);
+      }
+      radioSectionOne.classList.add("radio_disabled");
+      trkInputTwo[1].checked = true;
+      radioTrkOne.classList.add("radio_disabled");
+      setUrlQueryParam("trk", 2);
+      setUrlQueryParam("side", 1);
+
+      fuelBtns.forEach((item) => {
+        if (item.checked == false) {
+          item.closest(".checkbox").classList.add("checkbox_disabled");
+        }
+      });
+    }
+
+    if (numberOfChecked > 2) {
+      fuelBtns.forEach((item) => {
+        if (item.checked == false) {
+          item.closest(".checkbox").classList.remove("checkbox_disabled");
+        }
+        delUrlQueryParam(item.getAttribute("data-name"));
+      });
+    }
+  } 
+
+  // if (size == "S") {
+  //   sectionsBtns.forEach((el) => {
+  //     if (el.dataset.value < 3) {
+  //       el.closest(".radio").classList.remove("radio_disabled");
+  //     }
+  //   });
+  // }
+  
+  // если это не контейнер и не мальнекая бочка:
+  if (size != "S" && type != "Cont") {
+    console.log(`size != "S" && type != "Cont"`);
+
+    if (numberOfChecked == 1) {
+      if (!sections) {
+        sectionInputOne[1].checked = true;
+        setUrlQueryParam("sections", 1);
+      }
+      trkInputOne[1].checked = true;
+      setUrlQueryParam("trk", 1);
+      delUrlQueryParam("side");
+
+      sideBtns.forEach((el) => {
+        el.closest(".radio").classList.remove("radio_disabled");
+        if (el.dataset.value == 1) {
+          el.checked = true;
+        }
+      });
+    }
+
+    if (numberOfChecked == 2) {
+      if (!sections || sections < 2) {
+        sectionInputTwo[1].checked = true;
+        setUrlQueryParam("sections", 2);
+      }
+      radioSectionOne.classList.add("radio_disabled");
+      trkInputTwo[1].checked = true;
+      setUrlQueryParam("trk", 2);
+      setUrlQueryParam("side", 1);
+
+      sideBtns.forEach((el) => {
+        el.closest(".radio").classList.remove("radio_disabled");
+        if (el.dataset.value == 1) {
+          el.checked = true;
+        }
+      });
+    }  
+
+    if (numberOfChecked == 3) {
+      if (!sections || sections < 3) {
+        sectionInputThree[1].checked = true;
+        setUrlQueryParam("sections", 3);
+      }
+      radioSectionOne.classList.add("radio_disabled");
+      radioSectionTwo.classList.add("radio_disabled");
+      trkInputThree[1].checked = true;
+      setUrlQueryParam("trk", 3);
+      delUrlQueryParam("side");
+
+      sideBtns.forEach((el) => {
+        el.closest(".radio").classList.add("radio_disabled");            
+        if (el.dataset.value == 2) {
+          el.checked = true;
+        }
+      });
+    }
+
+    if (numberOfChecked == 4) {
+      if (!sections || sections < 4) {
+        sectionInputFour[1].checked = true;
+        setUrlQueryParam("sections", 4);
+      }
+      radioSectionOne.classList.add("radio_disabled");
+      radioSectionTwo.classList.add("radio_disabled");
+      radioSectionThree.classList.add("radio_disabled");
+      trkInputFour[1].checked = true;
+      setUrlQueryParam("trk", 4);
+      delUrlQueryParam("side");
+
+      sideBtns.forEach((el) => {
+        el.closest(".radio").classList.add("radio_disabled");            
+        if (el.dataset.value == 2) {
+          el.checked = true;
+        }
+      });
+    }
+  }
+  
+  // если это средний контейнер:
+  if (size != "S" && type == "Cont") {
+    console.log(`size != "S" && type == "Cont"`);
+
+    // trkBtns.forEach((el) => {
+    //   if (el.dataset.value < 3) {
+    //     el.closest(".radio").classList.remove("radio_disabled");
+    //   }
+    // });
+    
+    sideBtns.forEach((el) => {
+      el.closest(".radio").classList.add("radio_disabled");
+      if (el.dataset.value == 1) {
+        el.checked = true;
+      }
+    });
+    
+    if (numberOfChecked == 1) {
+      if (!sections) {
+        sectionInputOne[1].checked = true;
+        setUrlQueryParam("sections", 1);
+      }
+      setUrlQueryParam("trk", 1);
+      delUrlQueryParam("side");
+      trkInputOne[1].checked = true;
+      sideBtns.forEach((el) => {
+        el.closest(".radio").classList.add("radio_disabled");
+        el.checked = false;
+      });
+    }
+
+    if (numberOfChecked == 2) {
+      if (!sections || sections < 2) {
+        sectionInputTwo[1].checked = true;
+        setUrlQueryParam("sections", 2);
+      }
+      radioSectionOne.classList.add("radio_disabled");
+      trkInputTwo[1].checked = true;
+      radioTrkOne.classList.add("radio_disabled");
+      setUrlQueryParam("trk", 2);
+      setUrlQueryParam("side", 1);
+
+      fuelBtns.forEach((item) => {
+        if (item.checked == false) {
+          item.closest(".checkbox").classList.add("checkbox_disabled");
+        }
+      });
+    }
+
+    if (numberOfChecked > 2) {
+      fuelBtns.forEach((item) => {
+        if (item.checked == false) {
+          item.closest(".checkbox").classList.remove("checkbox_disabled");
+        }
+        delUrlQueryParam(item.getAttribute("data-name"));
+      });
+    }
+  }
+  
+  // если это малый контейнер:
+  if (size == "S" && type == "Cont") {
+    console.log(`size == "S" && type == "Cont"`);
+
+    
+    sideBtns.forEach((el) => {
+      el.closest(".radio").classList.add("radio_disabled");
+      if (el.dataset.value == 1) {
+        el.checked = true;
+      }
+    });
+    
+    if (numberOfChecked == 1) {
+      if (!sections) {
+        sectionInputOne[1].checked = true;
+        setUrlQueryParam("sections", 1);
+      }
+      setUrlQueryParam("trk", 1);
+      delUrlQueryParam("side");
+      trkInputOne[1].checked = true;
+      sideBtns.forEach((el) => {
+        el.closest(".radio").classList.add("radio_disabled");
+        el.checked = false;
+      });
+    }
+
+    if (numberOfChecked == 2) {
+      if (!sections || sections < 2) {
+        sectionInputTwo[1].checked = true;
+        setUrlQueryParam("sections", 2);
+      }
+      radioSectionOne.classList.add("radio_disabled");
+      trkInputTwo[1].checked = true;
+      radioTrkOne.classList.add("radio_disabled");
+      setUrlQueryParam("trk", 2);
+      setUrlQueryParam("side", 1);
+
+      fuelBtns.forEach((item) => {
+        if (item.checked == false) {
+          item.closest(".checkbox").classList.add("checkbox_disabled");
+        }
+      });
+    }
+
+    if (numberOfChecked > 2) {
+      fuelBtns.forEach((item) => {
+        if (item.checked == false) {
+          item.closest(".checkbox").classList.remove("checkbox_disabled");
+        }
+        delUrlQueryParam(item.getAttribute("data-name"));
+      });
+    }
+  }
+
+  // блокировка количества видов топлива в зависимости от объема:
+  numberOfChecked = getCheckedFuels();
+  
+  if (size == "S" && numberOfChecked == 2) {
+    fuelBtns.forEach((item) => {
+      if (item.checked == false) {
+        item.closest(".checkbox").classList.add("checkbox_disabled");
+      }
+    });
+  }
+  if (type == "Cont" && numberOfChecked == 2) {
+    fuelBtns.forEach((item) => {
+      if (item.checked == false) {
+        item.closest(".checkbox").classList.add("checkbox_disabled");
+      }
+    });
+  }
+
+
+    // if (size == "S" && type == "Cont") {
+  //   sectionsBtns.forEach((item) => {
+  //     if (item.dataset.value > 2) {
+  //       item.closest(".radio").classList.add("radio_disabled");
+  //     }
+  //   });
+  // } else {
+  // }
+
+
+  // let activeFuelsQuontity = 0;
+  // fuelBtns.forEach((item) => {
+  //   if (item.checked) {
+  //     activeFuelsQuontity++;
+  //   }
+  // });
+  // if (activeFuelsQuontity == 2) {
+  //   sectionsBtns.forEach((item) => {
+  //     if (item.dataset.value < 2) {
+  //       item.closest(".radio").classList.add("radio_disabled");
+  //     }
+  //   });
+  // } else if (activeFuelsQuontity == 3) {
+  //   sectionsBtns.forEach((item) => {
+  //     if (item.dataset.value < 3) {
+  //       item.closest(".radio").classList.add("radio_disabled");
+  //     }
+  //   });
+  // } else if (activeFuelsQuontity == 4) {
+  //   sectionsBtns.forEach((item) => {
+  //     if (item.dataset.value < 4) {
+  //       item.closest(".radio").classList.add("radio_disabled");
+  //     }
+  //   });
+  // } else {
+  //   sectionsBtns.forEach((item) => {
+  //     item.closest(".radio").classList.remove("radio_disabled");
+  //   });
+  // }
+  
+
+  // if (type == 'Cont') {
+  //   sectionsBtns.forEach((item) => {
+  //     if (item.dataset.value == "3" || item.dataset.value == "4") {
+  //       item.closest(".radio").classList.add("radio_disabled");
+  //       item.checked = false;
+  //     }
+  //   });
+
+  //   if (activeFuelsQuontity > 2) {
+  //     fuelBtns.forEach((item) => {
+  //       item.checked = false;
+  //       item.closest(".checkbox").classList.remove("checkbox_disabled");
+  //       delUrlQueryParam(item.dataset.name);
+  //     });
+
+  //     sectionsBtns.forEach((item) => {
+  //       if (item.dataset.value == "3" || item.dataset.value == "4") {
+  //         item.closest(".radio").classList.add("radio_disabled");
+  //         item.checked = false;
+  //         delUrlQueryParam(item.dataset.name);
+  //       }
+
+  //       if (activeFuelsQuontity == 1) {
+  //         if (item.dataset.value == "1") {
+  //           item.closest(".radio").classList.remove("radio_disabled");
+  //           item.checked = true;
+  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
+  //         }
+  //       }
+
+  //       if (activeFuelsQuontity == 2) {
+  //         if (item.dataset.value == "2") {
+  //           item.closest(".radio").classList.remove("radio_disabled");
+  //           item.checked = true;
+  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
+}
+
+function setVolume() {
+  console.log("******************** Старт функции setVolume **********************");
+}
+
 // -------------------------------------------- end вспомогательные функции: ---------------------------------------------
 //#endregion
 
@@ -1675,28 +2203,29 @@ if (typeBtns.length) {
 
           if (trk > "2") {
             setUrlQueryParam("trk", "2");
-          }
-          sectionsBtns.forEach((el) => {
-            if (el.dataset.value > 2) {
-              el.closest(".radio").classList.add("radio_disabled");
-            }
-          });
-
-          if (sections > "2") {
-            setUrlQueryParam("sections", "2");
             setUrlQueryParam("side", "1");
-            // btnSectionOne.checked = true;
-            // btnSideOne.checked = true;
-            // pastImageName();
+          }
+          // sectionsBtns.forEach((el) => {
+          //   if (el.dataset.value > 2) {
+          //     el.closest(".radio").classList.add("radio_disabled");
+          //   }
+          // });
 
-            sectionsBtns.forEach((el) => {
-              if (el.dataset.value == 2) {
-                el.checked = true;
-              }
-              if (el.dataset.value <= 2) {
-                el.closest(".radio").classList.remove("radio_disabled");
-              }
-            });
+          // if (sections > "2") {
+            // setUrlQueryParam("sections", "2");
+            // setUrlQueryParam("side", "1");
+            // // btnSectionOne.checked = true;
+            // // btnSideOne.checked = true;
+            // // pastImageName();
+
+            // sectionsBtns.forEach((el) => {
+            //   if (el.dataset.value == 2) {
+            //     el.checked = true;
+            //   }
+            //   if (el.dataset.value <= 2) {
+            //     el.closest(".radio").classList.remove("radio_disabled");
+            //   }
+            // });
 
             // sideBtns.forEach((el) => {
             //   if (el.dataset.value == 1) {
@@ -1706,7 +2235,7 @@ if (typeBtns.length) {
             //     el.closest(".radio").classList.add("radio_disabled");
             //   }
             // });
-          }
+          // }
 
           if (activeFuelsQuontity > 2) {
             fuelBtns.forEach((item) => {
@@ -1723,14 +2252,14 @@ if (typeBtns.length) {
             });
           }
 
-          if (sections > "2") {
-            setUrlQueryParam("sections", "2");
-            setUrlQueryParam("side", "1");
-            btnSectionTwo.checked = true;
-            btnSideOne.checked = true;
-            // pastImageName();
-            // TODO продолжать здесь
-          }
+          // if (sections > "2") {
+          //   setUrlQueryParam("sections", "2");
+          //   setUrlQueryParam("side", "1");
+          //   btnSectionTwo.checked = true;
+          //   btnSideOne.checked = true;
+          //   // pastImageName();
+          //   // TODO продолжать здесь
+          // }
         });
       } else {
         fuelBtns.forEach((item) => {
@@ -1776,11 +2305,11 @@ if (typeBtns.length) {
             }
           });
 
-          sectionsBtns.forEach((el) => {
-            if (el.dataset.value == 2) {
-              el.checked = true;
-            }
-          });
+          // sectionsBtns.forEach((el) => {
+          //   if (el.dataset.value == 2) {
+          //     el.checked = true;
+          //   }
+          // });
         }
 
         // TODO добавить проверку на количество выбранного топлива?
@@ -1788,6 +2317,7 @@ if (typeBtns.length) {
     });
   });
 }
+
 
 const trkBtns = document.querySelectorAll("[data-calc-btn][data-name='trk']");
 if (trkBtns.length) {
@@ -1799,245 +2329,20 @@ if (trkBtns.length) {
   });
 
   // функция работы с радиокнопками для сторон:
-  function setSideFromTrk() {
-    console.log("******************** Старт функции setSideFromTrk **********************");
-    const trk = getTrk();
-    const type = getType();
-    const oneSideBtn = document.querySelector(".radio__input[data-name='side'][data-value='1']");
-    const twoSideBtn = document.querySelector(".radio__input[data-name='side'][data-value='2']");
-    if (trk == 2) {
-      oneSideBtn.closest(".radio").classList.remove("radio_disabled");
-      twoSideBtn.closest(".radio").classList.remove("radio_disabled");
-      oneSideBtn.checked = true;
-      setUrlQueryParam("side", "1");
-    } else {
-      oneSideBtn.closest(".radio").classList.add("radio_disabled");
-      twoSideBtn.closest(".radio").classList.add("radio_disabled");
-      oneSideBtn.checked = false;
-      twoSideBtn.checked = false;
-      delUrlQueryParam("side");
-    }
-
-    if (type == "Cont" && trk == 2) {
-      oneSideBtn.closest(".radio").classList.add("radio_disabled");
-      twoSideBtn.closest(".radio").classList.add("radio_disabled");
-      oneSideBtn.checked = true;
-      twoSideBtn.checked = false;
-      setUrlQueryParam("side", "1");
-    }
-  }
 }
 
 const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
 if (fuelBtns.length) {
-  const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
-  const trkBtns = document.querySelectorAll(".radio__input[name='trk']");
-  const sideBtns = document.querySelectorAll(".radio__input[name='side']");
-
   // подсчет количества выбранных видов топлива:
 
   fuelBtns.forEach((item) => {
     item.addEventListener("change", function (e) {
-      let queryParams = parseUrlQuery();
       console.log("change");
-      const size = getSize();
-      const fuels = getFuels();
       const sections = getSections();
-      const side = getSide();
-      const type = getType();
-
-      let numberOfChecked = 0;
-      fuelBtns.forEach((el) => {
-        if (el.checked) {
-          numberOfChecked++;
-        }
-      });
-
-      if (numberOfChecked) {
-        nextStepBtnFive.classList.remove("btn_disabled");
-      } else {
-        nextStepBtnFive.classList.add("btn_disabled");
+      if (!sections) {
+        setUrlQueryParam("sections", 1);
       }
-
-      const sectionInputOne = sectionsBtns.entries().find((el) => el[1].dataset.value == "1");
-      const sectionInputTwo = sectionsBtns.entries().find((el) => el[1].dataset.value == "2");
-      const sectionInputThree = sectionsBtns.entries().find((el) => el[1].dataset.value == "3");
-      const sectionInputFour = sectionsBtns.entries().find((el) => el[1].dataset.value == "4");
-      const radioSectionOne = sectionInputOne[1].closest(".radio");
-      const radioSectionTwo = sectionInputTwo[1].closest(".radio");
-      const radioSectionThree = sectionInputThree[1].closest(".radio");
-      const radioSectionFour = sectionInputFour[1].closest(".radio");
-
-      const trkInputOne = trkBtns.entries().find((el) => el[1].dataset.value == "1");
-      const trkInputTwo = trkBtns.entries().find((el) => el[1].dataset.value == "2");
-      const trkInputThree = trkBtns.entries().find((el) => el[1].dataset.value == "3");
-      const trkInputFour = trkBtns.entries().find((el) => el[1].dataset.value == "4");
-      console.log(trkInputOne);
-      console.log(trkInputTwo);
-      console.log(trkInputThree);
-      const radioTrkOne = trkInputOne[1].closest(".radio");
-      const radioTrkTwo = trkInputTwo[1].closest(".radio");
-      const radioTrkThree = trkInputThree[1].closest(".radio");
-      const radioTrkFour = trkInputFour[1].closest(".radio");
-
-      // контейнер и маленькая бочка можно разделить только на 2 секции, трк не меньше количества секций:
-      if (size == "S" || type == "Cont") {
-        sectionsBtns.forEach((el) => {
-          if (el.dataset.value < 3) {
-            el.closest(".radio").classList.remove("radio_disabled");
-          }
-        });
-      } else {
-        sectionsBtns.forEach((el) => {
-          el.closest(".radio").classList.add("radio_disabled");
-        });
-      }
-
-
-      if (size != "S" && type != "Cont") {
-
-        sectionsBtns.forEach((el) => {
-          el.closest(".radio").classList.remove("radio_disabled");
-        });
-
-        trkBtns.forEach((el) => {
-          el.closest(".radio").classList.remove("radio_disabled");
-        });
-
-        sideBtns.forEach((el) => {
-          el.closest(".radio").classList.remove("radio_disabled");
-        });
-
-        if (numberOfChecked == 1) {
-          sectionInputOne[1].checked = true;
-          trkInputOne[1].checked = true;
-          setUrlQueryParam("sections", 1);
-          setUrlQueryParam("trk", 1);
-          delUrlQueryParam("side");
-        }
-
-        if (numberOfChecked == 2) {
-          radioSectionOne.classList.add("radio_disabled");
-          sectionInputTwo[1].checked = true;
-          trkInputTwo[1].checked = true;
-          setUrlQueryParam("sections", 2);
-          setUrlQueryParam("trk", 2);
-          setUrlQueryParam("side", 1);
-
-          sideBtns.forEach((el) => {
-            el.closest(".radio").classList.remove("radio_disabled");
-            if (el.dataset.value == 1) {
-              el.checked = true;
-            }
-          });
-        } else {
-          sideBtns.forEach((el) => {
-            el.closest(".radio").classList.add("radio_disabled");
-            el.checked = false;
-          });
-        }
-
-        if (numberOfChecked == 3) {
-          radioSectionOne.classList.add("radio_disabled");
-          radioSectionTwo.classList.add("radio_disabled");
-          sectionInputThree[1].checked = true;
-          trkInputThree[1].checked = true;
-          setUrlQueryParam("sections", 3);
-          setUrlQueryParam("trk", 3);
-          delUrlQueryParam("side");
-        }
-
-        if (numberOfChecked == 4) {
-          radioSectionOne.classList.add("radio_disabled");
-          radioSectionTwo.classList.add("radio_disabled");
-          radioSectionThree.classList.add("radio_disabled");
-          sectionInputFour[1].checked = true;
-          trkInputFour[1].checked = true;
-          setUrlQueryParam("sections", 4);
-          setUrlQueryParam("trk", 4);
-          delUrlQueryParam("side");
-        }
-
-      } else {
-        trkBtns.forEach((el) => {
-          if (el.dataset.value < 3) {
-            el.closest(".radio").classList.remove("radio_disabled");
-          }
-        });
-
-        if (numberOfChecked == 1) {
-          setUrlQueryParam("sections", 1);
-          setUrlQueryParam("trk", 1);
-          delUrlQueryParam("side");
-          trkInputOne[1].checked = true;
-          sideBtns.forEach((el) => {
-            el.closest(".radio").classList.add("radio_disabled");
-            el.checked = false;
-          });
-        }
-
-        if (numberOfChecked == 2) {
-          radioSectionOne.classList.add("radio_disabled");
-          console.log(sectionInputOne[1]);
-          sectionInputTwo[1].checked = true;
-          trkInputTwo[1].checked = true;
-          radioTrkOne.classList.add("radio_disabled");
-          setUrlQueryParam("sections", 2);
-          setUrlQueryParam("trk", 2);
-          setUrlQueryParam("side", 1);
-          sideBtns.forEach((el) => {
-            el.closest(".radio").classList.add("radio_disabled");
-            if (el.dataset.value == 1) {
-              el.checked = true;
-            }
-          });
-        }
-        // if (numberOfChecked == 3) {
-        //   trkInputThree[1].checked = true;
-        //   setUrlQueryParam("trk", 3);
-
-        // }
-        // if (numberOfChecked == 4) {
-        //   trkInputFour[1].checked = true;
-        //   setUrlQueryParam("trk", 4);
-        // }
-      }
-
-      // queryParams = parseUrlQuery();
-      // setCurrentParams(queryParams);
-      // setSideFromTrk();
-
-
-
-      // блокировка количества видов топлива в зависимости от объема:
-      let activeBtnQuontity = 0;
-      fuelBtns.forEach((item) => {
-        if (item.checked) {
-          activeBtnQuontity++;
-        }
-      });
-      console.log(activeBtnQuontity);
-      if (size == "S" && activeBtnQuontity == 2) {
-        fuelBtns.forEach((item) => {
-          if (item.checked == false) {
-            item.closest(".checkbox").classList.add("checkbox_disabled");
-          }
-        });
-      }
-      if (type == "Cont" && activeBtnQuontity == 2) {
-        fuelBtns.forEach((item) => {
-          if (item.checked == false) {
-            item.closest(".checkbox").classList.add("checkbox_disabled");
-          }
-        });
-      }
-      if (type == "Cont") {
-        sectionsBtns.forEach((el) => {
-          if (el.dataset.value > 2) {
-            el.closest(".radio").classList.add("radio_disabled");
-          }
-        });
-      }
+      setSections();
     });
   });
 
@@ -2053,13 +2358,13 @@ if (fuelBtns.length) {
 
 const volumeInput = document.querySelector(".popup__range");
 if (volumeInput) {
-  // volumeInput.addEventListener("input", function () {
-  //   console.log("input");
-  //   const size = getSize();
-  //   if (size == 'S') {
-  //     const volume = volumeInput.value;
-  //   }
-  // });
+  volumeInput.addEventListener("input", function () {
+    console.log("input");
+    const size = getSize();
+    if (size == 'S') {
+      const volume = volumeInput.value;
+    }
+  });
 }
 // -------------------------------------- end обработка событий кнопок калькулятора ----------------
 //#endregion
@@ -2070,197 +2375,30 @@ if (volumeInput) {
 nextStepBtnThree.addEventListener("click", function () {
   console.log("click");
   const size = getSize();
-  if (size) {
-    return;
-  } else {
+  if (!size) {
     setUrlQueryParam("volume", "5");
   }
+  setVolume();
 });
 
 // переход на шаг 5 - выбор топлива:
 nextStepBtnFour.addEventListener("click", function () {
   console.log("click");
-  const size = getSize();
-  const type = getType();
   const sections = getSections();
-  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
-  const sectionsBtns = document.querySelectorAll(".radio__input[data-name='sections']");
-  const desc = document.querySelector(".popup__info-wrap_section");
-
-  // утановка минимального количества секции при переходе на этап выбора секций:
   if (!sections) {
     setUrlQueryParam("sections", "1");
   }
-
-  if (size == "S") {
-    desc.style.display = "grid";
-  } else {
-    desc.style.display = "none";
-  }
-
-  // const sectionsBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='sections']"));
-
-  if (size == "S") {
-    sectionsBtns.forEach((item) => {
-      if (item.dataset.value > 2) {
-        item.closest(".radio").classList.add("radio_disabled");
-      }
-    });
-    // } else {
-    //   sectionsBtns.forEach((item) => {
-    //     item.closest(".radio").classList.remove("radio_disabled");
-    //   });
-  }
-
-  // if (size != 'S') {
-  //   fuelBtns.forEach((item) => {
-  //     item.closest(".checkbox").classList.remove("checkbox_disabled");
-  //   });
-  // }
-
-  if (1 != 1) {
-    let activeFuelsQuontity = 0;
-    fuelBtns.forEach((item) => {
-      if (item.checked) {
-        activeFuelsQuontity++;
-      }
-    });
-    if (activeFuelsQuontity == 2) {
-      sectionsBtns.forEach((item) => {
-        if (item.dataset.value < 2) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else if (activeFuelsQuontity == 3) {
-      sectionsBtns.forEach((item) => {
-        if (item.dataset.value < 3) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else if (activeFuelsQuontity == 4) {
-      sectionsBtns.forEach((item) => {
-        if (item.dataset.value < 4) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else {
-      sectionsBtns.forEach((item) => {
-        // item.closest(".radio").classList.remove("radio_disabled");
-      });
-    }
-  }
-
-  // if (type == 'Cont') {
-  //   sectionsBtns.forEach((item) => {
-  //     if (item.dataset.value == "3" || item.dataset.value == "4") {
-  //       item.closest(".radio").classList.add("radio_disabled");
-  //       item.checked = false;
-  //     }
-  //   });
-
-  //   if (activeFuelsQuontity > 2) {
-  //     fuelBtns.forEach((item) => {
-  //       item.checked = false;
-  //       item.closest(".checkbox").classList.remove("checkbox_disabled");
-  //       delUrlQueryParam(item.dataset.name);
-  //     });
-
-  //     sectionsBtns.forEach((item) => {
-  //       if (item.dataset.value == "3" || item.dataset.value == "4") {
-  //         item.closest(".radio").classList.add("radio_disabled");
-  //         item.checked = false;
-  //         delUrlQueryParam(item.dataset.name);
-  //       }
-
-  //       if (activeFuelsQuontity == 1) {
-  //         if (item.dataset.value == "1") {
-  //           item.closest(".radio").classList.remove("radio_disabled");
-  //           item.checked = true;
-  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
-  //         }
-  //       }
-
-  //       if (activeFuelsQuontity == 2) {
-  //         if (item.dataset.value == "2") {
-  //           item.closest(".radio").classList.remove("radio_disabled");
-  //           item.checked = true;
-  //           setUrlQueryParam(item.dataset.name, item.dataset.value);
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
+  setSections();
 });
 
 // переход на шаг 6 - выбор ТРК:
 nextStepBtnFive.addEventListener("click", function () {
   console.log("click");
-  const fuelBtns = document.querySelectorAll(".checkbox__input[name='fuel']");
-  const sideBtns = document.querySelectorAll(".checkbox__input[name='side']");
-  const trkBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='trk']"));
-  const type = getType();
-  const size = getSize();
   const trk = getTrk();
-
-  // утановка минимального количества ТРК и стороны при переходе на этап выбора ТРК:
   if (!trk) {
     setUrlQueryParam("trk", "1");
   }
-
-  let activeFuelsQuontity = 0;
-  fuelBtns.forEach((item) => {
-    if (item.checked) {
-      activeFuelsQuontity++;
-    }
-  });
-
-  if (type == "Cont") {
-    trkBtns.forEach((item) => {
-      if (item.dataset.value > 2) {
-        item.closest(".radio").classList.add("radio_disabled");
-        item.checked = false;
-      }
-    });
-    sideBtns.forEach((item) => {
-      item.closest(".radio").classList.add("radio_disabled");
-      item.checked = false;
-    });
-  } else {
-    if (activeFuelsQuontity == 2) {
-      trkBtns.forEach((item) => {
-        if (item.dataset.value < 2) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else if (activeFuelsQuontity == 3) {
-      trkBtns.forEach((item) => {
-        if (item.dataset.value < 3) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else if (activeFuelsQuontity == 4) {
-      trkBtns.forEach((item) => {
-        if (item.dataset.value < 4) {
-          item.closest(".radio").classList.add("radio_disabled");
-        }
-      });
-    } else {
-      trkBtns.forEach((item) => {
-        item.closest(".radio").classList.remove("radio_disabled");
-      });
-    }
-  }
-
-  if (size == "S") {
-    console.log("size == S");
-    sideBtns.forEach((item) => {
-      item.closest(".radio").classList.remove("radio_disabled");
-      item.checked = false;
-      if (item.dataset.value == "1") {
-        item.checked = true;
-      }
-    });
-  }
+  setSideFromTrk();
 });
 // -------------------------------------- end обработка событий кнопок перехода на следующий шаг ----------------
 //#endregion
