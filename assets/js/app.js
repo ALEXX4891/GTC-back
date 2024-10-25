@@ -7,6 +7,7 @@ const nextStepBtnThree = document.querySelector(".popup__next-btn[data-step='3']
 const nextStepBtnFour = document.querySelector(".popup__next-btn[data-step='4']");
 const nextStepBtnFive = document.querySelector(".popup__next-btn[data-step='5']");
 const nextStepBtnSix = document.querySelector(".popup__next-btn[data-step='6']");
+const resultCalcBtn = document.querySelector(".popup__step-btn[data-popup='popup-calc_result']");
 
 // ------------------------- start FANCYBOX: ---------------------------
 const body = document.querySelector("body");
@@ -737,6 +738,17 @@ if (canselCalcBtn) {
   });
 }
 
+const canselCalcBtnNo = document.querySelector(".calc-cansel-btn-no");
+if (canselCalcBtnNo) {
+  canselCalcBtnNo.addEventListener("click", function (e) {
+
+    popupClose(e.target.closest(".popup"));
+    // window.history.pushState({}, document.title, window.location.pathname);
+    // urlParams = new URLSearchParams(window.location.search);
+    // location.reload();
+  });
+}
+
 // -------------------------------------------- end popup: ---------------------------------------------
 //#endregion
 
@@ -1444,9 +1456,8 @@ function rangeSliderUpdate(slider, value) {
 
 // ---------------------- start Формирование последнего шага -----------------
 //#region result
-const resBtn = document.querySelector("button[data-popup='popup-calc_result']");
-if (resBtn) {
-  resBtn.addEventListener("click", function (e) {
+if (resultCalcBtn) {
+  resultCalcBtn.addEventListener("click", function (e) {
     console.log("click");
     const finalImg = document.querySelector(".popup__result-img").querySelector("img");
     console.log(finalImg);
@@ -1493,7 +1504,62 @@ if (resBtn) {
     Габариты, мм: 5000х2200х2650 <br>
     Масса, кг: 3700
     `;
+
+
+
   });
+
+
+  async function createCalcFile(e) {
+    // e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // let errore = formvalidation(form);
+
+    // if (errore === 0) {
+      // form.classList.add("_sending");
+      let formData = new FormData();
+      formData.append("image", dataRequest);
+
+
+      // const popup = form.closest(".popup")
+
+      // if (popup) {
+      //   const dataRequest = form.closest(".popup").getAttribute("data-request");
+
+      //   if (dataRequest) {
+      //     formData.append("dataRequest", dataRequest);
+      //   }
+      // }
+
+      let response = await fetch("/backend/create-pdf.php", {
+        method: "POST",
+        body: formData,
+      });
+
+      // for (var pair of formData.entries()) {
+      //   console.log(pair[0] + ", " + pair[1]);
+      // }
+
+      if (response.ok) {
+        let result = await response.json();
+        console.log(result);
+        // form.reset();
+        // if (formData.get("id") == 3) {
+        //   popupOpen(document.getElementById("popup-success-subscribe"));
+        // } else {
+        //   popupOpen(document.getElementById("success"));
+        // }
+        
+        // form.classList.remove("_sending");
+      // } else {
+        // popupOpen(document.getElementById("error"));
+        // form.classList.remove("_sending");
+      // }
+    // } else {
+    //   alert("Заполните обязательные поля");
+    }
+  }
 }
 // ---------------------- end Формирование последнего шага -----------------
 //#endregion
