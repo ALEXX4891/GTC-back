@@ -63,8 +63,7 @@ if ($_POST['image']) {
             object-fit: contain;
             object-position: center;"/>
         '; 
-  $s .= "<p>{$image}</p>";
-
+//   $s .= "<p>{$image}</p>";
 //   $pdf->Image($image, 10, 10, 250, 250, 'PNG', '', '', false, 150, '', false, false, 1, false, false, false);
 }
 
@@ -84,7 +83,7 @@ if ($_POST['characteristics']) {
 }
 $pdf->writeHTML($s, true, false, true, false, '');
 ob_end_clean();
-echo $s;
+// echo $s;
 $pdf->Output($_SERVER['DOCUMENT_ROOT'] . 'calc.pdf', 'F');
 
     // $image = '/assets/img/renders/Open_S_1r_1k.png';

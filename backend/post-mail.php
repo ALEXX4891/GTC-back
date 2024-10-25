@@ -79,6 +79,101 @@ if ($_POST['type'] == "Консультация") {
   }
 } 
 
+if ($_POST['type'] == "Консультация по заказу") {
+  // тема письма
+  $mail->Subject = 'Заявка на консультацию с сайта gtc.ru';
+
+  // текст письма
+  $body = '<h1>Заявка на консультацию с сайта gtc.ru:</h1>';
+
+  if (trim(!empty($_POST['name']))) {
+    $body .= '<p><strong>Имя:</strong> ' . $_POST['name'] . '</p>';
+    // $fieldsArr['name'] = $_POST['name'];
+  }
+
+  if (trim(!empty($_POST['phone']))) {
+    $body .= '<p><strong>Телефон:</strong> ' . $_POST['phone'] . '</p>';
+    // $fieldsArr['phone'] = $_POST['phone'];
+  }
+  
+  if (trim(!empty($_POST['organization']))) {
+    $body .= '<p><strong>Организация:</strong> ' . $_POST['organization'] . '</p>';
+    // $fieldsArr['comment'] = 'Комментарий: ' . $_POST['message'] . ".\n";
+  }
+
+  if (trim(!empty($_POST['email']))) {
+    $body .= '<p><strong>Email:</strong> ' . $_POST['email'] . '</p>';
+    // $fieldsArr['email'] = $_POST['email'];
+  }
+
+  if (trim(!empty($_POST['text']))) {
+    $body .= '<p><strong>Комментарий:</strong> ' . $_POST['text'] . '</p>';
+    // $fieldsArr['comment'] = 'Комментарий: ' . $_POST['message'] . ".\n";
+  }
+
+  if (trim(!empty($_POST['image']))) {
+    $body .= '<p><strong>Изображение:</strong></p>
+    <img src="'. $_POST['image']. '">';  
+  }
+  if (trim(!empty($_POST['price']))) {
+    $body .= '<p><strong>Стоимость:</strong> ' . $_POST['price'] . '</p>';
+  }
+  if (trim(!empty($_POST['description']))) {
+    $body .= '<p><strong>Описание:</strong> ' . $_POST['description'] . '</p>';
+  }
+  if (trim(!empty($_POST['params']))) {
+    $body .= '<p><strong>Характеристики:</strong> ' . $_POST['params'] . '</p>';
+  }
+} 
+
+if ($_POST['type'] == "Заказ") {
+  // тема письма
+  $mail->Subject = 'Заказ с сайта gtc.ru';
+
+  // текст письма
+  $body = '<h1>Заказ с сайта gtc.ru:</h1>';
+
+  if (trim(!empty($_POST['name']))) {
+    $body .= '<p><strong>Имя:</strong> ' . $_POST['name'] . '</p>';
+    // $fieldsArr['name'] = $_POST['name'];
+  }
+
+  if (trim(!empty($_POST['phone']))) {
+    $body .= '<p><strong>Телефон:</strong> ' . $_POST['phone'] . '</p>';
+    // $fieldsArr['phone'] = $_POST['phone'];
+  }
+  
+  if (trim(!empty($_POST['organization']))) {
+    $body .= '<p><strong>Организация:</strong> ' . $_POST['organization'] . '</p>';
+    // $fieldsArr['comment'] = 'Комментарий: ' . $_POST['message'] . ".\n";
+  }
+
+  if (trim(!empty($_POST['email']))) {
+    $body .= '<p><strong>Email:</strong> ' . $_POST['email'] . '</p>';
+    // $fieldsArr['email'] = $_POST['email'];
+  }
+
+  if (trim(!empty($_POST['text']))) {
+    $body .= '<p><strong>Комментарий:</strong> ' . $_POST['text'] . '</p>';
+    // $fieldsArr['comment'] = 'Комментарий: ' . $_POST['message'] . ".\n";
+  }
+
+
+  if (trim(!empty($_POST['image']))) {
+    $body .= '<p><strong>Изображение:</strong></p>
+    <img src="'. $_POST['image']. '">';  
+  }
+  if (trim(!empty($_POST['price']))) {
+    $body .= '<p><strong>Стоимость:</strong> ' . $_POST['price'] . '</p>';
+  }
+  if (trim(!empty($_POST['description']))) {
+    $body .= '<p><strong>Описание:</strong> ' . $_POST['description'] . '</p>';
+  }
+  if (trim(!empty($_POST['params']))) {
+    $body .= '<p><strong>Характеристики:</strong> ' . $_POST['params'] . '</p>';
+  }
+} 
+
 $mail->Body = $body;
 
 // Отправляем

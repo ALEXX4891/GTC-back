@@ -100,7 +100,7 @@
 
       <form class="popup__form form">
         <fieldset class="form__wrap">
-          <input type="hidden" name="type" value="Консультация">
+          <input type="hidden" name="type" value="Консультация по заказу">
           <input class="form__input form__input_name _req input" type="text" name="name" placeholder="Имя*">
           <input class="form__input form__input_phone _req input" type="tel" name="phone" placeholder="Телефон*">
           <input class="form__input form__input_organization _req input" type="text" name="organization"

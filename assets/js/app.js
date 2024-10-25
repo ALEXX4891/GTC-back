@@ -1,6 +1,4 @@
 let urlParams = new URLSearchParams(window.location.search);
-// window.history.pushState({}, document.title, window.location.pathname);
-// urlParams = new URLSearchParams(window.location.search);
 $(".phone").mask("8(999) 999 99 99");
 const nextStepBtnTwo = document.querySelector(".popup__next-btn[data-step='2']");
 const nextStepBtnThree = document.querySelector(".popup__next-btn[data-step='3']");
@@ -167,6 +165,19 @@ if (formAll) {
 
       if (errore === 0) {
         let formData = new FormData(form);
+
+        const resPopup = document.getElementById("popup-calc_result");
+        if (resPopup) {
+          const img = resPopup.querySelector(".popup__result-img").querySelector("img").src;
+          const price = resPopup.querySelector(".popup__result-price").textContent;
+          const description = resPopup.querySelector(".popup__result-desc").textContent;
+          const params = resPopup.querySelector(".popup__result-params").textContent;
+          formData.append("image", img);
+          formData.append("price", price);
+          formData.append("description", description);
+          formData.append("params", params);
+        }
+
 
         const wrapper = form.closest(".form-wrap");
         wrapper.classList.add("_sending");
