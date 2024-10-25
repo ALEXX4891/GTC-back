@@ -54,7 +54,7 @@ if (offerCards.length) {
     $clamp(cardText, { clamp: 2 });
 
     cardMoreBtn.addEventListener("click", function () {
-      console.log("click");
+      // console.log("click");
       const popup = document.querySelector(".popup-offer_more");
       const popupTitle = popup.querySelector(".off-card__title");
       const popupSubtitle = popup.querySelector(".off-card__subtitle");
@@ -96,14 +96,14 @@ if (offerCards.length) {
       }
 
       showBtn.addEventListener("click", function () {
-        console.log("click");
+        // console.log("click");
         popupText.innerHTML = truthCardText;
         showBtn.style.display = "none";
         hideBtn.style.display = "block";
       });
 
       hideBtn.addEventListener("click", function () {
-        console.log("click");
+        // console.log("click");
         popupText.innerHTML = truthCardText.slice(0, 470) + "...";
         showBtn.style.display = "block";
         hideBtn.style.display = "none";
@@ -178,7 +178,6 @@ if (formAll) {
           formData.append("params", params);
         }
 
-
         const wrapper = form.closest(".form-wrap");
         wrapper.classList.add("_sending");
 
@@ -187,9 +186,9 @@ if (formAll) {
           body: formData,
         });
 
-        for (var pair of formData.entries()) {
-          console.log(pair[0] + ", " + pair[1]);
-        }
+        // for (var pair of formData.entries()) {
+        //   console.log(pair[0] + ", " + pair[1]);
+        // }
 
         if (response.ok) {
           form.reset();
@@ -650,7 +649,7 @@ if (popupCloseIcon.length > 0) {
   for (let index = 0; index < popupCloseIcon.length; index++) {
     const el = popupCloseIcon[index];
     el.addEventListener("click", function (e) {
-      console.log("тест");
+      // console.log("тест");
       popupClose(el.closest(".popup")); //ближайший родитель класса popup
       e.preventDefault();
     });
@@ -685,7 +684,7 @@ function popupOpen(curentPopup) {
 }
 
 function popupClose(popupActive, doUnlock = true) {
-  console.log("popupClose");
+  // console.log("popupClose");
   if (unlock) {
     popupActive.classList.remove("open");
     if (doUnlock) {
@@ -752,7 +751,6 @@ if (canselCalcBtn) {
 const canselCalcBtnNo = document.querySelector(".calc-cansel-btn-no");
 if (canselCalcBtnNo) {
   canselCalcBtnNo.addEventListener("click", function (e) {
-
     popupClose(e.target.closest(".popup"));
     // window.history.pushState({}, document.title, window.location.pathname);
     // urlParams = new URLSearchParams(window.location.search);
@@ -776,12 +774,12 @@ if (burger) {
   const headerNavWrap = document.querySelector(".header__nav-wrap");
 
   burger.addEventListener("click", function (e) {
-    console.log("тест");
+    // console.log("тест");
     popupOpen(popup);
     // bodyLock()
     popup.classList.add("open");
     popupContent.append(content);
-    console.log(popup);
+    // console.log(popup);
   });
 
   // закрытие popup по кнопке
@@ -844,7 +842,7 @@ function closeCookiePolicyNotification() {
 const cookieBtn = document.querySelector(".cookie__btn");
 if (cookieBtn) {
   cookieBtn.addEventListener("click", function (e) {
-    console.log("тест");
+    // console.log("тест");
     e.preventDefault();
     acceptCookiePolicy();
   });
@@ -853,7 +851,7 @@ if (cookieBtn) {
 const cookieCloseBtn = document.querySelector(".cookie__close");
 if (cookieCloseBtn) {
   cookieCloseBtn.addEventListener("click", function (e) {
-    console.log("тест");
+    // console.log("тест");
     e.preventDefault();
     closeCookiePolicyNotification();
   });
@@ -988,7 +986,7 @@ function parseUrlQuery() {
 }
 
 function setUrlQueryParam(param, value) {
-  console.log("*************** Старт функции setUrlQueryParam ***************");
+  // console.log("*************** Старт функции setUrlQueryParam ***************");
   urlParams.set(param, value);
   // showActiveItem(input);
   window.history.pushState({}, "", "?" + urlParams.toString());
@@ -997,7 +995,7 @@ function setUrlQueryParam(param, value) {
 }
 
 function delUrlQueryParam(param) {
-  console.log("*************** Старт функции delUrlQueryParam ***************");
+  // console.log("*************** Старт функции delUrlQueryParam ***************");
   urlParams.delete(param);
   window.history.pushState({}, "", "?" + urlParams.toString());
   pastImageName();
@@ -1144,7 +1142,7 @@ function getFast() {
 //#region image name
 //функция формирования имени изображения
 function getImageName() {
-  console.log("*************** Старт функции getImageName ***************");
+  // console.log("*************** Старт функции getImageName ***************");
 
   let name = "";
 
@@ -1158,7 +1156,7 @@ function getImageName() {
   let side = "";
   let fast = "";
 
-  console.log(queryParams);
+  // console.log(queryParams);
   // тип
   if (getType()) {
     type = getType();
@@ -1193,7 +1191,7 @@ function getImageName() {
     fast = getFast() > 0 ? "f" : "";
 
     if (fast) {
-      console.log(fast);
+      // console.log(fast);
       name = `/assets/img/renders/${type}_${size}_${sections}r_${trk}k_${fast}.png`;
 
       if (getTrk() == 2) {
@@ -1203,13 +1201,13 @@ function getImageName() {
     }
   }
 
-  console.log(name);
+  // console.log(name);
   return name;
 }
 
 //функция подстановки имени изображения
 function pastImageName() {
-  console.log("*************** Старт функции pastImageName ***************");
+  // console.log("*************** Старт функции pastImageName ***************");
   const imageName = getImageName();
   const images = document.querySelectorAll(".popup__type-img");
   images.forEach((item) => {
@@ -1228,7 +1226,7 @@ if (slider) {
 }
 
 function rangeSliderInit(slider, gap, minRange, maxRange) {
-  console.log('**************** Старт функции rangeSliderInit ***************");');
+  // console.log('**************** Старт функции rangeSliderInit ***************");');
   const rangeSlider = slider.querySelector(".range-slider");
 
   // рендж инпуты:
@@ -1267,7 +1265,7 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
         }
       }
 
-      console.log("parseInt(input.value)", value);
+      // console.log("parseInt(input.value)", value);
       if (maxVal <= minVal) {
         value = minRange;
         maxVal = minRange;
@@ -1300,8 +1298,8 @@ function rangeSliderInit(slider, gap, minRange, maxRange) {
 //#region setCurrentParams
 // функция установки текущих значений фильтров из urlParams:
 function setCurrentParams(arr) {
-  console.log("*************** Старт функции setCurrentParams ***************"); // имя функции
-  console.log(arr);
+  // console.log("*************** Старт функции setCurrentParams ***************"); // имя функции
+  // console.log(arr);
   let urlParams = new URLSearchParams(window.location.search);
 
   if (!arr) {
@@ -1324,7 +1322,7 @@ function setCurrentParams(arr) {
   }
 
   const insulationBtn = document.querySelector(".checkbox__input[data-name='insulation']");
-  console.log(insulationBtn);
+  // console.log(insulationBtn);
 
   if (insulationBtn && arr.filter((item) => item.name === "insulation").length) {
     insulationBtn.checked = true;
@@ -1433,7 +1431,7 @@ function setCurrentParams(arr) {
 //#region rangeSliderUpdate
 //функция установки значения рэндж слайдера:
 function rangeSliderUpdate(slider, value) {
-  console.log("*************** Старт функции rangeSliderUpdate ***************"); // имя функции
+  // console.log("*************** Старт функции rangeSliderUpdate ***************"); // имя функции
   const rangeSlider = slider.querySelector(".range-slider");
   const rangeInputMax = slider.querySelector(".max-range");
 
@@ -1469,7 +1467,7 @@ function rangeSliderUpdate(slider, value) {
 //#region result
 if (resultCalcBtn) {
   resultCalcBtn.addEventListener("click", function (e) {
-    console.log("click");
+    // console.log("click");
     const finalImg = document.querySelector(".popup__result-img").querySelector("img");
     // console.log(finalImg);
     const img = getImageName();
@@ -1477,7 +1475,7 @@ if (resultCalcBtn) {
 
     // e.preventDefault();
     const params = parseUrlQuery();
-    console.log(params);
+    // console.log(params);
 
     //  TODO надо сформировать формирование цены, описания и характеристик, они будут использоваться в файле pdf и в формах обратной связи
 
@@ -1519,13 +1517,11 @@ if (resultCalcBtn) {
     Масса, кг: 3700
     `;
 
-
     createCalcFile();
   });
 
-
   async function createCalcFile() {
-    console.log('******************** Старт функции createCalcFile **********************');
+    // console.log("******************** Старт функции createCalcFile **********************");
     // e.preventDefault();
     const params = parseUrlQuery();
     const img = getImageName();
@@ -1537,55 +1533,52 @@ if (resultCalcBtn) {
     // let errore = formvalidation(form);
 
     // if (errore === 0) {
-      // form.classList.add("_sending");
-      let formData = new FormData();
-      formData.append("image", img);
-      formData.append("price", finalPrice.innerHTML);
-      formData.append("description", finalDesc.innerHTML);
-      formData.append("characteristics", finalParams.innerHTML);
-      // formData.append("params", params);
+    // form.classList.add("_sending");
+    let formData = new FormData();
+    formData.append("image", img);
+    formData.append("price", finalPrice.innerHTML);
+    formData.append("description", finalDesc.innerHTML);
+    formData.append("characteristics", finalParams.innerHTML);
+    // formData.append("params", params);
 
+    // const popup = form.closest(".popup")
 
+    // if (popup) {
+    //   const dataRequest = form.closest(".popup").getAttribute("data-request");
 
-      // const popup = form.closest(".popup")
+    //   if (dataRequest) {
+    //     formData.append("dataRequest", dataRequest);
+    //   }
+    // }
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
-      // if (popup) {
-      //   const dataRequest = form.closest(".popup").getAttribute("data-request");
+    let response = await fetch("/backend/create-pdf.php", {
+      method: "POST",
+      body: formData,
+    });
 
-      //   if (dataRequest) {
-      //     formData.append("dataRequest", dataRequest);
-      //   }
+    if (response.ok) {
+      downlodBtn.classList.remove("btn_disabled");
+
+      let result = await response;
+      // console.log(result);
+      // form.reset();
+      // if (formData.get("id") == 3) {
+      //   popupOpen(document.getElementById("popup-success-subscribe"));
+      // } else {
+      //   popupOpen(document.getElementById("success"));
       // }
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
 
-      let response = await fetch("/backend/create-pdf.php", {
-        method: "POST",
-        body: formData,
-      });
-
-
-      if (response.ok) {
-        downlodBtn.classList.remove("btn_disabled");
-
-        let result = await response;
-        console.log(result);
-        // form.reset();
-        // if (formData.get("id") == 3) {
-        //   popupOpen(document.getElementById("popup-success-subscribe"));
-        // } else {
-        //   popupOpen(document.getElementById("success"));
-        // }
-        
-        // form.classList.remove("_sending");
-      } else {
-        downlodBtn.classList.add("btn_disabled");
-        // popupOpen(document.getElementById("error"));
-        // form.classList.remove("_sending");
+      // form.classList.remove("_sending");
+    } else {
+      downlodBtn.classList.add("btn_disabled");
+      // popupOpen(document.getElementById("error"));
+      // form.classList.remove("_sending");
       // }
-    // } else {
-    //   alert("Заполните обязательные поля");
+      // } else {
+      //   alert("Заполните обязательные поля");
     }
   }
 }
@@ -1599,7 +1592,7 @@ const insulationBtn = document.querySelector(".insulation");
 const heaterBtn = document.querySelector(".heater");
 if (insulationBtn && heaterBtn) {
   insulationBtn.addEventListener("click", function (e) {
-    console.log("click");
+    // console.log("click");
 
     if (insulationBtn.querySelector("input").checked) {
       heaterBtn.classList.remove("checkbox_disabled");
@@ -1641,7 +1634,7 @@ if (btnTemp.length) {
 
   btnTemp.forEach((btn) => {
     btn.addEventListener("click", function () {
-      console.log("click");
+      // console.log("click");
       btnTemp.forEach((item) => {
         item.classList.remove("popup__btn_temp_active");
       });
@@ -1667,7 +1660,7 @@ const calcBtns = document.querySelectorAll("[data-calc-btn]");
 if (calcBtns.length) {
   calcBtns.forEach((btn) => {
     btn.addEventListener("click", function (e) {
-      console.log("click");
+      // console.log("click");
 
       if (btn.closest(".radio_disabled") || btn.closest(".checkbox_disabled")) {
         e.preventDefault();
@@ -1698,7 +1691,7 @@ const checkbox = document.querySelectorAll(".checkbox");
 if (checkbox.length) {
   checkbox.forEach((item) => {
     item.addEventListener("click", function (e) {
-      console.log("click");
+      // console.log("click");
       if (item.classList.contains("checkbox_disabled")) {
         e.preventDefault();
         const popup = item.closest(".popup");
@@ -1709,7 +1702,7 @@ if (checkbox.length) {
 }
 
 function setSideFromTrk() {
-  console.log("******************** Старт функции setSideFromTrk **********************");
+  // console.log("******************** Старт функции setSideFromTrk **********************");
   const trk = getTrk();
   const type = getType();
   const oneSideBtn = document.querySelector(".radio__input[data-name='side'][data-value='1']");
@@ -1718,8 +1711,8 @@ function setSideFromTrk() {
   const sideBtns = document.querySelectorAll(".checkbox__input[name='side']");
   const trkBtns = Array.from(document.querySelectorAll("[data-calc-btn][data-name='trk']"));
   const size = getSize();
-  let numberOfChecked =  getCheckedFuels();
-  
+  let numberOfChecked = getCheckedFuels();
+
   if (trk == 1) {
     oneSideBtn.closest(".radio").classList.add("radio_disabled");
     twoSideBtn.closest(".radio").classList.add("radio_disabled");
@@ -1739,7 +1732,7 @@ function setSideFromTrk() {
     twoSideBtn.closest(".radio").classList.add("radio_disabled");
     twoSideBtn.checked = true;
     delUrlQueryParam("side");
-  }    
+  }
 
   if (type == "Cont") {
     oneSideBtn.closest(".radio").classList.add("radio_disabled");
@@ -1747,7 +1740,6 @@ function setSideFromTrk() {
     oneSideBtn.checked = true;
     setUrlQueryParam("side", "1");
   }
-
 
   // // утановка минимального количества ТРК и стороны при переходе на этап выбора ТРК:
 
@@ -1762,7 +1754,7 @@ function setSideFromTrk() {
   //   }
   // });
 
-  // если это контейнер: 
+  // если это контейнер:
   if (type == "Cont") {
     trkBtns.forEach((item) => {
       if (item.dataset.value > 2) {
@@ -1774,9 +1766,9 @@ function setSideFromTrk() {
       item.closest(".radio").classList.add("radio_disabled");
       item.checked = false;
     });
-  } 
-  
-  // если это не контейнер: 
+  }
+
+  // если это не контейнер:
   if (type != "Cont") {
     if (numberOfChecked == 2) {
       trkBtns.forEach((item) => {
@@ -1805,9 +1797,9 @@ function setSideFromTrk() {
 }
 
 function setSections() {
-  console.log("******************** Старт функции setSections **********************");
+  // console.log("******************** Старт функции setSections **********************");
   const size = getSize();
-  const type = getType();  
+  const type = getType();
   const fuels = getFuels();
   const side = getSide();
   const sections = getSections();
@@ -1832,7 +1824,7 @@ function setSections() {
   const radioTrkTwo = trkInputTwo[1].closest(".radio");
   const radioTrkThree = trkInputThree[1].closest(".radio");
   const radioTrkFour = trkInputFour[1].closest(".radio");
-  let numberOfChecked =  getCheckedFuels();
+  let numberOfChecked = getCheckedFuels();
 
   if (numberOfChecked) {
     nextStepBtnFive.classList.remove("btn_disabled");
@@ -1855,11 +1847,11 @@ function setSections() {
 
   sideBtns.forEach((el) => {
     el.closest(".radio").classList.remove("radio_disabled");
-  });    
+  });
 
   // если это маленькая бочка то можно разделить только на 2 секции, трк до 4-х:
   if (size == "S") {
-    console.log(`size == "S"`);
+    // console.log(`size == "S"`);
     desc.style.display = "grid";
     sectionsBtns.forEach((item) => {
       if (item.dataset.value > 2) {
@@ -1907,11 +1899,11 @@ function setSections() {
         delUrlQueryParam(item.getAttribute("data-name"));
       });
     }
-  } 
-  
+  }
+
   // если это не контейнер и не мальнекая бочка:
   if (size != "S" && type != "Cont") {
-    console.log(`size != "S" && type != "Cont"`);
+    // console.log(`size != "S" && type != "Cont"`);
 
     if (numberOfChecked == 1) {
       if (!sections) {
@@ -1946,7 +1938,7 @@ function setSections() {
           el.checked = true;
         }
       });
-    }  
+    }
 
     if (numberOfChecked == 3) {
       if (!sections || sections < 3) {
@@ -1960,7 +1952,7 @@ function setSections() {
       delUrlQueryParam("side");
 
       sideBtns.forEach((el) => {
-        el.closest(".radio").classList.add("radio_disabled");            
+        el.closest(".radio").classList.add("radio_disabled");
         if (el.dataset.value == 2) {
           el.checked = true;
         }
@@ -1980,25 +1972,25 @@ function setSections() {
       delUrlQueryParam("side");
 
       sideBtns.forEach((el) => {
-        el.closest(".radio").classList.add("radio_disabled");            
+        el.closest(".radio").classList.add("radio_disabled");
         if (el.dataset.value == 2) {
           el.checked = true;
         }
       });
     }
   }
-  
+
   // если это средний контейнер:
   if (size != "S" && type == "Cont") {
-    console.log(`size != "S" && type == "Cont"`);
-    
+    // console.log(`size != "S" && type == "Cont"`);
+
     sideBtns.forEach((el) => {
       el.closest(".radio").classList.add("radio_disabled");
       if (el.dataset.value == 1) {
         el.checked = true;
       }
     });
-    
+
     if (numberOfChecked == 1) {
       if (!sections) {
         sectionInputOne[1].checked = true;
@@ -2040,19 +2032,18 @@ function setSections() {
       });
     }
   }
-  
+
   // если это малый контейнер:
   if (size == "S" && type == "Cont") {
-    console.log(`size == "S" && type == "Cont"`);
+    // console.log(`size == "S" && type == "Cont"`);
 
-    
     sideBtns.forEach((el) => {
       el.closest(".radio").classList.add("radio_disabled");
       if (el.dataset.value == 1) {
         el.checked = true;
       }
     });
-    
+
     if (numberOfChecked == 1) {
       if (!sections) {
         sectionInputOne[1].checked = true;
@@ -2097,7 +2088,7 @@ function setSections() {
 
   // блокировка количества видов топлива в зависимости от объема:
   numberOfChecked = getCheckedFuels();
-  
+
   if (size == "S" && numberOfChecked == 2) {
     fuelBtns.forEach((item) => {
       if (item.checked == false) {
@@ -2114,10 +2105,6 @@ function setSections() {
   }
 }
 
-function setVolume() {
-  console.log("******************** Старт функции setVolume **********************");
-}
-
 // -------------------------------------------- end вспомогательные функции: ---------------------------------------------
 //#endregion
 
@@ -2128,7 +2115,7 @@ const typeBtns = document.querySelectorAll(".popup__type-item");
 if (typeBtns.length) {
   typeBtns.forEach((btn) => {
     btn.addEventListener("click", function () {
-      console.log("click");
+      // console.log("click");
       const size = getSize();
       const trk = getTrk();
       const sections = getSections();
@@ -2154,7 +2141,7 @@ if (typeBtns.length) {
           activeFuelsQuontity++;
         }
       });
-      console.log("activeFuelsQuontity", activeFuelsQuontity);
+      // console.log("activeFuelsQuontity", activeFuelsQuontity);
 
       typeBtns.forEach((item) => {
         item.classList.remove("popup__type-item_active");
@@ -2208,29 +2195,29 @@ if (typeBtns.length) {
           // });
 
           // if (sections > "2") {
-            // setUrlQueryParam("sections", "2");
-            // setUrlQueryParam("side", "1");
-            // // btnSectionOne.checked = true;
-            // // btnSideOne.checked = true;
-            // // pastImageName();
+          // setUrlQueryParam("sections", "2");
+          // setUrlQueryParam("side", "1");
+          // // btnSectionOne.checked = true;
+          // // btnSideOne.checked = true;
+          // // pastImageName();
 
-            // sectionsBtns.forEach((el) => {
-            //   if (el.dataset.value == 2) {
-            //     el.checked = true;
-            //   }
-            //   if (el.dataset.value <= 2) {
-            //     el.closest(".radio").classList.remove("radio_disabled");
-            //   }
-            // });
+          // sectionsBtns.forEach((el) => {
+          //   if (el.dataset.value == 2) {
+          //     el.checked = true;
+          //   }
+          //   if (el.dataset.value <= 2) {
+          //     el.closest(".radio").classList.remove("radio_disabled");
+          //   }
+          // });
 
-            // sideBtns.forEach((el) => {
-            //   if (el.dataset.value == 1) {
-            //     el.checked = true;
-            //     el.closest(".radio").classList.remove("radio_disabled");
-            //   } else {
-            //     el.closest(".radio").classList.add("radio_disabled");
-            //   }
-            // });
+          // sideBtns.forEach((el) => {
+          //   if (el.dataset.value == 1) {
+          //     el.checked = true;
+          //     el.closest(".radio").classList.remove("radio_disabled");
+          //   } else {
+          //     el.closest(".radio").classList.add("radio_disabled");
+          //   }
+          // });
           // }
 
           if (activeFuelsQuontity > 2) {
@@ -2314,12 +2301,11 @@ if (typeBtns.length) {
   });
 }
 
-
 const trkBtns = document.querySelectorAll("[data-calc-btn][data-name='trk']");
 if (trkBtns.length) {
   trkBtns.forEach((item) => {
     item.addEventListener("click", function () {
-      console.log("click");
+      // console.log("click");
       setSideFromTrk();
     });
   });
@@ -2333,7 +2319,7 @@ if (fuelBtns.length) {
 
   fuelBtns.forEach((item) => {
     item.addEventListener("change", function (e) {
-      console.log("change");
+      // console.log("change");
       const sections = getSections();
       if (!sections) {
         setUrlQueryParam("sections", 1);
@@ -2355,9 +2341,9 @@ if (fuelBtns.length) {
 const volumeInput = document.querySelector(".popup__range");
 if (volumeInput) {
   volumeInput.addEventListener("input", function () {
-    console.log("input");
+    // console.log("input");
     const size = getSize();
-    if (size == 'S') {
+    if (size == "S") {
       const volume = volumeInput.value;
     }
   });
@@ -2369,7 +2355,7 @@ if (volumeInput) {
 //#region calc steps
 // переход на шаг 4 - выбора объема:
 nextStepBtnThree.addEventListener("click", function () {
-  console.log("click");
+  // console.log("click");
   const size = getSize();
   if (!size) {
     setUrlQueryParam("volume", "5");
@@ -2379,7 +2365,7 @@ nextStepBtnThree.addEventListener("click", function () {
 
 // переход на шаг 5 - выбор топлива:
 nextStepBtnFour.addEventListener("click", function () {
-  console.log("click");
+  // console.log("click");
   const sections = getSections();
   if (!sections) {
     setUrlQueryParam("sections", "1");
@@ -2389,7 +2375,7 @@ nextStepBtnFour.addEventListener("click", function () {
 
 // переход на шаг 6 - выбор ТРК:
 nextStepBtnFive.addEventListener("click", function () {
-  console.log("click");
+  // console.log("click");
   const trk = getTrk();
   if (!trk) {
     setUrlQueryParam("trk", "1");
