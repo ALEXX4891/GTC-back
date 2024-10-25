@@ -167,7 +167,7 @@ if (formAll) {
         let formData = new FormData(form);
 
         const resPopup = document.getElementById("popup-calc_result");
-        if (resPopup) {
+        if (resPopup && resPopup.classList.contains("open")) {
           const img = resPopup.querySelector(".popup__result-img").querySelector("img").src;
           const price = resPopup.querySelector(".popup__result-price").textContent;
           const description = resPopup.querySelector(".popup__result-desc").textContent;

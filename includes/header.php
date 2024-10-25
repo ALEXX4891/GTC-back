@@ -1,4 +1,4 @@
-<body class="<? echo $page ?>" data-page="<? echo $page ?>"></body>
+<body class="<? echo $page ?>" data-page="<? echo $page ?>">
 <header class="header lock-padding">
 	<section class="section header__section">
 		<div class="header__container container">
@@ -36,7 +36,7 @@
 									fill="#11A0A3" />
 							</g>
 							<defs>
-								<clipPath id="clip0_227_394">
+								<clipPath >
 									<rect width="18" height="14" fill="white" />
 								</clipPath>
 							</defs>
@@ -103,7 +103,7 @@
 					Рассчитать стоимость
 				</button>
 				<div class="header__phone">
-					<a href="tel:8 (812) 677 74 34" class="header__phone-link">8 (812) 677 74 34</a>
+					<a href="tel:+78126777434" class="header__phone-link">+7 (812) 677 74 34</a>
 				</div>
 			</div>
 

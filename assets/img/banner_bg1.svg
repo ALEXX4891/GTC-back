@@ -56,7 +56,7 @@
 <stop offset="0.1" stop-color="#052B2E"/>
 <stop offset="1" stop-color="#125A5D"/>
 </linearGradient>
-<clipPath id="clip0_230_742">
+<clipPath >
 <rect width="91.66" height="107.02" fill="white"/>
 </clipPath>
 </defs>

@@ -184,7 +184,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   fill="#117074" />
               </g>
               <defs>
-                <clipPath id="clip0_643_6665">
+                <clipPath >
                   <rect width="18.4035" height="11.9205" fill="white" transform="matrix(-1 0 0 1 18.4043 0.0397797)" />
                 </clipPath>
               </defs>
@@ -211,7 +211,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath id="clip0_609_5729">
+              <clipPath >
                 <rect width="46" height="46" fill="white" transform="translate(0.5)" />
               </clipPath>
             </defs>
@@ -238,7 +238,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   fill="#117074" />
               </g>
               <defs>
-                <clipPath id="clip0_643_6665">
+                <clipPath >
                   <rect width="18.4035" height="11.9205" fill="white" transform="matrix(-1 0 0 1 18.4043 0.0397797)" />
                 </clipPath>
               </defs>
@@ -257,7 +257,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath id="clip0_609_5758">
+              <clipPath >
                 <rect width="46" height="46" fill="white" />
               </clipPath>
             </defs>
@@ -286,7 +286,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath id="clip0_609_5769">
+              <clipPath >
                 <rect width="46" height="46" fill="white" transform="translate(0.5)" />
               </clipPath>
             </defs>
@@ -327,7 +327,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath id="clip0_609_5780">
+              <clipPath >
                 <rect width="46" height="46" fill="white" />
               </clipPath>
             </defs>
@@ -362,7 +362,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath id="clip0_609_5803">
+              <clipPath >
                 <rect width="45.9999" height="46" fill="white" transform="translate(0.5)" />
               </clipPath>
             </defs>
@@ -392,7 +392,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath id="clip0_609_5816">
+              <clipPath >
                 <rect width="46" height="46" fill="white" />
               </clipPath>
             </defs>
@@ -421,7 +421,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath id="clip0_609_5830">
+              <clipPath >
                 <rect width="46" height="46" fill="white" transform="translate(0.5)" />
               </clipPath>
             </defs>
@@ -1270,7 +1270,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                               fill="#117074" />
                           </g>
                           <defs>
-                            <clipPath id="clip0_255_1718">
+                            <clipPath>
                               <rect width="37" height="29" fill="white" transform="translate(0 0.5)" />
                             </clipPath>
                           </defs>
@@ -1293,7 +1293,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                               fill="#117074" />
                           </g>
                           <defs>
-                            <clipPath id="clip0_255_1724">
+                            <clipPath>
                               <rect width="37" height="29" fill="white" transform="translate(0 0.5)" />
                             </clipPath>
                           </defs>
@@ -1456,7 +1456,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                               fill="#117074" />
                           </g>
                           <defs>
-                            <clipPath id="clip0_255_1718">
+                            <clipPath>
                               <rect width="37" height="29" fill="white" transform="translate(0 0.5)" />
                             </clipPath>
                           </defs>
@@ -1479,7 +1479,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                               fill="#117074" />
                           </g>
                           <defs>
-                            <clipPath id="clip0_255_1724">
+                            <clipPath>
                               <rect width="37" height="29" fill="white" transform="translate(0 0.5)" />
                             </clipPath>
                           </defs>
@@ -1619,7 +1619,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                               fill="#117074" />
                           </g>
                           <defs>
-                            <clipPath id="clip0_255_1718">
+                            <clipPath>
                               <rect width="37" height="29" fill="white" transform="translate(0 0.5)" />
                             </clipPath>
                           </defs>
@@ -1642,7 +1642,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                               fill="#117074" />
                           </g>
                           <defs>
-                            <clipPath id="clip0_255_1724">
+                            <clipPath>
                               <rect width="37" height="29" fill="white" transform="translate(0 0.5)" />
                             </clipPath>
                           </defs>
@@ -1759,7 +1759,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                               fill="#117074" />
                           </g>
                           <defs>
-                            <clipPath id="clip0_255_1718">
+                            <clipPath>
                               <rect width="37" height="29" fill="white" transform="translate(0 0.5)" />
                             </clipPath>
                           </defs>
@@ -1782,7 +1782,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                               fill="#117074" />
                           </g>
                           <defs>
-                            <clipPath id="clip0_255_1724">
+                            <clipPath>
                               <rect width="37" height="29" fill="white" transform="translate(0 0.5)" />
                             </clipPath>
                           </defs>
@@ -2107,7 +2107,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                       fill="#125A5D" />
                   </g>
                   <defs>
-                    <clipPath id="clip0_238_1330">
+                    <clipPath >
                       <rect width="20.7" height="16.1" fill="white" transform="translate(0 0.599609)" />
                     </clipPath>
                   </defs>

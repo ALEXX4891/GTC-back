@@ -98,7 +98,7 @@
                   fill="#F0FDFB" />
               </g>
               <defs>
-                <clipPath id="clip0_238_1516">
+                <clipPath >
                   <rect width="18" height="14" fill="white" transform="translate(0 0.166016)" />
                 </clipPath>
               </defs>
@@ -108,14 +108,14 @@
             </p>
           </a>
 
-          <a href="tel:8 (812) 677 74 34" class="contacts__item contacts__item_phone">
+          <a href="tel:+78126777434" class="contacts__item contacts__item_phone">
             <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M12.7861 10.8478L12.3518 11.2802C12.3518 11.2802 11.318 12.3073 8.49737 9.5028C5.67668 6.69834 6.71046 5.67125 6.71046 5.67125L6.98346 5.39825C7.65832 4.72816 7.72227 3.65143 7.13332 2.86489L5.93059 1.25839C5.20132 0.284753 3.79337 0.15589 2.95814 0.986344L1.4595 2.47544C1.04618 2.8878 0.769366 3.42043 0.802775 4.01225C0.888684 5.52712 1.57405 8.78498 5.39605 12.586C9.45 16.6161 13.2539 16.7764 14.8088 16.6313C15.3014 16.5855 15.729 16.3354 16.0736 15.9918L17.429 14.644C18.3454 13.7343 18.0877 12.1736 16.9155 11.5369L15.0923 10.5452C14.323 10.128 13.3875 10.2502 12.7861 10.8478Z"
                 fill="#F0FDFB" />
             </svg>
             <p class="contacts__text">
-              8 (812) 677 74 34
+              +7 (812) 677 74 34
             </p>
           </a>
         </div>
@@ -165,7 +165,7 @@
               fill="white" />
           </g>
           <defs>
-            <clipPath id="clip0_484_3887">
+            <clipPath >
               <rect width="47" height="29" fill="white" transform="translate(0 0.273438)" />
             </clipPath>
           </defs>
@@ -240,7 +240,7 @@
           fill="#117074" />
       </g>
       <defs>
-        <clipPath id="clip0_541_2497">
+        <clipPath >
           <rect width="32" height="32" fill="white" />
         </clipPath>
       </defs>
@@ -268,3 +268,5 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/popup.php';
 <script src="/assets/js/lib/clamp.min.js"></script>
 <script src="/assets/js/lib/jquery.maskedinput.min.js"></script>
 <script type="module" src="/assets/js/app.js"></script>
+
+</body>
