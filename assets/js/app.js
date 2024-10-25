@@ -648,9 +648,13 @@ if (popupCloseIcon.length > 0) {
 function popupOpen(curentPopup) {
   if (curentPopup && unlock) {
     const popupActive = document.querySelector(".popup.open");
+    // закрываем текущий открытый попап, если он есть
     if (popupActive) {
-      // закрываем текущий открытый попап, если он есть
-      popupClose(popupActive, false);
+      if (popupActive.classList.contains("popup-calc_result")) {
+        popupActive.style.zIndex = 800;
+      } else {
+        popupClose(popupActive, false);
+      }
     } else {
       bodyLock();
     }
@@ -673,7 +677,10 @@ function popupClose(popupActive, doUnlock = true) {
   if (unlock) {
     popupActive.classList.remove("open");
     if (doUnlock) {
-      bodyUnLock();
+      const popupActiveMore = document.querySelector(".popup.open");
+      if (!popupActiveMore) {
+        bodyUnLock();
+      }
     }
   }
 }
