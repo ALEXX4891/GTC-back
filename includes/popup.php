@@ -1031,7 +1031,7 @@
         <!-- <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_eight">
           Скачать конфигурацию
         </button> -->
-        <a class="btn btn_trans-gray popup__step-btn" data-popup="popup-calc_eight" href="/calc.pdf" download>
+        <a class="btn btn_trans-gray popup__step-btn popup__result-download" data-popup="popup-calc_eight" href="/calc.pdf" download>
           Скачать конфигурацию
         </a>
       </div>

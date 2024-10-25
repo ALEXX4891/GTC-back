@@ -1179,7 +1179,7 @@ function getImageName() {
 
   // скоростная выдача
   if (getFast()) {
-    fast = getFast() > 0 ? "+" : "";
+    fast = getFast() > 0 ? "f" : "";
 
     if (fast) {
       console.log(fast);
@@ -1468,13 +1468,15 @@ if (resultCalcBtn) {
     const params = parseUrlQuery();
     console.log(params);
 
+    //  TODO надо сформировать формирование цены, описания и характеристик, они будут использоваться в файле pdf и в формах обратной связи
+
     // TODO посчитать стоимость и записать в переменную:
     const finalPrice = document.querySelector(".popup__result-price");
     finalPrice.innerHTML = "3 500 000";
 
     //TODO добавить опитсание:
     const finalDesc = document.querySelector(".popup__result-desc");
-    finalDesc.innerHTML = "Машина в хорошем состоянии, с пробегом 1000 км. Покраска и монтаж проводились в 2021 году.";
+    finalDesc.innerHTML = `Внутриведомственная двухсекционная АЗС в контейнерном исполнении общим объёмом 5м3`;
 
     //TODO добавить характеристики:
     const finalParams = document.querySelector(".popup__result-params");
@@ -1519,6 +1521,8 @@ if (resultCalcBtn) {
     const finalPrice = document.querySelector(".popup__result-price");
     const finalDesc = document.querySelector(".popup__result-desc");
     const finalParams = document.querySelector(".popup__result-params");
+    const downlodBtn = document.querySelector(".popup__result-download");
+    downlodBtn.classList.add("btn_disabled");
     // let errore = formvalidation(form);
 
     // if (errore === 0) {
@@ -1552,6 +1556,8 @@ if (resultCalcBtn) {
 
 
       if (response.ok) {
+        downlodBtn.classList.remove("btn_disabled");
+
         let result = await response;
         console.log(result);
         // form.reset();
@@ -1562,7 +1568,8 @@ if (resultCalcBtn) {
         // }
         
         // form.classList.remove("_sending");
-      // } else {
+      } else {
+        downlodBtn.classList.add("btn_disabled");
         // popupOpen(document.getElementById("error"));
         // form.classList.remove("_sending");
       // }
