@@ -184,7 +184,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   fill="#117074" />
               </g>
               <defs>
-                <clipPath >
+                <clipPath>
                   <rect width="18.4035" height="11.9205" fill="white" transform="matrix(-1 0 0 1 18.4043 0.0397797)" />
                 </clipPath>
               </defs>
@@ -211,7 +211,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath >
+              <clipPath>
                 <rect width="46" height="46" fill="white" transform="translate(0.5)" />
               </clipPath>
             </defs>
@@ -238,7 +238,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   fill="#117074" />
               </g>
               <defs>
-                <clipPath >
+                <clipPath>
                   <rect width="18.4035" height="11.9205" fill="white" transform="matrix(-1 0 0 1 18.4043 0.0397797)" />
                 </clipPath>
               </defs>
@@ -257,7 +257,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath >
+              <clipPath>
                 <rect width="46" height="46" fill="white" />
               </clipPath>
             </defs>
@@ -286,7 +286,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath >
+              <clipPath>
                 <rect width="46" height="46" fill="white" transform="translate(0.5)" />
               </clipPath>
             </defs>
@@ -327,7 +327,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath >
+              <clipPath>
                 <rect width="46" height="46" fill="white" />
               </clipPath>
             </defs>
@@ -362,7 +362,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath >
+              <clipPath>
                 <rect width="45.9999" height="46" fill="white" transform="translate(0.5)" />
               </clipPath>
             </defs>
@@ -392,7 +392,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath >
+              <clipPath>
                 <rect width="46" height="46" fill="white" />
               </clipPath>
             </defs>
@@ -421,7 +421,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 fill="#11A0A3" />
             </g>
             <defs>
-              <clipPath >
+              <clipPath>
                 <rect width="46" height="46" fill="white" transform="translate(0.5)" />
               </clipPath>
             </defs>
@@ -485,7 +485,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 <p class="off-card__subtitle">
                   Для автоматизации выдачи и учёта
                 </p>
-                
+
                 <p class="off-card__text text">
                   Функции:<br>
                   • Выдача топлива по электронным картам, ПИН-кодам<br>
@@ -505,13 +505,13 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   • Контроль количества топлива в ёмкостях<br>
                   • Удалённое управление системой через интернет<br>
                 </p>
-                
-                
+
+
                 <div class="off-card__btn-wrap">
                   <button class="off-card__btn off-card__btn_show">
                     Подробнее
                   </button>
-                  
+
                   <button class="off-card__btn off-card__btn_hide">
                     Скрыть
                   </button>
@@ -524,7 +524,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 <button class="btn btn_trans-orange btn_calc popup-link" data-popup="popup-calc_one">
                   Рассчитать стоимость
                 </button>
-                
+
                 <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
                   Узнать больше
                 </button>
@@ -549,7 +549,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 </p>
 
                 <!-- перенесес выше на этап верстки -->
-                
+
                 <p class="off-card__text text">
                   Функции:<br>
                   • Отгрузка топлива<br>
@@ -562,13 +562,13 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   • Сокращение времени заправки техники<br>
                   • Простота обслуживания<br>
                 </p>
-                
-                
+
+
                 <div class="off-card__btn-wrap">
                   <button class="off-card__btn off-card__btn_show">
                     Подробнее
                   </button>
-                  
+
                   <button class="off-card__btn off-card__btn_hide">
                     Скрыть
                   </button>
@@ -581,7 +581,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 <button class="btn btn_trans-orange btn_calc popup-link" data-popup="popup-calc_one">
                   Рассчитать стоимость
                 </button>
-                
+
                 <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
                   Узнать больше
                 </button>
@@ -628,9 +628,9 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   <button class="off-card__btn off-card__btn_show">
                     Подробнее
                   </button>
-                
-                <button class="off-card__btn off-card__btn_hide">
-                  Скрыть
+
+                  <button class="off-card__btn off-card__btn_hide">
+                    Скрыть
                   </button>
                 </div>
 
@@ -1937,9 +1937,9 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             <p class="team-card__text">
               Директор по региональному развитию
             </p>
-            <ap class="team-card__contact contacts__item" href="tel:+79819517474">
+            <a class="team-card__contact contacts__item" href="tel:+79819517474">
               +7 (981) 951 74 74
-            </ap>
+            </a>
             <a class="team-card__contact contacts__item" href="mailto:s.chepishko@gtc-spb.ru">
               s.chepishko@gtc-spb.ru
             </a>
@@ -1983,10 +1983,10 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </p>
             <a class="team-card__contact contacts__item" href="tel:+798935003501">
               +7 (989) 350 35 01
-              </p>
-              <a class="team-card__contact contacts__item" href="mailto:a.antipin@gtc-spb.ru">
-                a.antipin@gtc-spb.ru
-              </a>
+            </a>
+            <a class="team-card__contact contacts__item" href="mailto:a.antipin@gtc-spb.ru">
+              a.antipin@gtc-spb.ru
+            </a>
           </div>
         </li>
 
@@ -2005,10 +2005,10 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </p>
             <a class="team-card__contact contacts__item" href="tel:+78919257518">
               +7 (921) 925 75 18
-              </p>
-              <a class="team-card__contact contacts__item" href="mailto:d.lebedev@gtc-spb.ru">
-                d.lebedev@gtc-spb.ru
-              </a>
+            </a>
+            <a class="team-card__contact contacts__item" href="mailto:d.lebedev@gtc-spb.ru">
+              d.lebedev@gtc-spb.ru
+            </a>
           </div>
         </li>
 
@@ -2107,7 +2107,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                       fill="#125A5D" />
                   </g>
                   <defs>
-                    <clipPath >
+                    <clipPath>
                       <rect width="20.7" height="16.1" fill="white" transform="translate(0 0.599609)" />
                     </clipPath>
                   </defs>

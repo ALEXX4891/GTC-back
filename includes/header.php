@@ -126,6 +126,5 @@
 
 			</button>
 		</div>
-		</div>
 	</section>
 </header>

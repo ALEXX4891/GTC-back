@@ -310,7 +310,7 @@
         </h2>
 
         <div class="popup__btn-wrap_temp">
-          <button class="btn btn_trans-gray popup__btn popup__btn_temp" data-calc-btn data-name="temperature" data-value="-40">
+          <div class="btn btn_trans-gray popup__btn popup__btn_temp" data-calc-btn data-name="temperature" data-value="-40">
             -40
             <div class="popup__icon-wrap">
               <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -326,9 +326,9 @@
                 </defs>
               </svg>
             </div>
-          </button>
+          </div>
 
-          <button class="btn btn_trans-gray popup__btn popup__btn_temp" data-calc-btn data-name="temperature" data-value="-50">
+          <div class="btn btn_trans-gray popup__btn popup__btn_temp" data-calc-btn data-name="temperature" data-value="-50">
             -50
             <div class="popup__icon-wrap">
               <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -356,9 +356,9 @@
                 </defs>
               </svg>
             </div>
-          </button>
+          </div>
 
-          <button class="btn btn_trans-gray popup__btn popup__btn_temp" data-calc-btn data-name="temperature" data-value="-60">
+          <div class="btn btn_trans-gray popup__btn popup__btn_temp" data-calc-btn data-name="temperature" data-value="-60">
             -60
             <div class="popup__icon-wrap">
               <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -398,7 +398,7 @@
                 </defs>
               </svg>
             </div>
-          </button>
+          </div>
         </div>
 
         <div class="popup__recommended-wrap" style="display: none;">
@@ -470,7 +470,7 @@
         </h2>
 
         <div class="popup__type-list">
-          <button class="popup__type-item" data-calc-btn data-name="type" data-value="Open">
+          <div class="popup__type-item" data-calc-btn data-name="type" data-value="Open">
             <div class="popup__card-img">
               <picture>
                 <source srcset="/assets/img/popup-card-type-1.webp" type="image/webp"><img src="/assets/img/popup-card-type-1.png" alt="">
@@ -479,9 +479,9 @@
             <h3 class="popup__card-title">
               Открытый технический отсек
             </h3>
-          </button>
+          </div>
 
-          <button class="popup__type-item" data-calc-btn data-name="type" data-value="Close">
+          <div class="popup__type-item" data-calc-btn data-name="type" data-value="Close">
             <div class="popup__card-img">
               <picture>
                 <source srcset="/assets/img/popup-card-type-2.webp" type="image/webp"><img src="/assets/img/popup-card-type-2.png" alt="">
@@ -490,9 +490,9 @@
             <h3 class="popup__card-title">
               Закрытый технический отсек
             </h3>
-          </button>
+          </div>
 
-          <button class="popup__type-item" data-calc-btn data-name="type" data-value="Cont">
+          <div class="popup__type-item" data-calc-btn data-name="type" data-value="Cont">
             <div class="popup__card-img">
               <picture>
                 <source srcset="/assets/img/popup-card-type-3.webp" type="image/webp"><img src="/assets/img/popup-card-type-3.png" alt="">
@@ -501,7 +501,7 @@
             <h3 class="popup__card-title">
               АЗС<br> в контейнере
             </h3>
-          </button>
+          </div>
 
         </div>
 
