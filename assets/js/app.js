@@ -186,10 +186,6 @@ if (formAll) {
           body: formData,
         });
 
-        // for (var pair of formData.entries()) {
-        //   console.log(pair[0] + ", " + pair[1]);
-        // }
-
         if (response.ok) {
           form.reset();
           popupOpen(document.getElementById("popup-success"));
@@ -752,9 +748,6 @@ const canselCalcBtnNo = document.querySelector(".calc-cansel-btn-no");
 if (canselCalcBtnNo) {
   canselCalcBtnNo.addEventListener("click", function (e) {
     popupClose(e.target.closest(".popup"));
-    // window.history.pushState({}, document.title, window.location.pathname);
-    // urlParams = new URLSearchParams(window.location.search);
-    // location.reload();
   });
 }
 
@@ -988,9 +981,7 @@ function parseUrlQuery() {
 function setUrlQueryParam(param, value) {
   // console.log("*************** Старт функции setUrlQueryParam ***************");
   urlParams.set(param, value);
-  // showActiveItem(input);
   window.history.pushState({}, "", "?" + urlParams.toString());
-  // apartRender(allApartsInfo);
   pastImageName();
 }
 
@@ -1522,7 +1513,7 @@ if (resultCalcBtn) {
 
   async function createCalcFile() {
     // console.log("******************** Старт функции createCalcFile **********************");
-    // e.preventDefault();
+    
     const params = parseUrlQuery();
     const img = getImageName();
     const finalPrice = document.querySelector(".popup__result-price");
@@ -1530,29 +1521,12 @@ if (resultCalcBtn) {
     const finalParams = document.querySelector(".popup__result-params");
     const downlodBtn = document.querySelector(".popup__result-download");
     downlodBtn.classList.add("btn_disabled");
-    // let errore = formvalidation(form);
 
-    // if (errore === 0) {
-    // form.classList.add("_sending");
     let formData = new FormData();
     formData.append("image", img);
     formData.append("price", finalPrice.innerHTML);
     formData.append("description", finalDesc.innerHTML);
     formData.append("characteristics", finalParams.innerHTML);
-    // formData.append("params", params);
-
-    // const popup = form.closest(".popup")
-
-    // if (popup) {
-    //   const dataRequest = form.closest(".popup").getAttribute("data-request");
-
-    //   if (dataRequest) {
-    //     formData.append("dataRequest", dataRequest);
-    //   }
-    // }
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
 
     let response = await fetch("/backend/create-pdf.php", {
       method: "POST",
@@ -1561,24 +1535,8 @@ if (resultCalcBtn) {
 
     if (response.ok) {
       downlodBtn.classList.remove("btn_disabled");
-
-      let result = await response;
-      // console.log(result);
-      // form.reset();
-      // if (formData.get("id") == 3) {
-      //   popupOpen(document.getElementById("popup-success-subscribe"));
-      // } else {
-      //   popupOpen(document.getElementById("success"));
-      // }
-
-      // form.classList.remove("_sending");
     } else {
       downlodBtn.classList.add("btn_disabled");
-      // popupOpen(document.getElementById("error"));
-      // form.classList.remove("_sending");
-      // }
-      // } else {
-      //   alert("Заполните обязательные поля");
     }
   }
 }
@@ -1740,19 +1698,6 @@ function setSideFromTrk() {
     oneSideBtn.checked = true;
     setUrlQueryParam("side", "1");
   }
-
-  // // утановка минимального количества ТРК и стороны при переходе на этап выбора ТРК:
-
-  // // if (!side) {
-  // //   setUrlQueryParam("side", "1");
-  // // }
-
-  // let activeFuelsQuontity = 0;
-  // fuelBtns.forEach((item) => {
-  //   if (item.checked) {
-  //     activeFuelsQuontity++;
-  //   }
-  // });
 
   // если это контейнер:
   if (type == "Cont") {
@@ -2188,37 +2133,6 @@ if (typeBtns.length) {
             setUrlQueryParam("trk", "2");
             setUrlQueryParam("side", "1");
           }
-          // sectionsBtns.forEach((el) => {
-          //   if (el.dataset.value > 2) {
-          //     el.closest(".radio").classList.add("radio_disabled");
-          //   }
-          // });
-
-          // if (sections > "2") {
-          // setUrlQueryParam("sections", "2");
-          // setUrlQueryParam("side", "1");
-          // // btnSectionOne.checked = true;
-          // // btnSideOne.checked = true;
-          // // pastImageName();
-
-          // sectionsBtns.forEach((el) => {
-          //   if (el.dataset.value == 2) {
-          //     el.checked = true;
-          //   }
-          //   if (el.dataset.value <= 2) {
-          //     el.closest(".radio").classList.remove("radio_disabled");
-          //   }
-          // });
-
-          // sideBtns.forEach((el) => {
-          //   if (el.dataset.value == 1) {
-          //     el.checked = true;
-          //     el.closest(".radio").classList.remove("radio_disabled");
-          //   } else {
-          //     el.closest(".radio").classList.add("radio_disabled");
-          //   }
-          // });
-          // }
 
           if (activeFuelsQuontity > 2) {
             fuelBtns.forEach((item) => {
@@ -2234,29 +2148,11 @@ if (typeBtns.length) {
               }
             });
           }
-
-          // if (sections > "2") {
-          //   setUrlQueryParam("sections", "2");
-          //   setUrlQueryParam("side", "1");
-          //   btnSectionTwo.checked = true;
-          //   btnSideOne.checked = true;
-          //   // pastImageName();
-          //   // TODO продолжать здесь
-          // }
         });
       } else {
         fuelBtns.forEach((item) => {
           item.closest(".checkbox").classList.remove("checkbox_disabled");
         });
-
-        // trkBtns.forEach((el) => {
-        //   if (el.dataset.value > 2) {
-        //     el.closest(".radio").classList.add("radio_disabled");
-        //   }
-        // });
-        // sideBtns.forEach((el) => {
-        //   el.closest(".radio").classList.add("radio_disabled");
-        // });
 
         descVol.style.display = "none";
         numberList.forEach((item) => {
@@ -2287,12 +2183,6 @@ if (typeBtns.length) {
               item.closest(".checkbox").classList.add("checkbox_disabled");
             }
           });
-
-          // sectionsBtns.forEach((el) => {
-          //   if (el.dataset.value == 2) {
-          //     el.checked = true;
-          //   }
-          // });
         }
 
         // TODO добавить проверку на количество выбранного топлива?
@@ -2327,15 +2217,6 @@ if (fuelBtns.length) {
       setSections();
     });
   });
-
-  // sectionsBtns.forEach((item) => {
-  //   item.addEventListener("change", function (e) {
-  //     console.log("change");
-  //     if (item.closest(".radio").classList.contains("radio_disabled")) {
-  //       e.preventDefault();
-  //     }
-  //   });
-  // });
 }
 
 const volumeInput = document.querySelector(".popup__range");
@@ -2360,7 +2241,6 @@ nextStepBtnThree.addEventListener("click", function () {
   if (!size) {
     setUrlQueryParam("volume", "5");
   }
-  setVolume();
 });
 
 // переход на шаг 5 - выбор топлива:
