@@ -1916,7 +1916,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               Генеральный директор
             </p>
             <a class="team-card__contact contacts__item" href="tel:+79817350505">
-              8 (981) 735 05 05
+              +7 (981) 735 05 05
             </a>
             <a class="team-card__contact contacts__item" href="mailto:a.chistokolov@gtc-spb.ru">
               a.chistokolov@gtc-spb.ru
@@ -1938,7 +1938,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               Директор по региональному развитию
             </p>
             <ap class="team-card__contact contacts__item" href="tel:+79819517474">
-              8 (981) 951 74 74
+              +7 (981) 951 74 74
             </ap>
             <a class="team-card__contact contacts__item" href="mailto:s.chepishko@gtc-spb.ru">
               s.chepishko@gtc-spb.ru
@@ -1960,7 +1960,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               Руководитель направления автоматизации учета топлива
             </p>
             <a class="team-card__contact contacts__item" href="tel:+79817343440">
-              8 (981) 734 34 40
+              +7 (981) 734 34 40
             </a>
             <a class="team-card__contact contacts__item" href="mailto:n.yakovlev@gtc-spb.ru">
               n.yakovlev@gtc-spb.ru
@@ -1982,7 +1982,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               Руководитель направления спутникового и видео контроля
             </p>
             <a class="team-card__contact contacts__item" href="tel:+798935003501">
-              8 (989) 350 35 01
+              +7 (989) 350 35 01
               </p>
               <a class="team-card__contact contacts__item" href="mailto:a.antipin@gtc-spb.ru">
                 a.antipin@gtc-spb.ru
@@ -2004,7 +2004,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               Технический директор
             </p>
             <a class="team-card__contact contacts__item" href="tel:+78919257518">
-              8 (921) 925 75 18
+              +7 (921) 925 75 18
               </p>
               <a class="team-card__contact contacts__item" href="mailto:d.lebedev@gtc-spb.ru">
                 d.lebedev@gtc-spb.ru
@@ -2078,15 +2078,15 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               </p>
 
               <div class="geo__contacts-wrap">
-                <a class="geo__contacts-text contacts__item geo__contacts-text_tel" href="tel:+88127677434">
-                  8 (8126) 777 434
+                <a class="geo__contacts-text contacts__item geo__contacts-text_tel" href="tel:+78127677434">
+                  +7 (812) 677 74 34
                 </a>
 
                 <a class="geo__contacts-text contacts__item geo__contacts-text_tel" href="tel:+78917305005">
-                  8 (981) 735 05 05
+                  +7 (981) 735 05 05
                 </a>
 
-                <a class="geo__contacts-text contacts__item geo__contacts-text_tel" href="tel:+88002505424">
+                <a class="geo__contacts-text contacts__item geo__contacts-text_tel" href="tel:+78002505424">
                   8 (800) 250 54 24
                 </a>
               </div>
