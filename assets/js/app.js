@@ -1460,8 +1460,9 @@ if (resultCalcBtn) {
   resultCalcBtn.addEventListener("click", function (e) {
     console.log("click");
     const finalImg = document.querySelector(".popup__result-img").querySelector("img");
-    console.log(finalImg);
-    finalImg.src = getImageName();
+    // console.log(finalImg);
+    const img = getImageName();
+    finalImg.src = img;
 
     // e.preventDefault();
     const params = parseUrlQuery();
@@ -1506,20 +1507,29 @@ if (resultCalcBtn) {
     `;
 
 
-
+    createCalcFile();
   });
 
 
-  async function createCalcFile(e) {
+  async function createCalcFile() {
+    console.log('******************** Старт функции createCalcFile **********************');
     // e.preventDefault();
-    const urlParams = new URLSearchParams(window.location.search);
-
+    const params = parseUrlQuery();
+    const img = getImageName();
+    const finalPrice = document.querySelector(".popup__result-price");
+    const finalDesc = document.querySelector(".popup__result-desc");
+    const finalParams = document.querySelector(".popup__result-params");
     // let errore = formvalidation(form);
 
     // if (errore === 0) {
       // form.classList.add("_sending");
       let formData = new FormData();
-      formData.append("image", dataRequest);
+      formData.append("image", img);
+      formData.append("price", finalPrice.innerHTML);
+      formData.append("description", finalDesc.innerHTML);
+      formData.append("characteristics", finalParams.innerHTML);
+      // formData.append("params", params);
+
 
 
       // const popup = form.closest(".popup")
@@ -1531,18 +1541,18 @@ if (resultCalcBtn) {
       //     formData.append("dataRequest", dataRequest);
       //   }
       // }
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
 
       let response = await fetch("/backend/create-pdf.php", {
         method: "POST",
         body: formData,
       });
 
-      // for (var pair of formData.entries()) {
-      //   console.log(pair[0] + ", " + pair[1]);
-      // }
 
       if (response.ok) {
-        let result = await response.json();
+        let result = await response;
         console.log(result);
         // form.reset();
         // if (formData.get("id") == 3) {

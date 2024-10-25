@@ -38,13 +38,38 @@ $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 // Вывод данных из HTML в PDF
 $pdf->AddPage();
 
+$image = '';
+$price = '';
+$description = '';
+$characteristics = '';
 
-$s = '
-    <h1>Тестerrrwr22424</h1>
-    <p>текст 442424 424234текст текст test.pdf</p>
-';
+$s = '<h1>Калькуляция</h1><br>';
+
+if ($_POST['image']) {
+    $image = $_POST['image'];
+    $image = 'C:/OSPanel/domains/GTC-back.isk/assets/img/renders/Open_S_1r_1k.png';
+  $s .= "<img src='{$image}' width='50' height='50'><br>";
+  $s .= "<p> src='{$image}' width='50' height='50' </p>";
+
+}
+
+if ($_POST['price']) {
+  $price = $_POST['price'];
+  $s .= "<p>{$price}</p>";
+}
+
+if ($_POST['description']) {
+  $description = $_POST['description'];
+  $s.= "<p>{$description}</p>";
+}
+
+if ($_POST['characteristics']) {
+  $characteristics = $_POST['characteristics'];
+  $s.= "<p>{$characteristics}</p>";
+}
 
 $pdf->writeHTML($s, true, false, true, false, '');
 ob_end_clean();
 // ob_end_clean();
-$pdf->Output($_SERVER['DOCUMENT_ROOT'] . 'test.pdf', 'F');
+echo $s;
+$pdf->Output($_SERVER['DOCUMENT_ROOT'] . 'calc.pdf', 'F');

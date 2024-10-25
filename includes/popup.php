@@ -954,7 +954,7 @@
         </button>
 
         <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-calc_result">
-          Получить рассчёт
+          Получить расчёт
         </button>
       </div>
 
@@ -1020,13 +1020,20 @@
 
 
       <div class="popup__btn-wrap">
+        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_seven">
+          Назад
+        </button>
+
         <button class="btn btn_gray popup__step-btn popup-link" data-popup="popup-offer_call">
           Заказать
         </button>
 
-        <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_eight">
+        <!-- <button class="btn btn_trans-gray popup__step-btn popup-link" data-popup="popup-calc_eight">
           Скачать конфигурацию
-        </button>
+        </button> -->
+        <a class="btn btn_trans-gray popup__step-btn" data-popup="popup-calc_eight" href="/calc.pdf" download>
+          Скачать конфигурацию
+        </a>
       </div>
 
       <button class="popup__close-btn popup-link" data-popup="popup-calc_cansel" data-step="eight">
