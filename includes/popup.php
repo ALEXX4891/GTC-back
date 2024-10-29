@@ -102,8 +102,8 @@
         <fieldset class="form__wrap">
           <input type="hidden" name="type" value="Консультация по заказу">
           <input class="form__input form__input_name _req input" type="text" name="name" placeholder="Имя*">
-          <input class="form__input form__input_phone _req input" type="tel" name="phone" placeholder="Телефон*">
-          <input class="form__input form__input_organization _req input" type="text" name="organization"
+          <input class="form__input form__input_phone _req input phone" type="tel" name="phone" placeholder="Телефон*">
+          <input class="form__input form__input_organization input" type="text" name="organization"
             placeholder="Название организации">
           <input class="form__input form__input_email _email input" type="email" name="email" placeholder="Почта">
           <textarea class="form__input form__input_textarea input input_textarea" name="text"
@@ -153,8 +153,8 @@
         <fieldset class="form__wrap">
           <input type="hidden" name="type" value="Заказ">
           <input class="form__input form__input_name _req input" type="text" name="name" placeholder="Имя*">
-          <input class="form__input form__input_phone _req input" type="tel" name="phone" placeholder="Телефон*">
-          <input class="form__input form__input_organization _req input" type="text" name="organization"
+          <input class="form__input form__input_phone _req input phone" type="tel" name="phone" placeholder="Телефон*">
+          <input class="form__input form__input_organization input" type="text" name="organization"
             placeholder="Название организации">
           <input class="form__input form__input_email _email input" type="email" name="email" placeholder="Почта">
           <textarea class="form__input form__input_textarea input input_textarea" name="text"

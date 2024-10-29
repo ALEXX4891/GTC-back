@@ -1464,8 +1464,174 @@ if (resultCalcBtn) {
     const img = getImageName();
     finalImg.src = img;
 
+    // [
+    //   {
+    //     "name": "temperature",
+    //     "value": "-60"
+    //   },
+    //   {
+    //     "name": "insulation",
+    //     "value": "1"
+    //   },
+    //   {
+    //     "name": "heater",
+    //     "value": "1"
+    //   },
+    //   {
+    //     "name": "type",
+    //     "value": "Close"
+    //   },
+    //   {
+    //     "name": "volume",
+    //     "value": "60"
+    //   },
+    //   {
+    //     "name": "sections",
+    //     "value": "4"
+    //   },
+    //   {
+    //     "name": "diesel",
+    //     "value": "1"
+    //   },
+    //   {
+    //     "name": "trk",
+    //     "value": "4"
+    //   },
+    //   {
+    //     "name": "petrol-92",
+    //     "value": "1"
+    //   },
+    //   {
+    //     "name": "petrol-95",
+    //     "value": "1"
+    //   },
+    //   {
+    //     "name": "other",
+    //     "value": "1"
+    //   },
+    //   {
+    //     "name": "fast",
+    //     "value": "2"
+    //   }
+    // ]
+
     // e.preventDefault();
     const params = parseUrlQuery();
+    // console.log(params);
+    let temperature = "";
+    if (params.find((param) => param.name == "temperature")) {
+      temperature = params.find((param) => param.name == "temperature")["value"];
+    }
+
+    let insulations = "";
+    if (params.find((param) => param.name == "insulations")) {
+      insulations = params.find((param) => param.name == "insulations")["value"];
+    }
+
+    let heater = "";
+    if (params.find((param) => param.name == "heater")) {
+      heater = params.find((param) => param.name == "heater")["value"];
+    }
+
+    let type = "";
+    if (params.find((param) => param.name == "type")) {
+      type = params.find((param) => param.name == "type")["value"];
+    }
+
+    let volume = "";
+    if (params.find((param) => param.name == "volume")) {
+      volume = params.find((param) => param.name == "volume")["value"];
+    }
+
+    let sections = "";
+    if (params.find((param) => param.name == "sections")) {
+      sections = params.find((param) => param.name == "sections")["value"];
+    }
+
+    let diesel = "";
+    if (params.find((param) => param.name == "diesel")) {
+      diesel = params.find((param) => param.name == "diesel")["value"];
+    }
+
+    let trk = "";
+    if (params.find((param) => param.name == "trk")) {
+      trk = params.find((param) => param.name == "trk")["value"];
+    }
+
+    let petrol92 = "";
+    if (params.find((param) => param.name == "petrol-92")) {
+      petrol92 = params.find((param) => param.name == "petrol-92")["value"];
+    }
+
+    let petrol95 = "";
+    if (params.find((param) => param.name == "petrol-95")) {
+      petrol95 = params.find((param) => param.name == "petrol-95")["value"];
+    }
+
+    let other = "";
+    if (params.find((param) => param.name == "other")) {
+      other = params.find((param) => param.name == "other")["value"];
+    }
+
+    let fast = "";
+    if (params.find((param) => param.name == "fast")) {
+      fast = params.find((param) => param.name == "fast")["value"];
+    }
+
+    let sectionVolume = parseInt(volume) / parseInt(sections);
+    let textVolume = "";
+
+    let titleSections = "";
+    switch (sections) {
+      case "1":
+        titleSections = "односекционная";
+        break;
+      case "2":
+        titleSections = "двухсекционная";
+        textVolume = `(${sectionVolume}+${sectionVolume})`;
+        break;
+      case "3":
+        titleSections = "трехсекционная";
+        textVolume = `(${sectionVolume}+${sectionVolume}+${sectionVolume})`;
+        break;
+      case "4":
+        titleSections = "четырехсекционная";
+        textVolume = `(${sectionVolume}+${sectionVolume}+${sectionVolume}+${sectionVolume})`;
+        break;
+    }
+
+    let textSections = "";
+    switch (sections) {
+      case "1":
+        textSections = "односекционный";
+        break;
+      case "2":
+        textSections = "двухсекционный";
+        break;
+      case "3":
+        textSections = "трехсекционный";
+        break;
+      case "4":
+        textSections = "четырехсекционный";
+        break;
+    }
+
+    let titleType = "";
+    switch (type) {
+      case "Open":
+        titleType = "окрытом";
+        break;
+      case "Close":
+        titleType = "закрытом";
+        break;
+      case "Cont":
+        titleType = "контейнером";
+        break;
+    }
+
+    let textBarrier = parseInt(sections) - 1;
+
+
     // console.log(params);
 
     //  TODO надо сформировать формирование цены, описания и характеристик, они будут использоваться в файле pdf и в формах обратной связи
@@ -1473,50 +1639,50 @@ if (resultCalcBtn) {
     // TODO посчитать стоимость и записать в переменную:
     const finalPrice = document.querySelector(".popup__result-price");
     const price = setPrice();
-    const textPrice = price.toLocaleString;
     console.log(price);
     finalPrice.innerHTML = `${price} руб.`;
 
     //TODO добавить опитсание:
     const finalDesc = document.querySelector(".popup__result-desc");
-    finalDesc.innerHTML = `Внутриведомственная двухсекционная АЗС в контейнерном исполнении общим объёмом 5м3`;
+    finalDesc.innerHTML = `Внутриведомственная ${titleSections} АЗС в ${titleType} исполнении общим объёмом ${volume}м3`;
 
     //TODO добавить характеристики:
     const finalParams = document.querySelector(".popup__result-params");
     finalParams.innerHTML = `
-    Резервуар: двустенный двухсекционный резервуар объёмом 10 (5+5) м.куб. (сталь Ст3 4/4мм, система контроля <br>
+    Резервуар: двустенный ${textSections} резервуар объёмом ${volume} ${textVolume} м.куб. (сталь Ст3 4/4мм, система контроля
     межстенного пространства с сиреной, азот); <br>
-    Люк-лаз: 700мм с крышкой 800мм - 2шт. <br>
-    Перегородка: двустенная перегородка (Сталь Ст3 4/4мм) - 1шт. <br>
-    Строповочные рымы: есть <br>
+    Люк-лаз: 700мм с крышкой 800мм - ${sections}шт. <br>
+    Перегородка: двустенная перегородка (Сталь Ст3 4/4мм) - ${textBarrier}шт. <br>
+    Страховочные рымы: есть <br>
     Ложементы (опоры): есть <br>
     Лестница с площадкой обслуживания: есть <br>
     Технологический отсек: Закрытый, с поддоном сбора проливов <br>
     ТРК: однорукавная «GP» с однострочным отсчётным устройством, 50л/мин (возможна установка других на
     50-80л/мин) -
-    2 шт. <br>
+    ${trk} шт. <br>
     Насос: КМ 80-65-140Е (380В, 3кВт) <br>
     Узел наполнения: УН-80 со сливной муфтой <br>
-    Датчик уровня: ПМП-185 с сиреной ВС-5 (возможна замена на уровнемер ПМП-201) - 2 комплекта <br>
+    Датчик уровня: ПМП-185 с сиреной ВС-5 (возможна замена на уровнемер ПМП-201) - ${sections} комплекта <br>
     Сигнализатор: ВС-К-500, дисплейный <br>
     Сирена: ВС-5 <br>
-    Технологические линии: (наполнения, выдачи, деаэрации, замера и обесшламливания) - 2 комплекта <br>
+    Технологические линии: (наполнения, выдачи, деаэрации, замера и обесшламливания) - ${sections} комплекта <br>
     Освещение и щит силовой в исполнении Ех: есть <br>
     Система автоматического пожаротушения: Буран 2,5 <br>
     Наружное покрытие: грунт=эмаль ЭКОМАСТ <br>
     Молниеотвод: есть <br>
-    Надвись “Огнеопасно”: 2 шт. <br>
+    Надпись “Огнеопасно”: 2 шт. <br>
     Метрошок: МШС 3,5 (в приклад) <br>
-    Габариты, мм: 5000х2200х2650 <br>
-    Масса, кг: 3700
     `;
+
+    // Габариты, мм: 5000х2200х2650 <br>
+    // Масса, кг: 3700
 
     createCalcFile();
   });
 
   async function createCalcFile() {
     // console.log("******************** Старт функции createCalcFile **********************");
-    
+
     const params = parseUrlQuery();
     const img = getImageName();
     const finalPrice = document.querySelector(".popup__result-price");
@@ -2271,6 +2437,9 @@ nextStepBtnFive.addEventListener("click", function () {
 const queryParams = parseUrlQuery();
 setCurrentParams(queryParams);
 
+// -------------------------------------- start расчет цены ----------------
+//#region calc price
+
 async function fetchToDB(options) {
   let responseHouses = await fetch(options.script, {
     method: "POST",
@@ -2321,7 +2490,7 @@ async function getPriceHeating() {
 }
 
 let heating = await getPriceHeating();
-let price = await getPriceAZS(); 
+let price = await getPriceAZS();
 
 function setPrice() {
   let copyPrice = [...price];
@@ -2330,62 +2499,71 @@ function setPrice() {
 
   // фильтрация таблицы цен:
   if (params.find((param) => param.name == "type")) {
-    copyPrice = filterPrice(params.find((param) => param.name == "type")['value'], 'type', copyPrice);
+    copyPrice = filterPrice(params.find((param) => param.name == "type")["value"], "type", copyPrice);
   }
 
   if (params.find((param) => param.name == "volume")) {
-    copyPrice = filterPrice(params.find((param) => param.name == "volume")['value'], 'volume', copyPrice);
-    copyHeating = filterPrice(params.find((param) => param.name == "volume")['value'], 'volume', copyHeating);
+    copyPrice = filterPrice(params.find((param) => param.name == "volume")["value"], "volume", copyPrice);
+    copyHeating = filterPrice(params.find((param) => param.name == "volume")["value"], "volume", copyHeating);
   }
 
   if (params.find((param) => param.name == "sections")) {
-    copyPrice = filterPrice(params.find((param) => param.name == "sections")['value'], 'sections', copyPrice);
+    copyPrice = filterPrice(params.find((param) => param.name == "sections")["value"], "sections", copyPrice);
   }
 
-  if (params.find((param) => param.name == "trk") ) {    
-    let value = '';
-    if (params.find((param) => param.name == "trk")['value'] == '2' && params.find((param) => param.name == "side")) {
-      value = params.find((param) => param.name == "trk")['value'] + '_' + params.find((param) => param.name == "side")['value'];
-    } else {    
-      value = params.find((param) => param.name == "trk")['value'];
+  if (params.find((param) => param.name == "trk")) {
+    let value = "";
+    if (params.find((param) => param.name == "trk")["value"] == "2" && params.find((param) => param.name == "side")) {
+      value =
+        params.find((param) => param.name == "trk")["value"] +
+        "_" +
+        params.find((param) => param.name == "side")["value"];
+    } else {
+      value = params.find((param) => param.name == "trk")["value"];
     }
-    copyPrice = filterPrice(value, 'trk', copyPrice);
+    copyPrice = filterPrice(value, "trk", copyPrice);
   }
 
   if (params.find((param) => param.name == "fast")) {
-    let value = '';
+    let value = "";
 
-    if (params.find((param) => param.name == "fast") && params.find((param) => param.name == "fast")['value'] != '0') {
-      value = 'f';
+    if (params.find((param) => param.name == "fast") && params.find((param) => param.name == "fast")["value"] != "0") {
+      value = "f";
     } else {
-      value = '0';
+      value = "0";
     }
-    copyPrice = filterPrice(value, 'fast', copyPrice);
+    copyPrice = filterPrice(value, "fast", copyPrice);
   }
-  console.log('copyPrice', copyPrice);
-  console.log('copyHeating', copyHeating);
+  // console.log("copyPrice", copyPrice);
+  // console.log("copyHeating", copyHeating);
   let priceAZS = parseInt(copyPrice[0].price);
-    console.log('priceAZS', priceAZS);
+  // console.log("priceAZS", priceAZS);
 
-  if (params.find((param) => param.name == "insulation") && params.find((param) => param.name == "insulation")['value'] == '1') {
-    priceAZS += parseInt(copyHeating[0]['insulation']);
-    console.log('priceAZS', priceAZS);
+  if (
+    params.find((param) => param.name == "insulation") &&
+    params.find((param) => param.name == "insulation")["value"] == "1"
+  ) {
+    priceAZS += parseInt(copyHeating[0]["insulation"]);
+    // console.log("priceAZS", priceAZS);
   }
 
-  if (params.find((param) => param.name == "heater") && params.find((param) => param.name == "heater")['value'] == '1') {
-    priceAZS += parseInt(copyHeating[0]['heater']);
-    console.log('priceAZS', priceAZS);
+  if (
+    params.find((param) => param.name == "heater") &&
+    params.find((param) => param.name == "heater")["value"] == "1"
+  ) {
+    priceAZS += parseInt(copyHeating[0]["heater"]);
+    // console.log("priceAZS", priceAZS);
   }
-
-
 
   const textPrice = priceAZS.toLocaleString("ru-RU", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  })
+  });
   return textPrice;
 }
 
 function filterPrice(value, name, arr) {
-  return arr.filter((item) => item[name].toLowerCase() == value.toLowerCase());  
+  return arr.filter((item) => item[name].toLowerCase() == value.toLowerCase());
 }
+// -------------------------------------- end расчет цены ----------------
+//#endregion
