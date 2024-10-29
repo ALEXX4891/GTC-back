@@ -5,6 +5,8 @@ $keywords = '';
 $page = 'glavnaya';
 include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
 include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
+// $result = mysqli_query($db, "SELECT * FROM price WHERE id = " . $_GET['id']);
+// $row = mysqli_fetch_array($result);
 ?>
 
 <main class="main">

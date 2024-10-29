@@ -1472,7 +1472,10 @@ if (resultCalcBtn) {
 
     // TODO посчитать стоимость и записать в переменную:
     const finalPrice = document.querySelector(".popup__result-price");
-    finalPrice.innerHTML = "3 500 000";
+    const price = setPrice();
+    const textPrice = price.toLocaleString;
+    console.log(price);
+    finalPrice.innerHTML = `${price} руб.`;
 
     //TODO добавить опитсание:
     const finalDesc = document.querySelector(".popup__result-desc");
@@ -2267,3 +2270,122 @@ nextStepBtnFive.addEventListener("click", function () {
 
 const queryParams = parseUrlQuery();
 setCurrentParams(queryParams);
+
+async function fetchToDB(options) {
+  let responseHouses = await fetch(options.script, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify(options),
+  });
+
+  let result = [];
+  if (responseHouses.ok) {
+    // console.log("ok");
+    result = await responseHouses.json();
+    // console.log(result);
+    // arr = Object.values(result.response);
+    // console.log(result);
+  } else {
+    console.log("error");
+  }
+
+  return await result;
+}
+
+async function getPriceAZS() {
+  const options = {
+    script: "/backend/getInfo.php",
+    function: "get",
+    table: "price",
+  };
+
+  let arr = [];
+
+  arr = fetchToDB(options);
+  return arr;
+}
+
+async function getPriceHeating() {
+  const options = {
+    script: "/backend/getInfo.php",
+    function: "get",
+    table: "heating",
+  };
+
+  let arr = [];
+
+  arr = fetchToDB(options);
+  return arr;
+}
+
+let heating = await getPriceHeating();
+let price = await getPriceAZS(); 
+
+function setPrice() {
+  let copyPrice = [...price];
+  let copyHeating = [...heating];
+  const params = parseUrlQuery();
+
+  // фильтрация таблицы цен:
+  if (params.find((param) => param.name == "type")) {
+    copyPrice = filterPrice(params.find((param) => param.name == "type")['value'], 'type', copyPrice);
+  }
+
+  if (params.find((param) => param.name == "volume")) {
+    copyPrice = filterPrice(params.find((param) => param.name == "volume")['value'], 'volume', copyPrice);
+    copyHeating = filterPrice(params.find((param) => param.name == "volume")['value'], 'volume', copyHeating);
+  }
+
+  if (params.find((param) => param.name == "sections")) {
+    copyPrice = filterPrice(params.find((param) => param.name == "sections")['value'], 'sections', copyPrice);
+  }
+
+  if (params.find((param) => param.name == "trk") ) {    
+    let value = '';
+    if (params.find((param) => param.name == "trk")['value'] == '2' && params.find((param) => param.name == "side")) {
+      value = params.find((param) => param.name == "trk")['value'] + '_' + params.find((param) => param.name == "side")['value'];
+    } else {    
+      value = params.find((param) => param.name == "trk")['value'];
+    }
+    copyPrice = filterPrice(value, 'trk', copyPrice);
+  }
+
+  if (params.find((param) => param.name == "fast")) {
+    let value = '';
+
+    if (params.find((param) => param.name == "fast") && params.find((param) => param.name == "fast")['value'] != '0') {
+      value = 'f';
+    } else {
+      value = '0';
+    }
+    copyPrice = filterPrice(value, 'fast', copyPrice);
+  }
+  console.log('copyPrice', copyPrice);
+  console.log('copyHeating', copyHeating);
+  let priceAZS = parseInt(copyPrice[0].price);
+    console.log('priceAZS', priceAZS);
+
+  if (params.find((param) => param.name == "insulation") && params.find((param) => param.name == "insulation")['value'] == '1') {
+    priceAZS += parseInt(copyHeating[0]['insulation']);
+    console.log('priceAZS', priceAZS);
+  }
+
+  if (params.find((param) => param.name == "heater") && params.find((param) => param.name == "heater")['value'] == '1') {
+    priceAZS += parseInt(copyHeating[0]['heater']);
+    console.log('priceAZS', priceAZS);
+  }
+
+
+
+  const textPrice = priceAZS.toLocaleString("ru-RU", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+  return textPrice;
+}
+
+function filterPrice(value, name, arr) {
+  return arr.filter((item) => item[name].toLowerCase() == value.toLowerCase());  
+}
