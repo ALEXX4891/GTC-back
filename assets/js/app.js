@@ -32,6 +32,59 @@ if (header) {
     }
   });
 }
+
+// console.log(window.innerWidth);
+if (window.innerWidth < 1440) {
+  
+  const runner = document.querySelector(".runner");
+  const partnersList = document.querySelector(".partners__list");
+  runner.style.display = "none";
+  partnersList.style.display = "flex";
+}
+
+let animates = Array.from(document.querySelectorAll(".animation")).filter((item) => {
+  if (item.style.display !== "none") {
+    return item;
+  }
+});
+
+animates.forEach((item) => {
+  // получаем параметры секции
+  const rect = item.getBoundingClientRect(); // положение элемента в окне
+  // console.log('item', item);
+  // console.log('rect.top', rect.top);
+  // console.log('window.innerHeight / 2', window.innerHeight / 2);
+  // console.log('rect.top', rect.top);
+  // проверяем что начало секции находится в первой половине экрана
+  // if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+  if (rect.top <= window.innerHeight / 1.4) {
+    item.classList.add("animation_active");
+  }
+});
+
+document.addEventListener("scroll", () => {
+  // console.log(window.scrollY);
+
+  // console.log("scroll");
+  // получаем все секции с атрибутом id
+
+  // console.log("animates", animates);
+
+  animates.forEach((item) => {
+    // получаем параметры секции
+    const rect = item.getBoundingClientRect();
+  // console.log(rect);
+
+    // проверяем что начало секции находится в первой половине экрана
+    if (rect.top <= window.innerHeight / 1.4) {
+    // if (rect.top >= 0) {
+      // console.log(rect.top);
+      item.classList.add("animation_active");
+    }
+  });
+});
+
+
 // ---------------------------------- end menu ----------------------------------
 //#endregion
 
@@ -410,6 +463,9 @@ new Swiper(".results_bot_swiper", {
   spaceBetween: 10000,
   thumbs: {
     swiper: thumbs_swiper,
+  },
+  autoplay: {
+    delay: 5000,
   },
   navigation: {
     nextEl: ".swiper-button-next_res",

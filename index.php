@@ -11,9 +11,9 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
 <main class="main">
 
-  <section class="section section_banner banner">
+  <section class="section section_banner banner animation">
     <div class="container banner__container">
-      <div class="banner__left-block">
+      <div class="banner__left-block .animation_item fade-in-left fade-in-left-1">
         <div class="banner__text-block">
           <h1 class="banner__title title">
             ГТК Групп
@@ -76,7 +76,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
       <div class="banner__right-block">
         <ul class="banner__list">
-          <li class="banner__item">
+          <li class="banner__item .animation_item fade-in-right fade-in-right-1">
             <img src="/assets/img/banner_bg1.svg" alt="">
             <p class="banner__item-text">
               C 2004 года
@@ -84,7 +84,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </p>
           </li>
 
-          <li class="banner__item">
+          <li class="banner__item .animation_item fade-in-right fade-in-right-2">
             <img src="/assets/img/banner_bg2.svg" alt="">
             <p class="banner__item-text">
               200+ довольных
@@ -92,7 +92,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </p>
           </li>
 
-          <li class="banner__item">
+          <li class="banner__item .animation_item fade-in-right fade-in-right-3">
             <img src="/assets/img/banner_bg3.svg" alt="">
             <p class="banner__item-text">
               Собственные
@@ -100,7 +100,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </p>
           </li>
 
-          <li class="banner__item">
+          <li class="banner__item .animation_item fade-in-right fade-in-right-4">
             <img src="/assets/img/banner_bg4.svg" alt="">
             <p class="banner__item-text">
               Добросовестный поставщик IT-услуг
@@ -124,13 +124,13 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
         </p>
       </div>
 
-      <div class="about__bot-block">
-        <div class="about__img-block">
+      <div class="about__bot-block animation">
+        <div class="about__img-block animation_item fade-in-left fade-in-left-1">
           <picture>
             <source srcset="/assets/img/about_img.webp" type="image/webp"><img src="/assets/img/about_img.jpg" alt="">
           </picture>
         </div>
-        <div class="about__text-block">
+        <div class="about__text-block animation_item fade-in-right fade-in-right-1">
           <p class="about__text text">
             ГТК Групп — ваш надёжный IT-интегратор, специализирующийся на комплексных решениях по контролю и учёту
             топлива. Мы предлагаем инновационные технологии, которые помогают оптимизировать коммерческую деятельность
@@ -155,9 +155,9 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
       </div>
 
 
-      <ul class="advantages__list">
+      <ul class="advantages__list animation">
 
-        <li class="advantages__card adv-card">
+        <li class="advantages__card adv-card animation_item fade-in-bot fade-in-bot-1">
           <svg width="46" height="44" viewBox="0 0 46 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M20.7568 24.236V23.8043C20.7568 17.9219 25.53 13.1686 31.4134 13.1686H42.8914V9.96413C42.8914 9.26168 42.3229 8.69212 41.6204 8.69212H7.99175C6.72574 8.69212 5.70054 7.65693 5.70054 6.39093C5.70054 5.12592 6.72674 4.09073 7.99175 4.09073H41.6784C42.3479 4.09073 42.8914 3.54715 42.8914 2.87768V1.77554C42.8914 1.17001 42.4028 0.735352 41.7963 0.735352H4.26766C1.89452 0.735352 0 2.60089 0 4.97403V38.9634C0 41.3366 1.89452 43.2651 4.26766 43.2651H38.5978C40.9709 43.2651 42.8914 41.3366 42.8914 38.9634V34.9336H31.4134C25.53 34.9306 20.7568 30.1194 20.7568 24.236Z"
@@ -194,7 +194,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </a>
         </li>
 
-        <li class="advantages__card adv-card">
+        <li class="advantages__card adv-card animation_item fade-in-bot fade-in-bot-1">
           <svg width="47" height="46" viewBox="0 0 47 46" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_609_5729)">
               <path
@@ -248,7 +248,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </a>
         </li>
 
-        <li class="advantages__card adv-card">
+        <li class="advantages__card adv-card animation_item fade-in-bot fade-in-bot-2">
           <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_609_5758)">
               <path
@@ -277,7 +277,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
         </li>
 
-        <li class="advantages__card adv-card">
+        <li class="advantages__card adv-card animation_item fade-in-bot fade-in-bot-3">
           <svg width="47" height="46" viewBox="0 0 47 46" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_609_5769)">
               <path
@@ -306,7 +306,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
         </li>
 
-        <li class="advantages__card adv-card">
+        <li class="advantages__card adv-card animation_item fade-in-bot fade-in-bot-3">
           <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_609_5780)">
               <path
@@ -347,7 +347,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
         </li>
 
-        <li class="advantages__card adv-card">
+        <li class="advantages__card adv-card animation_item fade-in-bot fade-in-bot-3">
           <svg width="47" height="46" viewBox="0 0 47 46" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_609_5803)">
               <path
@@ -382,7 +382,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
         </li>
 
-        <li class="advantages__card adv-card">
+        <li class="advantages__card adv-card animation_item fade-in-bot fade-in-bot-4">
           <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_609_5816)">
               <path d="M6.18066 8.64988H14.0525V0.78891L6.18066 8.64988Z" fill="#11A0A3" />
@@ -412,7 +412,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
         </li>
 
-        <li class="advantages__card adv-card">
+        <li class="advantages__card adv-card animation_item fade-in-bot fade-in-bot-4">
           <svg width="47" height="46" viewBox="0 0 47 46" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_609_5830)">
               <path
@@ -455,7 +455,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
   <section class="section section_offers offers">
     <div class="section__ancor" id="offers"></div>
 
-    <div class="container offers__container">
+    <div class="container offers__container animation">
       <div class="top-block">
         <h2 class="top-block__title section-title" style="text-wrap: nowrap;">
           Что мы предлагаем?
@@ -465,7 +465,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
         </p>
       </div>
 
-      <div class="offers__slider-block">
+      <div class="offers__slider-block animation_item fade-in-bot fade-in-bot-1">
         <h3 class="offers__slider-title">
           Современные IT — решения, которые гарантировано помогут снизить расходы до 40%
         </h3>
@@ -937,8 +937,8 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
         </p>
       </div>
 
-      <ul class="solutions__list">
-        <li class="solutions__item">
+      <ul class="solutions__list animation">
+        <li class="solutions__item animation_item fade-in-bot fade-in-bot-1">
           <svg width="29" height="70" viewBox="0 0 29 70" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18.4 0H28.4V70H16.9V12.3L2.8 16.3L0 6.5L18.4 0Z" fill="#FAB502" />
           </svg>
@@ -948,7 +948,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </p>
         </li>
 
-        <li class="solutions__item">
+        <li class="solutions__item animation_item fade-in-bot fade-in-bot-2">
           <svg width="47" height="72" viewBox="0 0 47 72" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M0.2 71.3V62.3L24.6 37.4C30.5333 31.4667 33.5 26.3333 33.5 22C33.5 18.6 32.4667 15.9667 30.4 14.1C28.4 12.1667 25.8333 11.2 22.7 11.2C16.8333 11.2 12.5 14.1 9.7 19.9L0 14.2C2.2 9.53334 5.3 6 9.3 3.6C13.3 1.2 17.7333 0 22.6 0C28.7333 0 34 1.93333 38.4 5.8C42.8 9.66667 45 14.9333 45 21.6C45 28.7333 41.0333 36.3333 33.1 44.4L17.3 60.2H46.3V71.3H0.2Z"
@@ -960,7 +960,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </p>
         </li>
 
-        <li class="solutions__item">
+        <li class="solutions__item animation_item fade-in-bot fade-in-bot-3">
           <svg width="48" height="72" viewBox="0 0 48 72" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M30.9 28.6C35.9667 29.8 40.0667 32.1667 43.2 35.7C46.4 39.1667 48 43.5333 48 48.8C48 55.8 45.6333 61.3 40.9 65.3C36.1667 69.3 30.3667 71.3 23.5 71.3C18.1667 71.3 13.3667 70.0667 9.1 67.6C4.9 65.1333 1.86667 61.5333 0 56.8L9.8 51.1C11.8667 57.1 16.4333 60.1 23.5 60.1C27.5 60.1 30.6667 59.1 33 57.1C35.3333 55.0333 36.5 52.2667 36.5 48.8C36.5 45.3333 35.3333 42.6 33 40.6C30.6667 38.6 27.5 37.6 23.5 37.6H20.9L16.3 30.7L31.4 10.8H2.1V0H45.1V9.8L30.9 28.6Z"
@@ -972,7 +972,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </p>
         </li>
 
-        <li class="solutions__item">
+        <li class="solutions__item animation_item fade-in-bot fade-in-bot-6">
           <svg width="54" height="71" viewBox="0 0 54 71" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M54 47.0001V57.7001H46V70.3001H34.4V57.7001H0V47.0001L24.1 0.300049H36.6L12.5 47.0001H34.4V28.8001H46V47.0001H54Z"
@@ -984,7 +984,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </p>
         </li>
 
-        <li class="solutions__item">
+        <li class="solutions__item animation_item fade-in-bot fade-in-bot-5">
           <svg width="49" height="72" viewBox="0 0 49 72" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M24.5 26.7001C31.1667 26.7001 36.8 28.7001 41.4 32.7001C46 36.6334 48.3 42.1001 48.3 49.1001C48.3 56.1001 45.9333 61.6001 41.2 65.6001C36.4667 69.6001 30.6667 71.6001 23.8 71.6001C18.2667 71.6001 13.3667 70.3334 9.1 67.8001C4.83333 65.2001 1.8 61.4667 0 56.6001L9.9 50.9001C11.7667 57.2334 16.4 60.4001 23.8 60.4001C27.7333 60.4001 30.8667 59.4001 33.2 57.4001C35.6 55.3334 36.8 52.5667 36.8 49.1001C36.8 45.6334 35.6333 42.9001 33.3 40.9001C30.9667 38.9001 27.8667 37.9001 24 37.9001H3.6L6.3 0.300049H45.3V11.1001H16.9L15.7 26.7001H24.5Z"
@@ -996,7 +996,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </p>
         </li>
 
-        <li class="solutions__item">
+        <li class="solutions__item animation_item fade-in-bot fade-in-bot-4">
           <svg width="50" height="72" viewBox="0 0 50 72" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M24.8 23.8001C32.0667 23.8001 38 26.0334 42.6 30.5C47.2 34.9001 49.5 40.6334 49.5 47.7001C49.5 54.7667 47.2 60.5334 42.6 65.0001C38 69.4001 32.0667 71.6001 24.8 71.6001C17.4667 71.6001 11.5 69.4001 6.9 65.0001C2.3 60.5334 0 54.7667 0 47.7001C0 42.3667 1.4 37.6667 4.2 33.6001L26.4 0.300049H39.5L23.5 23.8001H24.8ZM24.8 60.7001C28.6667 60.7001 31.8333 59.5334 34.3 57.2001C36.7667 54.8001 38 51.6334 38 47.7001C38 43.7667 36.7667 40.6334 34.3 38.3001C31.8333 35.9001 28.6667 34.7001 24.8 34.7001C20.8667 34.7001 17.6667 35.9001 15.2 38.3001C12.7333 40.6334 11.5 43.7667 11.5 47.7001C11.5 51.6334 12.7333 54.8001 15.2 57.2001C17.6667 59.5334 20.8667 60.7001 24.8 60.7001Z"
@@ -1008,7 +1008,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </p>
         </li>
 
-        <li class="solutions__item">
+        <li class="solutions__item animation_item fade-in-bot fade-in-bot-7">
           <svg width="45" height="71" viewBox="0 0 45 71" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0.599976H44.5V10.6L19.9 70.6H7.8L32 11.6H0V0.599976Z" fill="#FAB502" />
           </svg>
@@ -1018,7 +1018,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </p>
         </li>
 
-        <li class="solutions__item">
+        <li class="solutions__item animation_item fade-in-bot fade-in-bot-8">
           <svg width="50" height="74" viewBox="0 0 50 74" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M38.8 35.5C45.6667 39.3 49.1 44.9666 49.1 52.5C49.1 58.9 46.8667 63.9666 42.4 67.7C37.9333 71.3666 32 73.2 24.6 73.2C17.2 73.2 11.2333 71.3666 6.7 67.7C2.23333 63.9666 0 58.9 0 52.5C0 48.9 0.9 45.6333 2.7 42.7C4.5 39.7 7.03333 37.3 10.3 35.5C5.03333 32.0333 2.4 27.1 2.4 20.7C2.4 14.3 4.53333 9.36664 8.8 5.89998C13.0667 2.36664 18.3333 0.599976 24.6 0.599976C30.8 0.599976 36.0333 2.36664 40.3 5.89998C44.6333 9.36664 46.8 14.3 46.8 20.7C46.8 27.1 44.1333 32.0333 38.8 35.5ZM24.6 11.5C21.4667 11.5 18.9 12.3333 16.9 14C14.9 15.6666 13.9 18.0666 13.9 21.2C13.9 24.2 14.9 26.5666 16.9 28.3C18.9667 30.0333 21.5333 30.9 24.6 30.9C27.6 30.9 30.1333 30.0333 32.2 28.3C34.2667 26.5666 35.3 24.2 35.3 21.2C35.3 18.0666 34.2667 15.6666 32.2 14C30.2 12.3333 27.6667 11.5 24.6 11.5ZM24.6 62.3C28.4667 62.3 31.6 61.3666 34 59.5C36.4 57.5666 37.6 54.8666 37.6 51.4C37.6 47.9333 36.4 45.2666 34 43.4C31.6 41.4666 28.4667 40.5 24.6 40.5C20.6667 40.5 17.5 41.4666 15.1 43.4C12.7 45.2666 11.5 47.9333 11.5 51.4C11.5 54.8666 12.7 57.5666 15.1 59.5C17.5 61.3666 20.6667 62.3 24.6 62.3Z"
@@ -1030,7 +1030,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </p>
         </li>
 
-        <li class="solutions__item">
+        <li class="solutions__item animation_item fade-in-bot fade-in-bot-9">
           <svg width="50" height="72" viewBox="0 0 50 72" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M49.5 24.5C49.5 29.8333 48.1 34.5333 45.3 38.6L23.2 71.9H10L26 48.4H24.8C17.5333 48.4 11.5667 46.2 6.9 41.8C2.3 37.3333 0 31.5666 0 24.5C0 17.4333 2.3 11.7 6.9 7.29998C11.5667 2.83331 17.5333 0.599976 24.8 0.599976C32.0667 0.599976 38 2.83331 42.6 7.29998C47.2 11.7 49.5 17.4333 49.5 24.5ZM11.5 24.5C11.5 28.3666 12.7333 31.5 15.2 33.9C17.7333 36.3 20.9333 37.5 24.8 37.5C28.6667 37.5 31.8333 36.3333 34.3 34C36.7667 31.6 38 28.4333 38 24.5C38 20.5666 36.7667 17.4333 34.3 15.1C31.8333 12.7 28.6667 11.5 24.8 11.5C20.9333 11.5 17.7333 12.7 15.2 15.1C12.7333 17.4333 11.5 20.5666 11.5 24.5Z"
@@ -1064,9 +1064,9 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
         </p>
       </div>
 
-      <ul class="types__list">
+      <ul class="types__list animation">
 
-        <li class="types__item type-card">
+        <li class="types__item type-card animation_item fade-in-bot fade-in-bot-1">
           <h3 class="type-card__title">
             Топливозаправочный пункт с открытым техническим отсеком
           </h3>
@@ -1107,7 +1107,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
         </li>
 
-        <li class="types__item type-card">
+        <li class="types__item type-card animation_item fade-in-bot fade-in-bot-2">
           <h3 class="type-card__title">
             Топливозаправочный пункт с закрытым техническим отсеком
           </h3>
@@ -1149,7 +1149,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
         </li>
 
-        <li class="types__item type-card">
+        <li class="types__item type-card animation_item fade-in-bot fade-in-bot-3">
           <h3 class="type-card__title">
             Топливозаправочный пункт с закрытым
             техническим отсеком в контейнере
@@ -1210,7 +1210,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
         </p>
       </div>
 
-      <div class="results__content">
+      <div class="results__content animation">
         <div class="results__top-block">
           <div class="swiper results_top_swiper">
             <ul class="results__top-list swiper-wrapper">
@@ -1241,7 +1241,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
         </div>
 
-        <div class="results__bot-block">
+        <div class="results__bot-block animation_item fade-in-bot fade-in-bot-1">
 
           <div class="swiper results_bot_swiper">
 
@@ -1903,8 +1903,8 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
         </p>
       </div>
 
-      <ul class="team__list">
-        <li class="team__item team-card">
+      <ul class="team__list animation">
+        <li class="team__item team-card animation_item fade-in-left fade-in-left-1">
           <div class="team-card__img">
             <picture>
               <source srcset="/assets/img/team_img_1.webp" type="image/webp"><img src="/assets/img/team_img_1.jpg" alt="">
@@ -1926,7 +1926,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </div>
         </li>
 
-        <li class="team__item team-card">
+        <li class="team__item team-card animation_item fade-in-right fade-in-right-1">
           <div class="team-card__img">
             <picture>
               <source srcset="/assets/img/team_img_2.webp" type="image/webp"><img src="/assets/img/team_img_2.jpg" alt="">
@@ -1948,7 +1948,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </div>
         </li>
 
-        <li class="team__item team-card">
+        <li class="team__item team-card animation_item fade-in-left fade-in-left-2">
           <div class="team-card__img">
             <picture>
               <source srcset="/assets/img/team_img_3.webp" type="image/webp"><img src="/assets/img/team_img_3.jpg" alt="">
@@ -1970,7 +1970,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </div>
         </li>
 
-        <li class="team__item team-card">
+        <li class="team__item team-card animation_item fade-in-right fade-in-right-2">
           <div class="team-card__img">
             <picture>
               <source srcset="/assets/img/team_img_4.webp" type="image/webp"><img src="/assets/img/team_img_4.jpg" alt="">
@@ -1992,7 +1992,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </div>
         </li>
 
-        <li class="team__item team-card">
+        <li class="team__item team-card animation_item fade-in-left fade-in-left-3">
           <div class="team-card__img">
             <picture>
               <source srcset="/assets/img/team_img_5.webp" type="image/webp"><img src="/assets/img/team_img_5.jpg" alt="">
@@ -2029,7 +2029,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
         </p>
       </div>
 
-      <ul class="partners__list">
+      <ul class="partners__list" style="display: none;">
         <li class="partners__item">
           <picture>
             <source srcset="/assets/img/partners_img_1.webp" type="image/webp"><img src="/assets/img/partners_img_1.png" alt="">
@@ -2048,13 +2048,57 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </picture>
         </li>
       </ul>
+
+      <div class="runner">
+        <div class="container runner__container">
+          <div class="runner__list runner__list_2">
+            <div class="runner__wrap runner__wrap_1">
+              <picture>
+                <source srcset="/assets/img/partners_img_1.webp" type="image/webp"><img src="/assets/img/partners_img_1.png" alt="">
+              </picture>
+            </div>
+
+            <div class="runner__wrap runner__wrap_2">
+              <picture>
+                <source srcset="/assets/img/partners_img_2.webp" type="image/webp"><img src="/assets/img/partners_img_2.png" alt="">
+              </picture>
+            </div>
+
+            <div class="runner__wrap runner__wrap_3">
+              <picture>
+                <source srcset="/assets/img/partners_img_3.webp" type="image/webp"><img src="/assets/img/partners_img_3.png" alt="">
+              </picture>
+            </div>
+          </div>
+
+          <div class="runner__list runner__list_2" aria-hidden="true">
+            <div class="runner__wrap runner__wrap_1">
+              <picture>
+                <source srcset="/assets/img/partners_img_1.webp" type="image/webp"><img src="/assets/img/partners_img_1.png" alt="">
+              </picture>
+            </div>
+
+            <div class="runner__wrap runner__wrap_2">
+              <picture>
+                <source srcset="/assets/img/partners_img_2.webp" type="image/webp"><img src="/assets/img/partners_img_2.png" alt="">
+              </picture>
+            </div>
+
+            <div class="runner__wrap runner__wrap_3">
+              <picture>
+                <source srcset="/assets/img/partners_img_3.webp" type="image/webp"><img src="/assets/img/partners_img_3.png" alt="">
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section section_geo geo">
     <div class="section__ancor" id="contacts"></div>
 
-    <div class="container geo__container">
+    <div class="container geo__container animation">
       <div class="top-block">
         <h2 class="top-block__title section-title" style="text-wrap: nowrap;">
           Контакты
@@ -2163,14 +2207,14 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
       </div>
 
-      <div class="geo__map-block" id="map">
+      <div class="geo__map-block animation_item fade-in-bot fade-in-bot-1" id="map">
 
       </div>
     </div>
   </section>
 
-  <section class="section section_consultations consultations form-wrap">
-    <div class="consultations__img">
+  <section class="section section_consultations consultations form-wrap animation">
+    <div class="consultations__img animation_item fade-in-right fade-in-right-1">
       <picture>
         <source srcset="/assets/img/consult.webp" type="image/webp"><img src="/assets/img/consult.png" alt="">
       </picture>
@@ -2180,7 +2224,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
     </div>
 
-    <div class="consultations_bot-block">
+    <div class="consultations_bot-block animation_item fade-in-left fade-in-left-1">
 
       <div class="container consultations__container">
 

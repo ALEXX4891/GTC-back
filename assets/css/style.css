@@ -2809,15 +2809,15 @@ a {
   display: -ms-grid;
   display: grid;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   padding: 15px 140px 15px 25px;
   gap: 15px;
   max-width: 100%;
   min-height: 120px;
   background: #f0fdfb;
   -webkit-box-shadow: 17px 18px 10px rgba(8, 43, 43, 0.01), 9px 10px 8px rgba(8, 43, 43, 0.04), 4px 4px 6px rgba(8, 43, 43, 0.06), 1px 1px 3px rgba(8, 43, 43, 0.07);
-          box-shadow: 17px 18px 10px rgba(8, 43, 43, 0.01), 9px 10px 8px rgba(8, 43, 43, 0.04), 4px 4px 6px rgba(8, 43, 43, 0.06), 1px 1px 3px rgba(8, 43, 43, 0.07);
+  box-shadow: 17px 18px 10px rgba(8, 43, 43, 0.01), 9px 10px 8px rgba(8, 43, 43, 0.04), 4px 4px 6px rgba(8, 43, 43, 0.06), 1px 1px 3px rgba(8, 43, 43, 0.07);
   border-radius: 10px;
   background-repeat: no-repeat;
   background-position: center right 10px;
@@ -2825,6 +2825,114 @@ a {
   transition: -webkit-box-shadow 0.3s ease-in-out;
   transition: box-shadow 0.3s ease-in-out;
   transition: box-shadow 0.3s ease-in-out, -webkit-box-shadow 0.3s ease-in-out;
+}
+
+.fade-in-right-1 {
+  animation: fade-in-right 0.3s ease-in-out forwards;
+}
+
+.fade-in-right-2 {
+  animation: fade-in-right 0.3s 0.2s ease-in-out 1 forwards;  
+}
+
+.fade-in-right-3 {
+  animation: fade-in-right 0.3s 0.4s ease-in-out 1 forwards;  
+}
+
+.fade-in-right-4 {
+  animation: fade-in-right 0.3s 0.6s ease-in-out 1 forwards;  
+}
+
+.fade-in-bot-1 {
+  animation: fade-in-bot 0.3s ease-in-out forwards;
+}
+
+.fade-in-bot-2 {
+  animation: fade-in-bot 0.3s 0.2s ease-in-out 1 forwards;  
+}
+
+.fade-in-bot-3 {
+  animation: fade-in-bot 0.3s 0.4s ease-in-out 1 forwards;  
+}
+
+.fade-in-bot-4 {
+  animation: fade-in-bot 0.3s 0.6s ease-in-out 1 forwards;  
+}
+
+.fade-in-bot-5 {
+  animation: fade-in-bot 0.3s 0.8s ease-in-out 1 forwards;  
+}
+
+.fade-in-bot-6 {
+  animation: fade-in-bot 0.3s 1s ease-in-out 1 forwards;  
+}
+
+.fade-in-bot-7 {
+  animation: fade-in-bot 0.3s 1.2s ease-in-out 1 forwards;  
+}
+
+.fade-in-bot-8 {
+  animation: fade-in-bot 0.3s 1.4s ease-in-out 1 forwards;  
+}
+
+.fade-in-bot-9 {
+  animation: fade-in-bot 0.3s 1.6s ease-in-out 1 forwards;  
+}
+
+.fade-in-left-1 {
+  animation: fade-in-left 0.3s ease-in-out 1 forwards;
+}
+
+.fade-in-left-2 {
+  animation: fade-in-left 0.3s 0.2s ease-in-out 1 forwards;
+}
+
+.fade-in-left-3 {
+  animation: fade-in-left 0.3s 0.4s ease-in-out 1 forwards;
+}
+
+.fade-in-right  {
+  transform: translate(300px, 0);
+  opacity: 0;
+}
+
+.fade-in-left  {
+  transform: translate(-300px, 0);
+  opacity: 0;
+}
+
+.fade-in-bot  {
+  transform: translate(0, 300px);
+  opacity: 0;
+}
+
+.animation .animation_item {
+  animation-play-state: paused;
+}
+
+.animation.animation_active .animation_item {
+  animation-play-state: running;
+}
+
+@keyframes fade-in-right {
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-left {
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-bot {
+  to {
+    transform: none;
+    opacity: 1;
+  }
 }
 
 .glavnaya .banner .banner__container .banner__right-block .banner__list .banner__item img {
@@ -3612,6 +3720,8 @@ a {
   gap: 50px;
 }
 
+
+
 .glavnaya .partners .container .partners__list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3630,6 +3740,71 @@ a {
   width: auto;
   height: 85px;
 }
+
+/* #region RUNNER */
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 190px));
+  }
+}
+
+.glavnaya .partners .container.runner__container {
+  padding: 55px 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 190px;
+  border-bottom: 1px solid var(--color-E9E9E9);
+  overflow: hidden;
+}
+
+.runner__list {
+  flex-shrink: 0;
+  gap: 190px;
+  display: flex;
+  animation: scroll 10s linear infinite;
+}
+
+.runner__wrap {
+  flex-shrink: 0;
+  display: flex;
+  gap: 50px;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.runner__text {
+  margin: 0;
+  color: var(--color-black);
+  font-family: Montserrat;
+  font-size: 50px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.runner__text_1 {
+  opacity: 0.3;
+}
+
+.runner__text_2 {
+  font-weight: 500;
+  opacity: 0.5;
+}
+
+.runner__text_3 {
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.runner__text_4 {
+  font-weight: 700;
+}
+
+/* #endregion RUNNER */
 
 .glavnaya .geo .container {
   display: -ms-grid;
@@ -3768,6 +3943,7 @@ a {
   height: 431px;
   left: 50%;
   margin-left: 180px;
+  z-index: 10;
 }
 
 .glavnaya .consultations .consultations_top-block {
@@ -4091,6 +4267,99 @@ a {
     width: 38.5vw;
     height: auto;
     margin-left: initial;
+  }
+}
+
+@media (max-width: 1400px) {
+  .glavnaya .banner .banner__container .banner__left-block .banner__text-block .banner__title {
+    color: #FAB502;
+  }
+
+  .fade-in-right-1 {
+    animation: none;
+  }
+
+  .fade-in-right-2 {
+    animation: none;  
+  }
+
+  .fade-in-right-3 {
+    animation: none;  
+  }
+
+  .fade-in-right-4 {
+    animation: none;  
+  }
+
+  .fade-in-bot-1 {
+    animation: none;
+  }
+
+  .fade-in-bot-2 {
+    animation: none;  
+  }
+
+  .fade-in-bot-3 {
+    animation: none;  
+  }
+
+  .fade-in-bot-4 {
+    animation: none;  
+  }
+
+  .fade-in-bot-5 {
+    animation: none;  
+  }
+
+  .fade-in-bot-6 {
+    animation: none;  
+  }
+
+  .fade-in-bot-7 {
+    animation: none;  
+  }
+
+  .fade-in-bot-8 {
+    animation: none;  
+  }
+
+  .fade-in-bot-9 {
+    animation: none;  
+  }
+
+  .fade-in-left-1 {
+    animation: none;
+  }
+
+  .fade-in-left-2 {
+    animation: none;
+  }
+
+  .fade-in-left-3 {
+    animation: none;
+  }
+
+  .fade-in-right {
+    transform: none;
+    opacity: 1;
+  }
+
+  .fade-in-left {
+    transform: none;
+    opacity: 1;
+  }
+
+  .fade-in-bot {
+    transform: none;
+    opacity: 1;
+  }
+
+  .animation .animation_item {
+    animation-play-state: paused;
+  }
+
+  .animation.animation_active .animation_item {
+    animation-play-state: paused;
   }
 }
 
