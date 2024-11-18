@@ -2891,6 +2891,27 @@ a {
   animation: fade-in-left 0.3s 0.4s ease-in-out 1 forwards;
 }
 
+
+.wave-1 {
+  animation: fade-in-right 0.3s ease-in-out forwards,
+  wave 5s 3s ease-in-out infinite;
+}
+
+.wave-2 {
+  animation: fade-in-right 0.3s 0.2s ease-in-out 1 forwards, 
+  wave 5s 3.1s ease-in-out infinite;
+}
+
+.wave-3 {
+  animation: fade-in-right 0.3s 0.4s ease-in-out 1 forwards,
+  wave 5s 3.2s ease-in-out infinite;
+}
+
+.wave-4 {
+  animation: fade-in-right 0.3s 0.6s ease-in-out 1 forwards,
+  wave 5s 3.3s ease-in-out infinite;
+}
+
 .fade-in-right  {
   transform: translate(300px, 0);
   opacity: 0;
@@ -2932,6 +2953,21 @@ a {
   to {
     transform: none;
     opacity: 1;
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  4% {
+    transform: translateX(10px);
+  }
+  8% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 

@@ -76,7 +76,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
       <div class="banner__right-block">
         <ul class="banner__list">
-          <li class="banner__item .animation_item fade-in-right fade-in-right-1">
+          <li class="banner__item .animation_item fade-in-right wave-1">
             <img src="/assets/img/banner_bg1.svg" alt="">
             <p class="banner__item-text">
               C 2004 года
@@ -84,7 +84,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </p>
           </li>
 
-          <li class="banner__item .animation_item fade-in-right fade-in-right-2">
+          <li class="banner__item .animation_item fade-in-right wave-2">
             <img src="/assets/img/banner_bg2.svg" alt="">
             <p class="banner__item-text">
               200+ довольных
@@ -92,7 +92,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </p>
           </li>
 
-          <li class="banner__item .animation_item fade-in-right fade-in-right-3">
+          <li class="banner__item .animation_item fade-in-right wave-3">
             <img src="/assets/img/banner_bg3.svg" alt="">
             <p class="banner__item-text">
               Собственные
@@ -100,7 +100,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </p>
           </li>
 
-          <li class="banner__item .animation_item fade-in-right fade-in-right-4">
+          <li class="banner__item .animation_item fade-in-right wave-4">
             <img src="/assets/img/banner_bg4.svg" alt="">
             <p class="banner__item-text">
               Добросовестный поставщик IT-услуг
