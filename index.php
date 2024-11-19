@@ -41,22 +41,27 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               <!-- <picture>
                 <source srcset="/assets/img/banner_img1.webp" type="image/webp"><img src="/assets/img/banner_img1.png" alt="">
               </picture> -->
-              <img src="/assets/img/gif-banner-1.gif" alt="">
+              <!-- <img src="/assets/img/gif-banner-1.gif" alt=""> -->
               <!-- <img src="/assets/img/banner_img1.png" alt=""> -->
+              <video src="/assets/img/banner-1.mp4" autoplay loop muted playsinline></video>
             </li>
 
             <li class="banner__slider-item swiper-slide">
               <!-- <picture>
                 <source srcset="/assets/img/banner_img2.webp" type="image/webp"><img src="/assets/img/banner_img2.png" alt="">
               </picture> -->
-              <img src="/assets/img/gif-banner-2.gif" alt="">
+              <!-- <img src="/assets/img/gif-banner-2.gif" alt=""> -->
+              <video src="/assets/img/banner-2.mp4" autoplay loop muted playsinline></video>
+
             </li>
 
             <li class="banner__slider-item swiper-slide">
               <!-- <picture>
                 <source srcset="/assets/img/banner_img3.webp" type="image/webp"><img src="/assets/img/banner_img3.png" alt="">
               </picture> -->
-              <img src="/assets/img/gif-banner-3.gif" alt="">
+              <!-- <img src="/assets/img/gif-banner-3.gif" alt=""> -->
+              <video src="/assets/img/banner-3.mp4" autoplay loop muted playsinline></video>
+
             </li>
           </ul>
 
@@ -130,9 +135,11 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
       <div class="about__bot-block animation">
         <div class="about__img-block animation_item fade-in-left fade-in-left-1">
-          <picture>
+          <!-- <picture>
             <source srcset="/assets/img/about_img.webp" type="image/webp"><img src="/assets/img/about_img.jpg" alt="">
-          </picture>
+          </picture> -->
+          <!-- <img src="/assets/img/about_img.gif" alt=""> -->
+          <video src="/assets/img/about_video.mp4" autoplay loop muted playsinline></video>
         </div>
         <div class="about__text-block animation_item fade-in-right fade-in-right-1">
           <p class="about__text text">
