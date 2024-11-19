@@ -2723,16 +2723,19 @@ a {
   -ms-grid-row: 7;
   -ms-grid-column: 1;
   grid-area: d;
-  display: -ms-grid;
-  display: grid;
-  gap: 11px;
-  max-width: 280px;
+  /* display: -ms-grid; */
+  display: flex;
+  flex-flow: row wrap;
+  /* grid-auto-flow: column; */
+  gap: 15px;
+  max-width: 481px;
 }
 
 .glavnaya .banner .banner__container .banner__left-block .banner__text-block .banner__btn-block .banner__btn {
   max-width: 100%;
   width: 100%;
   padding: 16.5px 10px;
+  max-width: 228px;
 }
 
 .glavnaya .banner .banner__container .banner__left-block .banner__slider {
@@ -2744,17 +2747,27 @@ a {
   overflow: hidden;
 }
 
+.glavnaya .banner .banner__container .banner__left-block .banner__slider-list {
+  min-height: 525px;
+}
+
 .glavnaya .banner .banner__container .banner__left-block .banner__slider .banner__slider-item {
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 525px;
 }
 
 .glavnaya .banner .banner__container .banner__left-block .banner__slider .banner__slider-item img {
-  position: absolute;
-  inset: 80px 0 0 330px;
-  width: 714px;
-  height: auto;
+  /* position: absolute; */
+  /* inset: 80px 0 0 330px; */
+  /* width: 932px; */
+  /* height: 100%; */
+  /* object-fit: cover; */
+  /* height: auto; */
+  /* min-height: 100%; */
+  /* width: auto; */
+  height: 525px;
 }
 
 .glavnaya .banner .banner__container .banner__left-block .swiper-navigation {
@@ -4309,7 +4322,7 @@ a {
 
 @media (max-width: 1400px) {
   .glavnaya .banner .banner__container .banner__left-block .banner__text-block .banner__title {
-    color: #FAB502;
+    /* color: #FAB502; */
   }
 
   .fade-in-right-1 {
@@ -4667,7 +4680,7 @@ a {
   }
 
   .glavnaya .banner .banner__container .banner__left-block .banner__text-block .banner__btn-block .banner__btn {
-    padding: 13.5px 30px;
+    /* padding: 13.5px 30px; */
     font-family: Gilroy;
     font-size: 17px;
     font-weight: 500;
@@ -4679,8 +4692,8 @@ a {
   }
 
   .glavnaya .banner .banner__container .banner__left-block .banner__slider .banner__slider-item img {
-    inset: 56px 0 0 370px;
-    width: 600px;
+    /* inset: 56px 0 0 370px; */
+    /* width: 600px; */
   }
 
   .glavnaya .banner .banner__container .banner__left-block .swiper-navigation {
@@ -5276,6 +5289,15 @@ a {
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
   }
+  
+  .glavnaya .banner .banner__container .banner__left-block .swiper-navigation {
+    font-size: 14px;
+    line-height: 16.48px;
+    right: 40px;
+    bottom: 140px;
+    padding: 10px;
+    gap: 11px;
+  }
 }
 
 @media (max-width: 660px) {
@@ -5558,17 +5580,17 @@ a {
   }
 
   .glavnaya .banner .banner__container .banner__left-block .banner__slider .banner__slider-item img {
-    inset: 130px 0 0 116px;
-    width: 290px;
+    /* inset: 130px 0 0 116px; */
+    /* width: 290px; */
   }
 
   .glavnaya .banner .banner__container .banner__left-block .swiper-navigation {
-    font-size: 14px;
+    /* font-size: 14px;
     line-height: 16.48px;
     right: 40px;
     bottom: 140px;
     padding: 10px;
-    gap: 11px;
+    gap: 11px; */
   }
 
   .glavnaya .banner .banner__container .banner__right-block .banner__list .banner__item {

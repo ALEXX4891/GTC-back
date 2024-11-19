@@ -28,7 +28,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               Рассчитать стоимость
             </button>
 
-            <button class="banner__btn btn btn_trans-orange popup-link" data-popup="popup-consult">
+            <button class="banner__btn btn btn_trans-white popup-link" data-popup="popup-consult">
               Получить консультацию
             </button>
           </div>
@@ -38,21 +38,25 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
           <ul class="banner__slider-list swiper-wrapper">
             <li class="banner__slider-item swiper-slide">
-              <picture>
+              <!-- <picture>
                 <source srcset="/assets/img/banner_img1.webp" type="image/webp"><img src="/assets/img/banner_img1.png" alt="">
-              </picture>
+              </picture> -->
+              <img src="/assets/img/gif-banner-1.gif" alt="">
+              <!-- <img src="/assets/img/banner_img1.png" alt=""> -->
             </li>
 
             <li class="banner__slider-item swiper-slide">
-              <picture>
+              <!-- <picture>
                 <source srcset="/assets/img/banner_img2.webp" type="image/webp"><img src="/assets/img/banner_img2.png" alt="">
-              </picture>
+              </picture> -->
+              <img src="/assets/img/gif-banner-2.gif" alt="">
             </li>
 
             <li class="banner__slider-item swiper-slide">
-              <picture>
+              <!-- <picture>
                 <source srcset="/assets/img/banner_img3.webp" type="image/webp"><img src="/assets/img/banner_img3.png" alt="">
-              </picture>
+              </picture> -->
+              <img src="/assets/img/gif-banner-3.gif" alt="">
             </li>
           </ul>
 

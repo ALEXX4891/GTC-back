@@ -328,7 +328,7 @@ new Swiper(".banner_swiper", {
   // slidersPerGroup: 3, // сколько слайдов в группе
   // centeredSlides: true, //выравнивание слайдов по центру
   // initialSlide: 0, //начальный слайд (c нуля)
-
+  effect: "fade",
   spaceBetween: 500,
   // slideToClickedSlide: true, //перелистывание слайдов по клику
   // grabCursor: true, //меняет курсор при наведении на руку
