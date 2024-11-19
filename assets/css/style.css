@@ -2784,6 +2784,7 @@ a {
   top: initial;
   bottom: initial;
   left: initial;
+  align-content: center;
 }
 
 .glavnaya .banner .banner__container .banner__left-block .swiper-navigation .swiper-button {
@@ -4388,6 +4389,22 @@ a {
   .fade-in-bot {
     transform: none;
     opacity: 1;
+  }
+
+  .wave-1 {
+    animation: none;
+  }
+  
+  .wave-2 {
+    animation: none;
+  }
+  
+  .wave-3 {
+    animation: none;
+  }
+  
+  .wave-4 {
+    animation: none;
   }
 
   .animation .animation_item {
