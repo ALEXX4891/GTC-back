@@ -2768,6 +2768,32 @@ a {
   min-height: 520px;
 }
 
+@property --gradColor1 {
+  syntax: '<color>';
+  initial-value: #FAB502;
+  inherits: false;
+}
+
+@property --gradColor2 {
+  syntax: '<color>';
+  initial-value: #117074;
+  inherits: false;
+}
+
+.solutions__item-text {
+  background-image: linear-gradient(87.75deg, var(--gradColor1) -7.56%, var(--gradColor2) 91.84%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-box-decoration-break: clone;
+  transition: --gradColor1 0.4s ease-in-out, --gradColor2 0.4s ease-in-out;
+}
+
+.solutions__item:hover .solutions__item-text {
+  --gradColor1: #117074;
+  --gradColor2: #FAB502;
+}
+
+
 .glavnaya .banner .banner__container .banner__left-block .banner__slider .banner__slider-item video {
   /* position: absolute; */
   /* inset: 80px 0 0 330px; */
