@@ -661,6 +661,7 @@ a {
 .agreement {
   line-height: 16.34px;
   font-size: 12px;
+  max-width: 400px;
 }
 
 .agreement .agreement-text {
@@ -4020,16 +4021,19 @@ a {
   padding: 0;
   position: relative;
   overflow: hidden;
+  max-width: 1920px;
 }
 
 .glavnaya .consultations .consultations__img {
   position: absolute;
-  top: 60px;
-  width: 737px;
-  height: 431px;
-  left: 50%;
-  margin-left: 180px;
-  z-index: 10;
+  top: -296px;
+  /* right: 0; */
+  /* width: 100%; */
+  /* max-width: 2020px; */
+  /* height: 431px; */
+  /* left: 50%; */
+  /* margin-left: 180px; */
+  /* z-index: 0; */
 }
 
 .glavnaya .consultations .consultations_top-block {
@@ -4038,7 +4042,7 @@ a {
 
 .glavnaya .consultations .consultations_bot-block {
   padding: 100px 20px;
-  background: linear-gradient(99.41deg, #f0fdfb 6.27%, #cdfaf6 92.06%);
+  /* background: linear-gradient(99.41deg, #f0fdfb 6.27%, #cdfaf6 92.06%); */
 }
 
 .glavnaya .consultations .consultations_bot-block .container .consultations__title {
@@ -4349,11 +4353,20 @@ a {
   }
 
   .glavnaya .consultations .consultations__img {
-    left: 59.5%;
-    width: 38.5vw;
+    left: 0;
+    width: 1920px;
     height: auto;
     margin-left: initial;
   }
+}
+
+@media (max-width: 1600px) {
+.glavnaya .consultations .consultations__img {
+  left: -218px;
+  width: 1920px;
+  height: auto;
+  margin-left: initial;
+}
 }
 
 @media (max-width: 1400px) {
@@ -4482,9 +4495,9 @@ a {
   }
 
   .glavnaya .consultations .consultations__img {
-    width: 49.5vw;
-    top: 34px;
-    left: 56.5%;
+    /* width: 49.5vw; */
+    /* top: 34px; */
+    left: -400px;
   }
 
   .glavnaya .consultations .consultations_top-block {

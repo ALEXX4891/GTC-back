@@ -2226,14 +2226,14 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
   <section class="section section_consultations consultations form-wrap animation">
     <div class="consultations__img animation_item fade-in-right fade-in-right-1">
-      <picture>
-        <source srcset="/assets/img/consult.webp" type="image/webp"><img src="/assets/img/consult.png" alt="">
-      </picture>
+      <!-- <picture> -->
+        <!-- <source srcset="/assets/img/consult.webp" type="image/webp"><img src="/assets/img/consult.png" alt=""> -->
+        <video src="/assets/img/consult.mp4" autoplay loop muted playsinline></video>
+      <!-- </picture> -->
     </div>
 
-    <div class="consultations_top-block">
-
-    </div>
+    <!-- <div class="consultations_top-block">
+    </div> -->
 
     <div class="consultations_bot-block animation_item fade-in-left fade-in-left-1">
 
