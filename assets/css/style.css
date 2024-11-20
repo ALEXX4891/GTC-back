@@ -892,18 +892,25 @@ a {
 
 
 .off-card .off-card__img {
-  height: 332px;
+  height: auto;
   width: 100%;
+  max-height: 444px;
   border-radius: 10px;
   overflow: hidden;
+  order: 1;
+  padding: 50px 0;
+}
+
+.off-card .off-card__img img {
+  object-fit: contain;
 }
 
 .off-card .off-card__text-wrap {
   display: -ms-grid;
   display: grid;
-  padding: 30px 25px;
-  gap: 15px;
-  background: #ffffff;
+  padding: 65px 25px;
+  gap: 23px;
+  /* background: #ffffff; */
   grid-auto-flow: dense;
   grid-template-rows: auto auto auto 1fr;
 }
@@ -1242,8 +1249,9 @@ a {
   border-radius: 10px;
   /* overflow: hidden; */
   display: grid;
-  /* grid-auto-flow: row; */
-  /* grid-template-rows: 326px auto; */
+  grid-auto-flow: column;
+  grid-template-columns: 340px auto;
+  background: linear-gradient(103.66deg, #F0FDFB 27.06%, #CDFAF6 103.06%), #FFFFFF;
 }
 
 .popup.popup-offer_more .popup__body .popup__content .off-card__img {
@@ -4022,6 +4030,7 @@ a {
   position: relative;
   overflow: hidden;
   max-width: 1920px;
+  margin-top: 40px;
 }
 
 .glavnaya .consultations .consultations__img {
@@ -4042,7 +4051,6 @@ a {
 
 .glavnaya .consultations .consultations_bot-block {
   padding: 100px 20px;
-  /* background: linear-gradient(99.41deg, #f0fdfb 6.27%, #cdfaf6 92.06%); */
 }
 
 .glavnaya .consultations .consultations_bot-block .container .consultations__title {
@@ -5076,6 +5084,17 @@ a {
   }
 }
 
+@media (max-width: 860px) {
+  .glavnaya .consultations .consultations__img {
+    display: none;
+  }
+
+  .glavnaya .consultations .consultations_bot-block {
+    background: linear-gradient(99.41deg, #f0fdfb 6.27%, #cdfaf6 92.06%);
+  }
+}
+
+
 @media (max-width: 760px) {
   .main {
     border-top: 60px solid transparent;
@@ -5899,9 +5918,7 @@ a {
     height: 315px;
   }
 
-  .glavnaya .consultations .consultations__img {
-    display: none;
-  }
+
 
   .glavnaya .consultations .consultations_top-block {
     height: 30px;

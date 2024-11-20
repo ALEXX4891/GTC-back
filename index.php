@@ -486,9 +486,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="1">
               <div class="off-card__img">
-                <picture>
-                  <source srcset="/assets/img/offer1.webp" type="image/webp"><img src="/assets/img/offer1.jpg" alt="">
-                </picture>
+                <img src="/assets/img/offer1.png" alt="предложение">
               </div>
 
               <div class="off-card__text-wrap">
@@ -547,10 +545,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="2">
               <div class="off-card__img">
-                <picture>
-                  <source srcset="/assets/img/offer2.webp" type="image/webp"><img src="/assets/img/offer2.jpg" alt="">
-                </picture>
-
+                <img src="/assets/img/offer2.png" alt="предложение">
               </div>
 
               <div class="off-card__text-wrap">
@@ -603,9 +598,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="3">
               <div class="off-card__img">
-                <picture>
-                  <source srcset="/assets/img/offer3.webp" type="image/webp"><img src="/assets/img/offer3.jpg" alt="">
-                </picture>
+                <img src="/assets/img/offer3.png" alt="предложение">                
               </div>
 
               <div class="off-card__text-wrap">
@@ -663,9 +656,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_calc" data-id="4">
               <div class="off-card__img">
-                <picture>
-                  <source srcset="/assets/img/offer4.webp" type="image/webp"><img src="/assets/img/offer4.jpg" alt="">
-                </picture>
+                <img src="/assets/img/offer4.png" alt="предложение">                
               </div>
 
               <div class="off-card__text-wrap">
@@ -720,9 +711,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="5">
               <div class="off-card__img">
-                <picture>
-                  <source srcset="/assets/img/offer5.webp" type="image/webp"><img src="/assets/img/offer5.jpg" alt="">
-                </picture>
+                <img src="/assets/img/offer5.png" alt="предложение">                
               </div>
 
               <div class="off-card__text-wrap">
@@ -763,9 +752,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="6">
               <div class="off-card__img">
-                <picture>
-                  <source srcset="/assets/img/offer6.webp" type="image/webp"><img src="/assets/img/offer6.jpg" alt="">
-                </picture>
+                <img src="/assets/img/offer6.png" alt="предложение">                
               </div>
 
               <div class="off-card__text-wrap">
@@ -820,9 +807,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="7">
               <div class="off-card__img">
-                <picture>
-                  <source srcset="/assets/img/offer7.webp" type="image/webp"><img src="/assets/img/offer7.jpg" alt="">
-                </picture>
+                <img src="/assets/img/offer7.png" alt="предложение">                
               </div>
 
               <div class="off-card__text-wrap">
@@ -862,9 +847,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="8">
               <div class="off-card__img">
-                <picture>
-                  <source srcset="/assets/img/offer8.webp" type="image/webp"><img src="/assets/img/offer8.jpg" alt="">
-                </picture>
+                <img src="/assets/img/offer8.png" alt="предложение">                
               </div>
 
               <div class="off-card__text-wrap">
