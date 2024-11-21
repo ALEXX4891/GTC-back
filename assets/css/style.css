@@ -1674,6 +1674,7 @@ a {
   max-width: 420px;
   -ms-grid-column-align: center;
   justify-self: center;
+  text-align: center;
 }
 
 .popup .popup__body .popup__content .popup__content-wrap .popup__info-text.popup__info-text_active {

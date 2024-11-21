@@ -1,5 +1,5 @@
 let urlParams = new URLSearchParams(window.location.search);
-$(".phone").mask("8(999) 999 99 99");
+$(".phone").mask("+7(999) 999 99 99");
 const nextStepBtnTwo = document.querySelector(".popup__next-btn[data-step='2']");
 const nextStepBtnThree = document.querySelector(".popup__next-btn[data-step='3']");
 const nextStepBtnFour = document.querySelector(".popup__next-btn[data-step='4']");
@@ -2020,12 +2020,20 @@ function setSections() {
   });
 
   // если это маленькая бочка то можно разделить только на 2 секции, трк до 4-х:
-  if (size == "S") {
+  if (size == "S" || type == "Cont") {
     // console.log(`size == "S"`);
     desc.style.display = "grid";
     sectionsBtns.forEach((item) => {
       if (item.dataset.value > 2) {
         item.closest(".radio").classList.add("radio_disabled");
+      }
+      if (item.checked == true && item.dataset.value > 2) {
+        item.checked = false;
+        sectionsBtns.forEach((el) => {
+          if (el.dataset.value == 2) {
+            el.checked = true;
+          }
+        })
       }
     });
 
@@ -2386,11 +2394,21 @@ if (typeBtns.length) {
           }
         });
 
-        if (size == "S") {
+        console.log(type);
+        if (size == "S" || type == "Cont") {
+          desc.style.display = "grid";
           sectionsBtns.forEach((el) => {
             if (el.dataset.value > 2) {
               el.closest(".radio").classList.add("radio_disabled");
               el.checked = false;
+            }
+            if (item.checked == true && item.dataset.value > 2) {
+              item.checked = false;
+              sectionsBtns.forEach((el) => {
+                if (el.dataset.value == 2) {
+                  el.checked = true;
+                }
+              })
             }
           });
         }
@@ -2562,10 +2580,12 @@ function setPrice() {
     copyPrice = filterPrice(params.find((param) => param.name == "volume")["value"], "volume", copyPrice);
     copyHeating = filterPrice(params.find((param) => param.name == "volume")["value"], "volume", copyHeating);
   }
+  console.log("copyPrice", copyPrice);
 
   if (params.find((param) => param.name == "sections")) {
     copyPrice = filterPrice(params.find((param) => param.name == "sections")["value"], "sections", copyPrice);
   }
+
 
   if (params.find((param) => param.name == "trk")) {
     let value = "";
@@ -2590,7 +2610,7 @@ function setPrice() {
     }
     copyPrice = filterPrice(value, "fast", copyPrice);
   }
-  // console.log("copyPrice", copyPrice);
+  console.log("copyPrice", copyPrice);
   // console.log("copyHeating", copyHeating);
   let priceAZS = parseInt(copyPrice[0].price);
   // console.log("priceAZS", priceAZS);

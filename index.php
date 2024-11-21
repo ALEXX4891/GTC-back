@@ -2127,7 +2127,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                 </a>
 
                 <a class="geo__contacts-text contacts__item geo__contacts-text_tel" href="tel:+78002505424">
-                  8 (800) 250 54 24
+                  +7 (800) 250 54 24
                 </a>
               </div>
             </div>
@@ -2232,7 +2232,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
         <form class="consultations__form form" action="#">
           <input type="hidden" name="type" value="Консультация">
-          <input class="consultations__input phone input" type="tel" name="phone" placeholder="8(999) 999 99 99">
+          <input class="consultations__input phone input" type="tel" name="phone" placeholder="+7(999) 999 99 99">
 
           <button class="consultations__btn btn btn_gray" type="submit">
             Получить консультацию
