@@ -1,5 +1,5 @@
 let urlParams = new URLSearchParams(window.location.search);
-$(".phone").mask("+7(999) 999 99 99");
+$(".phone").mask("+7 (999) 999 99 99");
 const nextStepBtnTwo = document.querySelector(".popup__next-btn[data-step='2']");
 const nextStepBtnThree = document.querySelector(".popup__next-btn[data-step='3']");
 const nextStepBtnFour = document.querySelector(".popup__next-btn[data-step='4']");
@@ -2307,6 +2307,10 @@ if (typeBtns.length) {
       const btnSectionTwo = document.querySelector(".radio__input[data-name='sections'][data-value='2']");
       const btnSideOne = document.querySelector(".radio__input[data-name='side'][data-value='1']");
       const descVol = document.querySelector(".popup__info-text_volume");
+      const descTrcCont = document.querySelector(".popup__info-text_trk-cont");
+      const descTrc = document.querySelector(".popup__info-text_trk");
+      const descFuel = document.querySelector(".popup__info-text_fuel");
+
       const popup = typeBtns[0].closest(".popup");
       const nextBtn = popup.querySelector(".popup__next-btn");
       const slider = document.querySelector(".popup__range-slider");
@@ -2352,6 +2356,9 @@ if (typeBtns.length) {
         });
 
         descVol.style.display = "block";
+        descTrcCont.style.display = "block";
+        descFuel.style.display = "block";
+        descTrc.style.display = "block";
         numberList.forEach((item) => {
           if (item.innerHTML.trim() > 40) {
             item.classList.add("popup__range-number_hidden");
@@ -2388,6 +2395,9 @@ if (typeBtns.length) {
         });
 
         descVol.style.display = "none";
+        descTrcCont.style.display = "none";
+        descFuel.style.display = "none";
+        descTrc.style.display = "none";
         numberList.forEach((item) => {
           if (item.innerHTML.trim() > 40) {
             item.classList.remove("popup__range-number_hidden");

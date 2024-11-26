@@ -662,6 +662,10 @@
           Виды топлива и количество отсеков
         </h2>
 
+        <p class="popup__info-text popup__info-text_fuel">
+          Максимальное количество видов топлива в контейнере - 2 
+        </p>
+
         <div class="popup__checkbox-wrap">
           <h5 class="popup__checkbox-title">
             Виды топлива:
@@ -802,6 +806,11 @@
           Количество и расположение ТРК
         </h2>
 
+        <p class="popup__info-text popup__info-text_trk-cont">
+          Максимальное количество ТРК в контейнере - 2 <br>
+          Расположение с одной стороны.
+        </p>
+
         <div class="popup__radio-wrap">
           <h5 class="popup__radio-title">
             Количество ТРК
@@ -869,6 +878,11 @@
             </li>
           </ul>
         </div>
+
+        <p class="popup__info-text popup__info-text_trk">
+          Для получения большего количества ТРК рекомендуется <br>
+          Выбрать другой тип АЗС
+        </p>
       </div>
 
 

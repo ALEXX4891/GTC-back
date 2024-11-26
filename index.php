@@ -2232,7 +2232,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
         <form class="consultations__form form" action="#">
           <input type="hidden" name="type" value="Консультация">
-          <input class="consultations__input phone input" type="tel" name="phone" placeholder="+7(999) 999 99 99">
+          <input class="consultations__input phone input" type="tel" name="phone" placeholder="+7 (999) 999 99 99">
 
           <button class="consultations__btn btn btn_gray" type="submit">
             Получить консультацию

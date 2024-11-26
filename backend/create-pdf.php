@@ -33,7 +33,7 @@ $pdf->setLanguageArray($l);
 
 // Устанавливаем шрифт
 $pdf->setFontSubsetting(true);
-$pdf->SetFont('dejavusans', '', 7, '', true);
+$pdf->SetFont('dejavusans', '', 12, '', true);
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // Вывод данных из HTML в PDF
