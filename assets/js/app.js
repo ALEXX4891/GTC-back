@@ -373,6 +373,7 @@ new Swiper(".banner_swiper", {
 new Swiper(".offers_swiper", {
   // Optional parameters
   direction: "horizontal",
+  speed: 1000,
   // loop: true,
   // allowTouchMove: true,
   // slidesPerView: auto, // сколько слайдов показывать, можно дробно

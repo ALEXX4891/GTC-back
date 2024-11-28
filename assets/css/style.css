@@ -898,7 +898,7 @@ a {
   border-radius: 10px;
   overflow: hidden;
   order: 1;
-  padding: 50px 0;
+  /* padding: 50px 0; */
 }
 
 .off-card .off-card__img img {
@@ -4670,11 +4670,13 @@ a {
 
   .off-card {
     /* min-height: 573px; */
-    grid-template-rows: 270px auto;
+    grid-template-rows: 357px auto;
+    grid-template-columns: initial;
   }
 
   .off-card .off-card__img {
-    height: 280px;
+    /* height: 109%; */
+    order: 0;
   }
 
   .popup.popup-offer_more .popup__body .popup__content {
