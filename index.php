@@ -486,7 +486,11 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="1">
               <div class="off-card__img">
-                <img src="/assets/img/offer1.png" alt="предложение">
+                <picture>
+                  <source srcset="/assets/img/offer1-mob.png" media="(max-width: 1060px)">
+                  <source srcset="/assets/img/offer1-tab.png" media="(max-width: 1300px)">
+                  <img src="/assets/img/offer1.png" alt="предложение"> 
+                </picture>
               </div>
 
               <div class="off-card__text-wrap">
@@ -545,7 +549,11 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="2">
               <div class="off-card__img">
-                <img src="/assets/img/offer2.png" alt="предложение">
+                <picture>
+                  <source srcset="/assets/img/offer2-mob.png" media="(max-width: 1060px)">
+                  <source srcset="/assets/img/offer2-tab.png" media="(max-width: 1300px)">
+                  <img src="/assets/img/offer2.png" alt="предложение"> 
+                </picture>
               </div>
 
               <div class="off-card__text-wrap">
@@ -598,7 +606,11 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="3">
               <div class="off-card__img">
-                <img src="/assets/img/offer3.png" alt="предложение">                
+                <picture>
+                  <source srcset="/assets/img/offer3-mob.png" media="(max-width: 1060px)">
+                  <source srcset="/assets/img/offer3-tab.png" media="(max-width: 1300px)">
+                  <img src="/assets/img/offer3.png" alt="предложение"> 
+                </picture>               
               </div>
 
               <div class="off-card__text-wrap">
@@ -655,8 +667,12 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_calc" data-id="4">
-              <div class="off-card__img">
-                <img src="/assets/img/offer4.png" alt="предложение">                
+              <div class="off-card__img">   
+                <picture>
+                  <source srcset="/assets/img/offer4-mob.png" media="(max-width: 1060px)">
+                  <source srcset="/assets/img/offer4-tab.png" media="(max-width: 1300px)">
+                  <img src="/assets/img/offer4.png" alt="предложение"> 
+                </picture>        
               </div>
 
               <div class="off-card__text-wrap">
@@ -711,7 +727,11 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="5">
               <div class="off-card__img">
-                <img src="/assets/img/offer5.png" alt="предложение">                
+                <picture>
+                  <source srcset="/assets/img/offer5-mob.png" media="(max-width: 1060px)">
+                  <source srcset="/assets/img/offer5-tab.png" media="(max-width: 1300px)">
+                  <img src="/assets/img/offer5.png" alt="предложение"> 
+                </picture>
               </div>
 
               <div class="off-card__text-wrap">
@@ -752,7 +772,11 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="6">
               <div class="off-card__img">
-                <img src="/assets/img/offer6.png" alt="предложение">                
+                <picture>
+                  <source srcset="/assets/img/offer6-mob.png" media="(max-width: 1060px)">
+                  <source srcset="/assets/img/offer6-tab.png" media="(max-width: 1300px)">
+                  <img src="/assets/img/offer6.png" alt="предложение"> 
+                </picture>            
               </div>
 
               <div class="off-card__text-wrap">
@@ -807,7 +831,11 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="7">
               <div class="off-card__img">
-                <img src="/assets/img/offer7.png" alt="предложение">                
+              <picture>
+                  <source srcset="/assets/img/offer7-mob.png" media="(max-width: 1060px)">
+                  <source srcset="/assets/img/offer7-tab.png" media="(max-width: 1300px)">
+                  <img src="/assets/img/offer7.png" alt="предложение"> 
+                </picture>             
               </div>
 
               <div class="off-card__text-wrap">
@@ -845,9 +873,13 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               </div>
             </li>
 
-            <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="8">
+            <!-- <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="8">
               <div class="off-card__img">
-                <img src="/assets/img/offer8.png" alt="предложение">                
+                <picture>
+                  <source srcset="/assets/img/offer8-mob.png" media="(max-width: 1060px)">
+                  <source srcset="/assets/img/offer8-tab.png" media="(max-width: 1300px)">
+                  <img src="/assets/img/offer8.png" alt="предложение"> 
+                </picture>               
               </div>
 
               <div class="off-card__text-wrap">
@@ -892,7 +924,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   Узнать больше
                 </button>
               </div>
-            </li>
+            </li> -->
 
           </ul>
 
