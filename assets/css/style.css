@@ -2806,6 +2806,66 @@ a {
   --gradColor2: #FAB502;
 }
 
+@property --deg10 {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --deg25 {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --deg40 {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --deg50 {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --deg100 {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.circle-animate_active {
+  --deg10: 36deg;
+  --deg25: 90deg;
+  --deg40: 144deg;
+  --deg50: 180deg;
+  --deg100: 360deg;
+}
+
+.circle_big_10 {
+  background: conic-gradient(#FAB502 0deg, #117074 var(--deg10), #CDFAF6 var(--deg10));
+  transition: --deg10 0.5s ease-in-out;
+}
+
+.circle_big_25 {
+  background: conic-gradient(#FAB502 0deg, #117074 var(--deg25), #CDFAF6 var(--deg25));
+  transition: --deg25 0.5s ease-in-out;
+}
+
+.circle_big_40 {
+  background: conic-gradient(#FAB502 0deg, #117074 var(--deg40), #CDFAF6 var(--deg40));
+  transition: --deg40 0.5s ease-in-out;
+}
+
+.circle_big_50 {
+  background: conic-gradient(#FAB502 0deg, #117074 var(--deg50), #CDFAF6 var(--deg50));
+  transition: --deg50 0.5s ease-in-out;
+}
+
+.circle_big_100 {
+  background: conic-gradient(#FAB502 0deg, #117074 var(--deg100), #CDFAF6 var(--deg100));
+  transition: --deg100 0.5s ease-in-out;
+}
+
 
 .glavnaya .banner .banner__container .banner__left-block .banner__slider .banner__slider-item video {
   /* position: absolute; */

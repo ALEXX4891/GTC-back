@@ -485,7 +485,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           <ul class="offers__slider swiper-wrapper">
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="1">
-              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
+              <div class="off-card__img animation_img fade-in-right">
                 <picture>
                   <source srcset="/assets/img/offer1-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer1-tab.png" media="(max-width: 1300px)">
@@ -548,7 +548,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="2">
-              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
+              <div class="off-card__img animation_img fade-in-right">
                 <picture>
                   <source srcset="/assets/img/offer2-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer2-tab.png" media="(max-width: 1300px)">
@@ -605,7 +605,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="3">
-              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
+              <div class="off-card__img animation_img fade-in-right">
                 <picture>
                   <source srcset="/assets/img/offer3-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer3-tab.png" media="(max-width: 1300px)">
@@ -667,7 +667,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_calc" data-id="4">
-              <div class="off-card__img animation_img fade-in-right fade-in-right-1">   
+              <div class="off-card__img animation_img fade-in-right">   
                 <picture>
                   <source srcset="/assets/img/offer4-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer4-tab.png" media="(max-width: 1300px)">
@@ -726,7 +726,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="5">
-              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
+              <div class="off-card__img animation_img fade-in-right">
                 <picture>
                   <source srcset="/assets/img/offer5-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer5-tab.png" media="(max-width: 1300px)">
@@ -771,7 +771,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="6">
-              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
+              <div class="off-card__img animation_img fade-in-right">
                 <picture>
                   <source srcset="/assets/img/offer6-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer6-tab.png" media="(max-width: 1300px)">
@@ -830,7 +830,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="7">
-              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
+              <div class="off-card__img animation_img fade-in-right">
               <picture>
                   <source srcset="/assets/img/offer7-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer7-tab.png" media="(max-width: 1300px)">
@@ -874,7 +874,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <!-- <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="8">
-              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
+              <div class="off-card__img animation_img fade-in-right">
                 <picture>
                   <source srcset="/assets/img/offer8-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer8-tab.png" media="(max-width: 1300px)">
@@ -1273,9 +1273,6 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
             <ul class="results__bot-list swiper-wrapper">
 
-
-
-
               <li class="results__bot-item res-card swiper-slide">
 
                 <div class="res-card__left">
@@ -1355,9 +1352,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                       <ul class="res-card__small-list">
                         <li class="res-card__small-item">
                           <div class="res-card__small-circle circle">
-                            <div class="circle_big"
-                              style="background-image: conic-gradient(from 0deg at 50% 50%, #CDFAF6 0deg, #CDFAF6 269.97deg, #FAB502 270.01deg, #117074 360deg);">
-
+                            <div class="circle_big circle-animate circle_big_25 ">
                             </div>
 
                             <div class="circle_small">
@@ -1377,14 +1372,10 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
                         <li class="res-card__small-item">
                           <div class="res-card__small-circle circle">
-                            <div class="circle_big"
-                              style="background-image: conic-gradient(from 0deg at 50% 50%, #CDFAF6 0deg, #CDFAF6 178.67deg, #FAB502 181.24deg, #117074 360deg);">
-
-
+                            <div class="circle_big circle-animate circle_big_50 ">
                             </div>
 
                             <div class="circle_small">
-
                             </div>
 
                             <span class="circle__text">
@@ -1400,14 +1391,10 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
                         <li class="res-card__small-item">
                           <div class="res-card__small-circle circle">
-                            <div class="circle_big"
-                              style="background-image: conic-gradient(from 0deg at 50% 50%, #CDFAF6 0deg, #CDFAF6 322.82deg, #FAB502 322.85deg, #117074 360deg);">
-
-
+                            <div class="circle_big circle-animate circle_big_10">
                             </div>
 
                             <div class="circle_small">
-
                             </div>
 
                             <span class="circle__text">
@@ -1541,13 +1528,10 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                       <ul class="res-card__small-list">
                         <li class="res-card__small-item">
                           <div class="res-card__small-circle circle">
-                            <div class="circle_big"
-                              style="background-image: conic-gradient(from 0deg at 50% 50%, #CDFAF6 0deg, #CDFAF6 216.48deg, #FAB502 217.4deg, #117074 360deg);">
-
+                            <div class="circle_big circle-animate circle_big_40">
                             </div>
 
                             <div class="circle_small">
-
                             </div>
 
                             <span class="circle__text">
@@ -1562,15 +1546,11 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                         </li>
 
                         <li class="res-card__small-item">
-                          <div class="res-card__small-circle circle">
-                            <div class="circle_big"
-                              style="background-image: conic-gradient(from 0deg at 50% 50%, #117074 0deg, #FAB502 126deg, #117074 360deg);">
-
-
+                          <div class="res-card__small-circle circle ">
+                            <div class="circle_big circle-animate circle_big_100">
                             </div>
 
                             <div class="circle_small">
-
                             </div>
 
                             <span class="circle__text">
@@ -1704,13 +1684,10 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                       <ul class="res-card__small-list">
                         <li class="res-card__small-item">
                           <div class="res-card__small-circle circle">
-                            <div class="circle_big"
-                              style="background-image: conic-gradient(from 0deg at 50% 50%, #CDFAF6 0deg, #CDFAF6 180.66deg, #FAB502 181.75deg, #117074 360deg);">
-
+                            <div class="circle_big circle-animate circle_big_50">
                             </div>
 
                             <div class="circle_small">
-
                             </div>
 
                             <span class="circle__text">
@@ -1844,13 +1821,10 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                       <ul class="res-card__small-list">
                         <li class="res-card__small-item">
                           <div class="res-card__small-circle circle">
-                            <div class="circle_big"
-                              style="background-image: conic-gradient(from 0deg at 50% 50%, #CDFAF6 0deg, #CDFAF6 179.06deg, #FAB502 181.05deg, #117074 360deg);">
-
+                            <div class="circle_big circle-animate circle_big_50">
                             </div>
 
                             <div class="circle_small">
-
                             </div>
 
                             <span class="circle__text">
