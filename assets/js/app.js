@@ -458,11 +458,12 @@ new Swiper(".offers_swiper", {
   },
 });
 
-const offerActiveImg = document.querySelector('.offers__slider-item.swiper-slide-active').querySelector('.animation_img');
-const offerNextImg = document.querySelector('.offers__slider-item.swiper-slide-next').querySelector('.animation_img');
+const offerActive = document.querySelector('.offers__slider-item.swiper-slide-active');
+const offerNext = document.querySelector('.offers__slider-item.swiper-slide-next');
 
 
-if (offerActiveImg) {
+if (offerActive) {
+  const offerActiveImg = offerActive.querySelector('.animation_img')
   setTimeout(function () {
     // circles.forEach((item) => {
       offerActiveImg.classList.add('fade-in-right-1');
@@ -470,7 +471,9 @@ if (offerActiveImg) {
   }, 500);
 }
 
-if (offerNextImg) {
+if (offerNext) {
+  const offerNextImg = offerNext.querySelector('.animation_img')
+
   setTimeout(function () {
     // circles.forEach((item) => {
       offerNextImg.classList.add('fade-in-right-1');
@@ -591,12 +594,13 @@ const resultsBotSwiper = new Swiper(".results_bot_swiper", {
   },
 });
 
-const circles = document.querySelector('.results__bot-item.swiper-slide-active').querySelectorAll('.circle-animate');
+const circles = document.querySelector('.results__bot-item.swiper-slide-active');
 
 
-if (circles.length > 0) {
+if (circles) {
+  const circlesItem = circles.querySelectorAll('.circle-animate')
   setTimeout(function () {
-    circles.forEach((item) => {
+    circlesItem.forEach((item) => {
       item.classList.add('circle-animate_active');
     })
   }, 500);
