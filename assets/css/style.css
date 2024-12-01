@@ -284,6 +284,9 @@ a {
   -ms-grid-columns: auto 1fr;
   grid-template-columns: auto 1fr;
   gap: 50px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .top-block .top-block__title {
@@ -2066,7 +2069,7 @@ a {
   gap: 15px;
 }
 
-@-webkit-keyframes scroll {
+@-webkit-keyframes scroll-anim {
   from {
     -webkit-transform: translateX(0);
             transform: translateX(0);
@@ -2078,7 +2081,7 @@ a {
   }
 }
 
-@keyframes scroll {
+@keyframes scroll-anim {
   from {
     -webkit-transform: translateX(0);
             transform: translateX(0);
@@ -2108,8 +2111,8 @@ a {
 }
 
 .runner-wraper .runner .runner__container .runner__list {
-  -webkit-animation: scroll 60s linear infinite;
-          animation: scroll 60s linear infinite;
+  -webkit-animation: scroll-anim 60s linear infinite;
+          animation: scroll-anim 60s linear infinite;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   display: -webkit-box;
@@ -2141,7 +2144,7 @@ a {
   background: #2da1b7;
 }
 
-@-webkit-keyframes scroll-reverse {
+@-webkit-keyframes scroll-reverse-anim {
   from {
     -webkit-transform: translateX(calc(-100% + 150px));
             transform: translateX(calc(-100% + 150px));
@@ -2153,7 +2156,7 @@ a {
   }
 }
 
-@keyframes scroll-reverse {
+@keyframes scroll-reverse-anim {
   from {
     -webkit-transform: translateX(calc(-100% + 150px));
             transform: translateX(calc(-100% + 150px));
@@ -2166,8 +2169,8 @@ a {
 }
 
 .runner-wraper .runner.runner_reverse .runner__list {
-  -webkit-animation: scroll-reverse 60s linear infinite;
-          animation: scroll-reverse 60s linear infinite;
+  -webkit-animation: scroll-reverse-anim 60s linear infinite;
+          animation: scroll-reverse-anim 60s linear infinite;
 }
 
 .header {
@@ -2888,88 +2891,88 @@ a {
 }
 
 .fade-in-right-1 {
-  animation: fade-in-right 0.3s ease-in-out forwards;
+  animation: fade-in-right-anim 0.3s ease-in-out forwards;
 }
 
 .fade-in-right-2 {
-  animation: fade-in-right 0.3s 0.2s ease-in-out 1 forwards;  
+  animation: fade-in-right-anim 0.3s 0.2s ease-in-out 1 forwards;  
 }
 
 .fade-in-right-3 {
-  animation: fade-in-right 0.3s 0.4s ease-in-out 1 forwards;  
+  animation: fade-in-right-anim 0.3s 0.4s ease-in-out 1 forwards;  
 }
 
 .fade-in-right-4 {
-  animation: fade-in-right 0.3s 0.6s ease-in-out 1 forwards;  
+  animation: fade-in-right-anim 0.3s 0.6s ease-in-out 1 forwards;  
 }
 
 .fade-in-bot-1 {
-  animation: fade-in-bot 0.3s ease-in-out forwards;
+  animation: fade-in-bot-anim 0.3s ease-in-out forwards;
 }
 
 .fade-in-bot-2 {
-  animation: fade-in-bot 0.3s 0.2s ease-in-out 1 forwards;  
+  animation: fade-in-bot-anim 0.3s 0.2s ease-in-out 1 forwards;  
 }
 
 .fade-in-bot-3 {
-  animation: fade-in-bot 0.3s 0.4s ease-in-out 1 forwards;  
+  animation: fade-in-bot-anim 0.3s 0.4s ease-in-out 1 forwards;  
 }
 
 .fade-in-bot-4 {
-  animation: fade-in-bot 0.3s 0.6s ease-in-out 1 forwards;  
+  animation: fade-in-bot-anim 0.3s 0.6s ease-in-out 1 forwards;  
 }
 
 .fade-in-bot-5 {
-  animation: fade-in-bot 0.3s 0.8s ease-in-out 1 forwards;  
+  animation: fade-in-bot-anim 0.3s 0.8s ease-in-out 1 forwards;  
 }
 
 .fade-in-bot-6 {
-  animation: fade-in-bot 0.3s 1s ease-in-out 1 forwards;  
+  animation: fade-in-bot-anim 0.3s 1s ease-in-out 1 forwards;  
 }
 
 .fade-in-bot-7 {
-  animation: fade-in-bot 0.3s 1.2s ease-in-out 1 forwards;  
+  animation: fade-in-bot-anim 0.3s 1.2s ease-in-out 1 forwards;  
 }
 
 .fade-in-bot-8 {
-  animation: fade-in-bot 0.3s 1.4s ease-in-out 1 forwards;  
+  animation: fade-in-bot-anim 0.3s 1.4s ease-in-out 1 forwards;  
 }
 
 .fade-in-bot-9 {
-  animation: fade-in-bot 0.3s 1.6s ease-in-out 1 forwards;  
+  animation: fade-in-bot-anim 0.3s 1.6s ease-in-out 1 forwards;  
 }
 
 .fade-in-left-1 {
-  animation: fade-in-left 0.3s ease-in-out 1 forwards;
+  animation: fade-in-left-amin 0.3s ease-in-out 1 forwards;
 }
 
 .fade-in-left-2 {
-  animation: fade-in-left 0.3s 0.2s ease-in-out 1 forwards;
+  animation: fade-in-left-amin 0.3s 0.2s ease-in-out 1 forwards;
 }
 
 .fade-in-left-3 {
-  animation: fade-in-left 0.3s 0.4s ease-in-out 1 forwards;
+  animation: fade-in-left-amin 0.3s 0.4s ease-in-out 1 forwards;
 }
 
 
 .wave-1 {
-  animation: fade-in-right 0.3s ease-in-out forwards,
-  wave 5s 3s ease-in-out infinite;
+  animation: fade-in-right-anim 0.3s ease-in-out forwards,
+  wave-anim 5s 3s ease-in-out infinite;
 }
 
 .wave-2 {
-  animation: fade-in-right 0.3s 0.2s ease-in-out 1 forwards, 
-  wave 5s 3.1s ease-in-out infinite;
+  animation: fade-in-right-anim 0.3s 0.2s ease-in-out 1 forwards, 
+  wave-anim 5s 3.1s ease-in-out infinite;
 }
 
 .wave-3 {
-  animation: fade-in-right 0.3s 0.4s ease-in-out 1 forwards,
-  wave 5s 3.2s ease-in-out infinite;
+  animation: fade-in-right-anim 0.3s 0.4s ease-in-out 1 forwards,
+  wave-anim 5s 3.2s ease-in-out infinite;
 }
 
 .wave-4 {
-  animation: fade-in-right 0.3s 0.6s ease-in-out 1 forwards,
-  wave 5s 3.3s ease-in-out infinite;
+  animation: fade-in-right-anim 0.3s 0.6s ease-in-out 1 forwards,
+  wave-anim 5s 3.3s ease-in-out infinite;
 }
 
 .fade-in-right  {
@@ -2995,28 +2998,28 @@ a {
   animation-play-state: running;
 }
 
-@keyframes fade-in-right {
+@keyframes fade-in-right-anim {
   to {
     transform: none;
     opacity: 1;
   }
 }
 
-@keyframes fade-in-left {
+@keyframes fade-in-left-amin {
   to {
     transform: none;
     opacity: 1;
   }
 }
 
-@keyframes fade-in-bot {
+@keyframes fade-in-bot-anim {
   to {
     transform: none;
     opacity: 1;
   }
 }
 
-@keyframes wave {
+@keyframes wave-anim {
   0% {
     transform: translateX(0);
   }
@@ -3410,12 +3413,16 @@ a {
   background: linear-gradient(103.66deg, #f0fdfb 27.06%, #cdfaf6 103.06%);
   padding: 100px 20px;
   overflow: hidden;
+  /* max-width: 1920px; */
 }
 
 .glavnaya .results .container {
   display: -ms-grid;
   display: grid;
   gap: 50px;
+  max-width: 1250px;
+  overflow: hidden;
+  padding-bottom: 50px;
 }
 
 .glavnaya .results .container .results__top-block {
@@ -3469,6 +3476,9 @@ a {
 
 .glavnaya .results .container .results__content {
   min-width: 0;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .glavnaya .results .container .results_bot_swiper {
@@ -3839,7 +3849,7 @@ a {
 
 /* #region RUNNER */
 
-@keyframes scroll {
+@keyframes scroll-anim {
   from {
     transform: translateX(0);
   }
@@ -3862,7 +3872,7 @@ a {
   flex-shrink: 0;
   gap: 190px;
   display: flex;
-  animation: scroll 10s linear infinite;
+  animation: scroll-anim 10s linear infinite;
 }
 
 .runner__wrap {

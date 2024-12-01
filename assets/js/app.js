@@ -35,7 +35,6 @@ if (header) {
 
 // console.log(window.innerWidth);
 if (window.innerWidth < 1440) {
-  
   const runner = document.querySelector(".runner");
   const partnersList = document.querySelector(".partners__list");
   runner.style.display = "none";
@@ -73,17 +72,16 @@ document.addEventListener("scroll", () => {
   animates.forEach((item) => {
     // получаем параметры секции
     const rect = item.getBoundingClientRect();
-  // console.log(rect);
+    // console.log(rect);
 
     // проверяем что начало секции находится в первой половине экрана
     if (rect.top <= window.innerHeight / 1.4) {
-    // if (rect.top >= 0) {
+      // if (rect.top >= 0) {
       // console.log(rect.top);
       item.classList.add("animation_active");
     }
   });
 });
-
 
 // ---------------------------------- end menu ----------------------------------
 //#endregion
@@ -430,6 +428,34 @@ new Swiper(".offers_swiper", {
       // spaceBetween: 40,
     },
   },
+  on: {
+    slideChange: function (e) {
+      this.slides.forEach((item) => {
+        if (!item.classList.contains("swiper-slide-active") && !item.classList.contains("swiper-slide-next")) {
+          item.querySelector(".off-card__img").classList.remove("fade-in-right-1");
+        }
+      });
+    },
+    slideNextTransitionEnd: function () {
+      const activeSlide = this.slides.filter((slide) => slide.classList.contains("swiper-slide-active"))[0];
+      const index = this.slides.indexOf(activeSlide);
+      this.slides[index].querySelector(".off-card__img").classList.add("fade-in-right-1");
+      this.slides[index + 1].querySelector(".off-card__img").classList.add("fade-in-right-1");
+      if (this.slides[index + 2]) {
+        this.slides[index + 2].querySelector(".off-card__img").classList.add("fade-in-right-1");
+      }
+    },
+    slidePrevTransitionEnd: function () {
+      const activeSlide = this.slides.filter((slide) => slide.classList.contains("swiper-slide-active"))[0];
+      const index = this.slides.indexOf(activeSlide);
+      if (this.slides[index]) {
+        this.slides[index].querySelector(".off-card__img").classList.add("fade-in-right-1");
+      }
+      if (this.slides[index + 1]) {
+        this.slides[index + 1].querySelector(".off-card__img").classList.add("fade-in-right-1");
+      }
+    },
+  },
 });
 
 const thumbs_swiper = new Swiper(".results_top_swiper", {
@@ -450,10 +476,11 @@ const thumbs_swiper = new Swiper(".results_top_swiper", {
   },
 });
 
-new Swiper(".results_bot_swiper", {
+const resultsBotSwiper = new Swiper(".results_bot_swiper", {
   // Optional parameters
   // direction: "horizontal",
   loop: true,
+  speed: 1000,
   // allowTouchMove: true,
   // slidesPerView: auto, // сколько слайдов показывать, можно дробно
   // slidesPerView: 1, // сколько слайдов показывать, можно дробно
@@ -461,7 +488,7 @@ new Swiper(".results_bot_swiper", {
   // centeredSlides: true, //выравнивание слайдов по центру
   // initialSlide: 0, //начальный слайд (c нуля)
 
-  spaceBetween: 10000,
+  spaceBetween: 100,
   thumbs: {
     swiper: thumbs_swiper,
   },
@@ -512,6 +539,11 @@ new Swiper(".results_bot_swiper", {
       // spaceBetween: 40,
     },
   },
+});
+
+resultsBotSwiper.on("slideChange", function (e) {
+  // const activeSlide = resultsBotSwiper.
+  // console.log("resultsBotSwiper");
 });
 
 new Swiper(".res-card_swiper-1", {
@@ -1688,7 +1720,6 @@ if (resultCalcBtn) {
 
     let textBarrier = parseInt(sections) - 1;
 
-
     // console.log(params);
 
     //  TODO надо сформировать формирование цены, описания и характеристик, они будут использоваться в файле pdf и в формах обратной связи
@@ -2034,7 +2065,7 @@ function setSections() {
           if (el.dataset.value == 2) {
             el.checked = true;
           }
-        })
+        });
       }
     });
 
@@ -2419,7 +2450,7 @@ if (typeBtns.length) {
                 if (el.dataset.value == 2) {
                   el.checked = true;
                 }
-              })
+              });
             }
           });
         }
@@ -2596,7 +2627,6 @@ function setPrice() {
   if (params.find((param) => param.name == "sections")) {
     copyPrice = filterPrice(params.find((param) => param.name == "sections")["value"], "sections", copyPrice);
   }
-
 
   if (params.find((param) => param.name == "trk")) {
     let value = "";

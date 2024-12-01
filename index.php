@@ -485,7 +485,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           <ul class="offers__slider swiper-wrapper">
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="1">
-              <div class="off-card__img">
+              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
                 <picture>
                   <source srcset="/assets/img/offer1-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer1-tab.png" media="(max-width: 1300px)">
@@ -548,7 +548,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="2">
-              <div class="off-card__img">
+              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
                 <picture>
                   <source srcset="/assets/img/offer2-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer2-tab.png" media="(max-width: 1300px)">
@@ -605,7 +605,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="3">
-              <div class="off-card__img">
+              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
                 <picture>
                   <source srcset="/assets/img/offer3-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer3-tab.png" media="(max-width: 1300px)">
@@ -667,7 +667,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_calc" data-id="4">
-              <div class="off-card__img">   
+              <div class="off-card__img animation_img fade-in-right fade-in-right-1">   
                 <picture>
                   <source srcset="/assets/img/offer4-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer4-tab.png" media="(max-width: 1300px)">
@@ -726,7 +726,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="5">
-              <div class="off-card__img">
+              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
                 <picture>
                   <source srcset="/assets/img/offer5-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer5-tab.png" media="(max-width: 1300px)">
@@ -771,7 +771,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="6">
-              <div class="off-card__img">
+              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
                 <picture>
                   <source srcset="/assets/img/offer6-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer6-tab.png" media="(max-width: 1300px)">
@@ -830,7 +830,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="7">
-              <div class="off-card__img">
+              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
               <picture>
                   <source srcset="/assets/img/offer7-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer7-tab.png" media="(max-width: 1300px)">
@@ -874,7 +874,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
             </li>
 
             <!-- <li class="offers__slider-item swiper-slide off-card off-card_cons" data-id="8">
-              <div class="off-card__img">
+              <div class="off-card__img animation_img fade-in-right fade-in-right-1">
                 <picture>
                   <source srcset="/assets/img/offer8-mob.png" media="(max-width: 1060px)">
                   <source srcset="/assets/img/offer8-tab.png" media="(max-width: 1300px)">
