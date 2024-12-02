@@ -3185,11 +3185,11 @@ a {
 }
 
 .glavnaya .advantages .container .advantages__list .adv-card:hover svg path {
-  fill: #fab502;
+  /* fill: #fab502; */
 }
 
 .glavnaya .advantages .container .advantages__list .adv-card svg path {
-  fill: #11a0a3;
+  /* fill: #11a0a3; */
   -webkit-transition: fill 0.3s ease-in-out;
   transition: fill 0.3s ease-in-out;
 }

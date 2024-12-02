@@ -571,7 +571,7 @@ const resultsBotSwiper = new Swiper(".results_bot_swiper", {
       this.slides.forEach((item) => {
         item.querySelectorAll(".circle-animate").forEach((el) => {
           if (!el.closest(".swiper-slide-active")) {
-            console.log(el);            
+            // console.log(el);            
             el.classList.remove("circle-animate_active")
           }
         })
@@ -585,7 +585,7 @@ const resultsBotSwiper = new Swiper(".results_bot_swiper", {
       this.slides.forEach((item) => {
         item.querySelectorAll(".circle-animate").forEach((el) => {
           if (!el.closest(".swiper-slide-active")) {
-            console.log(el);            
+            // console.log(el);            
             el.classList.remove("circle-animate_active")
           }
         })
@@ -2773,3 +2773,55 @@ function filterPrice(value, name, arr) {
 }
 // -------------------------------------- end расчет цены ----------------
 //#endregion
+
+// const advantagesCard = document.querySelectorAll(".advantages__card");
+// // console.log(advantagesCard);
+// if (advantagesCard.length > 0) {
+//   advantagesCard.forEach((item) => {
+//     if (item == advantagesCard[0]) {
+//       // const svgAnimateNo = item.querySelector('.svgAnimateNo')
+//       const svgAnimateYes = item.querySelector('.svgAnimateYes');
+//       const animationItems = svgAnimateYes.querySelectorAll('animateTransform');
+//       animationItems.forEach(el => el.removeAttribute('begin'));
+//       console.log(animationItems);
+//       // console.log(svgAnimateYes);  
+  
+//       // svgAnimateYes.style.display = 'none';
+//       // svgAnimateNo.style.display = 'block';
+  
+//       item.addEventListener('click', () => {
+//         animationItems.forEach(el => el.setAttribute('begin', '0s'));
+//         console.log('dfgjdsfghdfgkjedrjg');
+//         // svgAnimateYes.style.display = 'block';
+//         // svgAnimateNo.style.display = 'none';
+//         setTimeout(() => animationItems.forEach(el => el.removeAttribute('begin')), 1000);
+//         // setTimeout(() => svgAnimateNo.style.display = 'block', 1000);
+  
+//       })
+//     }
+//   })
+// }
+
+// document.activeElement.addEventListener('click', (e) => {
+//   console.log(e.target);
+// });
+
+const advantagesCards = document.querySelectorAll('.advantages__card');
+
+if (advantagesCards.length > 0) {
+  advantagesCards.forEach((item) => {
+    const animate = item.querySelectorAll('animateTransform');
+    item.addEventListener('mouseover', function() {
+      animate.forEach((el) => {
+        el.beginElement();
+      })
+    })
+
+    const animate2 = item.querySelectorAll('animateMotion');
+    item.addEventListener('mouseover', function() {
+      animate2.forEach((el) => {
+        el.beginElement();
+      })
+    })
+  })
+}
