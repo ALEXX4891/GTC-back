@@ -3463,6 +3463,11 @@ a {
   transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
 }
 
+.glavnaya .types .container .types__list .type-card .type-card__image-block .type-card__image iframe {
+  width: 100%;
+  height: 100%;
+}
+
 .glavnaya .types .container .types__list .type-card .type-card__image-block .type-card__image:hover img {
   -webkit-transform: scale(1.05);
       -ms-transform: scale(1.05);

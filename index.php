@@ -1145,11 +1145,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
           <div class="type-card__image-block">
             <div class="type-card__image">
-              <picture>
-                <source srcset="/assets/img/type-card-1-m.jpg" type="image/jpeg" media="(max-width: 460px)">
-                <source srcset="/assets/img/type-card-1-sm.jpg" type="image/jpeg" media="(max-width: 1260px)">
-                <img src="/assets/img/type-card-1.jpg" alt="">
-              </picture>
+              <iframe title="Open_type_medium" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/bcea2982d19448e49cccead78164c45c/embed"> </iframe>
             </div>
           </div>
 
@@ -1186,15 +1182,9 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
           <div class="type-card__image-block">
             <div class="type-card__image">
-              <picture>
-                <source srcset="/assets/img/type-card-2-m.jpg" type="image/jpeg" media="(max-width: 460px)">
-
-                <source srcset="/assets/img/type-card-2-sm.jpg" type="image/jpeg" media="(max-width: 1260px)">
-                <img src="/assets/img/type-card-2.jpg" alt="">
-              </picture>
+              <iframe title="Closed _type_medium" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/43a2c1e6ddf44fb59b7b5a1416f93a8b/embed"> </iframe>
             </div>
           </div>
-
         </li>
 
         <li class="types__item type-card animation_item fade-in-bot fade-in-bot-3">
@@ -1229,12 +1219,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
           <div class="type-card__image-block">
             <div class="type-card__image">
-              <picture>
-                <source srcset="/assets/img/type-card-3-m.jpg" type="image/jpeg" media="(max-width: 460px)">
-
-                <source srcset="/assets/img/type-card-3-sm.jpg" type="image/jpeg" media="(max-width: 1260px)">
-                <img src="/assets/img/type-card-3.jpg" alt="">
-              </picture>
+            <iframe title="Container_type_big" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/6a6ebe189ded4cfa847aba91a77729dc/embed"> </iframe>
             </div>
           </div>
 
@@ -2219,7 +2204,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
               <div class="geo__contacts-wrap">
                 <p class="geo__contacts-text">
-                  Санкт-Петербург, Ленинский проспект, дом 153, литер А (БЦ «SetlCenter»), офис 720
+                  Санкт-Петербург, ул. Парфеновская, д. 12 (БЦ "Авилон LINKS"), офис 709
                 </p>
               </div>
             </div>

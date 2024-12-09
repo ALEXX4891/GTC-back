@@ -1060,7 +1060,7 @@ if (map) {
         {
           location: {
             // Координаты центра карты
-            center: [30.333316, 59.846034],
+            center: [30.312446, 59.902154],
 
             // Уровень масштабирования
             zoom: 12.5,
@@ -1090,7 +1090,7 @@ if (map) {
       // *******************************************************************
       // Добавляем коллекцию маркеров
       const markersArr = [
-        { coordinates: [30.30295, 59.849966], title: "Setl center", dataId: 1, img: "/assets/img/pin.svg" },
+        { coordinates: [30.312446, 59.902154], title: "Setl center", dataId: 1, img: "/assets/img/pin.svg" },        
       ];
 
       function renderMarks(arr) {
