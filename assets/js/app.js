@@ -102,7 +102,9 @@ if (offerCards.length) {
     const cardCalcBtn = item.querySelector(".btn_calc");
     const truthCardText = cardText.innerHTML;
 
-    $clamp(cardText, { clamp: 2 });
+    cardText.style.display = "none";
+
+    // $clamp(cardText, { clamp: 2 });
 
     cardMoreBtn.addEventListener("click", function () {
       // console.log("click");

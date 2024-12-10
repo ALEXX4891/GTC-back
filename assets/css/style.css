@@ -915,11 +915,11 @@ a {
   gap: 23px;
   /* background: #ffffff; */
   grid-auto-flow: dense;
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-rows: auto auto 1fr auto;
 }
 
 .off-card .off-card__subtitle {
-  /* min-height: 44px; */
+  /* min-height: 100px; */
 }
 
 .off-card .off-card__title {
@@ -929,7 +929,7 @@ a {
   line-height: 34.3px;
   text-align: left;
   color: #052b2e;
-  /* min-height: 69px; */
+  /* min-height: 75px; */
 }
 
 .off-card .off-card__text {
