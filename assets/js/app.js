@@ -2527,7 +2527,7 @@ if (typeBtns.length) {
           }
         });
 
-        console.log(type);
+        // console.log(type);
         if (size == "S" || type == "Cont") {
           desc.style.display = "grid";
           sectionsBtns.forEach((el) => {
