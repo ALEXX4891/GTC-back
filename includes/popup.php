@@ -472,9 +472,7 @@
         <div class="popup__type-list">
           <div class="popup__type-item" data-calc-btn data-name="type" data-value="Open">
             <div class="popup__card-img">
-              <picture>
-                <source srcset="/assets/img/popup-card-type-1.webp" type="image/webp"><img src="/assets/img/popup-card-type-1.png" alt="">
-              </picture>
+                <img src="/assets/img/popup-card-type-1.png" alt="">
             </div>
             <h3 class="popup__card-title">
               Открытый технический отсек
@@ -483,9 +481,7 @@
 
           <div class="popup__type-item" data-calc-btn data-name="type" data-value="Close">
             <div class="popup__card-img">
-              <picture>
-                <source srcset="/assets/img/popup-card-type-2.webp" type="image/webp"><img src="/assets/img/popup-card-type-2.png" alt="">
-              </picture>
+                <img src="/assets/img/popup-card-type-2.png" alt="">
             </div>
             <h3 class="popup__card-title">
               Закрытый технический отсек
@@ -494,9 +490,7 @@
 
           <div class="popup__type-item" data-calc-btn data-name="type" data-value="Cont">
             <div class="popup__card-img">
-              <picture>
-                <source srcset="/assets/img/popup-card-type-3.webp" type="image/webp"><img src="/assets/img/popup-card-type-3.png" alt="">
-              </picture>
+                <img src="/assets/img/popup-card-type-3.png" alt="">
             </div>
             <h3 class="popup__card-title">
               АЗС<br> в контейнере

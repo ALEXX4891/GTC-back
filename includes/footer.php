@@ -268,5 +268,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/popup.php';
 <!-- <script src="/assets/js/lib/clamp.min.js"></script> -->
 <script src="/assets/js/lib/jquery.maskedinput.min.js"></script>
 <script type="module" src="/assets/js/app.js"></script>
+<script type="module" src="/assets/js/main.js"></script>
+
 
 </body>

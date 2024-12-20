@@ -27,5 +27,13 @@ $yandexMapApiKey = 'ad8951ed-30f2-4395-b6df-44c49dbe8f2b';
   <link rel="stylesheet" href="/assets/css/style.css">
 
   <script src="https://api-maps.yandex.ru/v3/?apikey=<?= $yandexMapApiKey ?>&lang=ru_RU"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.171.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.171.0/examples/jsm/"
+    }
+  }
+</script>
 
 </head>
