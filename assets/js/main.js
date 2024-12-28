@@ -3,16 +3,22 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const sizes = {
-  width: 526,
-  height: 350
+  // width: 526,
+  // height: 330
+  width: window.innerWidth,
+  height: window.innerHeight
 }
 
+const canvas = document.querySelector('.webgl1');
+const path = '/assets/img/open_type_small.glb';
 
-const canvas = document.querySelector('.webgl');
+initThree(path);
 
-function init(path) {
-  const camera = new THREE.PerspectiveCamera( 75, sizes.width / sizes.height, 0.1, 100 );
-  camera.position.set( 6, 1, 4 );
+function initThree(path) {
+  const camera = new THREE.PerspectiveCamera( 60, sizes.width / sizes.height, 0.1, 100 );
+  camera.position.set( 4, 1, 4 );
+  // console.log(sizes.width);
+  // console.log(sizes.height);
   canvas.width = sizes.width;
   canvas.height = sizes.height;
   
@@ -21,10 +27,11 @@ function init(path) {
   const renderer = new THREE.WebGLRenderer(
     { canvas: canvas },
     { alpha: true },
-    { antialias: true },
+    { antialiasing: true },
   );
 
-  renderer.setSize( sizes.width, sizes.height );
+  
+  renderer.setSize( sizes.width, sizes.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.shadowMap.enabled = true;
   renderer.gammaOutput = true;
@@ -44,6 +51,9 @@ function init(path) {
   camera.add( light );
   camera.add( directionalLight );
   scene.background = new THREE.Color( 0xDDDDDD );
+
+  // const axesHelper = new THREE.AxesHelper(3);
+  // scene.add( axesHelper );
 
   const controls = new OrbitControls( camera, canvas );
   // controls1.enableDamping = true;
