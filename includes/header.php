@@ -1,5 +1,5 @@
 <body class="<? echo $page ?>" data-page="<? echo $page ?>">
-	<header class="header lock-padding">
+	<header class="header">
 		<section class="section header__section">
 			<div class="header__container container">
 

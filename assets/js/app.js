@@ -2838,6 +2838,6 @@ if (additionBtns && window.innerWidth <= 960) {
 
 if (additionBtns && window.innerWidth > 960) {
   additionBtns.forEach((btn) => {
-    btn.remove;
+    btn.remove();
   })
 }

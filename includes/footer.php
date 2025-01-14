@@ -199,7 +199,7 @@
   </svg>
 </button>
 
-<div class="social-btn-block">
+<div class="social-btn-block lock-padding">
   <div class="social-btn__wrap">
 
     <a class="social-btn__link social-btn__link_watsapp circle-btn"
