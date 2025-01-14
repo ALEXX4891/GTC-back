@@ -2854,27 +2854,27 @@ a {
 }
 
 .circle_big_10 {
-  background: conic-gradient(#FAB502 0deg, #117074 var(--deg10), #CDFAF6 var(--deg10));
+  background: conic-gradient(#11a0a3 0deg, #11a0a3 var(--deg10), #CDFAF6 var(--deg10));
   transition: --deg10 0.5s ease-in-out;
 }
 
 .circle_big_25 {
-  background: conic-gradient(#FAB502 0deg, #117074 var(--deg25), #CDFAF6 var(--deg25));
+  background: conic-gradient(#11a0a3 0deg, #11a0a3 var(--deg25), #CDFAF6 var(--deg25));
   transition: --deg25 0.5s ease-in-out;
 }
 
 .circle_big_40 {
-  background: conic-gradient(#FAB502 0deg, #117074 var(--deg40), #CDFAF6 var(--deg40));
+  background: conic-gradient(#11a0a3 0deg, #11a0a3 var(--deg40), #CDFAF6 var(--deg40));
   transition: --deg40 0.5s ease-in-out;
 }
 
 .circle_big_50 {
-  background: conic-gradient(#FAB502 0deg, #117074 var(--deg50), #CDFAF6 var(--deg50));
+  background: conic-gradient(#11a0a3 0deg, #11a0a3 var(--deg50), #CDFAF6 var(--deg50));
   transition: --deg50 0.5s ease-in-out;
 }
 
 .circle_big_100 {
-  background: conic-gradient(#FAB502 0deg, #117074 var(--deg100), #CDFAF6 var(--deg100));
+  background: conic-gradient(#11a0a3 0deg, #11a0a3 var(--deg100), #CDFAF6 var(--deg100));
   transition: --deg100 0.5s ease-in-out;
 }
 
