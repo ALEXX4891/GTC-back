@@ -56,9 +56,9 @@ if ($_POST['image']) {
 
     // осторожнее с ковычками!!!!
   $s .= '<img src="' . $image . '" style="
-            width: 450px;
+            width: 650px;
             height: auto;
-            max-height: 350px;
+            max-height: 450px;
             display: block;
             object-fit: contain;
             object-position: center;"/>
@@ -69,17 +69,17 @@ if ($_POST['image']) {
 
 if ($_POST['price']) {
   $price = $_POST['price'];
-  $s .= "<p>{$price}</p>";
+  $s .= "<p style='font-size: 16px;'>{$price}</p>";
 }
 
 if ($_POST['description']) {
   $description = $_POST['description'];
-  $s.= "<p>{$description}</p>";
+  $s.= "<p style='font-size: 16px;'>{$description}</p>";
 }
 
 if ($_POST['characteristics']) {
   $characteristics = $_POST['characteristics'];
-  $s.= "<p>{$characteristics}</p>";
+  $s.= "<p style='font-size: 16px;'>{$characteristics}</p>";
 }
 $pdf->writeHTML($s, true, false, true, false, '');
 ob_end_clean();

@@ -1878,7 +1878,7 @@ a {
 }
 
 .popup.popup-calc_result .popup__body .popup__content .popup__result-img {
-  height: 143px;
+  /* height: 143px; */
 }
 
 .popup.popup-calc_result .popup__body .popup__content .popup__result-img img {
