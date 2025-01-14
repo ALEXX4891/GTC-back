@@ -561,6 +561,18 @@ a {
   color: #fff;
 }
 
+.btn.btn_gray_orange {
+  border-color: #11a0a3;
+  background: #11a0a3;
+  color: #fff;
+}
+
+.btn.btn_gray_orange:hover {
+  border-color: #fab502;
+  background: #fab502;
+  color: #fff;
+}
+
 .btn.btn_trans-gray {
   border-color: #11a0a3;
   background: transparent;
@@ -4439,7 +4451,7 @@ a {
 
   .glavnaya .consultations .consultations__img {
     left: 0;
-    width: 1920px;
+    /* width: 1920px; */
     height: auto;
     margin-left: initial;
   }
@@ -4448,7 +4460,7 @@ a {
 @media (max-width: 1600px) {
 .glavnaya .consultations .consultations__img {
   left: -218px;
-  width: 1920px;
+  /* width: 1920px; */
   height: auto;
   margin-left: initial;
 }

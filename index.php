@@ -478,7 +478,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
       </ul>
 
 
-      <button class="advantages__btn btn btn_orange popup-link" data-popup="popup-consult">
+      <button class="advantages__btn btn btn_gray_orange popup-link" data-popup="popup-consult">
         Получить консультацию
       </button>
 
@@ -562,7 +562,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   Рассчитать стоимость
                 </button>
 
-                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
+                <button class="btn btn_gray_orange btn_modal popup-link" data-popup="popup-offer_more">
                   Узнать больше
                 </button>
 
@@ -620,7 +620,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   Рассчитать стоимость
                 </button>
 
-                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
+                <button class="btn btn_gray_orange btn_modal popup-link" data-popup="popup-offer_more">
                   Узнать больше
                 </button>
               </div>
@@ -682,7 +682,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   Рассчитать стоимость
                 </button>
 
-                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
+                <button class="btn btn_gray_orange btn_modal popup-link" data-popup="popup-offer_more">
                   Узнать больше
                 </button>
               </div>
@@ -741,7 +741,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   Рассчитать стоимость
                 </button>
 
-                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
+                <button class="btn btn_gray_orange btn_modal popup-link" data-popup="popup-offer_more">
                   Узнать больше
                 </button>
               </div>
@@ -786,7 +786,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   Рассчитать стоимость
                 </button>
 
-                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
+                <button class="btn btn_gray_orange btn_modal popup-link" data-popup="popup-offer_more">
                   Узнать больше
                 </button>
               </div>
@@ -845,7 +845,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   Рассчитать стоимость
                 </button>
 
-                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
+                <button class="btn btn_gray_orange btn_modal popup-link" data-popup="popup-offer_more">
                   Узнать больше
                 </button>
               </div>
@@ -889,7 +889,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   Рассчитать стоимость
                 </button>
 
-                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
+                <button class="btn btn_gray_orange btn_modal popup-link" data-popup="popup-offer_more">
                   Узнать больше
                 </button>
               </div>
@@ -942,7 +942,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
                   Рассчитать стоимость
                 </button>
 
-                <button class="btn btn_gray btn_modal popup-link" data-popup="popup-offer_more">
+                <button class="btn btn_gray_orange btn_modal popup-link" data-popup="popup-offer_more">
                   Узнать больше
                 </button>
               </div>
@@ -1093,7 +1093,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
 
       </ul>
 
-      <button class="btn btn_gray popup-link" data-popup="popup-calc_one">
+      <button class="btn btn_gray_orange popup-link" data-popup="popup-calc_one">
         Рассчитать стоимость
       </button>
     </div>
@@ -1138,7 +1138,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               • открытое исполнение тех. отсека<br>
             </p>
 
-            <button class="btn btn_gray popup-link" data-popup="popup-calc_one">
+            <button class="btn btn_gray_orange popup-link" data-popup="popup-calc_one">
               Рассчитать стоимость
             </button>
           </div>
@@ -1176,7 +1176,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               • закрытый тех. отсек<br>
             </p>
 
-            <button class="btn btn_gray popup-link" data-popup="popup-calc_one">
+            <button class="btn btn_gray_orange popup-link" data-popup="popup-calc_one">
               Рассчитать стоимость
             </button>
           </div>
@@ -1215,7 +1215,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
               • контейнерное исполнение, морской 40-футовый контейнер<br>
             </p>
 
-            <button class="btn btn_gray popup-link" data-popup="popup-calc_one">
+            <button class="btn btn_gray_orange popup-link" data-popup="popup-calc_one">
               Рассчитать стоимость
             </button>
           </div>
@@ -2252,7 +2252,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           <input type="hidden" name="type" value="Консультация">
           <input class="consultations__input phone input" type="tel" name="phone" placeholder="+7 (999) 999 99 99">
 
-          <button class="consultations__btn btn btn_gray" type="submit">
+          <button class="consultations__btn btn btn_gray_orange" type="submit">
             Получить консультацию
           </button>
         </form>
