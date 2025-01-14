@@ -1144,6 +1144,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </div>
 
           <div class="type-card__image-block">
+            <img class="type-card__3d-icon" src="assets/img/3d-icon.png" alt="3d-icon">
             <div class="type-card__image">
               <!-- <iframe title="Open_type_medium" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/bcea2982d19448e49cccead78164c45c/embed"> </iframe> -->
                 <iframe rel="nofollow" scrolling="no" frameborder="0" src="http://gtc-back.isk/pages/three/one.php"></iframe>
@@ -1182,6 +1183,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </div>
 
           <div class="type-card__image-block">
+            <img class="type-card__3d-icon" src="assets/img/3d-icon.png" alt="3d-icon">
             <div class="type-card__image">
               <!-- <iframe title="Closed _type_medium" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/43a2c1e6ddf44fb59b7b5a1416f93a8b/embed"> </iframe> -->
               <iframe rel="nofollow" scrolling="no" frameborder="0" src="http://gtc-back.isk/pages/three/two.php"></iframe>
@@ -1221,6 +1223,7 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';
           </div>
 
           <div class="type-card__image-block">
+            <img class="type-card__3d-icon" src="assets/img/3d-icon.png" alt="3d-icon">
             <div class="type-card__image">
             <!-- <iframe title="Container_type_big" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/6a6ebe189ded4cfa847aba91a77729dc/embed"> </iframe> -->
               <iframe rel="nofollow" scrolling="no" frameborder="0" src="http://gtc-back.isk/pages/three/three.php"></iframe>

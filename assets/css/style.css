@@ -3459,6 +3459,15 @@ a {
   -ms-grid-row-span: 1;
   -ms-grid-column: 3;
   grid-area: c;
+  position: relative;
+}
+
+.glavnaya .types .container .types__list .type-card .type-card__image-block .type-card__3d-icon {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 40px;
+  height: 40px;
 }
 
 .glavnaya .types .container .types__list .type-card .type-card__image-block .type-card__image {
