@@ -2827,3 +2827,11 @@ if (advantagesCards.length > 0) {
     })
   })
 }
+
+const additionBtns = document.querySelectorAll('.off-card__btn');
+if (additionBtns && window.innerWidth < 960) {
+  additionBtns.forEach((btn) => {
+    btn.classList.add('btn');
+    btn.classList.add('btn_trans-orange');
+  })
+}
