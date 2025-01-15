@@ -1886,6 +1886,29 @@ if (resultCalcBtn) {
     } else {
       downlodBtn.classList.add("btn_disabled");
     }
+
+    downlodBtn.addEventListener("click", async function (e) {
+       // Отправка AJAX-запроса
+       try {
+          // Отправка запроса с помощью Fetch API
+          const response = await fetch('/backend/post-mail.php', {
+              method: 'POST',
+              body: JSON.stringify({
+                type: 'sendFile',
+              }),
+          });
+
+          if (response.ok) {
+              const result = await response.text();
+              console.log('Файл успешно отправлен:', result);
+          } else {
+            console.log('Произошла ошибка при отправке файла.');
+          }
+
+        } catch (error) {
+          console.log('Произошла ошибка при отправке файла:', error);
+        }
+    })
   }
 }
 // ---------------------- end Формирование последнего шага -----------------

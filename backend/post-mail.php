@@ -28,15 +28,21 @@ $mail->isHTML(true); // включить html теги в письме
 // от кого письмо
 $mail->setFrom('admin@gtc.ru', 'gtc');
 
-// кому письмо
-$recipients = [
-  // $row['email'] => 'Person One',
-  'ALEXX4891@mail.ru' => 'Person One',
-  'ALEXX4891@yandex.ru' => 'Person Two',
 
-  // 'direktor-info.alfa@yandex.ru' => 'Person Two',
-];
-
+if ($_POST['type'] == "sendFile") {
+  // кому письмо - отправка файла
+  $recipients = [
+    'ALEXX4891@mail.ru' => 'Person One',
+    'ALEXX4891@yandex.ru' => 'Person Two',  
+  ];
+} else {
+  // кому письмо - отправка форм
+  $recipients = [
+    'ALEXX4891@mail.ru' => 'Person One',
+    'ALEXX4891@yandex.ru' => 'Person Two',
+  ];
+}  
+  
 foreach ($recipients as $email => $name) {
   $mail->addAddress($email, $name);
 }
@@ -44,8 +50,35 @@ foreach ($recipients as $email => $name) {
 //Добавляет адрес кому отправится скрытая копия:
 // $mailer->AddBCC('Ящик 3'); 
 
-// --------- запрос планировок: ----------
-// echo 'sdfsdfsdf';
+// отправка файла:
+if ($_POST['type'] == "sendFile") {
+
+    // Путь к файлу на сервере
+    $file_path = '/calc.pdf'; // Укажите путь к файлу на сервере
+    $file_name = rand(100, 1000) . '_' . date("d-m-y") . '_' . basename($file_path); // Имя файла
+
+    // Проверяем, существует ли файл
+    if (!file_exists($file_path)) {
+        echo "Файл не найден на сервере.";
+        exit;
+    }
+
+    foreach ($recipients as $email => $name) {
+      	$mail->addAddress($email, $name);
+    }
+
+	// Вложение файла
+	$mail->addAttachment($file_path, $file_name);
+
+    // тема письма
+    $mail->Subject = 'Файл предварительного расчета с сайта gtc.ru';
+
+    // текст письма
+    $body = '<h1>Файл предварительного расчета с сайта gtc.ru:</h1>';
+    
+} 
+
+// --------- запросы: ----------
 if ($_POST['type'] == "Консультация") {
   // тема письма
   $mail->Subject = 'Заявка на консультацию с сайта gtc.ru';
