@@ -4634,6 +4634,11 @@ a {
 }
 
 @media (max-width: 1260px) {
+  .header .header__section .header__container .header__right-block .header__phone-link {
+    text-decoration-color: #052b2e;
+  }
+
+
   .glavnaya .types .container .types__list .type-card {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
